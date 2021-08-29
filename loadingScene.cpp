@@ -51,9 +51,8 @@ void loadingScene::update()
 	if (_currentCount == LOADINGMAX)
 	{
 		//이동할 씬 으로 변경
-		SCENEMANAGER->changeScene("playerScene");
-		SCENEMANAGER->changeScene("mainMenuScene");
-		SCENEMANAGER->changeScene("inventory");
+
+		SCENEMANAGER->changeScene("inven");
 	}
 
 	_count++;
@@ -101,7 +100,7 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
 		//IMAGEMANAGER->addImage("")
 
 		////도구 인벤토리
-		//IMAGEMANAGER->addFrameImage("playerTool", "source/Images/playerInventory/playerTool.bmp", 96, 16, 6, 0, true, RGB(255, 0, 255)); // 플레이어 도구
+		IMAGEMANAGER->addFrameImage("playerTool", "source/Images/playerInventory/playerTool.bmp", 96, 16, 6, 0, true, RGB(255, 0, 255)); // 플레이어 도구
 		////씨앗 아이템
 		//IMAGEMANAGER->addFrameImage("seedItem", "source/Images/BMP/씨앗아이템(original).bmp", 360, 160, 9, 4, true, RGB(255, 0, 255));
 		////씨앗 아이템아이콘용

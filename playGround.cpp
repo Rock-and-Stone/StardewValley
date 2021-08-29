@@ -23,7 +23,7 @@ HRESULT playGround::init()
 	SCENEMANAGER->addScene("openingScene", new openingScene);
 	SCENEMANAGER->addScene("loadingScene", new loadingScene);
 	SCENEMANAGER->addScene("mainMenuScene", new mainMenuScene);
-
+	SCENEMANAGER->addScene("inven", new inventory);
 	SCENEMANAGER->changeScene("openingScene");
 
 	return S_OK;
