@@ -7,26 +7,37 @@
 #define QUICKSLOTSIZE 12
 
 
+enum MenuPage
+{
+	InvenPage,
+	StatPage,
+	CraftPage,
+	SettingPage,
+	ExitPage,
+};
 
 
-struct ItemInfo
+struct tagItemInfo
 {
 	image* itemImg;
 	string itemName;
-	string type;
-
-	//메뉴 칸마다 있을 칸들
-	RECT	rc;
+	int	   count;			 //각물체의 개수
+	int    currentFrameX;
+	int	   currentFrameY;
+};
+struct tagInventory
+{
+	tagItemInfo itemInfo;
+	RECT	rc;				//메뉴 칸마다 있을 칸들	
 };
 
 class inventory : public gameNode
 {
 private:
-	vector <object*>			_vItems;
-	vector <object*>::iterator  _viItems;
 
+	MenuPage _menuPage;
 
-	ItemInfo _items[INVENTORYSIZE];
+	tagInventory _inven[INVENTORYSIZE];
 
 	//현재 보고있는 메뉴 이미지
 	image* _currentMenuImg;
@@ -54,19 +65,11 @@ private:
 	RECT	_settingRc;
 	RECT	_exitRc;
 
+	//메뉴가 열렷는지
+	BOOL _isMenuOpen;
 
-
-	//창활성화용 
-
-	BOOL	_isMenuOpen;				//메뉴창
-	BOOL	_isInvenOpen;				//인벤창
-	BOOL	_isStatOpen;				//스탯창
-	BOOL	_isCraftOpen;				//제작창
-	BOOL	_isSettingOpen;				//설정창
-	BOOL	_isExitOpen;				//탈출창
-
-
-
+	//드래그 중인지
+	BOOL _dragActivate;
 
 
 
@@ -80,14 +83,13 @@ public:
 
 
 	void MenuOpen();
-	void InvetoryOpen();
-	void StatOpen();
-	void CraftOpen();
-	void SettingOpen();
-	void ExitOpen();
 	void SelectMenu();
 
-
+	void MenuInvetoryOpen();
+	void MenuStatOpen();
+	void MenuCraftOpen();
+	void MenuSettingOpen();
+	void MenuExitOpen();
 
 
 	void ClickObject();

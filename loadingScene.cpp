@@ -80,7 +80,7 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
 	{
 		//소스 파일 추가	
 		//IMAGEMANAGER->addFrameImage("playerTool", "playerTool.bmp", 96, 16, 6, 0, true, RGB(255, 0, 255)); // 플레이어 도구
-		IMAGEMANAGER->addFrameImage("player","source/Images/플레이어이미지3.bmp",576,2176,12,34,true,MAGENTA);
+		IMAGEMANAGER->addFrameImage("player", "source/Images/플레이어이미지3.bmp", 576, 2176, 12, 34, true, MAGENTA);
 
 		//소스 파일 추가
 		
@@ -89,18 +89,18 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
 		// 인벤토리 UI
 		IMAGEMANAGER->addImage("itemInventory", "source/Images/inventory/itemInventory.bmp", 750, 550, true, MAGENTA);
 		// 퀵슬롯 UI
-		IMAGEMANAGER->addImage("quickSlot", "source/Images/inventory/playerQuickslot.bmp", 565, 69, true, MAGENTA);
+		IMAGEMANAGER->addImage("quickSlot",		"source/Images/inventory/playerQuickslot.bmp", 565, 69, true, MAGENTA);
 		// 제작메뉴
-		IMAGEMANAGER->addImage("craftMenu", "source/Images/inventory/Craftinven.bmp", 750, 550, true, MAGENTA);
+		IMAGEMANAGER->addImage("craftMenu",		"source/Images/inventory/Craftinven.bmp", 750, 550, true, MAGENTA);
 		// 스탯메뉴
-		IMAGEMANAGER->addImage("statMenu", "source/Images/inventory/skill.bmp", 750, 550, true, MAGENTA);
+		IMAGEMANAGER->addImage("statMenu",		"source/Images/inventory/skill.bmp", 750, 550, true, MAGENTA);
 		// 설정메뉴
-		IMAGEMANAGER->addImage("settingMenu", "source/Images/inventory/setting.bmp", 750, 550, true, MAGENTA);
+		IMAGEMANAGER->addImage("settingMenu",	"source/Images/inventory/setting.bmp", 750, 550, true, MAGENTA);
 		// 나가기메뉴
 		//IMAGEMANAGER->addImage("")
 
 		////도구 인벤토리
-		IMAGEMANAGER->addFrameImage("playerTool", "source/Images/playerInventory/playerTool.bmp", 96, 16, 6, 0, true, RGB(255, 0, 255)); // 플레이어 도구
+		IMAGEMANAGER->addFrameImage("playerTool", "source/Images/playerInventory/playerTool.bmp", 240, 40, 6, 1, true, RGB(255, 0, 255)); // 플레이어 도구
 		////씨앗 아이템
 		//IMAGEMANAGER->addFrameImage("seedItem", "source/Images/BMP/씨앗아이템(original).bmp", 360, 160, 9, 4, true, RGB(255, 0, 255));
 		////씨앗 아이템아이콘용
@@ -113,13 +113,13 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
 
 		//==================UI 부분 파일 추가 본=====================
 		//이미지
-		IMAGEMANAGER->addImage("title", "source/images/mainScene/title.bmp", 690, 318, true, MAGENTA);
-		IMAGEMANAGER->addImage("mainScene", "source/images/mainScene/mainScene.bmp", WINSIZEX, WINSIZEY, true, MAGENTA);
-		IMAGEMANAGER->addFrameImage("start", "source/images/mainScene/start.bmp", 185, 292, 1, 2, true, MAGENTA);
-		IMAGEMANAGER->addFrameImage("load", "source/images/mainScene/load.bmp", 185, 292, 1, 2, true, MAGENTA);
-		IMAGEMANAGER->addFrameImage("mapTool", "source/images/mainScene/mapTool.bmp", 185, 292, 1, 2, true, MAGENTA);
-		IMAGEMANAGER->addFrameImage("exit", "source/images/mainScene/exit.bmp", 185, 292, 1, 2, true, MAGENTA);
-		IMAGEMANAGER->addFrameImage("back", "source/images/mainScene/back.bmp", 198, 162, 1, 2, true, MAGENTA);
+		IMAGEMANAGER->addImage("title",			"source/Images/mainScene/title.bmp", 690, 318, true, MAGENTA);
+		IMAGEMANAGER->addImage("mainScene",		"source/Images/mainScene/mainScene.bmp", WINSIZEX, WINSIZEY, true, MAGENTA);
+		IMAGEMANAGER->addFrameImage("start",	"source/Images/mainScene/start.bmp", 185, 292, 1, 2, true, MAGENTA);
+		IMAGEMANAGER->addFrameImage("load",		"source/Images/mainScene/load.bmp", 185, 292, 1, 2, true, MAGENTA);
+		IMAGEMANAGER->addFrameImage("mapTool",  "source/Images/mainScene/mapTool.bmp", 185, 292, 1, 2, true, MAGENTA);
+		IMAGEMANAGER->addFrameImage("exit",		"source/Images/mainScene/exit.bmp", 185, 292, 1, 2, true, MAGENTA);
+		IMAGEMANAGER->addFrameImage("back",		"source/Images/mainScene/back.bmp", 198, 162, 1, 2, true, MAGENTA);
 		
 
 		//사운드
