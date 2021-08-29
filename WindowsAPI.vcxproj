@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{19020bb8-768f-4625-a9a9-dfba1780c2c0}</ProjectGuid>
+    <RootNamespace>WindowsAPI</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.19041.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>NotSet</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="action.h" />
+    <ClInclude Include="animation.h" />
+    <ClInclude Include="aStarTest.h" />
+    <ClInclude Include="axe.h" />
+    <ClInclude Include="button.h" />
+    <ClInclude Include="CameraManager.h" />
+    <ClInclude Include="can.h" />
+    <ClInclude Include="cauliFlower.h" />
+    <ClInclude Include="cauliFlowerSeed.h" />
+    <ClInclude Include="Clock.h" />
+    <ClInclude Include="commonMacroFunction.h" />
+    <ClInclude Include="copper.h" />
+    <ClInclude Include="effect.h" />
+    <ClInclude Include="effectManager.h" />
+    <ClInclude Include="entity.h" />
+    <ClInclude Include="gameData.h" />
+    <ClInclude Include="gameNode.h" />
+    <ClInclude Include="gold.h" />
+    <ClInclude Include="haliBut.h" />
+    <ClInclude Include="hoe.h" />
+    <ClInclude Include="image.h" />
+    <ClInclude Include="imageManager.h" />
+    <ClInclude Include="iniDataManager.h" />
+    <ClInclude Include="inventory.h" />
+    <ClInclude Include="iron.h" />
+    <ClInclude Include="kale.h" />
+    <ClInclude Include="kaleSeed.h" />
+    <ClInclude Include="keyAniManager.h" />
+    <ClInclude Include="keyManager.h" />
+    <ClInclude Include="loadingScene.h" />
+    <ClInclude Include="mainMenuScene.h" />
+    <ClInclude Include="Map.h" />
+    <ClInclude Include="MouseSetting.h" />
+    <ClInclude Include="openingScene.h" />
+    <ClInclude Include="object.h" />
+    <ClInclude Include="objectManager.h" />
+    <ClInclude Include="objectScene.h" />
+    <ClInclude Include="parsnip.h" />
+    <ClInclude Include="parsnipSeed.h" />
+    <ClInclude Include="pch.h" />
+    <ClInclude Include="pickAxe.h" />
+    <ClInclude Include="playerScene.h" />
+    <ClInclude Include="playGround.h" />
+    <ClInclude Include="potato.h" />
+    <ClInclude Include="potatoSeed.h" />
+    <ClInclude Include="progressBar.h" />
+    <ClInclude Include="pufferFish.h" />
+    <ClInclude Include="randomFunction.h" />
+    <ClInclude Include="RenderManager.h" />
+    <ClInclude Include="Resource.h" />
+    <ClInclude Include="rod.h" />
+    <ClInclude Include="sceneManager.h" />
+    <ClInclude Include="singletonBase.h" />
+    <ClInclude Include="slingShot.h" />
+    <ClInclude Include="soundManager.h" />
+    <ClInclude Include="sword.h" />
+    <ClInclude Include="targetver.h" />
+    <ClInclude Include="tile.h" />
+    <ClInclude Include="timeManager.h" />
+    <ClInclude Include="timer.h" />
+    <ClInclude Include="tuna.h" />
+    <ClInclude Include="txtData.h" />
+    <ClInclude Include="UserInterface.h" />
+    <ClInclude Include="utils.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="action.cpp" />
+    <ClCompile Include="animation.cpp" />
+    <ClCompile Include="aStarTest.cpp" />
+    <ClCompile Include="axe.cpp" />
+    <ClCompile Include="button.cpp" />
+    <ClCompile Include="CameraManager.cpp" />
+    <ClCompile Include="can.cpp" />
+    <ClCompile Include="cauliFlower.cpp" />
+    <ClCompile Include="cauliFlowerSeed.cpp" />
+    <ClCompile Include="Clock.cpp" />
+    <ClCompile Include="copper.cpp" />
+    <ClCompile Include="effect.cpp" />
+    <ClCompile Include="effectManager.cpp" />
+    <ClCompile Include="entity.cpp" />
+    <ClCompile Include="gameData.cpp" />
+    <ClCompile Include="gameNode.cpp" />
+    <ClCompile Include="gold.cpp" />
+    <ClCompile Include="haliBut.cpp" />
+    <ClCompile Include="hoe.cpp" />
+    <ClCompile Include="image.cpp" />
+    <ClCompile Include="imageManager.cpp" />
+    <ClCompile Include="iniDataManager.cpp" />
+    <ClCompile Include="inventory.cpp" />
+    <ClCompile Include="iron.cpp" />
+    <ClCompile Include="kale.cpp" />
+    <ClCompile Include="kaleSeed.cpp" />
+    <ClCompile Include="keyAniManager.cpp" />
+    <ClCompile Include="keyManager.cpp" />
+    <ClCompile Include="loadingScene.cpp" />
+    <ClCompile Include="mainMenuScene.cpp" />
+    <ClCompile Include="Map.cpp" />
+    <ClCompile Include="MouseSetting.cpp" />
+    <ClCompile Include="openingScene.cpp" />
+    <ClCompile Include="object.cpp" />
+    <ClCompile Include="objectManager.cpp" />
+    <ClCompile Include="objectScene.cpp" />
+    <ClCompile Include="parsnip.cpp" />
+    <ClCompile Include="parsnipSeed.cpp" />
+    <ClCompile Include="pch.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="pickAxe.cpp" />
+    <ClCompile Include="playerScene.cpp" />
+    <ClCompile Include="playGround.cpp" />
+    <ClCompile Include="potato.cpp" />
+    <ClCompile Include="potatoSeed.cpp" />
+    <ClCompile Include="progressBar.cpp" />
+    <ClCompile Include="pufferFish.cpp" />
+    <ClCompile Include="RenderManager.cpp" />
+    <ClCompile Include="rod.cpp" />
+    <ClCompile Include="sceneManager.cpp" />
+    <ClCompile Include="slingShot.cpp" />
+    <ClCompile Include="soundManager.cpp" />
+    <ClCompile Include="sword.cpp" />
+    <ClCompile Include="tile.cpp" />
+    <ClCompile Include="timeManager.cpp" />
+    <ClCompile Include="timer.cpp" />
+    <ClCompile Include="tuna.cpp" />
+    <ClCompile Include="txtData.cpp" />
+    <ClCompile Include="UserInterface.cpp" />
+    <ClCompile Include="utils.cpp" />
+    <ClCompile Include="WindowsAPI.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="WindowsAPI.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="small.ico" />
+    <Image Include="WindowsAPI.ico" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
