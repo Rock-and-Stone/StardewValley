@@ -288,6 +288,12 @@
     <ClInclude Include="UserInterface.h">
       <Filter>playGround\userInterface</Filter>
     </ClInclude>
+    <ClInclude Include="playerState.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="player.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WindowsAPI.cpp">
@@ -469,6 +475,12 @@
     </ClCompile>
     <ClCompile Include="UserInterface.cpp">
       <Filter>playGround\userInterface</Filter>
+    </ClCompile>
+    <ClCompile Include="playerState.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="player.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

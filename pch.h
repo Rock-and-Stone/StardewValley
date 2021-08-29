@@ -38,12 +38,10 @@ using namespace TN_UTILS;
 #define WINSIZEX	1280								//윈도우 가로크기
 #define WINSIZEY	720								//윈도우 세로크기
 #define WINSTYLE	WS_CAPTION | WS_SYSMENU
-<<<<<<< HEAD
 #define MAGENTA		(COLORREF)0x00FF00FF
-=======
 #define WINSIZEX2	1600
 #define WINSIZEY2	900
->>>>>>> 53bf743197c2793c910e2e0ae603992dd0fa8733
+
 
 #define RND randomFunction::getSingleton()
 #define KEYMANAGER keyManager::getSingleton()

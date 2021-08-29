@@ -188,7 +188,9 @@
     <ClInclude Include="parsnipSeed.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="pickAxe.h" />
+    <ClInclude Include="player.h" />
     <ClInclude Include="playerScene.h" />
+    <ClInclude Include="playerState.h" />
     <ClInclude Include="playGround.h" />
     <ClInclude Include="potato.h" />
     <ClInclude Include="potatoSeed.h" />
@@ -258,7 +260,9 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="pickAxe.cpp" />
+    <ClCompile Include="player.cpp" />
     <ClCompile Include="playerScene.cpp" />
+    <ClCompile Include="playerState.cpp" />
     <ClCompile Include="playGround.cpp" />
     <ClCompile Include="potato.cpp" />
     <ClCompile Include="potatoSeed.cpp" />
