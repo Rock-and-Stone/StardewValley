@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "Map.h"
 
+
 Map::Map()
 {
 }
@@ -13,15 +14,15 @@ Map::~Map()
 HRESULT Map::init()
 {
 
-	IMAGEMANAGER->addFrameImage("FloorTiles", "Source/Sprite/TileSheet.bmp", 480, 128, SAMPLETILEX, SAMPLETILEY, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("ObjectTiles", "Source/Sprite/ObjectSheet.bmp", 416, 576, SAMPLEOBJECTX, SAMPLEOBJECTY, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("SaveButton", "Source/Sprite/Save_Button.bmp", 74, 116, 1, 2, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("LoadButton", "Source/Sprite/Load_Button.bmp", 74, 116, 1, 2, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("DrawButton", "Source/Sprite/Draw_Button.bmp", 74, 116, 1, 2, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("ObjectButton", "Source/Sprite/Object_Button.bmp", 74, 116, 1, 2, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("EraseButton", "Source/Sprite/Erase_Button.bmp", 74, 116, 1, 2, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("LeftButton", "Source/Sprite/LeftArrow_Button.bmp", 44, 20, 2, 1, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("RightButton", "Source/Sprite/RightArrow_Button.bmp", 44, 20, 2, 1, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("FloorTiles", "source/Sprite/TileSheet.bmp", 416, 576, SAMPLETILEX, SAMPLETILEY, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("ObjectTiles", "source/Sprite/ObjectSheet.bmp", 416, 576, SAMPLEOBJECTX, SAMPLEOBJECTY, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("SaveButton", "source/Sprite/Save_Button.bmp", 74, 116, 1, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("LoadButton", "source/Sprite/Load_Button.bmp", 74, 116, 1, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("DrawButton", "source/Sprite/Draw_Button.bmp", 74, 116, 1, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("ObjectButton", "source/Sprite/Object_Button.bmp", 74, 116, 1, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("EraseButton", "source/Sprite/Erase_Button.bmp", 74, 116, 1, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("LeftButton", "source/Sprite/LeftArrow_Button.bmp", 44, 20, 2, 1, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("RightButton", "source/Sprite/RightArrow_Button.bmp", 44, 20, 2, 1, true, RGB(255, 0, 255));
 
 	_buttonSave		= new button;
 	_buttonLoad		= new button;
@@ -61,8 +62,8 @@ HRESULT Map::init()
 
 	for (int i = 0; i < TILEX * TILEY; ++i)
 	{
-		_tiles[i].terrainFrameX = 3;
-		_tiles[i].terrainFrameY = 0;
+		_tiles[i].terrainFrameX = 1;
+		_tiles[i].terrainFrameY = 11;
 		_tiles[i].objFrameX = 0;
 		_tiles[i].objFrameY = 0;
 		_tiles[i].terrain = terrainSelect(_tiles[i].terrainFrameX, _tiles[i].terrainFrameY);
@@ -91,10 +92,17 @@ void Map::update()
 	_buttonLeft->update();
 	_buttonRight->update();
 
-	if (KEYMANAGER->isStayKeyDown(VK_LBUTTON))
+	RectSensor();
+
+	if (KEYMANAGER->isStayKeyDown(VK_LBUTTON)
+		&& _buttonSave->getBtnDir() != BUTTONDIRECTION_DOWN
+		&& _buttonLoad->getBtnDir() != BUTTONDIRECTION_DOWN
+		&& _buttonDraw->getBtnDir() != BUTTONDIRECTION_DOWN
+		&& _buttonObject->getBtnDir() != BUTTONDIRECTION_DOWN
+		&& _buttonErase->getBtnDir() != BUTTONDIRECTION_DOWN)
 	{
 		if(!_isPicked)PickSample();
-		DrawMap();
+		if(!_isSample)DrawMap();
 	}
 
 	if (KEYMANAGER->isOnceKeyUp(VK_LBUTTON)) _isPicked = false;
@@ -109,13 +117,55 @@ void Map::update()
 
 void Map::render()
 {
+	char str[128];
+	int type = 0;
+
 	//지형 그리기
+	SetBkMode(getMemDC(), TRANSPARENT);
+
+	sprintf_s(str, "Cursor	Tile NUM : NONE");
+
 	for (int i = 0; i < TILEX * TILEY; ++i)
 	{
 		IMAGEMANAGER->frameRender("FloorTiles", getMemDC(),
 			_tiles[i].rc.left, _tiles[i].rc.top,
 			_tiles[i].terrainFrameX, _tiles[i].terrainFrameY);
+
+		if (PtInRect(&_tiles[i].rc, _ptMouse))
+		{
+			sprintf_s(str, "Cursor Tile NUM : %d", i);
+			type = _tiles[i].terrain;
+		}
 	}
+
+	TextOut(getMemDC(), 20, 20, str, strlen(str));
+
+	switch (type)
+	{
+	case TR_GRASS_0:
+		sprintf_s(str, "Cursor Tile TYPE : GRASS_0");
+		break;
+	case TR_GRASS_1:
+		sprintf_s(str, "Cursor Tile TYPE : GRASS_1");
+		break;
+	case TR_GRASS_2:
+		sprintf_s(str, "Cursor Tile TYPE : GRASS_2");
+		break;
+	case TR_DIRT:
+		sprintf_s(str, "Cursor Tile TYPE : DIRT");
+		break;
+	case TR_DIRT_WET:
+		sprintf_s(str, "Cursor Tile TYPE : DIRT_WET");
+		break;
+	case TR_WATER:
+		sprintf_s(str, "Cursor Tile TYPE : WATER");
+		break;
+	case TR_END:
+		sprintf_s(str, "Cursor Tile TYPE : END");
+		break;
+	}
+
+	TextOut(getMemDC(), 20, 50, str, strlen(str));
 
 	for (int i = 0; i < TILEX * TILEY; ++i)
 	{
@@ -188,6 +238,20 @@ void Map::Movement()
 	for (int i = 0; i < TILEX * TILEY; ++i)
 	{
 		_tiles[i].rc = RectMake(_tiles[i].posX - _posX, _tiles[i].posY - _posY, TILESIZE, TILESIZE);
+	}
+}
+
+void Map::RectSensor()
+{
+	for (int i = 0; i < SAMPLETILEX * SAMPLETILEY; ++i)
+	{
+		if (PtInRect(&_sampleTile[i].rcTile, _ptMouse))
+		{
+			_isSample = true;
+			break;
+		}
+
+		else _isSample = false;
 	}
 }
 
@@ -289,9 +353,9 @@ void Map::Button(void* obj)
 
 TERRAIN Map::terrainSelect(int frameX, int frameY)
 {
-	if (frameX >= 0 && frameX < 4 && frameY == 0)
+	if (frameX > 8 && frameX < 13 && frameY == 0)
 	{
-		return TR_GRASS_0;
+		return TR_DIRT;
 	}
 	else if (frameX < 3 && frameY > 0)
 	{
@@ -301,13 +365,20 @@ TERRAIN Map::terrainSelect(int frameX, int frameY)
 	{
 		return TR_GRASS_1;
 	}
-	else if (frameX > 5 && frameX < 9 && frameY > 0)
+
+	else if (frameY > 0 && frameX > 8 && frameX < 12 )
 	{
-		return TR_DIRT_WET;
+		return TR_GRASS_2;
 	}
-	else if (frameX > 13 && frameY == 0)
+
+	else if (frameX > 12 && frameY == 0)
 	{
 		return TR_WATER;
+	}
+
+	else if (frameY > 0 && frameX > 5 && frameX < 9 || frameX > 11)
+	{
+		return TR_DIRT_WET;
 	}
 
 	return TR_GRASS_0;
