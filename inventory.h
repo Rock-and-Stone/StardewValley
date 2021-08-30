@@ -2,11 +2,12 @@
 #include "gameNode.h"
 #include <vector>
 #include "object.h"
-#include "button.h"
+
 
 #define INVENTORYSIZE 36
 #define QUICKSLOTSIZE 12
 
+class button;
 
 enum MenuPage
 {

@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "inventory.h"
+#include "button.h"
 
 HRESULT inventory::init()
 {
@@ -39,8 +40,8 @@ HRESULT inventory::init()
 
 
    
-    _buttonToMenu->init("MenuButton", _menuRc.left, _menuRc.top, PointMake(0, 1), PointMake(0, 0), Button, this);
-    _buttonExit->init("ExitButton", _menuRc.left, _menuRc.bottom, PointMake(0, 1), PointMake(0, 0), Button, this);
+    _buttonToMenu->init("MenuButton", WINSIZEX/2, WINSIZEY/2-100, PointMake(0, 1), PointMake(0, 0), Button, this);
+    _buttonExit->init("ExitButton", WINSIZEX/2, WINSIZEY/2+100, PointMake(0, 1), PointMake(0, 0), Button, this);
 
 
     for (int i = 3; i <INVENTORYSIZE; i++)
