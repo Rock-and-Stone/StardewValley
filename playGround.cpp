@@ -23,8 +23,9 @@ HRESULT playGround::init()
 	SCENEMANAGER->addScene("openingScene", new openingScene);
 	SCENEMANAGER->addScene("loadingScene", new loadingScene);
 	SCENEMANAGER->addScene("mainMenuScene", new mainMenuScene);
+	SCENEMANAGER->addScene("enemyTestScene", new enemyTestScene);
 
-	SCENEMANAGER->changeScene("openingScene");
+	SCENEMANAGER->changeScene("loadingScene");
 
 	return S_OK;
 }

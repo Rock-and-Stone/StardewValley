@@ -5,6 +5,7 @@
 #include "openingScene.h"
 #include "loadingScene.h"
 #include "mainMenuScene.h"
+#include "enemyTestScene.h"
 
 
 
