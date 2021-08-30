@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 S:\TeamPotopolio\Battlefield4\x64\Debug\WindowsAPI.exe
+=======
+E:\Battlefield4\x64\Debug\WindowsAPI.exe
+>>>>>>> origin/재용

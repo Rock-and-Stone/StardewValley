@@ -161,6 +161,10 @@
     <ClInclude Include="copper.h" />
     <ClInclude Include="effect.h" />
     <ClInclude Include="effectManager.h" />
+    <ClInclude Include="Enemy.h" />
+    <ClInclude Include="EnemyManager.h" />
+    <ClInclude Include="EnemyState.h" />
+    <ClInclude Include="enemyTestScene.h" />
     <ClInclude Include="entity.h" />
     <ClInclude Include="gameData.h" />
     <ClInclude Include="gameNode.h" />
@@ -199,6 +203,7 @@
     <ClInclude Include="randomFunction.h" />
     <ClInclude Include="RenderManager.h" />
     <ClInclude Include="Resource.h" />
+    <ClInclude Include="RockStone.h" />
     <ClInclude Include="rod.h" />
     <ClInclude Include="sceneManager.h" />
     <ClInclude Include="singletonBase.h" />
@@ -228,6 +233,10 @@
     <ClCompile Include="copper.cpp" />
     <ClCompile Include="effect.cpp" />
     <ClCompile Include="effectManager.cpp" />
+    <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="EnemyManager.cpp" />
+    <ClCompile Include="EnemyState.cpp" />
+    <ClCompile Include="enemyTestScene.cpp" />
     <ClCompile Include="entity.cpp" />
     <ClCompile Include="gameData.cpp" />
     <ClCompile Include="gameNode.cpp" />
@@ -269,6 +278,7 @@
     <ClCompile Include="progressBar.cpp" />
     <ClCompile Include="pufferFish.cpp" />
     <ClCompile Include="RenderManager.cpp" />
+    <ClCompile Include="RockStone.cpp" />
     <ClCompile Include="rod.cpp" />
     <ClCompile Include="sceneManager.cpp" />
     <ClCompile Include="slingShot.cpp" />

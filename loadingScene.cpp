@@ -52,7 +52,14 @@ void loadingScene::update()
 	{
 		//이동할 씬 으로 변경
 
-		SCENEMANAGER->changeScene("inven");
+
+		//SCENEMANAGER->changeScene("inven");
+
+		//SCENEMANAGER->changeScene("playerScene");
+		//SCENEMANAGER->changeScene("mainMenuScene");
+		//SCENEMANAGER->changeScene("inventory");
+		//SCENEMANAGER->changeScene("enemyTestScene");
+
 	}
 
 	_count++;
@@ -109,7 +116,9 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
 		//IMAGEMANAGER->addFrameImage("crops", "source/Images/BMP/열매(ori).bmp", 640, 120, 16, 3, true, RGB(255, 0, 255));
 		////작물 아이콘
 		//IMAGEMANAGER->addFrameImage("cropsSmall", "source/Images/BMP/열매small(ori).bmp", 256, 48, 16, 3, true, RGB(255, 0, 255));
-
+		//==================몬스터 부분 파일 추가 본=====================
+		//이미지
+		IMAGEMANAGER->addFrameImage("RockStone", "source/Images/monster/RockStone.bmp", 52, 60, 4, 4, true, MAGENTA);
 
 		//==================UI 부분 파일 추가 본=====================
 		//이미지
