@@ -3,9 +3,6 @@
 #include "gameNode.h"
 #include "button.h"
 
-//타일 셋 가로 20줄 세로 9줄
-#define SAMPLEOBJECTX 13
-#define SAMPLEOBJECTY 18
 
 
 enum CTRL
@@ -46,6 +43,7 @@ private:
 	int _pos[2];
 	int _ctrSelect;
 	bool _isPicked;
+	bool _isSample;
 
 	float _posX, _posY;
 	float _rendX, _rendY;
@@ -63,6 +61,8 @@ public:
 	void load();
 
 	void Movement();
+	
+	void RectSensor();
 
 	void SetSample(int select, string str);
 	void PickSample();
