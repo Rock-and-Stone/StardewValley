@@ -21,16 +21,11 @@ HRESULT playGround::init()
 	SCENEMANAGER->addScene("loadingScene", new loadingScene);
 	SCENEMANAGER->addScene("playerScene", new playerScene);
 	SCENEMANAGER->addScene("openingScene", new openingScene);
-	SCENEMANAGER->addScene("loadingScene", new loadingScene);
 	SCENEMANAGER->addScene("mainMenuScene", new mainMenuScene);
 	SCENEMANAGER->addScene("enemyTestScene", new enemyTestScene);
-	SCENEMANAGER->addScene("inven", new inventory);
+	SCENEMANAGER->addScene("inventory", new inventory);
 	//SCENEMANAGER->changeScene("openingScene");
 	SCENEMANAGER->changeScene("loadingScene");
-
-
-
-
 
 	return S_OK;
 }

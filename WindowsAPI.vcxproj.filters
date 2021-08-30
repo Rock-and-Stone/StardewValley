@@ -317,9 +317,6 @@
     <ClInclude Include="npcManager.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="RockStoneMon.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="wizard.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
@@ -530,9 +527,6 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="npcManager.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="RockStoneMon.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="wizard.cpp">

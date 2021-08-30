@@ -2,11 +2,7 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
-<<<<<<< HEAD
-      <FullPath>S:\TeamPotopolio\Battlefield4\x64\Debug\WindowsAPI.exe</FullPath>
-=======
-      <FullPath>E:\Battlefield4\x64\Debug\WindowsAPI.exe</FullPath>
->>>>>>> origin/재용
+      <FullPath>E:\C++\TEAMPROJECT\x64\Debug\WindowsAPI.exe</FullPath>
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles />
