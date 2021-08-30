@@ -183,7 +183,9 @@
     <ClInclude Include="loadingScene.h" />
     <ClInclude Include="mainMenuScene.h" />
     <ClInclude Include="Map.h" />
+    <ClInclude Include="marnie.h" />
     <ClInclude Include="MouseSetting.h" />
+    <ClInclude Include="npcManager.h" />
     <ClInclude Include="openingScene.h" />
     <ClInclude Include="object.h" />
     <ClInclude Include="objectManager.h" />
@@ -204,6 +206,7 @@
     <ClInclude Include="RenderManager.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="RockStone.h" />
+    <ClInclude Include="RockStoneMon.h" />
     <ClInclude Include="rod.h" />
     <ClInclude Include="sceneManager.h" />
     <ClInclude Include="singletonBase.h" />
@@ -218,6 +221,7 @@
     <ClInclude Include="txtData.h" />
     <ClInclude Include="UserInterface.h" />
     <ClInclude Include="utils.h" />
+    <ClInclude Include="wizard.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="action.cpp" />
@@ -255,7 +259,9 @@
     <ClCompile Include="loadingScene.cpp" />
     <ClCompile Include="mainMenuScene.cpp" />
     <ClCompile Include="Map.cpp" />
+    <ClCompile Include="marnie.cpp" />
     <ClCompile Include="MouseSetting.cpp" />
+    <ClCompile Include="npcManager.cpp" />
     <ClCompile Include="openingScene.cpp" />
     <ClCompile Include="object.cpp" />
     <ClCompile Include="objectManager.cpp" />
@@ -279,6 +285,7 @@
     <ClCompile Include="pufferFish.cpp" />
     <ClCompile Include="RenderManager.cpp" />
     <ClCompile Include="RockStone.cpp" />
+    <ClCompile Include="RockStoneMon.cpp" />
     <ClCompile Include="rod.cpp" />
     <ClCompile Include="sceneManager.cpp" />
     <ClCompile Include="slingShot.cpp" />
@@ -292,6 +299,7 @@
     <ClCompile Include="UserInterface.cpp" />
     <ClCompile Include="utils.cpp" />
     <ClCompile Include="WindowsAPI.cpp" />
+    <ClCompile Include="wizard.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="WindowsAPI.rc" />
@@ -299,6 +307,9 @@
   <ItemGroup>
     <Image Include="small.ico" />
     <Image Include="WindowsAPI.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="DodongYeongTest.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
