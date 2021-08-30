@@ -97,10 +97,10 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
 		// 설정메뉴
 		IMAGEMANAGER->addImage("settingMenu",	"source/Images/inventory/setting.bmp", 750, 550, true, MAGENTA);
 		// 나가기메뉴
-		//IMAGEMANAGER->addImage("")
+		IMAGEMANAGER->addImage("exitMenu", "source/Images/inventory/exit.bmp", 750, 550, true, MAGENTA);
 
 		////도구 인벤토리
-		IMAGEMANAGER->addFrameImage("playerTool", "source/Images/playerInventory/playerTool.bmp", 240, 40, 6, 1, true, RGB(255, 0, 255)); // 플레이어 도구
+		IMAGEMANAGER->addFrameImage("playerTool", "source/Images/playerInventory/playerTool.bmp", 280, 40, 7, 1, true, RGB(255, 0, 255)); // 플레이어 도구
 		////씨앗 아이템
 		//IMAGEMANAGER->addFrameImage("seedItem", "source/Images/BMP/씨앗아이템(original).bmp", 360, 160, 9, 4, true, RGB(255, 0, 255));
 		////씨앗 아이템아이콘용

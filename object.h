@@ -2,7 +2,6 @@
 #include "gameNode.h"
 //#include "CameraManager.h"
 
-
 //전체아이템 
 enum ALLITEMS 
 {
@@ -44,24 +43,12 @@ enum ALLITEMS
 	GOLD			//골드		25G
 };
 
-enum ITEMTYPE
-{
-	TOOL,			//도구
-	WEAPON,			//무기
-	FISH,			//물고기
-	SEED,			//씨앗
-	CROPS,			//작물	= 음식
-	ORE				//광물
-};
-
-
-
 class object : public gameNode
 {
 protected:
+
 	//구조체로 집어넣자
 	ALLITEMS    _items;						//아이템
-	ITEMTYPE    _itemType;					//아이템 종류
 
 	image*		_objectImg;					//오브젝트 이미지
 
@@ -71,15 +58,11 @@ protected:
 	//위치값
 	float		_posX, _posY;				//오브젝트 실제위치값
 	float		_rendX, _rendY;				//카메라X,Y
-	
 
 	int			_frameX, _frameY;			//아이템이미지 위치
 
-
 	//방향 설정
 	int			_direction;					//방향
-	
-
 	
 	int			_price;						//물건의 가격
 
@@ -93,7 +76,7 @@ public:
 	~object();
 
 	virtual HRESULT init();
-	virtual HRESULT init(const char* imageName , POINT position, ALLITEMS items, ITEMTYPE itemTypes , int frameX, int frameY);
+	virtual HRESULT init(const char* imageName , POINT position, ALLITEMS items, int frameX, int frameY);
 	virtual void release();
 	virtual void update();
 	virtual void render();
@@ -108,8 +91,6 @@ public:
 	ALLITEMS GetItems() { return _items; }
 	void SetItems(ALLITEMS items) { _items = items; }
 
-	ITEMTYPE GetItemType() { return _itemType; }
-	void SetItemType(ITEMTYPE itemtype) { _itemType = itemtype; }
 	//=====//
 	
 	//기타 변수들

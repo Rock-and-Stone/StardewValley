@@ -3,6 +3,13 @@
 
 HRESULT inventory::init()
 {
+    //버튼용이미지
+    IMAGEMANAGER->addFrameImage("ExitButton", "source/Images/inventory/ExitButton.bmp", 185, 292, 1, 2, true, MAGENTA);
+    IMAGEMANAGER->addFrameImage("MenuButton", "source/Images/inventory/MenuButton.bmp", 185, 292, 1, 2, true, MAGENTA);
+    //new
+     _buttonExit = new button;
+     _buttonToMenu = new button;
+
     //퀵슬롯 이미지
     _quickSlot = IMAGEMANAGER->findImage("quickSlot");
     
@@ -11,7 +18,7 @@ HRESULT inventory::init()
     _statImg = IMAGEMANAGER->findImage("statMenu");
     _craftImg = IMAGEMANAGER->findImage("craftMenu");
     _settingImg = IMAGEMANAGER->findImage("settingMenu");
-    //_exitImg = IMAGEMANAGER->findImage("e");
+    _exitImg = IMAGEMANAGER->findImage("exitMenu");
 
     //현재 메뉴 이미지는 = 인벤이미지로 초기화
     _currentMenuImg = _invenImg;
@@ -29,7 +36,19 @@ HRESULT inventory::init()
     _exitRc = RectMake(_settingRc.right + 5, _settingRc.top, 53, 60);
     
     _isMenuOpen = false;
-  
+
+
+   
+    _buttonToMenu->init("MenuButton", _menuRc.left, _menuRc.top, PointMake(0, 1), PointMake(0, 0), Button, this);
+    _buttonExit->init("ExitButton", _menuRc.left, _menuRc.bottom, PointMake(0, 1), PointMake(0, 0), Button, this);
+
+
+    for (int i = 3; i <INVENTORYSIZE; i++)
+    {
+        _inven[i].itemInfo.itemImg = IMAGEMANAGER->findImage("playerTool");
+        _inven[i].itemInfo.currentFrameX = 6;
+    }
+
     //테스트 아이템 집어넣기
     _inven[0].itemInfo.itemImg = IMAGEMANAGER->findImage("playerTool");
     _inven[1].itemInfo.itemImg = IMAGEMANAGER->findImage("playerTool");
@@ -37,7 +56,12 @@ HRESULT inventory::init()
     _inven[0].itemInfo.currentFrameX = 0;
     _inven[1].itemInfo.currentFrameX = 1;
     _inven[2].itemInfo.currentFrameX = 2;
-
+    _inven[0].itemInfo.itemName = "곡괭이";
+    _inven[1].itemInfo.itemName = "호미";
+    _inven[2].itemInfo.itemName = "낫";
+    
+    _downPtItem = NULL;
+    _upPtItem = NULL;
     return S_OK;
 }
 
@@ -51,27 +75,31 @@ void inventory::update()
 
     //메뉴를 키기 위한 함수
     MenuOpen();
+
     //메뉴창이 켜졌을때
     if (_isMenuOpen)
     {
-
         //창고르는 버튼용
+
         SelectMenu();
+
         //메뉴창에서 실행될 함수
         switch (_menuPage)
         {
         case InvenPage:
             MenuInvetoryOpen();
-            DragObjectToSwap();
+          
             break;
         case StatPage:
             break;
         case CraftPage:
-            DragObject();
+          
             break;
         case SettingPage:
             break;
         case ExitPage:
+            _buttonExit->update();
+            _buttonToMenu->update();
             break;
 
         default:
@@ -89,13 +117,22 @@ void inventory::update()
 
 void inventory::render()
 {
+    //디버깅 테스트
     char str[128];
+ 
     sprintf_s(str, "isMenuOP : %d", _isMenuOpen);
     TextOut(getMemDC(), 10, 60, str, strlen(str));
     sprintf_s(str, "MenuPage : %d", _menuPage);
     TextOut(getMemDC(), 10, 80, str, strlen(str));
     sprintf_s(str, "draging : %d", _dragActivate);
     TextOut(getMemDC(), 10, 100, str, strlen(str));
+    sprintf_s(str, "downpt : %d", _downPtItem);
+    TextOut(getMemDC(), 10, 120, str, strlen(str));
+    sprintf_s(str, "upPt : %d", _upPtItem);
+    TextOut(getMemDC(), 10, 140, str, strlen(str));
+
+ 
+   //직사각형 위치 테스트
     if (KEYMANAGER->isToggleKey(VK_TAB))
     {
         Rectangle(getMemDC(), _quickSlotRc);
@@ -121,15 +158,34 @@ void inventory::render()
             for (int i = 0; i < INVENTORYSIZE; ++i)
             {
                 Rectangle(getMemDC(), _inven[i].rc);
+                sprintf_s(str, "%d", i);
+                TextOut(getMemDC(), _inven[i].rc.left, _inven[i].rc.bottom, str, strlen(str));
+
+           
+            
             }
         }
-        //메뉴창에서 실행될 함수
+        //메뉴창에서 실행될 렌더
         switch (_menuPage)
         {
         case InvenPage:
-            for (int i = 0; i < 3; i++)
-            {
-                _inven[i].itemInfo.itemImg->frameRender(getMemDC(), _inven[i].rc.left, _inven[i].rc.top, _inven[i].itemInfo.currentFrameX, 0);
+            //
+            for (int i = 0; i < INVENTORYSIZE; i++)
+            {   
+
+                    _inven[i].itemInfo.itemImg->frameRender(getMemDC(), _inven[i].rc.left, _inven[i].rc.top, _inven[i].itemInfo.currentFrameX, 0);
+                    if (_dragActivate)
+                    {
+                        _inven[_downPtItem].itemInfo.itemImg->frameRender(getMemDC(), _ptMouse.x, _ptMouse.y, _inven[_downPtItem].itemInfo.currentFrameX, 0);
+                    }
+
+
+
+                if (PtInRect(&_inven[i].rc, _ptMouse))
+                {  
+                    sprintf_s(str, "%s", _inven[i].itemInfo.itemName.c_str());
+                    TextOut(getMemDC(), _ptMouse.x + 10, _ptMouse.y + 10, str, strlen(str));
+                }
             }
             break;
         case StatPage:
@@ -139,6 +195,8 @@ void inventory::render()
         case SettingPage:
             break;
         case ExitPage:
+           _buttonExit->render();
+           _buttonToMenu->render();
             break;
 
         default:
@@ -147,6 +205,7 @@ void inventory::render()
         
 
     }
+    //메뉴창이 꺼졌을땐 퀵슬롯을 렌더한다
     else if (!_isMenuOpen)
     {
         _quickSlot->render(getMemDC(), _quickSlotRc.left, _quickSlotRc.top);
@@ -155,7 +214,7 @@ void inventory::render()
    
 
 }
-//메뉴창 열어주는것
+//메뉴창 열어주고 끄는것
 void inventory::MenuOpen()
 {
     //메뉴 키고 끄는 버튼
@@ -170,6 +229,7 @@ void inventory::MenuOpen()
             SOUNDMANAGER->play("menuOpen", 0.5f);
     }
 }
+
 //메뉴창에서 인벤토리창
 void inventory::MenuInvetoryOpen()
 {
@@ -178,100 +238,116 @@ void inventory::MenuInvetoryOpen()
     {
         for (int i = 0; i < 12; ++i)
         {
-            //기모찌
+            //12X3 나열순으로 rc 생성
             _inven[12 * j + i].rc = RectMake(307 + (i * 55.3), 178 + (j * 63), 49, 45);
         }
     }
+    
+    for (int i = 0; i < INVENTORYSIZE; i++)
+    {
+        if (PtInRect(&_inven[i].rc, _ptMouse))
+        {
+            if (KEYMANAGER->isStayKeyDown(VK_LBUTTON)) _dragActivate = true;
+            else _dragActivate = false;
+                
+            if (KEYMANAGER->isOnceKeyDown(VK_LBUTTON))
+            {
+                
+                  _downPtItem = i;   
+            }
+            if (KEYMANAGER->isOnceKeyUp(VK_LBUTTON))
+            {
+                for (int j = 0; j < INVENTORYSIZE; j++)
+                {
+                    if (PtInRect(&_inven[j].rc, _ptMouse))
+                    {
+                        _upPtItem = j;
+                    }
+
+                }
+
+
+                swap(_inven[_downPtItem].itemInfo, _inven[_upPtItem].itemInfo);
+
+            }
+        }
+    }
+
+   
+ 
+    
+   
+
 
 }
-
+//스탯창
 void inventory::MenuStatOpen()
 {
 
 }
-
+//제작창
 void inventory::MenuCraftOpen()
 {
 
 }
-
+//세팅창
 void inventory::MenuSettingOpen()
 {
 
 }
-
+//나가는창
 void inventory::MenuExitOpen()
 {
 
 }
+
 //버튼용
 void inventory::SelectMenu()
 {
-    if (KEYMANAGER->isOnceKeyDown(VK_LBUTTON))
-    {
-        if (PtInRect(&_storageRc, _ptMouse) && _menuPage != InvenPage)
+    if(PtInRect(&_storageRc,_ptMouse)||PtInRect(&_statRc,_ptMouse)
+       || PtInRect(&_craftRc, _ptMouse)|| PtInRect(&_settingRc, _ptMouse)|| PtInRect(&_exitRc,_ptMouse))
+    { 
+        if (KEYMANAGER->isOnceKeyDown(VK_LBUTTON))
         {
-            SOUNDMANAGER->play("menuSelect", 0.5f);
-            _currentMenuImg = _invenImg;
-            _menuPage = InvenPage;
-        
-        }
-        if (PtInRect(&_statRc, _ptMouse) && _menuPage != StatPage)
-        {
-            SOUNDMANAGER->play("menuSelect", 0.5f);
-            _currentMenuImg = _statImg;
-            _menuPage = StatPage;
-        }
-        if (PtInRect(&_craftRc, _ptMouse) && _menuPage != CraftPage)
-        {
-            SOUNDMANAGER->play("menuSelect", 0.5f);
-            _currentMenuImg = _craftImg;
-            _menuPage = CraftPage;
-        }
-        if (PtInRect(&_settingRc, _ptMouse) && _menuPage != SettingPage)
-        {
-            SOUNDMANAGER->play("menuSelect", 0.5f);
-            _currentMenuImg = _settingImg;
-            _menuPage = SettingPage;
-        }
-        /*if (PtInRect(&_exitRc, _ptMouse))
-        {
-            SOUNDMANAGER->play("menuSelect", 0.5f);
-            _currentMenuImg = _exitImg;            
-            _menuPage = ExitPage;
-        }*/
-    }
-}
-//      메뉴창에서 상호작용
-void inventory::ClickObject()
-{
-}
-
-void inventory::DragObject()
-{
-    if (KEYMANAGER->isStayKeyDown(VK_LBUTTON))
-    {
-        _dragActivate = true;
-    }
-    else _dragActivate = false;
-}
-
-void inventory::DragObjectToSwap()
-{
-    if (KEYMANAGER->isStayKeyDown(VK_LBUTTON))
-    {
-        _dragActivate = true;
-    }
-    else _dragActivate = false;
-
-    for (int i = 0; i < INVENTORYSIZE; ++i)
-    {
-        if (PtInRect(&_inven[i].rc, _ptMouse) && _dragActivate)
-        {
+            if (PtInRect(&_storageRc, _ptMouse) && _menuPage != InvenPage)
+            {
+                SOUNDMANAGER->play("menuSelect", 0.5f);
+                _currentMenuImg = _invenImg;
+                _menuPage = InvenPage;
             
+            }
+            if (PtInRect(&_statRc, _ptMouse) && _menuPage != StatPage)
+            {
+                SOUNDMANAGER->play("menuSelect", 0.5f);
+                _currentMenuImg = _statImg;
+                _menuPage = StatPage;
+            }
+            if (PtInRect(&_craftRc, _ptMouse) && _menuPage != CraftPage)
+            {
+                SOUNDMANAGER->play("menuSelect", 0.5f);
+                _currentMenuImg = _craftImg;
+                _menuPage = CraftPage;
+            }
+            if (PtInRect(&_settingRc, _ptMouse) && _menuPage != SettingPage)
+            {
+                SOUNDMANAGER->play("menuSelect", 0.5f);
+                _currentMenuImg = _settingImg;
+                _menuPage = SettingPage;
+            }
+            if (PtInRect(&_exitRc, _ptMouse))
+            {
+                SOUNDMANAGER->play("menuSelect", 0.5f);
+                _currentMenuImg = _exitImg;            
+                _menuPage = ExitPage;
+            }
         }
     }
-    
-   
- 
 }
+void inventory::Button(void* obj)
+{
+    inventory* invento = (inventory*)obj;
+
+    if (invento->_buttonExit->getBtnDir() == BUTTONDIRECTION_UP) exit(1);
+    if (invento->_buttonToMenu->getBtnDir() == BUTTONDIRECTION_UP) SCENEMANAGER->changeScene("mainMenuScene");
+}
+

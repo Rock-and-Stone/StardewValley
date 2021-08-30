@@ -61,9 +61,6 @@
     <Filter Include="playGround\entity">
       <UniqueIdentifier>{7dd8f635-9d24-45fb-85d4-875859a2ffd6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="playGround\object">
-      <UniqueIdentifier>{c62616c6-98b2-4fdf-b415-e6ed44ebc3fa}</UniqueIdentifier>
-    </Filter>
     <Filter Include="playGround\objectManager">
       <UniqueIdentifier>{cf41ccd9-2877-4d15-9825-4769a35641ef}</UniqueIdentifier>
     </Filter>
@@ -93,6 +90,9 @@
     </Filter>
     <Filter Include="playGround\inventory">
       <UniqueIdentifier>{e5fcde7e-b654-4007-bf8a-036c93e87401}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGround\object">
+      <UniqueIdentifier>{c62616c6-98b2-4fdf-b415-e6ed44ebc3fa}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

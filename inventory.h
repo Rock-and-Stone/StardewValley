@@ -2,6 +2,7 @@
 #include "gameNode.h"
 #include <vector>
 #include "object.h"
+#include "button.h"
 
 #define INVENTORYSIZE 36
 #define QUICKSLOTSIZE 12
@@ -16,15 +17,15 @@ enum MenuPage
 	ExitPage,
 };
 
-
 struct tagItemInfo
 {
 	image* itemImg;
-	string itemName;
+	string  itemName;
 	int	   count;			 //각물체의 개수
 	int    currentFrameX;
 	int	   currentFrameY;
 };
+
 struct tagInventory
 {
 	tagItemInfo itemInfo;
@@ -71,6 +72,16 @@ private:
 	//드래그 중인지
 	BOOL _dragActivate;
 
+	//집었을때 인덱스
+	int _downPtItem;
+	//놓았을때 인덱스
+	int _upPtItem;
+
+	//버튼스
+	button* _buttonToMenu;
+	button* _buttonExit;
+	
+
 
 
 
@@ -92,8 +103,6 @@ public:
 	void MenuExitOpen();
 
 
-	void ClickObject();
-	void DragObject();
-	void DragObjectToSwap();
+	static void Button(void* obj);
 };
 

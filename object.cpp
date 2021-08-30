@@ -16,7 +16,7 @@ HRESULT object::init()
     return S_OK;
 }
 
-HRESULT object::init(const char* imageName, POINT position, ALLITEMS items, ITEMTYPE itemTypes, int frameX, int frameY)
+HRESULT object::init(const char* imageName, POINT position, ALLITEMS items, int frameX, int frameY)
 {
     _objectImg = IMAGEMANAGER->findImage(imageName);
 
@@ -24,7 +24,7 @@ HRESULT object::init(const char* imageName, POINT position, ALLITEMS items, ITEM
     _posY = position.y;
 
     _items = items;
-    _itemType = itemTypes;
+ 
 
     _frameX = frameX;
     _frameY = frameY;

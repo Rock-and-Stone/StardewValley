@@ -30,7 +30,7 @@ void objectManager::SetAxe()
 {
     object* Axe;
     Axe = new axe;
-    Axe->init("playerTool", PointMake(WINSIZEX / 2, WINSIZEY / 2), AXE, TOOL, 3, 0);
+    Axe->init("playerTool", PointMake(WINSIZEX / 2, WINSIZEY / 2), AXE, 3, 0);
     
     _vObject.push_back(Axe);
 }
