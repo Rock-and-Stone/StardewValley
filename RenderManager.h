@@ -31,10 +31,8 @@ public:
 	void update();
 	void render(HDC hdc);
 
-	void swap(int* a, int* b); // 테스트용 스왑
 	void swap(entity** a, entity** b);
 	void selectionSort();
-	void bubbleSort();
 	void addRender(entity* obj); // 다른 객체에서 자신을 렌더매니저에 등록시킬때 사용됨.
 	void removeRender(int arrNum);
 };

@@ -51,14 +51,14 @@ void loadingScene::update()
 	if (_currentCount == LOADINGMAX)
 	{
 		//이동할 씬 으로 변경
-
-
 		//SCENEMANAGER->changeScene("inven");
-
 		//SCENEMANAGER->changeScene("playerScene");
 		//SCENEMANAGER->changeScene("mainMenuScene");
 		//SCENEMANAGER->changeScene("inventory");
 		//SCENEMANAGER->changeScene("enemyTestScene");
+		//SCENEMANAGER->changeScene("playerScene");
+		//SCENEMANAGER->changeScene("mainMenuScene");
+		//SCENEMANAGER->changeScene("inventory");
 
 	}
 
@@ -87,7 +87,13 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
 	{
 		//소스 파일 추가	
 		//IMAGEMANAGER->addFrameImage("playerTool", "playerTool.bmp", 96, 16, 6, 0, true, RGB(255, 0, 255)); // 플레이어 도구
+
 		IMAGEMANAGER->addFrameImage("player", "source/Images/플레이어이미지3.bmp", 576, 2176, 12, 34, true, MAGENTA);
+		IMAGEMANAGER->addFrameImage("player","source/Images/플레이어이미지3.bmp",576,2176,12,34,true,MAGENTA);
+		IMAGEMANAGER->addFrameImage("marnie", "source/Images/NPC/npc_item.bmp", 64, 128, 4, 4, true, MAGENTA);
+		IMAGEMANAGER->addFrameImage("wizard", "source/Images/NPC/npc_skill.bmp", 64, 128, 4, 4, true, MAGENTA);
+		IMAGEMANAGER->addFrameImage("fisher", "source/Images/NPC/할아버지.bmp", 64, 128, 4, 4, true, MAGENTA);
+
 
 		//소스 파일 추가
 		

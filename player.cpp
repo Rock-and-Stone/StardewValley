@@ -10,9 +10,12 @@ player::~player()
 {
 }
 
-HRESULT player::init()
+HRESULT player::init(int indX, int indY)
 {
 	
+	_x = indX * TILEWIDTH + (TILEWIDTH / 2),
+	_y = indY * TILEHEIGHT + (TILEHEIGHT / 2);
+
 	_frameX = _frameY = 0;
 
 	_leftwalk = new leftWalk;
@@ -27,6 +30,10 @@ HRESULT player::init()
 
 	_img = IMAGEMANAGER->findImage("player");
 
+	_rc = RectMakeCenter(_x,_y,TILEWIDTH,TILEHEIGHT);
+
+	_tileX = 20;
+
 	return S_OK;
 }
 
@@ -39,6 +46,9 @@ void player::update()
 	
 	move();
 	setPlayer();
+	tileSearch();
+
+	_rc = RectMakeCenter(_x, _y, TILEWIDTH, TILEHEIGHT);
 
 }
 
@@ -114,4 +124,47 @@ void player::setPlayer()
 		_frameX = 0;
 	}
 
+}
+
+void player::tileSearch()
+{
+	RECT rcCollision;	
+
+	int tileIndex[2];	
+	int tileX, tileY;
+
+	rcCollision = _rc;
+
+
+	rcCollision.left += 2;
+	rcCollision.top += 2;
+	rcCollision.right -= 2;
+	rcCollision.bottom -= 2;
+
+	tileX = rcCollision.left / TILEWIDTH;
+	tileY = rcCollision.top / TILEHEIGHT;
+
+
+	switch (_direction)
+	{
+	case PLAYERDIRECTION_LEFT:	
+		tileIndex[0] = tileX + (tileY * _tileX);
+		tileIndex[1] = tileX + (tileY + 1) * _tileX;
+		break;
+	case PLAYERDIRECTION_UP:
+		tileIndex[0] = tileX + (tileY * _tileX);
+		tileIndex[1] = (tileX + 1) + tileY * _tileX;
+		break;
+	case PLAYERDIRECTION_RIGHT:
+		tileIndex[0] = (tileX + tileY * _tileX) + 1;
+		tileIndex[1] = (tileX + (tileY + 1) * _tileX) + 1;
+		break;
+	case PLAYERDIRECTION_DOWN:
+		tileIndex[0] = (tileX + tileY * _tileX) + _tileX;
+		tileIndex[1] = (tileX + 1 + tileY * _tileX) + _tileX;
+		break;
+	}
+	_rc = rcCollision;
+
+	_rc = RectMakeCenter(_x, _y, _img->getFrameWidth(), _img->getFrameHeight());
 }

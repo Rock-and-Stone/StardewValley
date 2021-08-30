@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "entity.h"
 
+
 int entity::getRenderPosY()
 {
 	return 0;
@@ -21,7 +22,12 @@ entity::~entity()
 
 HRESULT entity::init()
 {
-	return S_OK;
+	return E_NOTIMPL;
+}
+
+HRESULT entity::init(int indX, int indY)
+{
+	return E_NOTIMPL;
 }
 
 void entity::release()

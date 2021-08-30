@@ -46,15 +46,6 @@ void RenderManager::selectionSort()
 {
 	int minIndex;
 	int i, j;
-	for (i = 0; i < ARRSIZE - 1; i++) 
-	{
-		minIndex = i;
-		for (j = i + 1; j < 10; j++)
-			if (_arr[j] < _arr[minIndex])
-				minIndex = j;
-
-		swap(&_arr[i], &_arr[minIndex]);
-	}
 
 	for (i = 0; i < _vRender.size() - 1; i++)
 	{
@@ -62,8 +53,6 @@ void RenderManager::selectionSort()
 		for (j = i+1; j < _vRender.size(); j++)
 			if (_vRender[j]->getRenderPosY() < _vRender[minIndex]->getRenderPosY()) //렌더의 Y값을 가져와서 비교하여 스왑.
 				minIndex = j;
-		
-
 		swap(&_vRender[i], &_vRender[minIndex]);
 	}
 }
@@ -76,13 +65,6 @@ void RenderManager::addRender(entity* obj)
 void RenderManager::removeRender(int arrNum)
 {
 	_vRender.erase(_vRender.begin() + arrNum);
-}
-
-void RenderManager::swap(int* a, int* b)
-{
-	int temp = *a;
-	*a = *b;
-	*b = temp;
 }
 
 void RenderManager::swap(entity** a, entity** b)
