@@ -3,6 +3,14 @@
 #include <vector>
 #include "object.h"
 
+#include "axe.h"
+#include "pickAxe.h"
+#include "sickle.h"
+#include "can.h"
+#include "hoe.h"
+#include "rod.h"
+
+
 
 #define INVENTORYSIZE 36
 #define QUICKSLOTSIZE 12
@@ -21,10 +29,22 @@ enum MenuPage
 struct tagItemInfo
 {
 	image* itemImg;
+
 	string  itemName;
-	int	   count;			 //각물체의 개수
+	string	itemInfo;
+	
+
 	int    currentFrameX;
 	int	   currentFrameY;
+
+	int	   price;
+	int    damage;
+	int	   hp;
+	int	   sp;
+	bool   isbarriable;
+
+	int	   count;			 //각물체의 개수
+
 };
 
 struct tagInventory
@@ -40,6 +60,7 @@ private:
 	MenuPage _menuPage;
 
 	tagInventory _inven[INVENTORYSIZE];
+	tagInventory _quick[QUICKSLOTSIZE];
 
 	//현재 보고있는 메뉴 이미지
 	image* _currentMenuImg;
@@ -59,6 +80,7 @@ private:
 	image* _craftImg;
 	image* _settingImg;
 	image* _exitImg;
+	image* _itemInfoImg;
 
 	//메뉴바꾸는 버튼스?
 	RECT	_storageRc;
@@ -105,5 +127,19 @@ public:
 
 
 	static void Button(void* obj);
+
+	//======================= 접근자 & 설정자 ======================= //
+	//		
+	//======================= ============== ======================= //
+
+	//=======================   메모리 링크   ======================= //
+	// 
+	//======================= ============== ======================= //
 };
+
+
+
+
+
+
 

@@ -91,11 +91,10 @@
     <Filter Include="playGround\inventory">
       <UniqueIdentifier>{e5fcde7e-b654-4007-bf8a-036c93e87401}</UniqueIdentifier>
     </Filter>
-    <Filter Include="playGround\object">
-    </Filter>
     <Filter Include="playGround\Enemy">
       <UniqueIdentifier>{6f071cbd-702b-407e-91cc-34760a179bc2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="playGround\object_ITEM" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -198,7 +197,7 @@
       <Filter>playGround</Filter>
     </ClInclude>
     <ClInclude Include="object.h">
-      <Filter>playGround\object</Filter>
+      <Filter>playGround\object_ITEM</Filter>
     </ClInclude>
     <ClInclude Include="objectManager.h">
       <Filter>playGround\objectManager</Filter>
@@ -320,6 +319,9 @@
     <ClInclude Include="wizard.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="sickle.h">
+      <Filter>playGround\objectClass\Tool</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WindowsAPI.cpp">
@@ -410,7 +412,7 @@
       <Filter>playGround</Filter>
     </ClCompile>
     <ClCompile Include="object.cpp">
-      <Filter>playGround\object</Filter>
+      <Filter>playGround\object_ITEM</Filter>
     </ClCompile>
     <ClCompile Include="objectManager.cpp">
       <Filter>playGround\objectManager</Filter>
@@ -531,6 +533,9 @@
     </ClCompile>
     <ClCompile Include="wizard.cpp">
       <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="sickle.cpp">
+      <Filter>playGround\objectClass\Tool</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

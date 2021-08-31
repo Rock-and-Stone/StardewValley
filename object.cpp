@@ -16,20 +16,19 @@ HRESULT object::init()
     return S_OK;
 }
 
-HRESULT object::init(const char* imageName, POINT position, ALLITEMS items, int frameX, int frameY)
+HRESULT object::init(ALLITEMS item, const char* imageName, string itemname, string iteminfo, int framex, int framey, int Price, int Damage, int hp, int sp, bool isbarriable)
 {
-    _objectImg = IMAGEMANAGER->findImage(imageName);
-
-    _posX = position.x;
-    _posY = position.y;
-
-    _items = items;
- 
-
-    _frameX = frameX;
-    _frameY = frameY;
-
-
+    _item.items     = item;
+    _item.objectImg = IMAGEMANAGER->findImage(imageName);
+    _item.itemName = itemname;
+    _item.itemInfo = iteminfo;
+    _item.frameX = framex;
+    _item.frameY = framey;
+    _item.price = Price;
+    _item.damage = Damage;
+    _item.hP = hp;
+    _item.sP = sp;
+    _item.isburiedAble = isbarriable;
 
     return S_OK;
 }
@@ -50,9 +49,7 @@ void object::render()
 
 void object::Draw()
 {
-    _rendX = _posX;
-    _rendY = _posY;
 
-    _objectRc = RectMake(_posX, _posY, _objectImg->getFrameWidth(), _objectImg->getFrameHeight());
-    _objectImg->frameRender(getMemDC(), _objectRc.left, _objectRc.top, _frameX, _frameY);
+
+
 }

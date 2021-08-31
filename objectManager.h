@@ -4,6 +4,7 @@
 
 #include "axe.h"
 #include "pickAxe.h"
+#include "sickle.h"
 #include "hoe.h"
 #include "can.h"
 #include "rod.h"

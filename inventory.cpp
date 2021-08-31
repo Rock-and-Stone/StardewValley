@@ -2,15 +2,20 @@
 #include "inventory.h"
 #include "button.h"
 
+
 HRESULT inventory::init()
 {
     //버튼용이미지
     IMAGEMANAGER->addFrameImage("ExitButton", "source/Images/inventory/ExitButton.bmp", 185, 292, 1, 2, true, MAGENTA);
     IMAGEMANAGER->addFrameImage("MenuButton", "source/Images/inventory/MenuButton.bmp", 185, 292, 1, 2, true, MAGENTA);
-    //new
-     _buttonExit = new button;
-     _buttonToMenu = new button;
+   
+    //버튼new
+    _buttonExit = new button;
+    _buttonToMenu = new button;
 
+    //아이템정보창 이미지
+    _itemInfoImg = IMAGEMANAGER->findImage("itemInfo");
+     
     //퀵슬롯 이미지
     _quickSlot = IMAGEMANAGER->findImage("quickSlot");
     
@@ -28,7 +33,6 @@ HRESULT inventory::init()
     _quickSlotRc = RectMakeCenter(WINSIZEX / 2, WINSIZEY - _quickSlot->getHeight() / 2, _quickSlot->getWidth(), _quickSlot->getHeight());
     _menuRc = RectMakeCenter(WINSIZEX / 2, WINSIZEY / 2, _currentMenuImg->getWidth(), _currentMenuImg->getHeight());
 
-
     //버튼용 RC 초기화
     _storageRc = RectMake(_menuRc.left + 46, _menuRc.top, 53, 60);
     _statRc = RectMake(_storageRc.right + 5, _storageRc.top, 53, 60);
@@ -38,28 +42,29 @@ HRESULT inventory::init()
     
     _isMenuOpen = false;
 
-
-   
+    //버튼메뉴
     _buttonToMenu->init("MenuButton", WINSIZEX/2, WINSIZEY/2-100, PointMake(0, 1), PointMake(0, 0), Button, this);
     _buttonExit->init("ExitButton", WINSIZEX/2, WINSIZEY/2+100, PointMake(0, 1), PointMake(0, 0), Button, this);
 
 
-    for (int i = 3; i <INVENTORYSIZE; i++)
+    //일단 다 빈공간으로 집어넣는다
+    for (int i = 0; i <INVENTORYSIZE; i++)
     {
-        _inven[i].itemInfo.itemImg = IMAGEMANAGER->findImage("playerTool");
-        _inven[i].itemInfo.currentFrameX = 6;
+
+        _inven[i].itemInfo.itemImg =        NULL;
+        _inven[i].itemInfo.count =          NULL;
+        _inven[i].itemInfo.currentFrameX =  NULL;
+        _inven[i].itemInfo.currentFrameY =  NULL;
+        _inven[i].itemInfo.itemName = "";
+        _inven[i].itemInfo.itemInfo = "";
+        _inven[i].itemInfo.damage         = NULL;
+        _inven[i].itemInfo.hp             = NULL;
+        _inven[i].itemInfo.sp             = NULL;
+
     }
 
     //테스트 아이템 집어넣기
-    _inven[0].itemInfo.itemImg = IMAGEMANAGER->findImage("playerTool");
-    _inven[1].itemInfo.itemImg = IMAGEMANAGER->findImage("playerTool");
-    _inven[2].itemInfo.itemImg = IMAGEMANAGER->findImage("playerTool");
-    _inven[0].itemInfo.currentFrameX = 0;
-    _inven[1].itemInfo.currentFrameX = 1;
-    _inven[2].itemInfo.currentFrameX = 2;
-    _inven[0].itemInfo.itemName = "곡괭이";
-    _inven[1].itemInfo.itemName = "호미";
-    _inven[2].itemInfo.itemName = "낫";
+  
     
     _downPtItem = NULL;
     _upPtItem = NULL;
@@ -173,20 +178,23 @@ void inventory::render()
             //
             for (int i = 0; i < INVENTORYSIZE; i++)
             {   
-
-                    _inven[i].itemInfo.itemImg->frameRender(getMemDC(), _inven[i].rc.left, _inven[i].rc.top, _inven[i].itemInfo.currentFrameX, 0);
+                if (_inven[i].itemInfo.itemImg = NULL) continue;
+                    _inven[i].itemInfo.itemImg->frameRender(getMemDC(), _inven[i].rc.left, _inven[i].rc.top, _inven[i].itemInfo.currentFrameX, _inven[i].itemInfo.currentFrameY);
                     if (_dragActivate)
                     {
-                        _inven[_downPtItem].itemInfo.itemImg->frameRender(getMemDC(), _ptMouse.x, _ptMouse.y, _inven[_downPtItem].itemInfo.currentFrameX, 0);
+                        _inven[_downPtItem].itemInfo.itemImg->frameRender(getMemDC(), _ptMouse.x - 30, _ptMouse.y - 30, _inven[_downPtItem].itemInfo.currentFrameX, _inven[i].itemInfo.currentFrameY);
                     }
 
-
-
                 if (PtInRect(&_inven[i].rc, _ptMouse))
-                {  
+                { 
+               
+                    _itemInfoImg->render(getMemDC(), _ptMouse.x, _ptMouse.y);
+
                     sprintf_s(str, "%s", _inven[i].itemInfo.itemName.c_str());
-                    TextOut(getMemDC(), _ptMouse.x + 10, _ptMouse.y + 10, str, strlen(str));
+                    TextOut(getMemDC(), _ptMouse.x + 10, _ptMouse.y + 20, str, strlen(str));
+
                 }
+
             }
             break;
         case StatPage:

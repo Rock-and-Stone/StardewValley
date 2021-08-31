@@ -9,6 +9,7 @@ enum ALLITEMS
 	AXE,			//도끼
 	PICKAXE,		//곡괭이
 	HOE,			//호미
+	SICKLE,			//낫
 	CAN,			//물조리개	
 	ROD	,			//낚시대
 
@@ -42,32 +43,34 @@ enum ALLITEMS
 	IRON,			//철			10G
 	GOLD			//골드		25G
 };
+struct ITEMS
+{
+	//구조체로 집어넣자
+	ALLITEMS    items;						//아이템이 뭔지
+	image*		objectImg;					//오브젝트 이미지
+
+	//인벤토리에서 띄줄것들
+	string		itemName;					//아이템 이름
+	string		itemInfo;					//아이템 설명
+
+	//아이템이 가지는 정보
+	int			frameX, frameY;			    //아이템이미지 위치
+	int			price;						//물건의 가격
+
+	int			damage;						//공격력
+	int			hP;							//체력을 채워준다.
+	int			sP;							//스태미나를 채워준다.
+	
+	BOOL		isburiedAble;				//땅에 심을수 있는 물건이니?
+
+};
 
 class object : public gameNode
 {
 protected:
 
-	//구조체로 집어넣자
-	ALLITEMS    _items;						//아이템
+	ITEMS _item;
 
-	image*		_objectImg;					//오브젝트 이미지
-
-	//충돌용 렉트
-	RECT		_objectRc;					//물체의 충돌렉트
-
-	//위치값
-	float		_posX, _posY;				//오브젝트 실제위치값
-	float		_rendX, _rendY;				//카메라X,Y
-
-	int			_frameX, _frameY;			//아이템이미지 위치
-
-	//방향 설정
-	int			_direction;					//방향
-	
-	int			_price;						//물건의 가격
-
-	int			_hP;						//체력을 채워준다.
-	int			_sP;						//스태미나를 채워준다.
 
 	
 
@@ -76,7 +79,7 @@ public:
 	~object();
 
 	virtual HRESULT init();
-	virtual HRESULT init(const char* imageName , POINT position, ALLITEMS items, int frameX, int frameY);
+	virtual HRESULT init(ALLITEMS item, const char* imageName, string itemname, string iteminfo, int framex, int framey, int Price, int Damage, int hp, int sp, bool isbarriable);
 	virtual void release();
 	virtual void update();
 	virtual void render();
@@ -87,36 +90,12 @@ public:
 
 	//======================= 접근자 & 설정자 ======================= //
 
-	//ENUM문
-	ALLITEMS GetItems() { return _items; }
-	void SetItems(ALLITEMS items) { _items = items; }
+	ITEMS GetItemStruct() { return _item; }
+	void SetItemStrcut(ITEMS item) { _item = item; }
 
-	//=====//
 	
-	//기타 변수들
-	inline RECT GetRect() { return _objectRc; }
 	
-	//이미지 겟
-	image* GetObjectImage() { return _objectImg; }
-	void SetObjectImage(image* objImg) { objImg = _objectImg; }
-	
-	float GetObjectPosX() { return _posX; }
-	void SetObjectPosX(float posX) { _posX = posX; }
 
-	float GetObjectPosY() { return _posY; }
-	void SetObjectPosY(float posY) { _posY = posY; }
-
-	int GetObjectDirection() { return _direction; }
-	void SetObjectDirection(int dir) { _direction = dir; }
-
-	int GetObjectPrice() { return _price; }
-	void SetObjectPrice(int price) { _price = price; }
-
-	int GetObjectHp() { return _hP; }
-	void SetObjectHp(int hp) { _hP = hp; }
-
-	int GetObjectSp() { return _sP; }
-	void SetObjectSp(int sp) { _sP = sp; }
 	//======================= ============== ======================= //
 	
 	//=======================   메모리 링크   ======================= //

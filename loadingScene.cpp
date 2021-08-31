@@ -89,11 +89,8 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
 		IMAGEMANAGER->addFrameImage("wizard", "source/Images/NPC/npc_skill.bmp", 64, 128, 4, 4, true, MAGENTA);
 		IMAGEMANAGER->addFrameImage("fisher", "source/Images/NPC/할아버지.bmp", 64, 128, 4, 4, true, MAGENTA);
 
-
 		//소스 파일 추가
-		
-		//IMAGEMANAGER->addFrameImage("playerTool", "playerTool.bmp", 96, 16, 6, 0, true, RGB(255, 0, 255)); // 플레이어 도구
-		//소스 파일 추가
+		//
 		// 인벤토리 UI
 		IMAGEMANAGER->addImage("itemInventory", "source/Images/inventory/itemInventory.bmp", 750, 550, true, MAGENTA);
 		// 퀵슬롯 UI
@@ -105,7 +102,9 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
 		// 설정메뉴
 		IMAGEMANAGER->addImage("settingMenu",	"source/Images/inventory/setting.bmp", 750, 550, true, MAGENTA);
 		// 나가기메뉴
-		IMAGEMANAGER->addImage("exitMenu", "source/Images/inventory/exit.bmp", 750, 550, true, MAGENTA);
+		IMAGEMANAGER->addImage("exitMenu",		"source/Images/inventory/exit.bmp", 750, 550, true, MAGENTA);
+		// 아이템 정보
+		IMAGEMANAGER->addImage("itemInfo",		"source/Images/shop/item_info.bmp", 210, 210, true, MAGENTA);
 
 		////도구 인벤토리
 		IMAGEMANAGER->addFrameImage("playerTool", "source/Images/playerInventory/playerTool.bmp", 280, 40, 7, 1, true, RGB(255, 0, 255)); // 플레이어 도구
@@ -117,6 +116,7 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
 		//IMAGEMANAGER->addFrameImage("crops", "source/Images/BMP/열매(ori).bmp", 640, 120, 16, 3, true, RGB(255, 0, 255));
 		////작물 아이콘
 		//IMAGEMANAGER->addFrameImage("cropsSmall", "source/Images/BMP/열매small(ori).bmp", 256, 48, 16, 3, true, RGB(255, 0, 255));
+		
 		//==================몬스터 부분 파일 추가 본=====================
 		//이미지
 		IMAGEMANAGER->addFrameImage("RockStone", "source/Images/monster/RockStone.bmp", 52, 60, 4, 4, true, MAGENTA);
