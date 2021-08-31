@@ -330,6 +330,8 @@ void inventory::MenuExitOpen()
 
 }
 
+
+
 //¹öÆ°¿ë
 void inventory::SelectMenu()
 {
@@ -371,6 +373,10 @@ void inventory::SelectMenu()
             }
         }
     }
+}
+void inventory::SetItems()
+{
+    
 }
 void inventory::Button(void* obj)
 {

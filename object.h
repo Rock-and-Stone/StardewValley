@@ -1,5 +1,6 @@
 #pragma once
 #include "gameNode.h"
+#include <vector>
 //#include "CameraManager.h"
 
 //전체아이템 
@@ -68,35 +69,28 @@ struct ITEMS
 
 class object : public gameNode
 {
-protected:
+private:
+	vector<ITEMS>				_vItem;
+	vector<ITEMS>::iterator		_viItem;
 
-	ITEMS _item;
-
-
-	
 
 public:
 	object();
 	~object();
 
 	virtual HRESULT init();
-	virtual HRESULT init(ALLITEMS item, const char* imageName, string itemname, string iteminfo, int framex, int framey, int Price, int Damage, int hp, int sp, bool isbarriable);
 	virtual void release();
 	virtual void update();
 	virtual void render();
+
+	void itemSetup();
 
 	void Draw();
 
 
 
 	//======================= 접근자 & 설정자 ======================= //
-
-	ITEMS GetItemStruct() { return _item; }
-	void SetItemStrcut(ITEMS item) { _item = item; }
-
-	
-	
-
+	//
 	//======================= ============== ======================= //
 	
 	//=======================   메모리 링크   ======================= //

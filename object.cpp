@@ -47,6 +47,10 @@ void object::render()
     Draw();
 }
 
+void object::itemSetup()
+{
+}
+
 void object::Draw()
 {
 

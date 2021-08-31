@@ -47,6 +47,8 @@ struct tagInventory
 class inventory : public gameNode
 {
 private:
+	vector<tagItemInfo>				_vInven;
+	vector<tagItemInfo>::iterator	_viInven;
 
 	MenuPage _menuPage;
 
@@ -116,6 +118,7 @@ public:
 	void MenuSettingOpen();
 	void MenuExitOpen();
 
+	void SetItems();
 
 	static void Button(void* obj);
 
