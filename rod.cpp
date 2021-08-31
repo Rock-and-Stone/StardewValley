@@ -4,7 +4,7 @@
 HRESULT rod::init()
 {
     _item.items = ROD;
-    _item.objectImg = IMAGEMANAGER->findImage("playerTool");
+    _item.itemImg = IMAGEMANAGER->findImage("playerTool");
     _item.frameX = 5;
     _item.frameY = 0;
     _item.itemName = "³¬½Ã´ë";

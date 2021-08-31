@@ -4,7 +4,7 @@
 HRESULT axe::init()
 {
     _item.items = AXE;
-    _item.objectImg = IMAGEMANAGER->findImage("playerTool");
+    _item.itemImg = IMAGEMANAGER->findImage("playerTool");
     _item.frameX = 3;
     _item.frameY = 0;
     _item.itemName = "µµ³¢";

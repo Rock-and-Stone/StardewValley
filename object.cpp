@@ -19,7 +19,7 @@ HRESULT object::init()
 HRESULT object::init(ALLITEMS item, const char* imageName, string itemname, string iteminfo, int framex, int framey, int Price, int Damage, int hp, int sp, bool isbarriable)
 {
     _item.items     = item;
-    _item.objectImg = IMAGEMANAGER->findImage(imageName);
+    _item.itemImg = IMAGEMANAGER->findImage(imageName);
     _item.itemName = itemname;
     _item.itemInfo = iteminfo;
     _item.frameX = framex;
@@ -39,7 +39,7 @@ void object::release()
 
 void object::update()
 {
-
+   
 }
 
 void object::render()

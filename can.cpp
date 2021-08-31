@@ -4,7 +4,7 @@
 HRESULT can::init()
 {
     _item.items = CAN;
-    _item.objectImg = IMAGEMANAGER->findImage("playerTool");
+    _item.itemImg = IMAGEMANAGER->findImage("playerTool");
     _item.frameX = 4;
     _item.frameY = 0;
     _item.itemName = "¹° »Ñ¸®°³";

@@ -3,15 +3,6 @@
 #include <vector>
 #include "object.h"
 
-#include "axe.h"
-#include "pickAxe.h"
-#include "sickle.h"
-#include "can.h"
-#include "hoe.h"
-#include "rod.h"
-
-
-
 #define INVENTORYSIZE 36
 #define QUICKSLOTSIZE 12
 
@@ -104,7 +95,7 @@ private:
 	button* _buttonToMenu;
 	button* _buttonExit;
 	
-
+	object* _axe;
 
 
 

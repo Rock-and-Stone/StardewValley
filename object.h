@@ -41,13 +41,15 @@ enum ALLITEMS
 //광물 ORE
 	COPPER,			//구리		 5G
 	IRON,			//철			10G
-	GOLD			//골드		25G
+	GOLD,			//골드		25G
+	//NONE;
+	NONE
 };
 struct ITEMS
 {
 	//구조체로 집어넣자
 	ALLITEMS    items;						//아이템이 뭔지
-	image*		objectImg;					//오브젝트 이미지
+	image*		itemImg;					//오브젝트 이미지
 
 	//인벤토리에서 띄줄것들
 	string		itemName;					//아이템 이름
@@ -56,7 +58,6 @@ struct ITEMS
 	//아이템이 가지는 정보
 	int			frameX, frameY;			    //아이템이미지 위치
 	int			price;						//물건의 가격
-
 	int			damage;						//공격력
 	int			hP;							//체력을 채워준다.
 	int			sP;							//스태미나를 채워준다.

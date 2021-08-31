@@ -1,7 +1,12 @@
 #include "pch.h"
 #include "inventory.h"
 #include "button.h"
-
+#include "axe.h"
+#include "pickAxe.h"
+#include "sickle.h"
+#include "can.h"
+#include "hoe.h"
+#include "rod.h"
 
 HRESULT inventory::init()
 {
@@ -12,6 +17,10 @@ HRESULT inventory::init()
     //버튼new
     _buttonExit = new button;
     _buttonToMenu = new button;
+
+    _axe = new axe;
+
+    
 
     //아이템정보창 이미지
     _itemInfoImg = IMAGEMANAGER->findImage("itemInfo");
@@ -43,20 +52,20 @@ HRESULT inventory::init()
     _isMenuOpen = false;
 
     //버튼메뉴
-    _buttonToMenu->init("MenuButton", WINSIZEX/2, WINSIZEY/2-100, PointMake(0, 1), PointMake(0, 0), Button, this);
-    _buttonExit->init("ExitButton", WINSIZEX/2, WINSIZEY/2+100, PointMake(0, 1), PointMake(0, 0), Button, this);
+    _buttonToMenu->init("MenuButton", WINSIZEX / 2, WINSIZEY / 2 - 100, PointMake(0, 1), PointMake(0, 0), Button, this);
+    _buttonExit->init("ExitButton", WINSIZEX / 2, WINSIZEY / 2 + 100, PointMake(0, 1), PointMake(0, 0), Button, this);
 
 
     //일단 다 빈공간으로 집어넣는다
-    for (int i = 0; i <INVENTORYSIZE; i++)
+    for (int i = 1; i <INVENTORYSIZE; i++)
     {
 
         _inven[i].itemInfo.itemImg =        NULL;
         _inven[i].itemInfo.count =          NULL;
         _inven[i].itemInfo.currentFrameX =  NULL;
         _inven[i].itemInfo.currentFrameY =  NULL;
-        _inven[i].itemInfo.itemName = "";
-        _inven[i].itemInfo.itemInfo = "";
+        _inven[i].itemInfo.itemName         = "";
+        _inven[i].itemInfo.itemInfo         = "";
         _inven[i].itemInfo.damage         = NULL;
         _inven[i].itemInfo.hp             = NULL;
         _inven[i].itemInfo.sp             = NULL;
@@ -65,6 +74,15 @@ HRESULT inventory::init()
 
     //테스트 아이템 집어넣기
   
+    _inven[0].itemInfo.itemImg = _axe->GetItemStruct().itemImg;
+    _inven[0].itemInfo.count = 1;
+    _inven[0].itemInfo.currentFrameX = _axe->GetItemStruct().frameX;
+    _inven[0].itemInfo.currentFrameY = _axe->GetItemStruct().frameY;
+    _inven[0].itemInfo.itemName = _axe->GetItemStruct().itemName;
+    _inven[0].itemInfo.itemInfo = _axe->GetItemStruct().itemInfo;
+    _inven[0].itemInfo.damage = _axe->GetItemStruct().damage;
+    _inven[0].itemInfo.hp = _axe->GetItemStruct().hP;
+    _inven[0].itemInfo.sp = _axe->GetItemStruct().sP;
     
     _downPtItem = NULL;
     _upPtItem = NULL;
@@ -178,7 +196,7 @@ void inventory::render()
             //
             for (int i = 0; i < INVENTORYSIZE; i++)
             {   
-                if (_inven[i].itemInfo.itemImg = NULL) continue;
+                if (_inven[i].itemInfo.itemImg == NULL) continue;
                     _inven[i].itemInfo.itemImg->frameRender(getMemDC(), _inven[i].rc.left, _inven[i].rc.top, _inven[i].itemInfo.currentFrameX, _inven[i].itemInfo.currentFrameY);
                     if (_dragActivate)
                     {
@@ -192,6 +210,8 @@ void inventory::render()
 
                     sprintf_s(str, "%s", _inven[i].itemInfo.itemName.c_str());
                     TextOut(getMemDC(), _ptMouse.x + 10, _ptMouse.y + 20, str, strlen(str));
+                    sprintf_s(str, "%s", _inven[i].itemInfo.itemInfo.c_str());
+                    TextOut(getMemDC(), _ptMouse.x + 10, _ptMouse.y + 40, str, strlen(str));
 
                 }
 

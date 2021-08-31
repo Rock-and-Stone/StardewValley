@@ -4,7 +4,7 @@
 HRESULT hoe::init()
 {
     _item.items = HOE;
-    _item.objectImg = IMAGEMANAGER->findImage("playerTool");
+    _item.itemImg = IMAGEMANAGER->findImage("playerTool");
     _item.frameX = 1;
     _item.frameY = 0;
     _item.itemName = "È£¹Ì";
