@@ -1,12 +1,6 @@
 #include "pch.h"
 #include "inventory.h"
 #include "button.h"
-#include "axe.h"
-#include "pickAxe.h"
-#include "sickle.h"
-#include "can.h"
-#include "hoe.h"
-#include "rod.h"
 
 HRESULT inventory::init()
 {
@@ -18,9 +12,6 @@ HRESULT inventory::init()
     _buttonExit = new button;
     _buttonToMenu = new button;
 
-    _axe = new axe;
-
-    
 
     //아이템정보창 이미지
     _itemInfoImg = IMAGEMANAGER->findImage("itemInfo");
@@ -74,15 +65,7 @@ HRESULT inventory::init()
 
     //테스트 아이템 집어넣기
   
-    _inven[0].itemInfo.itemImg = _axe->GetItemStruct().itemImg;
-    _inven[0].itemInfo.count = 1;
-    _inven[0].itemInfo.currentFrameX = _axe->GetItemStruct().frameX;
-    _inven[0].itemInfo.currentFrameY = _axe->GetItemStruct().frameY;
-    _inven[0].itemInfo.itemName = _axe->GetItemStruct().itemName;
-    _inven[0].itemInfo.itemInfo = _axe->GetItemStruct().itemInfo;
-    _inven[0].itemInfo.damage = _axe->GetItemStruct().damage;
-    _inven[0].itemInfo.hp = _axe->GetItemStruct().hP;
-    _inven[0].itemInfo.sp = _axe->GetItemStruct().sP;
+
     
     _downPtItem = NULL;
     _upPtItem = NULL;

@@ -176,6 +176,9 @@
     <ClInclude Include="iniDataManager.h" />
     <ClInclude Include="inventory.h" />
     <ClInclude Include="iron.h" />
+    <ClInclude Include="item.h" />
+    <ClInclude Include="itemAxe.h" />
+    <ClInclude Include="itemManager.h" />
     <ClInclude Include="kale.h" />
     <ClInclude Include="kaleSeed.h" />
     <ClInclude Include="keyAniManager.h" />
@@ -252,6 +255,9 @@
     <ClCompile Include="iniDataManager.cpp" />
     <ClCompile Include="inventory.cpp" />
     <ClCompile Include="iron.cpp" />
+    <ClCompile Include="item.cpp" />
+    <ClCompile Include="itemAxe.cpp" />
+    <ClCompile Include="itemManager.cpp" />
     <ClCompile Include="kale.cpp" />
     <ClCompile Include="kaleSeed.cpp" />
     <ClCompile Include="keyAniManager.cpp" />
