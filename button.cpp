@@ -80,6 +80,8 @@ HRESULT button::init(const char* imageName, int x, int y, POINT btnDownFramePoin
 	return S_OK;
 }
 
+
+
 void button::release()
 {
 
@@ -130,14 +132,38 @@ void button::render()
 {
 	switch (_direction)
 	{
-	case BUTTONDIRECTION_NULL: case BUTTONDIRECTION_UP:
-		_image->frameRender(getMemDC(), _rc.left, _rc.top,
-			_btnUpFramePoint.x, _btnUpFramePoint.y);
-		break;
-	case BUTTONDIRECTION_DOWN:
-		_image->frameRender(getMemDC(), _rc.left, _rc.top,
-			_btnDownFramePoint.x, _btnDownFramePoint.y);
-		break;
+		case BUTTONDIRECTION_NULL: case BUTTONDIRECTION_UP:
+		{
+			_image->frameRender(getMemDC(), _rc.left, _rc.top,_btnUpFramePoint.x, _btnUpFramePoint.y);
+			break;
+		}
+			
+		case BUTTONDIRECTION_DOWN:
+		{
+			_image->frameRender(getMemDC(), _rc.left, _rc.top, _btnDownFramePoint.x, _btnDownFramePoint.y);
+			break;
+		}
+	
+	}
+}
+
+void button::render(bool isToggled)
+{
+	switch (_direction)
+	{
+		case BUTTONDIRECTION_NULL: case BUTTONDIRECTION_UP:
+		{
+			if (isToggled == false)_image->frameRender(getMemDC(), _rc.left, _rc.top, _btnUpFramePoint.x, _btnUpFramePoint.y);
+			else _image->frameRender(getMemDC(), _rc.left, _rc.top, _btnUpFramePoint.x, _btnUpFramePoint.y + 1);
+			break;
+		}
+
+		case BUTTONDIRECTION_DOWN:
+		{
+			if (isToggled == false)_image->frameRender(getMemDC(), _rc.left, _rc.top, _btnDownFramePoint.x, _btnDownFramePoint.y);
+			else _image->frameRender(getMemDC(), _rc.left, _rc.top, _btnDownFramePoint.x, _btnDownFramePoint.y + 1);
+			break;
+		}
 	}
 
 }
