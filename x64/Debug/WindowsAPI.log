@@ -1,33 +1,4 @@
-﻿  axe.cpp
-  inventory.cpp
-S:\TeamPotopolio\Battlefield4\button.h(72,28): warning C4244: 'return': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-S:\TeamPotopolio\Battlefield4\button.h(73,32): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-S:\TeamPotopolio\Battlefield4\inventory.cpp(140,49): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-S:\TeamPotopolio\Battlefield4\inventory.cpp(142,49): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-S:\TeamPotopolio\Battlefield4\inventory.cpp(144,50): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-S:\TeamPotopolio\Battlefield4\inventory.cpp(146,50): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-S:\TeamPotopolio\Battlefield4\inventory.cpp(148,50): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-S:\TeamPotopolio\Battlefield4\inventory.cpp(178,93): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-S:\TeamPotopolio\Battlefield4\inventory.cpp(204,91): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-S:\TeamPotopolio\Battlefield4\inventory.cpp(206,91): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-S:\TeamPotopolio\Battlefield4\inventory.cpp(263,50): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  iron.cpp
-  object.cpp
-S:\TeamPotopolio\Battlefield4\object.cpp(20,1): error C2511: 'HRESULT object::init(ALLITEMS,const char *,std::string,std::string,int,int,int,int,int,int,bool)': 오버로드된 멤버 함수가 'object'에 없습니다.
-S:\TeamPotopolio\Battlefield4\object.h(70): message : 'object' 선언을 참조하십시오.
-S:\TeamPotopolio\Battlefield4\object.cpp(21,5): error C2065: '_item': 선언되지 않은 식별자입니다.
-S:\TeamPotopolio\Battlefield4\object.cpp(22,5): error C2065: '_item': 선언되지 않은 식별자입니다.
-S:\TeamPotopolio\Battlefield4\object.cpp(23,5): error C2065: '_item': 선언되지 않은 식별자입니다.
-S:\TeamPotopolio\Battlefield4\object.cpp(24,5): error C2065: '_item': 선언되지 않은 식별자입니다.
-S:\TeamPotopolio\Battlefield4\object.cpp(25,5): error C2065: '_item': 선언되지 않은 식별자입니다.
-S:\TeamPotopolio\Battlefield4\object.cpp(26,5): error C2065: '_item': 선언되지 않은 식별자입니다.
-S:\TeamPotopolio\Battlefield4\object.cpp(27,5): error C2065: '_item': 선언되지 않은 식별자입니다.
-S:\TeamPotopolio\Battlefield4\object.cpp(28,5): error C2065: '_item': 선언되지 않은 식별자입니다.
-S:\TeamPotopolio\Battlefield4\object.cpp(29,5): error C2065: '_item': 선언되지 않은 식별자입니다.
-S:\TeamPotopolio\Battlefield4\object.cpp(30,5): error C2065: '_item': 선언되지 않은 식별자입니다.
-S:\TeamPotopolio\Battlefield4\object.cpp(31,5): error C2065: '_item': 선언되지 않은 식별자입니다.
-  objectManager.cpp
-  potatoSeed.cpp
-  WindowsAPI.cpp
-S:\TeamPotopolio\Battlefield4\WindowsAPI.cpp(102,16): warning C4244: 'return': 'WPARAM'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+﻿  itemAxe.cpp
+  itemManager.cpp
   코드를 생성하고 있습니다...
+  WindowsAPI.vcxproj -> S:\TeamPotopolio\Battlefield4\x64\Debug\WindowsAPI.exe

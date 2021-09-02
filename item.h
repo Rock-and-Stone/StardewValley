@@ -55,6 +55,8 @@ struct ITEMS
 	string		itemName;					//아이템 이름
 	string		itemInfo;					//아이템 설명
 
+	POINT		pos;
+
 	//아이템이 가지는 정보
 	int			frameX, frameY;			    //아이템이미지 위치
 	int			buyPrice;					//아이템의 구매가
@@ -62,6 +64,7 @@ struct ITEMS
 	int			damage;						//공격력
 	int			hP;							//체력을 채워준다.
 	int			sP;							//스태미나를 채워준다.
+	int			amount;						//갯수
 
 	BOOL		isHandleAble;				//손에보여지는 물건?
 	BOOL		isEatAble;					//먹을수 있는 물건
@@ -80,7 +83,7 @@ public:
 	virtual HRESULT init();
 	virtual void release();
 	virtual void update();
-	virtual void render();
+	virtual void render(POINT position);
 
 	//======================= 접근자 & 설정자 ======================= //
 	//

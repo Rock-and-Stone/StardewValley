@@ -17,6 +17,14 @@ HRESULT itemAxe::init()
 	_item.frameY = 0;
 	_item.itemName = "도끼";
 	_item.itemInfo = "나무를 자를수 있음";
+	_item.buyPrice = 50;
+	_item.sellPrice = 20;
+	_item.damage = 10;
+	_item.hP = 0;
+	_item.sP = 0;
+	_item.isEatAble = false;
+	_item.isHandleAble = false;
+	_item.amount = 1;
 
 	return S_OK;
 }

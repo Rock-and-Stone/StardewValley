@@ -1,7 +1,11 @@
 #pragma once
 #include "item.h"
+
 class itemAxe : public item
 {
+private:
+
+public:
 	itemAxe();
 	~itemAxe();
 

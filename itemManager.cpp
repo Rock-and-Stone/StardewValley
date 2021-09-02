@@ -11,7 +11,12 @@ itemManager::~itemManager()
 
 HRESULT itemManager::init()
 {
-    return E_NOTIMPL;
+    _axe = new itemAxe;
+    _pickAxe = new itemPickAxe;
+    _axe->init();
+    _pickAxe->init();
+
+    return S_OK;
 }
 
 void itemManager::release()
