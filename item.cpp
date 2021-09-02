@@ -22,7 +22,7 @@ void item::update()
 {
 }
 
-void item::render(POINT position)
+void item::render(int x, int y)
 {
-    _item.itemImg->render(getMemDC(),position.x,position.y);
+    _item.itemImg->frameRender(getMemDC(), x, y, _item.frameX, _item.frameY);
 }

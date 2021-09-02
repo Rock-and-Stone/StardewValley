@@ -37,6 +37,7 @@ void itemAxe::update()
 {
 }
 
-void itemAxe::render()
+void itemAxe::render(int x, int y)
 {
+	_item.itemImg->frameRender(getMemDC(), x, y, _item.frameX, _item.frameY);
 }

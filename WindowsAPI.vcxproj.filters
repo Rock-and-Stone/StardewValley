@@ -346,6 +346,12 @@
     <ClInclude Include="itemManager.h">
       <Filter>playGround\ITEM\itemManager</Filter>
     </ClInclude>
+    <ClInclude Include="itemPickAxe.h">
+      <Filter>playGround\ITEM\itemClass</Filter>
+    </ClInclude>
+    <ClInclude Include="itemNull.h">
+      <Filter>playGround\ITEM\itemClass</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WindowsAPI.cpp">
@@ -568,6 +574,12 @@
       <Filter>playGround\ITEM\itemManager</Filter>
     </ClCompile>
     <ClCompile Include="itemAxe.cpp">
+      <Filter>playGround\ITEM\itemClass</Filter>
+    </ClCompile>
+    <ClCompile Include="itemPickAxe.cpp">
+      <Filter>playGround\ITEM\itemClass</Filter>
+    </ClCompile>
+    <ClCompile Include="itemNull.cpp">
       <Filter>playGround\ITEM\itemClass</Filter>
     </ClCompile>
   </ItemGroup>

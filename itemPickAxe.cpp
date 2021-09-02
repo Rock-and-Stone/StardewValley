@@ -1,6 +1,14 @@
 #include "pch.h"
 #include "itemPickAxe.h"
 
+itemPickAxe::itemPickAxe()
+{
+}
+
+itemPickAxe::~itemPickAxe()
+{
+}
+
 HRESULT itemPickAxe::init()
 {
 	_item.items = PICKAXE;
@@ -29,6 +37,7 @@ void itemPickAxe::update()
 {
 }
 
-void itemPickAxe::render()
+void itemPickAxe::render(int x, int y)
 {
+	_item.itemImg->frameRender(getMemDC(), x, y, _item.frameX, _item.frameY);
 }

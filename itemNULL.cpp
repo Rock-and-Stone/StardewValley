@@ -1,15 +1,15 @@
 #include "pch.h"
-#include "itemNULL.h"
+#include "itemNull.h"
 
-itemNULL::itemNULL()
+itemNull::itemNull()
 {
 }
 
-itemNULL::~itemNULL()
+itemNull::~itemNull()
 {
 }
 
-HRESULT itemNULL::init()
+HRESULT itemNull::init()
 {
 	_item.items = NONE;
 	_item.itemImg = NULL;
@@ -29,14 +29,14 @@ HRESULT itemNULL::init()
 	return S_OK;
 }
 
-void itemNULL::release()
+void itemNull::release()
 {
 }
 
-void itemNULL::update()
+void itemNull::update()
 {
 }
 
-void itemNULL::render()
+void itemNull::render(int x, int y)
 {
 }

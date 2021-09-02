@@ -83,10 +83,11 @@ public:
 	virtual HRESULT init();
 	virtual void release();
 	virtual void update();
-	virtual void render(POINT position);
+	virtual void render(int x, int y);
 
 	//======================= 접근자 & 설정자 ======================= //
-	//
+	ITEMS GetItemInfo() { return _item; }
+	void SetItemInfo(ITEMS item) { _item = item; }
 	//======================= ============== ======================= //
 	
 	//=======================   메모리 링크   ======================= //

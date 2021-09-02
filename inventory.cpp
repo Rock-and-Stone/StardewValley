@@ -4,11 +4,22 @@
 
 HRESULT inventory::init()
 {
+    //아이템 자식들 
+    _axe = new itemAxe;
+    _pickAxe = new itemPickAxe;
+    _null = new itemNull;
+
+    _axe->init();
+    _pickAxe->init();
+    _null->init();
+
+
     //버튼용이미지
     IMAGEMANAGER->addFrameImage("ExitButton", "source/Images/inventory/ExitButton.bmp", 185, 292, 1, 2, true, MAGENTA);
     IMAGEMANAGER->addFrameImage("MenuButton", "source/Images/inventory/MenuButton.bmp", 185, 292, 1, 2, true, MAGENTA);
    
-    //버튼new
+
+
     _buttonExit = new button;
     _buttonToMenu = new button;
 
@@ -46,26 +57,18 @@ HRESULT inventory::init()
     _buttonToMenu->init("MenuButton", WINSIZEX / 2, WINSIZEY / 2 - 100, PointMake(0, 1), PointMake(0, 0), Button, this);
     _buttonExit->init("ExitButton", WINSIZEX / 2, WINSIZEY / 2 + 100, PointMake(0, 1), PointMake(0, 0), Button, this);
 
-
-    //일단 다 빈공간으로 집어넣는다
-    for (int i = 1; i <INVENTORYSIZE; i++)
+    for (int i = 0; i < INVENTORYSIZE; i++)
     {
-
-        _inven[i].itemInfo.itemImg =        NULL;
-        _inven[i].itemInfo.count =          NULL;
-        _inven[i].itemInfo.currentFrameX =  NULL;
-        _inven[i].itemInfo.currentFrameY =  NULL;
-        _inven[i].itemInfo.itemName         = "";
-        _inven[i].itemInfo.itemInfo         = "";
-        _inven[i].itemInfo.damage         = NULL;
-        _inven[i].itemInfo.hp             = NULL;
-        _inven[i].itemInfo.sp             = NULL;
-
+        _vInven.push_back(_null);
     }
 
-    //테스트 아이템 집어넣기
-  
+    AddItem(0, _axe);
+    
+    AddItem(1, _pickAxe);
 
+    
+    //테스트 아이템 집어넣기
+   
     
     _downPtItem = NULL;
     _upPtItem = NULL;
@@ -127,18 +130,13 @@ void inventory::render()
     //디버깅 테스트
     char str[128];
  
-    sprintf_s(str, "isMenuOP : %d", _isMenuOpen);
+    sprintf_s(str, "vec : %d", _vInven.size());
     TextOut(getMemDC(), 10, 60, str, strlen(str));
-    sprintf_s(str, "MenuPage : %d", _menuPage);
+    sprintf_s(str, "ptdonw : %d", _downPtItem);
     TextOut(getMemDC(), 10, 80, str, strlen(str));
-    sprintf_s(str, "draging : %d", _dragActivate);
+    sprintf_s(str, "ptup : %d", _upPtItem);
     TextOut(getMemDC(), 10, 100, str, strlen(str));
-    sprintf_s(str, "downpt : %d", _downPtItem);
-    TextOut(getMemDC(), 10, 120, str, strlen(str));
-    sprintf_s(str, "upPt : %d", _upPtItem);
-    TextOut(getMemDC(), 10, 140, str, strlen(str));
 
- 
    //직사각형 위치 테스트
     if (KEYMANAGER->isToggleKey(VK_TAB))
     {
@@ -176,36 +174,52 @@ void inventory::render()
         switch (_menuPage)
         {
         case InvenPage:
-            //
-            for (int i = 0; i < INVENTORYSIZE; i++)
-            {   
-                if (_inven[i].itemInfo.itemImg == NULL) continue;
-                    _inven[i].itemInfo.itemImg->frameRender(getMemDC(), _inven[i].rc.left, _inven[i].rc.top, _inven[i].itemInfo.currentFrameX, _inven[i].itemInfo.currentFrameY);
-                    if (_dragActivate)
-                    {
-                        _inven[_downPtItem].itemInfo.itemImg->frameRender(getMemDC(), _ptMouse.x - 30, _ptMouse.y - 30, _inven[_downPtItem].itemInfo.currentFrameX, _inven[i].itemInfo.currentFrameY);
-                    }
+            
+            for (int i = 0; i < _vInven.size(); i++)
+            {
+                _vInven[i]->render(_inven[i].rc.left, _inven[i].rc.top);
 
-                if (PtInRect(&_inven[i].rc, _ptMouse))
-                { 
+                if (_dragActivate)
+                {
+                    _vInven[_downPtItem]->render(_ptMouse.x-20, _ptMouse.y-20);
+                    
+                }
+            
+                   
+                
+             
+                
+                if (PtInRect(&_inven[i].rc, _ptMouse) && _vInven[i] != _null)
+                {
                
                     _itemInfoImg->render(getMemDC(), _ptMouse.x, _ptMouse.y);
 
-                    sprintf_s(str, "%s", _inven[i].itemInfo.itemName.c_str());
-                    TextOut(getMemDC(), _ptMouse.x + 10, _ptMouse.y + 20, str, strlen(str));
-                    sprintf_s(str, "%s", _inven[i].itemInfo.itemInfo.c_str());
-                    TextOut(getMemDC(), _ptMouse.x + 10, _ptMouse.y + 40, str, strlen(str));
+                    if (_vInven[i]->GetItemInfo().amount != 1)
+                    {
+                        sprintf_s(str, "%d", _vInven[i]->GetItemInfo().amount);
+                        TextOut(getMemDC(), _inven[i].rc.right, _inven[i].rc.bottom, str, strlen(str));
+                    }
+                  
 
+                    sprintf_s(str, "%s", _vInven[i]->GetItemInfo().itemName.c_str());
+                    TextOut(getMemDC(), _ptMouse.x + 20, _ptMouse.y + 20, str, strlen(str));
+                    sprintf_s(str, "%s", _vInven[i]->GetItemInfo().itemInfo.c_str());
+                    TextOut(getMemDC(), _ptMouse.x + 20, _ptMouse.y + 70, str, strlen(str));
+                  
+                    
                 }
-
             }
             break;
+
         case StatPage:
             break;
+
         case CraftPage:
             break;
+
         case SettingPage:
             break;
+
         case ExitPage:
            _buttonExit->render();
            _buttonToMenu->render();
@@ -279,7 +293,7 @@ void inventory::MenuInvetoryOpen()
                 }
 
 
-                swap(_inven[_downPtItem].itemInfo, _inven[_upPtItem].itemInfo);
+                swap(_vInven[_downPtItem], _vInven[_upPtItem]);
 
             }
         }
@@ -311,6 +325,11 @@ void inventory::MenuSettingOpen()
 void inventory::MenuExitOpen()
 {
 
+}
+
+void inventory::AddItem(int arrNum, item* item)
+{
+    _vInven[arrNum] = item;
 }
 
 
