@@ -7,6 +7,8 @@ inline void LineMake(HDC hdc, int x1, int y1, int x2, int y2)
 	LineTo(hdc, x2, y2);
 }
 
+
+
 inline POINT PointMake(int x, int y)
 {
 	POINT pt = { x, y };
@@ -33,6 +35,15 @@ inline RECT RectMakeCenter(int x, int y, int width, int height)
 inline void Rectangle(HDC hdc, RECT& rc)
 {
 	Rectangle(hdc, rc.left, rc.top, rc.right, rc.bottom);
+}
+
+inline void LineRectangle(HDC hdc, RECT& rc)
+{
+	MoveToEx(hdc, rc.left, rc.top, NULL);
+	LineTo(hdc, rc.left, rc.bottom);
+	LineTo(hdc, rc.right, rc.bottom);
+	LineTo(hdc, rc.right, rc.top);
+	LineTo(hdc, rc.left, rc.top);
 }
 
 //사각형 그려주는 매크로함수 (뿌려줄DC, 시작점 X(left), 시작점Y(top), 가로크기, 세로크기)
