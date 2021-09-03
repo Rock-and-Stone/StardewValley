@@ -18,7 +18,8 @@ HRESULT inventory::init()
     IMAGEMANAGER->addFrameImage("ExitButton", "source/Images/inventory/ExitButton.bmp", 185, 292, 1, 2, true, MAGENTA);
     IMAGEMANAGER->addFrameImage("MenuButton", "source/Images/inventory/MenuButton.bmp", 185, 292, 1, 2, true, MAGENTA);
    
-
+    _quickSlotMin = 0;
+    _quickSlotMax = 12;
 
     _buttonExit = new button;
     _buttonToMenu = new button;
@@ -63,12 +64,15 @@ HRESULT inventory::init()
     }
 
     AddItem(0, _axe);
+    AddItem(0, _axe);
+    AddItem(3, _axe);
+ 
     
     AddItem(1, _pickAxe);
-
+    AddItem(30, _pickAxe); 
     
     //테스트 아이템 집어넣기
-   
+    QuickSlot();
     
     _downPtItem = NULL;
     _upPtItem = NULL;
@@ -119,6 +123,7 @@ void inventory::update()
 
     else if (!_isMenuOpen)
     {
+       //QuickSlot();
 
 
     }
@@ -136,9 +141,13 @@ void inventory::render()
     TextOut(getMemDC(), 10, 80, str, strlen(str));
     sprintf_s(str, "ptup : %d", _upPtItem);
     TextOut(getMemDC(), 10, 100, str, strlen(str));
+    sprintf_s(str, "_Min : %d", _quickSlotMin);
+    TextOut(getMemDC(), 10, 120, str, strlen(str));
+    sprintf_s(str, "_Max : %d", _quickSlotMax);
+    TextOut(getMemDC(), 10, 140, str, strlen(str));
 
    //직사각형 위치 테스트
-    if (KEYMANAGER->isToggleKey(VK_TAB))
+ /*   if (KEYMANAGER->isToggleKey(VK_TAB))
     {
         Rectangle(getMemDC(), _quickSlotRc);
         Rectangle(getMemDC(), _menuRc);
@@ -147,9 +156,8 @@ void inventory::render()
         Rectangle(getMemDC(), _craftRc);
         Rectangle(getMemDC(), _settingRc);
         Rectangle(getMemDC(), _exitRc);
-    
- 
-    }
+
+    }*/
 
 
 
@@ -179,6 +187,11 @@ void inventory::render()
             {
                 _vInven[i]->render(_inven[i].rc.left, _inven[i].rc.top);
 
+                if (_vInven[i]->GetItemInfo().amount != 1)
+                {
+                    sprintf_s(str, "%d", _vInven[i]->GetItemInfo().amount);
+                    TextOut(getMemDC(), _inven[i].rc.right, _inven[i].rc.bottom, str, strlen(str));
+                }
                 if (_dragActivate)
                 {
                     _vInven[_downPtItem]->render(_ptMouse.x-20, _ptMouse.y-20);
@@ -194,11 +207,7 @@ void inventory::render()
                
                     _itemInfoImg->render(getMemDC(), _ptMouse.x, _ptMouse.y);
 
-                    if (_vInven[i]->GetItemInfo().amount != 1)
-                    {
-                        sprintf_s(str, "%d", _vInven[i]->GetItemInfo().amount);
-                        TextOut(getMemDC(), _inven[i].rc.right, _inven[i].rc.bottom, str, strlen(str));
-                    }
+            
                   
 
                     sprintf_s(str, "%s", _vInven[i]->GetItemInfo().itemName.c_str());
@@ -234,9 +243,28 @@ void inventory::render()
     //메뉴창이 꺼졌을땐 퀵슬롯을 렌더한다
     else if (!_isMenuOpen)
     {
+        //퀵슬롯의 이미지를 렌더한다
         _quickSlot->render(getMemDC(), _quickSlotRc.left, _quickSlotRc.top);
-    }
 
+        for (int i = _quickSlotMin; i < _quickSlotMax; i++) 
+        {
+            _vInven[i]->render(_quick[i % 12].rc.left, _quick[i % 12].rc.top);
+        }
+       
+    }
+    if (KEYMANAGER->isOnceKeyDown(VK_TAB))
+    {
+        _quickSlotMin += 12;
+        _quickSlotMax += 12;
+
+
+        if (_quickSlotMax > 36)
+        {
+            _quickSlotMin = 0;
+            _quickSlotMax = 12;
+
+        }
+    }
    
 
 }
@@ -256,10 +284,23 @@ void inventory::MenuOpen()
     }
 }
 
+void inventory::QuickSlot()
+{
+    if (!_isMenuOpen)
+    {
+        for (int i = 0; i < 12; i++)
+        {
+            //12개 칸으로 생성하고
+            _quick[i].rc = RectMake((_quickSlotRc.left + 15) + (i * 44.7), (_quickSlotRc.top + 13), 42, 42); 
+        }
+    }   
+}
+
 //메뉴창에서 인벤토리창
 void inventory::MenuInvetoryOpen()
 {
    //먼저 직사각형 생성해준다
+
     for (int j = 0; j < 3; ++j)
     {
         for (int i = 0; i < 12; ++i)
@@ -326,10 +367,33 @@ void inventory::MenuExitOpen()
 {
 
 }
-
+//아이템 추가
 void inventory::AddItem(int arrNum, item* item)
 {
-    _vInven[arrNum] = item;
+    bool _isadd  = true;
+
+    for (int i = 0; i < _vInven.size(); i++)
+    {
+        if (_vInven[i] != item)
+        {
+ 
+            _isadd = false;
+        }
+        if (_vInven[i] == item)
+        {
+            _isadd = true;
+            _vInven[i]->amountAdd();
+            break;   
+        }
+    }
+    if (!_isadd)
+    {
+        _vInven[arrNum] = item;
+    }
+   
+
+
+
 }
 
 
@@ -376,9 +440,9 @@ void inventory::SelectMenu()
         }
     }
 }
-void inventory::SetItems()
+void inventory::CheckItems()
 {
-    
+
 }
 void inventory::Button(void* obj)
 {

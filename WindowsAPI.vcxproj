@@ -178,9 +178,12 @@
     <ClInclude Include="iron.h" />
     <ClInclude Include="item.h" />
     <ClInclude Include="itemAxe.h" />
+    <ClInclude Include="itemCan.h" />
+    <ClInclude Include="itemHoe.h" />
     <ClInclude Include="itemManager.h" />
     <ClInclude Include="itemNull.h" />
     <ClInclude Include="itemPickAxe.h" />
+    <ClInclude Include="itemSickle.h" />
     <ClInclude Include="kale.h" />
     <ClInclude Include="kaleSeed.h" />
     <ClInclude Include="keyAniManager.h" />
@@ -259,9 +262,12 @@
     <ClCompile Include="iron.cpp" />
     <ClCompile Include="item.cpp" />
     <ClCompile Include="itemAxe.cpp" />
+    <ClCompile Include="itemCan.cpp" />
+    <ClCompile Include="itemHoe.cpp" />
     <ClCompile Include="itemManager.cpp" />
     <ClCompile Include="itemNull.cpp" />
     <ClCompile Include="itemPickAxe.cpp" />
+    <ClCompile Include="itemSickle.cpp" />
     <ClCompile Include="kale.cpp" />
     <ClCompile Include="kaleSeed.cpp" />
     <ClCompile Include="keyAniManager.cpp" />

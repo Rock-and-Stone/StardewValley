@@ -11,7 +11,7 @@
 
 
 #define INVENTORYSIZE 36
-#define QUICKSLOTSIZE 12
+#define QUICKSLOTSIZE 36
 
 class button;
 
@@ -90,6 +90,11 @@ private:
 	//놓았을때 인덱스
 	int _upPtItem;
 
+	int _quickSlotMin;
+	int _quickSlotMax;
+
+	BOOL	_invenIsFull;
+
 	//버튼스
 	button* _buttonToMenu;
 	button* _buttonExit;
@@ -109,6 +114,7 @@ public:
 	void MenuOpen();
 	void SelectMenu();
 
+	void QuickSlot();
 	void MenuInvetoryOpen();
 	void MenuStatOpen();
 	void MenuCraftOpen();
@@ -117,9 +123,9 @@ public:
 
 	//NULL값 있는 벡터는 지우고 값넣는 
 	void AddItem(int arrNum,item* item);
+	void CheckItems();
 
-
-	void SetItems();
+	
 
 	static void Button(void* obj);
 

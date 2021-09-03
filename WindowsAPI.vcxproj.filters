@@ -352,6 +352,15 @@
     <ClInclude Include="itemNull.h">
       <Filter>playGround\ITEM\itemClass</Filter>
     </ClInclude>
+    <ClInclude Include="itemHoe.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="itemSickle.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="itemCan.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WindowsAPI.cpp">
@@ -581,6 +590,15 @@
     </ClCompile>
     <ClCompile Include="itemNull.cpp">
       <Filter>playGround\ITEM\itemClass</Filter>
+    </ClCompile>
+    <ClCompile Include="itemHoe.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="itemSickle.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="itemCan.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
