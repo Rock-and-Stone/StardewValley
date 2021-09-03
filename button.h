@@ -2,7 +2,7 @@
 #include "gameNode.h"
 
 //함수포인터 형태를 가진 콜백함수
-typedef void(*CALLBACK_FUNCTION)(void);
+typedef void(*CALLBACK_FUNCTION_)(void);
 typedef void(*CALLBACK_FUNCTION_PARAMETER)(void*);
 
 
@@ -41,7 +41,7 @@ private:
 	POINT _btnUpFramePoint;
 
 	//콜백함수 선언
-	CALLBACK_FUNCTION _callbackFunction;
+	CALLBACK_FUNCTION_ _callbackFunction;
 	CALLBACK_FUNCTION_PARAMETER _callbackFunctionParameter;
 
 public:
@@ -50,7 +50,7 @@ public:
 
 	HRESULT init(const char* imageName, int x, int y,
 		POINT btnDownFramePoint, POINT btnUpFramePoint,
-		CALLBACK_FUNCTION cbFunction);
+		CALLBACK_FUNCTION_ cbFunction);
 
 	HRESULT init(const char* imageName, int x, int y,
 		POINT btnDownFramePoint, POINT btnUpFramePoint,
