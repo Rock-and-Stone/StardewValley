@@ -1,8 +1,8 @@
 #pragma once
 #define TILESIZE 32	//타일 사이즈 32X32
 
-#define TILEX 40	//가로 타일 갯수
-#define TILEY 32	//세로 타일 갯수
+#define TILEX 80	//가로 타일 갯수
+#define TILEY 65	//세로 타일 갯수
 
 //타일 규격 20 X 32 사이즈니까 -> 총 사이즈는 640 X 640
 #define TILESIZEX TILESIZE * TILEX
@@ -29,21 +29,19 @@
 //지형
 enum TERRAIN
 {
-	TR_GRASS_0, TR_GRASS_1, TR_GRASS_2, TR_DIRT, TR_DIRT_WET, TR_WATER, TR_END
+	TR_GRASS, TR_DIRT, TR_DIRT_WET, TR_WATER, TR_WOOD, TR_NULL
 };
 
 //오브젝트
 enum OBJECT
 {
-	OBJ_BLOCK1, OBJ_BLOCK3, OBJ_BLOCKS,
-	OBJ_FLAG1, OBJ_FLAG2,
-	OBJ_TANK1, OBJ_TANK2, OBJ_NONE
+	OBJ_WALL, OBJ_POND, OBJ_TREE, OBJ_BUILD, OBJ_PROP, OBJ_NONE
 };
 
 enum POS
 {
 	//1P진영 깃발(독수리 모양) 1P 탱크 리스폰 위치
-	POS_FLAG1, POS_FLAG2, POS_TANK1, POS_TANK2
+	POS_HOUSE_ENTER, POS_HOUSE_EXIT, POS_FARM_EXIT, POS_FARM_ENTER
 };
 
 //타일 구조체 (타일 정보등을 담고있다)

@@ -65,6 +65,7 @@ public:
 	void update();
 	void Update();
 	void render();
+	void render(bool isToggled);
 
 	BUTTONDIRECTION getBtnDir() { return _direction; }
 	void setBtnDir(BUTTONDIRECTION dir) { _direction = dir; }

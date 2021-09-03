@@ -31,22 +31,29 @@ private:
 	tagCurrentTile _currentTile;
 	tagSampleTile _sampleTile[SAMPLETILEX * SAMPLETILEY];
 
+	RECT _dragRC;
+
+	image* _background;
+
 	button* _buttonSave;
 	button* _buttonLoad;
 	button* _buttonDraw;
 	button* _buttonObject;
 	button* _buttonErase;
-
 	button* _buttonLeft;
 	button* _buttonRight;
+	button* _buttonDragMode;
 
 	int _pos[2];
 	int _ctrSelect;
 	bool _isPicked;
 	bool _isSample;
+	bool _isDragMode;
+	bool _isStart;
 
 	float _posX, _posY;
 	float _rendX, _rendY;
+	float _dragStartX, _dragStartY;
 
 public:
 	Map();
@@ -67,12 +74,12 @@ public:
 	void SetSample(int select, string str);
 	void PickSample();
 	void DrawMap();
+	void DragMap(bool isDrag);
 	void AutoDraw(tagTile* currentTile);
 
 	static void Button(void* obj);
 
 	tagTile* getTile() { return _tiles; }
-
 
 	//STEP2
 	//타일속성에 대한 접근자도 만들어주어야 할껍니다
@@ -85,6 +92,6 @@ public:
 	int getPosFirst() { return _pos[0]; }
 	int getPosSecond() { return _pos[1]; }
 
-	
+	bool getDragMode() { return _isDragMode; }
 };
 
