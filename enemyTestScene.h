@@ -3,13 +3,13 @@
 #include "EnemyManager.h"
 #include "Enemy.h"
 #include "RockStone.h"
-#include "aStarTest.h"
+#include "EnemyAstar.h"
 
 class enemyTestScene : public gameNode
 {
 private:
 	EnemyManager* _em;
-	aStarTest* _as;
+	EnemyAstar* _ea;
 
 public:
 	virtual HRESULT init();

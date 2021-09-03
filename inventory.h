@@ -1,11 +1,17 @@
 #pragma once
 #include "gameNode.h"
 #include <vector>
-#include "object.h"
+
+
+#include "itemAxe.h"
+#include "itemPickAxe.h"
+#include "itemNull.h"
+
+
 
 
 #define INVENTORYSIZE 36
-#define QUICKSLOTSIZE 12
+#define QUICKSLOTSIZE 36
 
 class button;
 
@@ -18,28 +24,33 @@ enum MenuPage
 	ExitPage,
 };
 
-struct tagItemInfo
-{
-	image* itemImg;
-	string  itemName;
-	int	   count;			 //각물체의 개수
-	int    currentFrameX;
-	int	   currentFrameY;
-};
-
 struct tagInventory
 {
-	tagItemInfo itemInfo;
 	RECT	rc;				//메뉴 칸마다 있을 칸들	
 };
 
 class inventory : public gameNode
 {
 private:
+	vector<item*>				_vInven;
+	vector<item*>::iterator		_viInven;
+
+	vector<item*>				_vItemInfo;
+	vector<item*>::iterator		_viItemInfo;
+
+
+	//아이템 정보들
+	itemAxe* _axe;
+	itemPickAxe* _pickAxe;
+	itemNull* _null;
+
+
+	//itemManager* _itemManager;
 
 	MenuPage _menuPage;
 
 	tagInventory _inven[INVENTORYSIZE];
+	tagInventory _quick[QUICKSLOTSIZE];
 
 	//현재 보고있는 메뉴 이미지
 	image* _currentMenuImg;
@@ -59,6 +70,7 @@ private:
 	image* _craftImg;
 	image* _settingImg;
 	image* _exitImg;
+	image* _itemInfoImg;
 
 	//메뉴바꾸는 버튼스?
 	RECT	_storageRc;
@@ -77,6 +89,11 @@ private:
 	int _downPtItem;
 	//놓았을때 인덱스
 	int _upPtItem;
+
+	int _quickSlotMin;
+	int _quickSlotMax;
+
+	BOOL	_invenIsFull;
 
 	//버튼스
 	button* _buttonToMenu;
@@ -97,13 +114,33 @@ public:
 	void MenuOpen();
 	void SelectMenu();
 
+	void QuickSlot();
 	void MenuInvetoryOpen();
 	void MenuStatOpen();
 	void MenuCraftOpen();
 	void MenuSettingOpen();
 	void MenuExitOpen();
 
+	//NULL값 있는 벡터는 지우고 값넣는 
+	void AddItem(int arrNum,item* item);
+	void CheckItems();
+
+	
 
 	static void Button(void* obj);
+
+	//======================= 접근자 & 설정자 ======================= //
+	//		
+	//======================= ============== ======================= //
+
+	//=======================   메모리 링크   ======================= //
+	// 
+	//======================= ============== ======================= //
 };
+
+
+
+
+
+
 
