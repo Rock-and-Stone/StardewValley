@@ -27,12 +27,12 @@ void EnemyManager::render()
     }
 }
 
-void EnemyManager::SetRockStone(POINT pos, int _slimeNum)
+void EnemyManager::SetRockStone()
 {
-    int rnd;
+    //int rnd;
     Enemy* rockstone;
     rockstone = new RockStone;
-    rockstone->init("RockStone", PointMake(WINSIZEX/2, WINSIZEY/2));
+    rockstone->init("RockStone", PointMake(200, WINSIZEY/2));
     rockstone->init();
     _vEnemy.push_back(rockstone);
 }

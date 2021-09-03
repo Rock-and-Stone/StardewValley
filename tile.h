@@ -39,7 +39,9 @@ public:
 	void render();
 
 	int getIdX() { return _idX; }
+	void SetIdX(int idX) { _idX = idX; }
 	int getIdY() { return _idY; }
+	void SetIdY(int idY) { _idY = idY; }
 
 	void setColor(COLORREF color)
 	{

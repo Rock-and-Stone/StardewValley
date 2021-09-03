@@ -25,7 +25,7 @@ public:
 	void update();
 	void render();
 
-	void SetRockStone(POINT pos, int _slimeNum);
+	void SetRockStone();
 
 	vector<Enemy*> GetVEnemy() { return _vEnemy; }
 	vector<Enemy*>::iterator GetVIEnemy() { return _viEnemy; }
