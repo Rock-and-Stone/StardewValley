@@ -23,4 +23,5 @@ void RockStone::update()
 
 void RockStone::SwitchImage()
 {
+	
 }

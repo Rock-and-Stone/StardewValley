@@ -320,6 +320,9 @@
     <ClInclude Include="wizard.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="EnemyAstar.h">
+      <Filter>playGround\Enemy</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WindowsAPI.cpp">
@@ -531,6 +534,9 @@
     </ClCompile>
     <ClCompile Include="wizard.cpp">
       <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyAstar.cpp">
+      <Filter>playGround\Enemy</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

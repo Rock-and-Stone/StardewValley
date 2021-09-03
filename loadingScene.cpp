@@ -53,8 +53,8 @@ void loadingScene::update()
 		//이동할 씬 으로 변경
 		//SCENEMANAGER->changeScene("playerScene");
 		//SCENEMANAGER->changeScene("mainMenuScene");
-		SCENEMANAGER->changeScene("inventory");
-		//SCENEMANAGER->changeScene("enemyTestScene");
+		//SCENEMANAGER->changeScene("inventory");
+		SCENEMANAGER->changeScene("enemyTestScene");
 
 	}
 
@@ -66,7 +66,7 @@ void loadingScene::update()
 	}
 	if (_frameX >= 3) _frameX = 0;
 }
-
+  
 void loadingScene::render()
 {
 	_background->render(getMemDC());
