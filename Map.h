@@ -46,6 +46,8 @@ private:
 
 	int _pos[2];
 	int _ctrSelect;
+	int _ctrPage;
+
 	bool _isPicked;
 	bool _isSample;
 	bool _isDragMode;
@@ -72,6 +74,7 @@ public:
 	void RectSensor();
 
 	void SetSample(int select, string str);
+	void ChangeSample(int page);
 	void PickSample();
 	void DrawMap();
 	void DragMap(bool isDrag);
