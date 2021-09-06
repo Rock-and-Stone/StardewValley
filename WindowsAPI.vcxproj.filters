@@ -152,6 +152,9 @@
     <Filter Include="playGround\Item\itemClass\CROP">
       <UniqueIdentifier>{f249bf8b-bae6-482c-b6f6-e7ff191d9b6d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="playGround\Map">
+      <UniqueIdentifier>{f63db20f-3bd9-45f8-b266-32bd34eb97fb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -470,7 +473,10 @@
       <Filter>playGround\Item\itemClass\BASIC_RESOURCE</Filter>
     </ClInclude>
     <ClInclude Include="itemRod.h">
+    </ClInclude>
       <Filter>playGround\Item\itemClass\TOOL</Filter>
+    <ClInclude Include="homeMap.h">
+      <Filter>playGround\Map</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -779,6 +785,9 @@
     </ClCompile>
     <ClCompile Include="itemRod.cpp">
       <Filter>playGround\Item\itemClass\TOOL</Filter>
+    </ClCompile>
+    <ClCompile Include="homeMap.cpp">
+      <Filter>playGround\Map</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

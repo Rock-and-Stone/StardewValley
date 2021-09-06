@@ -20,7 +20,7 @@ public:
 	CameraManager();
 	~CameraManager();
 
-	HRESULT init(float minMapSizeX,int mapSizeX, float mapSizeY); //전체 맵 사이즈 ( 파일 가로, 세로 크기 )
+	HRESULT init(int mapSizeX, float mapSizeY); //전체 맵 사이즈 ( 파일 가로, 세로 크기 )
 	virtual void release();
 	virtual void update(float playerX, float playerY); //현재 플레이어 절대 좌표( PosX 랑 PosY )
 

@@ -219,6 +219,7 @@ void inventory::render()
         PROOF_QUALITY, DEFAULT_PITCH | FF_SWISS, TEXT("sandoll 미생"));
     HFONT oldFont2 = (HFONT)SelectObject(getMemDC(), font2);
 
+
     for (int i = 0; i < INVENTORYSIZE; i++)
     {
         if (PtInRect(&_inven[i].rc, _ptMouse))
@@ -542,16 +543,30 @@ void inventory::MenuCraftOpen()
         }
     }
 
+
+   
+ 
+    
+   
+
+
+}
+//스탯창
+void inventory::MenuStatOpen()
+{
+
+}
+//제작창
+void inventory::MenuCraftOpen()
+{
 }
 //세팅창
 void inventory::MenuSettingOpen()
 {
-
 }
 //나가는창
 void inventory::MenuExitOpen()
 {
-
 }
 //아이템 추가
 void inventory::AddItem(item* item)
@@ -594,6 +609,16 @@ void inventory::AddItem(item* item)
 }
 
 //메뉴버튼용
+
+    if (!_isadd)
+    {
+        _vInven[arrNum] = item;
+    }
+   
+}
+
+//버튼용
+
 void inventory::SelectMenu()
 {
     if(PtInRect(&_storageRc,_ptMouse)||PtInRect(&_statRc,_ptMouse)

@@ -29,6 +29,7 @@ public:
 	virtual void release()override;
 	virtual void update() override;
 	virtual void render(HDC hdc) override;
+	void setFrameY();
 	virtual void setPlayer(player* player) override { _player = player; }
 };
 

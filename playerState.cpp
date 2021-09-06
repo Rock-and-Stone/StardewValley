@@ -26,7 +26,6 @@ leftWalk::~leftWalk()
 HRESULT leftWalk::init()
 {
 	_player = new player;
-
 	return S_OK;
 }
 
@@ -36,6 +35,8 @@ void leftWalk::release()
 
 void leftWalk::update()
 {
+	_player->setPlayerDirection(PLAYERDIRECTION_LEFT);
+
 	_count++;
 
 	if (_count % 5 == 0)
@@ -46,10 +47,17 @@ void leftWalk::update()
 
 	if (_frameX >= 5) _frameX = 0;
 
+
 }
 void leftWalk::render(HDC hdc)
 {
 }
+
+void leftWalk::setFrameY()
+{
+	_player->setFrameY(1);
+}
+
 #pragma endregion
 
 #pragma region rightWalk
@@ -74,6 +82,9 @@ void rightWalk::release()
 
 void rightWalk::update()
 {
+
+	_player->setPlayerDirection(PLAYERDIRECTION_RIGHT);
+
 	_count++;
 
 	if (_count % 5 == 0)
@@ -112,6 +123,9 @@ void upWalk::release()
 
 void upWalk::update()
 {
+	_player->setPlayerDirection(PLAYERDIRECTION_UP);
+
+
 	_count++;
 
 	if (_count % 5 == 0)
@@ -149,6 +163,9 @@ void downWalk::release()
 
 void downWalk::update()
 {
+	_player->setPlayerDirection(PLAYERDIRECTION_DOWN);
+
+
 	_count++;
 
 	if (_count % 5 == 0)

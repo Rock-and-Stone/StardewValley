@@ -25,8 +25,6 @@ HRESULT object::init(ALLOBJECTS obj, const char* imageName,int framex,int framey
 
 HRESULT object::init()
 {
-
-
     return S_OK;
 }
 

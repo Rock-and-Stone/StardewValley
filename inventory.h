@@ -76,7 +76,6 @@ private:
 	vector<item*>				_vItemInfo;
 	vector<item*>::iterator		_viItemInfo;
 
-
 	//아이템 정보들
 #pragma region itemnew
 

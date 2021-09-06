@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "wizard.h"
+#include "CameraManager.h"
 
 wizard::wizard()
 {
@@ -28,9 +29,26 @@ void wizard::release()
 void wizard::update()
 {
 	_rc = RectMakeCenter(_x, _y, TILEWIDTH, TILEHEIGHT);
+
+	int tileX, tileY;
+
+	RECT rcCollision;
+	rcCollision = _rc;
+
+	rcCollision.left += 2;
+	rcCollision.top += 2;
+	rcCollision.right -= 2;
+	rcCollision.bottom -= 2;
+
+	tileX = rcCollision.left / TILEWIDTH;
+	tileY = rcCollision.top / TILEHEIGHT;
+
+	_idX = tileX;
+	_idY = tileY;
 }
 
 void wizard::render()
 {
-	_img->frameRender(getMemDC(), _x, _y);
+	_img->frameRender(getMemDC(), _x - _cameraManager->getCamX(), _y - _cameraManager->getCamY());
 }
+
