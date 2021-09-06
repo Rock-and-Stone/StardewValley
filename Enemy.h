@@ -1,11 +1,14 @@
 #pragma once
 #include "entity.h"
+#include "tile.h"
+#include <vector>
+#include <string>
 #include "CameraManager.h"
 #include "tileNode.h"
 
 enum ENEMYDIRECTION
 {
-	DOWN, RIGHT, UP, LEFT
+	DOWN, RIGHT, UP, LEFT, STOP
 };
 
 enum ENEMYSTATEMENT
@@ -13,49 +16,13 @@ enum ENEMYSTATEMENT
 	IDLE, CHASE, ATTACK, DEAD
 };
 
-enum NODESTATE
-{
-	NODE_START,
-	NODE_END,
-	NODE_WALL,
-	NODE_EMPTY
-};
-
-class node
-{
-public:
-	RECT rc;
-	int idX, idY;
-	int F, G, H;
-	node* parentNode;
-	NODESTATE nodeState;
-
-	node(){}
-	node(int idx, int idy)
-	{
-		idX = idx;
-		idY = idy;
-		F = G = H = 0;
-		nodeState = NODE_EMPTY;
-		parentNode = NULL;
-	}
-};
 class Enemy : public entity
 {
 protected:
 	//aStar!!
-	node* _totalNode[TILEX][TILEY];		//전체노드 25개(보드판 역할)
-	node* _startNode;					//시작노드
-	node* _endNode;						//종료노드
-	node* _curNode;						//현재노드
+	
 
-	vector<node*> _openList;			//오픈리스트 (탑색할 노드들을 담아둘 벡터)
-	vector<node*> _closeList;			//길을 찾은 노드들을 담아둘 벡터
-	vector<node*> _finalList;			//클로즈리스트에 담겨있는 노드들을 리버스시켜서 담아둘 벡터
-
-	int _count;							//시작노드, 종료노드를 한번씩만 선택하기 위한 변수
-	bool _isFind;						//길 찾았냐?
-	bool _isMove;						//움직이냐?
+	
 
 	ENEMYSTATEMENT _enemyStatement;
 	ENEMYDIRECTION _enemyDirection;
@@ -88,17 +55,39 @@ public:
 
 	virtual void SwitchImage() = 0;
 
-	void AstarInit();
-	void StartSearchPlayer(int playerIdX, int playIdY);
-	void SearchPlayer(int playerIdX, int playerIdY);
-	//길찾기 함수
-	void pathFinding();
-	//오픈리스트 추가
-	void addOpenList(int idx, int idy);
-	//오픈리스트 삭제
-	void delOpenList(int index);
-	//편의를 위한 함수
-	void setNodeColor(node* node, COLORREF color);
+#pragma region ASTAR!!!
+protected:
+	vector<tile*>			_vTotalList;
+	vector<tile*>::iterator _viTotalList;
+
+	vector<tile*>			_vOpenList;
+	vector<tile*>::iterator _viOpenList;
+
+	vector<tile*>			_vCloseList;
+	vector<tile*>::iterator _viCloseList;
+
+	vector<tile*>			_vGoList;
+	vector<tile*>::iterator _viGoList;
+
+	tile* _startTile;
+	tile* _endTile;
+	tile* _currentTile;
+
+	int _i;
+	int _count;							//시작노드, 종료노드를 한번씩만 선택하기 위한 변수
+	float _speed = 5.0f;
+	bool _isFind;						//길 찾았냐?
+	bool _isMove;						//움직이냐?
+	bool _start;
+	bool _isArrive;
+	bool _isCheck;
+
+public:
+	void setTiles();
+	vector<tile*> addOpenList(tile* currentTile);
+	void pathFinder(tile* currentTile);
+	void setEnemyPosition(tile* tile);
+#pragma endregion
 
 	void Move();
 	void Draw();
@@ -122,4 +111,12 @@ public:
 	void SetEnemyIdX(int idX) { _idX = idX; }
 	int GetEnemyIdY() { return _idY; }
 	void SetEnemyIdY(int idY) { _idY = idY; }
+
+	//aStar 접근자
+	bool GetIsArrive() { return _isArrive; }
+	void SetIsArrive(bool arrive) { _isArrive = arrive; }
+	vector<tile*> getVectorTile() { return _vOpenList; }
+	tile* getCurrentTile() { return _currentTile; }
+	vector<tile*> getGoTile() { return _vGoList; }
+
 };

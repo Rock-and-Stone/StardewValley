@@ -11,20 +11,29 @@ Enemy::~Enemy()
 
 HRESULT Enemy::init()
 {
-	AstarInit();
+	
 	return S_OK;
 }
 
 HRESULT Enemy::init(const char* imageName, POINT position)
 {
-	_image = IMAGEMANAGER->findImage(imageName);
+	
 
+	_image = IMAGEMANAGER->findImage(imageName);
+	_count = _start = _i = 0;
 	_posX = position.x;
 	_posY = position.y;
 	_idX = _posX / TILEWIDTH;
 	_idY = _posY / TILEHEIGHT;
-	_enemyDirection = DOWN;
+	
+	_enemyDirection = STOP;
+	_speed = 5.0f;	
+	setTiles();
+	_vGoList.push_back(_endTile);
+	_isFind = false;
+	_isCheck = false;
 
+	
 	return S_OK;
 }
 
@@ -34,218 +43,364 @@ void Enemy::release()
 
 void Enemy::update()
 {
-	_idX = _posX / TILEWIDTH;
-	_idY = _posY / TILEHEIGHT;
+
 }
 
 void Enemy::render()
 {
-	Draw();
+	
 }
 
-void Enemy::AstarInit()
+void Enemy::setTiles()
 {
-	//노드 초기화
-	_startNode = NULL;
-	_endNode = NULL;
-	_curNode = NULL;
+	_startTile = new tile;
+	_startTile->init(_idX, _idY);
+	_startTile->setAttribute("start");
 
-	//전체노드 초기화
-	for (int y = 0; y < TILEY; y++)
+	_endTile = new tile;
+	_endTile->init(20, 20);
+	_endTile->setAttribute("end");
+
+	//현재 타일은 시작타일로 둔다
+	_currentTile = _startTile;
+
+	for (int i = 0; i < 22; ++i)
 	{
-		for (int x = 0; x < TILEX; x++)
+		for (int j = 0; j < 40; ++j)
 		{
-			//새로운 노드와 렉트위치 설정
-			_totalNode[x][y] = new node(x, y);
-			_totalNode[x][y]->rc = RectMake(x * 32, y * 32, 32, 32);
+			if (j == _startTile->getIdX() && i == _startTile->getIdY())
+			{
+				_startTile->setColor(RGB(0, 255, 255));
+				_vTotalList.push_back(_startTile);
+				continue;
+			}
+			if (j == _endTile->getIdX() && i == _endTile->getIdY())
+			{
+				_endTile->setColor(RGB(10, 120, 55));
+				_vTotalList.push_back(_endTile);
+				continue;
+			}
+
+			tile* node = new tile;
+
+			node->init(j, i);
+
+			_vTotalList.push_back(node);
 		}
 	}
-
-	//첫클릭이 짝수가 되게 하기 위해서 -1로 초기화
-	_count = -1;
-	//길 찾았냐?
-	_isFind = false;
-
-	//리스타트용
-	_openList.clear();
-	_closeList.clear();
-	_finalList.clear();
 }
 
-void Enemy::StartSearchPlayer(int playerIdX, int playerIdY)
+vector<tile*> Enemy::addOpenList(tile* currentTile)
 {
-	if (_startNode && _endNode) return;
+	int startX = currentTile->getIdX() - 1;
+	int startY = currentTile->getIdY() - 1;
 
-	_totalNode[_idY][_idX]->nodeState = NODE_START;
-	_startNode = _totalNode[_idY][_idX];
-	cout << "setStartNode" << endl;
 
-	_totalNode[playerIdY][playerIdX]->nodeState = NODE_END;
-	_endNode = _totalNode[playerIdY][playerIdX];
-	cout << "setEndNode" << endl;
-}
-
-void Enemy::SearchPlayer(int playerIdX, int playerIdY)
-{
-	_openList.clear();
-	_closeList.clear();
-	_finalList.clear();
-
-	_totalNode[_idY][_idX]->nodeState = NODE_START;
-	_startNode = _totalNode[_idY][_idX];
-
-	_totalNode[playerIdY][playerIdX]->nodeState = NODE_END;
-	_endNode = _totalNode[playerIdY][playerIdX];
-}
-
-void Enemy::pathFinding()
-{
-	_openList.clear();
-	_closeList.clear();
-	_finalList.clear();
-
-	//종료노드가 없는 경우 길찾기 못함
-	if (!_endNode) return;
-	cout << "startFind" << endl;
-
-	_openList.push_back(_startNode);
-
-	while (_openList.size() > 0)
+	for (int i = 0; i < 3; ++i)
 	{
-		_curNode = _openList[0];
-
-		for (int i = 1; i < _openList.size(); i++)
+		for (int j = 0; j < 3; ++j)
 		{
-			if (_openList[i]->F <= _curNode->F && _openList[i]->H < _curNode->H)
+			if (i == 0)
 			{
-				_curNode = _openList[i];
+				if (j == 0 || j == 2) continue;
+			}
+
+			else if (i == 1 && j == 1) continue;
+
+			else if (i == 2)
+			{
+				if (j == 0 || j == 2)continue;
+			}
+
+			tile* node = _vTotalList[(startY * 40) + startX + j + (i * 40)];
+
+			//예외처리
+			if (!node->getIsOpen()) continue;
+			if (node->getAttribute() == "start") continue;
+			if (node->getAttribute() == "wall") continue;
+
+
+
+			//현재 타일 갱신해준다
+			node->setParentNode(_currentTile);
+
+			bool addObj = true;
+
+			for (int i = 0; i < _vOpenList.size(); i++)
+			{
+				//이미 있는 애면
+				if (_vOpenList[i] == node)
+				{
+					addObj = false;
+					break;
+				}
+			}
+
+
+			if (node->getAttribute() != "end") node->setColor(RGB(255, 0, 0));
+
+			//이미 체크된 애면
+			if (!addObj) continue;
+
+			//뒤로 넘어가지 않게 하기위한 예외 처리
+			if (node->getIdX() <= 0) continue;
+			if (node->getIdX() >= TILEX) continue;
+			if (node->getIdY() <= 0) continue;
+			if (node->getIdY() >= TILEY) continue;
+
+			_vOpenList.push_back(node);
+		}
+
+	}
+	return _vOpenList;
+}
+
+void Enemy::pathFinder(tile* currentTile)
+{
+	//비교하기 쉽게 임의의 경로비용을 설정해웁시둡시다
+	float tempTotalCost = 5000;
+	tile* tempTile = nullptr;
+
+	//오픈리스트 벡터 안에서 가장 빠른 경로를 뽑아낸다
+	for (int i = 0; i < addOpenList(currentTile).size(); ++i)
+	{
+		//H 값 연산
+		_vOpenList[i]->setCostToGoal(
+			(abs(_endTile->getIdX() - _vOpenList[i]->getIdX()) +
+				abs(_endTile->getIdY() - _vOpenList[i]->getIdY())) * 10);
+
+		POINT center1 = _vOpenList[i]->getParentNode()->getCenter();
+		POINT center2 = _vOpenList[i]->getCenter();
+
+		//G 값 연산
+		//4 방향일 경우 14를 곱할 이유가 없어진다.
+		_vOpenList[i]->setCostFromStart((getDistance(center1.x, center1.y, center2.x, center2.y) > TILEWIDTH) ? 14 : 10);
+
+		//총 경로비용 연산
+		_vOpenList[i]->setTotalCost(_vOpenList[i]->getCostToGoal() +
+			_vOpenList[i]->getCostFromStart());
+
+		//뽑아낸 총 경로비용 중에 가장 작은 비용인 애를 찾자
+		if (tempTotalCost > _vOpenList[i]->getTotalCost())
+		{
+			tempTotalCost = _vOpenList[i]->getTotalCost();
+
+			tempTile = _vOpenList[i];
+		}
+
+		bool addObj = true;
+
+		for (_viOpenList = _vOpenList.begin(); _viOpenList != _vOpenList.end(); ++_viOpenList)
+		{
+			if (*_viOpenList == tempTile)
+			{
+				addObj = false;
+				break;
 			}
 		}
 
-		//클로즈 리스트에 넣어둔다
-		for (int i = 0; i < _openList.size(); i++)
-		{
-			if (_curNode == _openList[i])
-			{
-				this->delOpenList(i);
-				_closeList.push_back(_curNode);
-			}
-		}
+		_vOpenList[i]->setIsOpen(false);
 
-		//현재노드가 마지막 노드와 같냐? (길찾았다)
-		if (_curNode == _endNode)
-		{
-			node* endNode = _endNode;
-			vector<node*> tempNode;
-			//마지막 노드로부터 시작노드까지 부모노드를 벡터에 담는다
-			while (endNode != _startNode)
-			{
-				tempNode.push_back(endNode);
-				endNode = endNode->parentNode;
-			}
+		if (!addObj) continue;
 
-			for (int i = tempNode.size() - 1; i > 0; i--)
-			{
-				_finalList.push_back(tempNode[i]);
-			}
-
-			_isFind = true;
-			_isMove = true;
-			//종료하고 빠져 나온다
-			return;
-		}
-
-		//상하좌우 (순서는 상관없음 - 어짜피 주변 4개의 노드를 모두 오픈리스트에 담아서 검사할 예정임)
-		addOpenList(_curNode->idX, _curNode->idY - 1);	//상
-		addOpenList(_curNode->idX, _curNode->idY + 1);	//하
-		addOpenList(_curNode->idX - 1, _curNode->idY);	//좌
-		addOpenList(_curNode->idX + 1, _curNode->idY);	//우
-
-		//추후에 대각 4방향도 추가하면 대각선 이동 처리도 가능함
-		//우상, 좌상, 우하, 좌하
-		//예외처리만 잘해주면 된다
-		//벽사이로 막가 안되도록 처리한다
+		_vOpenList.push_back(tempTile);
 	}
-}
 
-void Enemy::addOpenList(int idx, int idy)
-{
-	//예외처리 인덱스 범위안에서 추가할 수 있어야 한다
-	if (idx < 0 || idx >= TILEX || idy < 0 || idy >= TILEX) return;
-
-	//벽은 오픈리스트에 담을 수 없다
-	if (_totalNode[idx][idy]->nodeState == NODE_WALL) return;
-
-	//클로즈리스트(지나온길)에 있다면 오픈리스트에 담으면 안된다
-	for (int i = 0; i < _closeList.size(); i++)
+	//도착했다
+	if (tempTile->getAttribute() == "end")
 	{
-		if (_totalNode[idx][idy] == _closeList[i]) return;
+		_isFind = true;
+
+		//최단 경로는 색칠해웁시줍시다
+		while (_currentTile->getParentNode() != nullptr)
+		{
+			_currentTile->setColor(RGB(22, 14, 128));
+			_vGoList.push_back(_currentTile);
+			_currentTile = _currentTile->getParentNode();
+		}
+		return;
+
 	}
 
-	//여기까지 왔으면 문제가 없으니 이제 오픈리스트에 추가를 하자
-	//현재노드의 4방향 노드를 이웃노드라고 하고 직선10, 대각은 14비용을 추가한다
-	node* neighborNode = _totalNode[idx][idy];
-	int moveCost = _curNode->G + ((_curNode->idX - idx == 0 || _curNode->idY - idy == 0) ? 10 : 14);
 
-	//오픈리스트안에 이웃노드가 있으면 안된다
-	for (int i = 0; i < _openList.size(); i++)
+	_vCloseList.push_back(tempTile);
+
+	for (_viOpenList = _vOpenList.begin(); _viOpenList != _vOpenList.end(); ++_viOpenList)
 	{
-		if (_openList[i] == neighborNode) return;
+		if (*_viOpenList == tempTile)
+		{
+			_viOpenList = _vOpenList.erase(_viOpenList);
+			break;
+		}
 	}
 
-	//마지막으로 오픈리스트에도 없는경우
-	//G, H, ParentNode 설정후 오픈리스트에 추가
-	//F = G + H
-	//G = 시작에서 현재
-	//H = 현재에서 종료
-	neighborNode->G = moveCost;
-	neighborNode->H = (abs(neighborNode->idX - _endNode->idX) + abs(neighborNode->idY - _endNode->idY)) * 10;
-	neighborNode->F = neighborNode->G + neighborNode->H;
-	neighborNode->parentNode = _curNode;
-	_openList.push_back(neighborNode);
+	for (int i = 0; i < _vCloseList.size(); i++)
+	{
+		_vCloseList[i]->setColor(RGB(255, 0, 255));
+	}
+
+	_currentTile = tempTile;
+
+	if (_vOpenList.size() == 0) //남아있는 오픈리스트가 없다면 함수종료.
+	{
+		_start = false;
+		return;
+	}
+
+	//재귀함수
+	//재귀함수를 쓰면 코드가 매우 짧아지고 간결해지는 이점이 있으나
+	//속도면에서는 느리고
+	//또 한 번 호출될때마다 소량의 메모리가 쌓이는데
+	//총 1.2메가 이상 쌓이면 터지는데 이걸 스택오버플로우라고 한다.
+	pathFinder(_currentTile);
 }
 
-void Enemy::delOpenList(int index)
+void Enemy::setEnemyPosition(tile* tile)
 {
-	_openList.erase(_openList.begin() + index);
-}
+	tile->setColor(RGB(0, 0, 0));
 
-void Enemy::setNodeColor(node* node, COLORREF color)
-{
-	/*HBRUSH brush = CreateSolidBrush(color);
-	FillRect(getMemDC(), &node->rc, brush);
-	DeleteObject(brush);
-	FrameRect(getMemDC(), node->rc, RGB(0, 0, 0));*/
+	if (_idX < tile->getIdX()) _enemyDirection = RIGHT;
+	else if (_idX > tile->getIdX()) _enemyDirection = LEFT;
+	else if (_idY > tile->getIdY()) _enemyDirection = UP;
+	else if (_idY < tile->getIdY()) _enemyDirection = DOWN;
+
+	if (_enemyDirection == RIGHT && _idX >= tile->getIdX()) _isArrive = true;
+	if (_enemyDirection == LEFT && _idX < tile->getIdX()) _isArrive = true;
+	if (_enemyDirection == UP && _idY < tile->getIdY())   _isArrive = true;
+	if (_enemyDirection == DOWN && _idY >= tile->getIdY()) _isArrive = true;
 }
 
 void Enemy::Move()
 {
-	if (KEYMANAGER->isOnceKeyDown(VK_DOWN))
+	if (KEYMANAGER->isStayKeyDown(VK_RIGHT)) _posX += _speed;
+	if (KEYMANAGER->isOnceKeyDown('S'))
 	{
-		_enemyDirection = DOWN;
+		_start = true;
 	}
-	if (KEYMANAGER->isOnceKeyDown(VK_RIGHT))
+
+	if (_start)
 	{
-		_enemyDirection = RIGHT;
+		pathFinder(_currentTile);
+
+		if (_i >= _vGoList.size())
+		{
+			_isFind = false;
+		}
+
+		if (_idX == _endTile->getIdX() && _idY == _endTile->getIdY()) _enemyDirection = STOP;
 	}
-	if (KEYMANAGER->isOnceKeyDown(VK_UP))
+
+	if (_isFind)
 	{
-		_enemyDirection = UP;
+		setEnemyPosition(_vGoList[_vGoList.size() - 1 - _i]);
+
+		if (_isArrive && !_isCheck)
+		{
+			_isCheck = true;
+
+			SetIsArrive(false);
+
+			_i++;
+		}
+
+		else if (!GetIsArrive()) _isCheck = false;
 	}
-	if (KEYMANAGER->isOnceKeyDown(VK_LEFT))
+
+	if (KEYMANAGER->isStayKeyDown(VK_LBUTTON))
 	{
-		_enemyDirection = LEFT;
+		for (int i = 0; i < _vTotalList.size(); ++i)
+		{
+			RECT rc = _vTotalList[i]->getRect();
+			if (PtInRect(&rc, _ptMouse))
+			{
+				if (_vTotalList[i]->getAttribute() == "start") continue;
+				if (_vTotalList[i]->getAttribute() == "end") continue;
+
+				_vTotalList[i]->setIsOpen(false);
+				_vTotalList[i]->setAttribute("wall");
+				_vTotalList[i]->setColor(RGB(230, 140, 200));
+				break;
+			}
+		}
 	}
+	//여기가 제일 중요한 부분이지 싶슴다
+	RECT rcCollision;	//가상의 충돌판정렉트를 하나 생성
+
+	int tileIndex[2];	//타일 검출에 필요한 인덱스
+	int tileX, tileY;	//플레이어가 밟고 있는 타일의 인덱스
+
+	//가상의 판정렉트에 현재 렉트를 대입해주자
+	rcCollision = _rc;
+
+	float elapsedTime = TIMEMANAGER->getElapsedTime();
+	float moveSpeed = elapsedTime * _speed;
+
+	switch (_enemyDirection)
+	{
+	case LEFT:
+		_posX -= moveSpeed;
+		break;
+	case UP:
+		_posY -= moveSpeed;
+		break;
+	case RIGHT:
+		_posX += moveSpeed;
+		break;
+	case DOWN:
+		_posY += moveSpeed;
+		break;
+	case STOP:
+		_posX += 0;
+		_posY += 0;
+		break;
+	}
+	rcCollision = RectMakeCenter(_posX, _posY, _image->getFrameWidth(), _image->getFrameHeight());
+	//STEP3
+	//가상의 판정렉트를 사알짝 깍아주자
+	rcCollision.left += 2;
+	rcCollision.top += 2;
+	rcCollision.right -= 2;
+	rcCollision.bottom -= 2;
+
+	//STEP4
+	//가장 메인이 아닐까 싶으요
+	tileX = rcCollision.left / TILESIZE;
+	tileY = rcCollision.top / TILESIZE;
+
+	_idX = tileX;
+	_idY = tileY;
+
+	switch (_enemyDirection)
+	{
+
+	case LEFT:
+		tileIndex[0] = tileX + (tileY * TILEX);
+		tileIndex[1] = tileX + (tileY + 1) * TILEX;
+		break;
+	case UP:
+		tileIndex[0] = tileX + (tileY * TILEX);
+		tileIndex[1] = (tileX + 1) + tileY * TILEX;
+		break;
+	case RIGHT:
+		tileIndex[0] = (tileX + tileY * TILEX) + 1;
+		tileIndex[1] = (tileX + (tileY + 1) * TILEX) + 1;
+		break;
+	case DOWN:
+		tileIndex[0] = (tileX + tileY * TILEX) + TILEX;
+		tileIndex[1] = (tileX + 1 + tileY * TILEX) + TILEX;
+		break;
+	}
+
+	_rc = rcCollision;
+
+	_rc = RectMakeCenter(_posX, _posY, _image->getFrameWidth(), _image->getFrameHeight());
 }
 
 void Enemy::Draw()
 {
-	if (_isFind)
+	for (int i = 0; i < _vTotalList.size(); ++i)
 	{
-		for (int i = 0; i < _finalList.size(); i++)
-		{
-			setNodeColor(_finalList[i], RGB(255, 255, 0));
-		}
+		_vTotalList[i]->render();
 	}
 
 #pragma region Frame
@@ -281,6 +436,14 @@ void Enemy::Draw()
 		break;
 	case LEFT:
 		_frameY = 3;
+		if (_frameCount % 10 == 0)
+		{
+			_frameX++;
+			if (_frameX >= _image->getMaxFrameX()) _frameX = 0;
+		}
+		break;
+	case STOP:
+		_frameY = 0;
 		if (_frameCount % 10 == 0)
 		{
 			_frameX++;

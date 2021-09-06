@@ -12,6 +12,7 @@ public:
     virtual HRESULT InitVariables();
 
     virtual void update();
+    virtual void render();
 
     virtual void SwitchImage();
 };
