@@ -88,6 +88,9 @@ HRESULT inventory::init()
     //버튼용이미지
     IMAGEMANAGER->addFrameImage("ExitButton", "source/Images/inventory/ExitButton.bmp", 185, 292, 1, 2, true, MAGENTA);
     IMAGEMANAGER->addFrameImage("MenuButton", "source/Images/inventory/MenuButton.bmp", 185, 292, 1, 2, true, MAGENTA);
+    IMAGEMANAGER->addImage("BOX", "source/Images/inventory/box.bmp", 42, 42, true, MAGENTA);
+    
+   
    
     _quickSlotMin = 0;
     _quickSlotMax = 12;
@@ -95,7 +98,7 @@ HRESULT inventory::init()
     _buttonExit = new button;
     _buttonToMenu = new button;
 
-
+    _BOXImg = IMAGEMANAGER->findImage("BOX");
     //아이템정보창 이미지
     _itemInfoImg = IMAGEMANAGER->findImage("itemInfo");
      
@@ -115,20 +118,21 @@ HRESULT inventory::init()
     //메뉴와 퀵슬롯 Rc 위치 초기화
     _quickSlotRc = RectMakeCenter(WINSIZEX / 2, WINSIZEY - _quickSlot->getHeight() / 2, _quickSlot->getWidth(), _quickSlot->getHeight());
     _menuRc = RectMakeCenter(WINSIZEX / 2, WINSIZEY / 2, _currentMenuImg->getWidth(), _currentMenuImg->getHeight());
-
+    
     //버튼용 RC 초기화
     _storageRc = RectMake(_menuRc.left + 46, _menuRc.top, 53, 60);
     _statRc = RectMake(_storageRc.right + 5, _storageRc.top, 53, 60);
     _craftRc = RectMake(_statRc.right + 5, _statRc.top, 53, 60);
     _settingRc = RectMake(_craftRc.right + 5, _craftRc.top, 53, 60);
     _exitRc = RectMake(_settingRc.right + 5, _settingRc.top, 53, 60);
-    
+
     _isMenuOpen = false;
 
     //버튼메뉴
     _buttonToMenu->init("MenuButton", WINSIZEX / 2, WINSIZEY / 2 - 100, PointMake(0, 1), PointMake(0, 0), Button, this);
     _buttonExit->init("ExitButton", WINSIZEX / 2, WINSIZEY / 2 + 100, PointMake(0, 1), PointMake(0, 0), Button, this);
 
+  
 
     //인벤에 널값이라도 쳐넣자
     for (int i = 0; i < INVENTORYSIZE; i++)
@@ -200,7 +204,7 @@ void inventory::update()
 
     else if (!_isMenuOpen)
     {
-       //QuickSlot();
+       QuickSlot();
 
 
     }
@@ -323,18 +327,6 @@ void inventory::render()
                     _vInven[_downPtItem]->render(_ptMouse.x - 20, _ptMouse.y - 20);
 
                 }
-
-                if (PtInRect(&_inven[i].rc, _ptMouse) && _vInven[i] != _null)
-                {
-
-                    _itemInfoImg->render(getMemDC(), _ptMouse.x, _ptMouse.y);
-
-                    sprintf_s(str, "%s", _vInven[i]->GetItemInfo().itemName.c_str());
-                    TextOut(getMemDC(), _ptMouse.x + 20, _ptMouse.y + 20, str, strlen(str));
-                    
-                    sprintf_s(str, "%s", _vInven[i]->GetItemInfo().itemInfo);
-                    TextOut(getMemDC(), _ptMouse.x + 20, _ptMouse.y + 70, str, strlen(str));
-                }
             }
             break;
 
@@ -360,15 +352,21 @@ void inventory::render()
 
         for (int i = _quickSlotMin; i < _quickSlotMax; i++) 
         {
+           // Rectangle(getMemDC(), _quick[i%12].rc);
             _vInven[i]->render(_quick[i % 12].rc.left, _quick[i % 12].rc.top);
+            _BOXImg->render(getMemDC(), _BOXRc.left, _BOXRc.top);
+
             if (_inven[i].amount != 1 && _inven[i].amount != 0)
             {
                 sprintf_s(str, "%d", _inven[i].amount);
                 TextOut(getMemDC(), _quick[i].rc.right - 25, _quick[i].rc.bottom - 12, str, strlen(str));
             }
-       
+
+         
         }
-       
+        sprintf_s(str, "%s", _vInven[_nowQuickItem]->GetItemInfo().itemName.c_str());
+        TextOut(getMemDC(), 200, 200, str, strlen(str));
+        
     }
     //퀵슬롯 벡터 넘겨주는 용도
     if (KEYMANAGER->isOnceKeyDown(VK_TAB))
@@ -377,12 +375,13 @@ void inventory::render()
         _quickSlotMin += 12;
         _quickSlotMax += 12;
 
+        _nowQuickItem += 12;
 
         if (_quickSlotMax > 36)
         {
             _quickSlotMin = 0;
             _quickSlotMax = 12;
-
+            _nowQuickItem -= 36;
         }
     }
    
@@ -414,6 +413,69 @@ void inventory::QuickSlot()
         {
             //12개 칸으로 생성하고
             _quick[i].rc = RectMake((_quickSlotRc.left + 15) + (i * 44.7), (_quickSlotRc.top + 13), 42, 42); 
+      
+           //_BOXRc = RectMake(_quick[i % 1].rc.left, _quick[i % 1].rc.top, _BOXImg->getWidth(), _BOXImg->getHeight());
+
+            if (KEYMANAGER->isOnceKeyDown('1'))
+            {
+                _BOXRc = RectMake(_quick[0].rc.left, _quick[0].rc.top, _BOXImg->getWidth(), _BOXImg->getHeight());
+                _nowQuickItem = _quickSlotMin;
+            }
+            if (KEYMANAGER->isOnceKeyDown('2'))
+            {
+                _BOXRc = RectMake(_quick[1].rc.left, _quick[1].rc.top, _BOXImg->getWidth(), _BOXImg->getHeight());
+                _nowQuickItem = _quickSlotMin + 1;
+            }
+            if (KEYMANAGER->isOnceKeyDown('3'))
+            {
+                _BOXRc = RectMake(_quick[2].rc.left, _quick[2].rc.top, _BOXImg->getWidth(), _BOXImg->getHeight());
+                _nowQuickItem = _quickSlotMin + 2;
+            }
+            if (KEYMANAGER->isOnceKeyDown('4'))
+            {
+                _BOXRc = RectMake(_quick[3].rc.left, _quick[3].rc.top, _BOXImg->getWidth(), _BOXImg->getHeight());
+                _nowQuickItem = _quickSlotMin + 3;
+            }
+            if (KEYMANAGER->isOnceKeyDown('5'))
+            {
+                _BOXRc = RectMake(_quick[4].rc.left, _quick[4].rc.top, _BOXImg->getWidth(), _BOXImg->getHeight());
+                _nowQuickItem = _quickSlotMin + 4;
+            }
+            if (KEYMANAGER->isOnceKeyDown('6'))
+            {
+                _BOXRc = RectMake(_quick[5].rc.left, _quick[5].rc.top, _BOXImg->getWidth(), _BOXImg->getHeight());
+                _nowQuickItem = _quickSlotMin + 5;
+            }
+            if (KEYMANAGER->isOnceKeyDown('7'))
+            {
+                _BOXRc = RectMake(_quick[6].rc.left, _quick[6].rc.top, _BOXImg->getWidth(), _BOXImg->getHeight());
+                _nowQuickItem = _quickSlotMin + 6;
+            }
+            if (KEYMANAGER->isOnceKeyDown('8'))
+            {
+                _BOXRc = RectMake(_quick[7].rc.left, _quick[7].rc.top, _BOXImg->getWidth(), _BOXImg->getHeight());
+                _nowQuickItem = _quickSlotMin + 7;
+            }
+            if (KEYMANAGER->isOnceKeyDown('9'))
+            {
+                _BOXRc = RectMake(_quick[8].rc.left, _quick[8].rc.top, _BOXImg->getWidth(), _BOXImg->getHeight());
+                _nowQuickItem = _quickSlotMin + 8;
+            }
+            if (KEYMANAGER->isOnceKeyDown('0'))
+            {
+                _BOXRc = RectMake(_quick[9].rc.left, _quick[9].rc.top, _BOXImg->getWidth(), _BOXImg->getHeight());
+                _nowQuickItem = _quickSlotMin + 9;
+            }
+            if (KEYMANAGER->isOnceKeyDown(VK_OEM_MINUS))
+            {
+                _BOXRc = RectMake(_quick[10].rc.left, _quick[10].rc.top, _BOXImg->getWidth(), _BOXImg->getHeight());
+                _nowQuickItem = _quickSlotMin + 10;
+            }
+            if (KEYMANAGER->isOnceKeyDown(VK_OEM_PLUS))
+            {
+                _BOXRc = RectMake(_quick[11].rc.left, _quick[11].rc.top, _BOXImg->getWidth(), _BOXImg->getHeight());
+                _nowQuickItem = _quickSlotMin + 11;
+            }
         }
     }   
 }
@@ -507,12 +569,18 @@ void inventory::MenuCraftOpen()
         {
             if (KEYMANAGER->isStayKeyDown(VK_LBUTTON)) _dragActivate = true;
 
-            // else 
+            /*        int halfNum ;
+                    if (KEYMANAGER->isOnceKeyDown(VK_RBUTTON))
+                    {
+                        halfNum = i;
+                        _inven[halfNum].amount /= 2;
+                        AddItem(_vInven[halfNum]);
+                    }*/
 
             if (KEYMANAGER->isOnceKeyDown(VK_LBUTTON))
             {
                 _downPtItem = i;
-                if (_vInven[i]->GetItemInfo().items == NONE) continue;
+                if (!_inven[i].itemExist) continue;
                 SOUNDMANAGER->play("pickUpItem", 0.1f);
             }
 
@@ -524,12 +592,13 @@ void inventory::MenuCraftOpen()
                     if (PtInRect(&_inven[j].rc, _ptMouse))
                     {
                         _upPtItem = j;
-                        if (_vInven[_downPtItem]->GetItemInfo().items == NONE) break;
+                        if (!_inven[_downPtItem].itemExist) break;
                         SOUNDMANAGER->play("pickUpItem", 0.1f);
                     }
 
                 }
                 swap(_vInven[_downPtItem], _vInven[_upPtItem]);
+                swap(_inven[_downPtItem], _inven[_upPtItem]);
             }
         }
     }
@@ -540,6 +609,7 @@ void inventory::MenuCraftOpen()
         if (PtInRect(&_menuRc, _ptMouse))
         {
             swap(_vInven[_downPtItem], _vInven[_downPtItem]);
+
         }
     }
 
