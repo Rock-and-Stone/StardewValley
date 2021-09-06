@@ -1,2 +1,35 @@
-﻿  loadingScene.cpp
-  WindowsAPI.vcxproj -> S:\TeamPotopolio\Battlefield4\x64\Debug\WindowsAPI.exe
+﻿  WindowsAPI.cpp
+S:\TeamPotopolio\Battlefield4\button.h(73,28): warning C4244: 'return': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+S:\TeamPotopolio\Battlefield4\button.h(74,32): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+S:\TeamPotopolio\Battlefield4\WindowsAPI.cpp(102,16): warning C4244: 'return': 'WPARAM'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  inventory.cpp
+S:\TeamPotopolio\Battlefield4\button.h(73,28): warning C4244: 'return': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+S:\TeamPotopolio\Battlefield4\button.h(74,32): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+S:\TeamPotopolio\Battlefield4\inventory.cpp(151,20): warning C4477: 'sprintf_s' : 서식 문자열 '%d'에 'int' 형식의 인수가 필요하지만 variadic 인수 1의 형식이 'unsigned __int64'입니다.
+S:\TeamPotopolio\Battlefield4\inventory.cpp(151,20): message : 서식 문자열에서 '%zd'을(를) 사용하는 것이 좋습니다.
+S:\TeamPotopolio\Battlefield4\inventory.cpp(152,49): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+S:\TeamPotopolio\Battlefield4\inventory.cpp(154,49): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+S:\TeamPotopolio\Battlefield4\inventory.cpp(156,50): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+S:\TeamPotopolio\Battlefield4\inventory.cpp(158,50): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+S:\TeamPotopolio\Battlefield4\inventory.cpp(165,58): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+S:\TeamPotopolio\Battlefield4\inventory.cpp(197,93): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+S:\TeamPotopolio\Battlefield4\inventory.cpp(212,108): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+S:\TeamPotopolio\Battlefield4\inventory.cpp(226,91): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+S:\TeamPotopolio\Battlefield4\inventory.cpp(228,91): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+S:\TeamPotopolio\Battlefield4\inventory.cpp(245,98): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+S:\TeamPotopolio\Battlefield4\inventory.cpp(259,91): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+S:\TeamPotopolio\Battlefield4\inventory.cpp(261,91): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+S:\TeamPotopolio\Battlefield4\inventory.cpp(290,100): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+S:\TeamPotopolio\Battlefield4\inventory.cpp(335,62): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+S:\TeamPotopolio\Battlefield4\inventory.cpp(349,54): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+S:\TeamPotopolio\Battlefield4\inventory.cpp(413,68): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+S:\TeamPotopolio\Battlefield4\inventory.cpp(413,50): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  playGround.cpp
+S:\TeamPotopolio\Battlefield4\button.h(73,28): warning C4244: 'return': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+S:\TeamPotopolio\Battlefield4\button.h(74,32): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+S:\TeamPotopolio\Battlefield4\playGround.cpp(63,45): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  코드를 생성하고 있습니다...
+inventory.obj : error LNK2019: "public: __cdecl itemCan::itemCan(void)" (??0itemCan@@QEAA@XZ)"public: virtual long __cdecl inventory::init(void)" (?init@inventory@@UEAAJXZ) 함수에서 참조되는 확인할 수 없는 외부 기호
+inventory.obj : error LNK2019: "public: __cdecl itemHoe::itemHoe(void)" (??0itemHoe@@QEAA@XZ)"public: virtual long __cdecl inventory::init(void)" (?init@inventory@@UEAAJXZ) 함수에서 참조되는 확인할 수 없는 외부 기호
+inventory.obj : error LNK2019: "public: __cdecl itemSickle::itemSickle(void)" (??0itemSickle@@QEAA@XZ)"public: virtual long __cdecl inventory::init(void)" (?init@inventory@@UEAAJXZ) 함수에서 참조되는 확인할 수 없는 외부 기호
+S:\TeamPotopolio\Battlefield4\x64\Debug\WindowsAPI.exe : fatal error LNK1120: 3개의 확인할 수 없는 외부 참조입니다.

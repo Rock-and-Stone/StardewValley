@@ -21,7 +21,6 @@ HRESULT inventory::init()
     _rod->init();
     _hoe->init();
     _sickle->init();
-
     _null->init();
 
 
@@ -380,7 +379,7 @@ void inventory::MenuInvetoryOpen()
 
                     }
                     swap(_vInven[_downPtItem], _vInven[_upPtItem]);
-                    swap(_inven[_downPtItem].amount, _inven[_upPtItem].amount);
+                    swap(_inven[_downPtItem], _inven[_upPtItem]);
                 }
             }
         }
