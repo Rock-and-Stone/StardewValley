@@ -4,6 +4,10 @@
 //전체아이템 
 enum ALLITEMS
 {
+	//기본자원
+	WOOD,
+	STONE,
+
 	//도끼 TOOLS
 	AXE,			//도끼
 	PICKAXE,		//곡괭이
@@ -41,14 +45,23 @@ enum ALLITEMS
 	COPPER,			//구리		 5G
 	IRON,			//철			10G
 	GOLD,			//골드		25G
+
 	//NONE;
 	NONE
 };
+enum CRAFTITEMS
+{
+	BOX,
+	FURNACE,
+	SCARECROW1,
+	SCARECROW2,
 
+};
 struct ITEMS
 {
 	//구조체로 집어넣자
 	ALLITEMS    items;						//아이템이 뭔지
+	CRAFTITEMS  craftItems;
 	image*		itemImg;					//오브젝트 이미지
 
 	//인벤토리에서 띄줄것들
@@ -64,7 +77,9 @@ struct ITEMS
 	int			damage;						//공격력
 	int			hP;							//체력을 채워준다.
 	int			sP;							//스태미나를 채워준다.
-	int			amount;						//갯수
+	//int			amount;						//갯수
+
+	int			needAmountToCraft;			//제작하는데 필요한 갯수
 
 	BOOL		isHandleAble;				//손에보여지는 물건?
 	BOOL		isEatAble;					//먹을수 있는 물건
@@ -86,7 +101,7 @@ public:
 	virtual void render(int x, int y);
 
 
-	void amountAdd() { _item.amount++; }
+	//void amountAdd() { _item.amount++; }
 
 	//======================= 접근자 & 설정자 ======================= //
 	ITEMS GetItemInfo() { return _item; }
