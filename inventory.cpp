@@ -159,8 +159,6 @@ void inventory::render()
 
     }*/
 
-
-
     //메뉴창이 열렸으면 메뉴창 아니면 퀵슬롯용
     if (_isMenuOpen)
     {
@@ -355,17 +353,14 @@ void inventory::MenuStatOpen()
 //제작창
 void inventory::MenuCraftOpen()
 {
-
 }
 //세팅창
 void inventory::MenuSettingOpen()
 {
-
 }
 //나가는창
 void inventory::MenuExitOpen()
 {
-
 }
 //아이템 추가
 void inventory::AddItem(int arrNum, item* item)
@@ -391,12 +386,7 @@ void inventory::AddItem(int arrNum, item* item)
         _vInven[arrNum] = item;
     }
    
-
-
-
 }
-
-
 
 //버튼용
 void inventory::SelectMenu()

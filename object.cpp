@@ -11,8 +11,6 @@ object::~object()
 
 HRESULT object::init()
 {
-
-
     return S_OK;
 }
 

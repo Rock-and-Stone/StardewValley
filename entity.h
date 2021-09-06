@@ -1,8 +1,7 @@
 #pragma once
 #include "gameNode.h"
-
-#define TILEWIDTH 32
-#define TILEHEIGHT 32
+#include "homeMap.h"
+#include "CameraManager.h"
 
 class entity : public gameNode
 {
@@ -15,7 +14,16 @@ public :
 	virtual void release();
 	virtual void update();
 	virtual void render();
-
+	virtual void render(int camX, int camY);
+	
 	virtual int getRenderPosY();
 	virtual bool getReleased();
+	virtual void setMapAddressLink(homeMap* hm);
+	virtual void setCameraAddressLink(CameraManager* cm);
+
+	virtual int getX();
+	virtual int getY();
+	virtual void setRenderX(int rendX);
+	virtual void setRenderY(int rendY);
+	RECT getRect();
 };

@@ -128,6 +128,9 @@
     <Filter Include="playGround\Entity">
       <UniqueIdentifier>{7dd8f635-9d24-45fb-85d4-875859a2ffd6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="playGround\Map">
+      <UniqueIdentifier>{f63db20f-3bd9-45f8-b266-32bd34eb97fb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -379,6 +382,9 @@
     <ClInclude Include="npcManager.h">
       <Filter>playGround\Npc\NpcManager</Filter>
     </ClInclude>
+    <ClInclude Include="homeMap.h">
+      <Filter>playGround\Map</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WindowsAPI.cpp">
@@ -617,6 +623,9 @@
     </ClCompile>
     <ClCompile Include="npcManager.cpp">
       <Filter>playGround\Npc\NpcManager</Filter>
+    </ClCompile>
+    <ClCompile Include="homeMap.cpp">
+      <Filter>playGround\Map</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

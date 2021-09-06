@@ -171,6 +171,7 @@
     <ClInclude Include="gold.h" />
     <ClInclude Include="haliBut.h" />
     <ClInclude Include="hoe.h" />
+    <ClInclude Include="homeMap.h" />
     <ClInclude Include="image.h" />
     <ClInclude Include="imageManager.h" />
     <ClInclude Include="iniDataManager.h" />
@@ -255,6 +256,7 @@
     <ClCompile Include="gold.cpp" />
     <ClCompile Include="haliBut.cpp" />
     <ClCompile Include="hoe.cpp" />
+    <ClCompile Include="homeMap.cpp" />
     <ClCompile Include="image.cpp" />
     <ClCompile Include="imageManager.cpp" />
     <ClCompile Include="iniDataManager.cpp" />

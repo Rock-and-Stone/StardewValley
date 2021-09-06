@@ -25,8 +25,11 @@ HRESULT playGround::init()
 	SCENEMANAGER->addScene("enemyTestScene", new enemyTestScene);
 	SCENEMANAGER->addScene("inventory", new inventory);
 	SCENEMANAGER->addScene("map", new Map);
-	//SCENEMANAGER->changeScene("openingScene");
-	SCENEMANAGER->changeScene("map");
+
+
+
+
+	SCENEMANAGER->changeScene("loadingScene");
 
 	return S_OK;
 }
@@ -35,8 +38,6 @@ HRESULT playGround::init()
 void playGround::release()
 {
 	gameNode::release();
-
-
 }
 
 //연산처리는 여기다가!
