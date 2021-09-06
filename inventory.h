@@ -4,6 +4,10 @@
 
 
 #include "itemAxe.h"
+#include "itemCan.h"
+#include "itemHoe.h"
+#include "itemRod.h"
+#include "itemSickle.h"
 #include "itemPickAxe.h"
 #include "itemNull.h"
 
@@ -26,6 +30,8 @@ enum MenuPage
 
 struct tagInventory
 {
+	int		amount;
+	bool	itemExist;
 	RECT	rc;				//메뉴 칸마다 있을 칸들	
 };
 
@@ -42,6 +48,11 @@ private:
 	//아이템 정보들
 	itemAxe* _axe;
 	itemPickAxe* _pickAxe;
+	itemCan* _can;
+	itemHoe* _hoe;
+	itemRod* _rod;
+	itemSickle* _sickle;
+
 	itemNull* _null;
 
 
@@ -122,10 +133,9 @@ public:
 	void MenuExitOpen();
 
 	//NULL값 있는 벡터는 지우고 값넣는 
-	void AddItem(int arrNum,item* item);
-	void CheckItems();
-
+	void AddItem(item* item);
 	
+	void AddAmount();
 
 	static void Button(void* obj);
 

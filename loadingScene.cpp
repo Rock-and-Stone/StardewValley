@@ -54,8 +54,7 @@ void loadingScene::update()
 		//SCENEMANAGER->changeScene("playerScene");
 		//SCENEMANAGER->changeScene("mainMenuScene");
 		SCENEMANAGER->changeScene("inventory");
-		//SCENEMANAGER->changeScene("enemyTestScene");
-		//SCENEMANAGER->changeScene("map");
+	
 
 	}
 
