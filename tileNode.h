@@ -4,6 +4,8 @@
 #define TILEX 80	//가로 타일 갯수
 #define TILEY 65	//세로 타일 갯수
 
+
+
 //타일 규격 20 X 32 사이즈니까 -> 총 사이즈는 640 X 640
 #define TILESIZEX TILESIZE * TILEX
 #define TILESIZEY TILESIZE * TILEY
@@ -15,6 +17,8 @@
 #define SAMPLEOBJECTX 13
 #define SAMPLEOBJECTY 18
 
+#define SAMPLETREEX 3
+#define SAMPLETREEY 1
 
 //이넘문으로 해도 되지만 옛날에는 메모리 아낀다고 많이 썼던
 //비트필드로 한 번 해보겠슴다 (요즘은 걍 이넘문 써도 무방함)

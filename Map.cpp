@@ -13,9 +13,12 @@ Map::~Map()
 
 HRESULT Map::init()
 {
+#pragma region IMAGES
+
 	IMAGEMANAGER->addImage("background", "source/Sprite/background.bmp", 2560, 2080, false, RGB(255,0,255));
 	IMAGEMANAGER->addFrameImage("FloorTiles", "source/Sprite/TileSheet.bmp", 416, 576, SAMPLETILEX, SAMPLETILEY, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("ObjectTiles", "source/Sprite/ObjectSheet.bmp", 416, 576, SAMPLEOBJECTX, SAMPLEOBJECTY, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("Tree", "source/Sprite/Tree.bmp", 288, 192, SAMPLETREEX, SAMPLETREEY, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("SaveButton", "source/Sprite/Save_Button.bmp", 74, 116, 1, 2, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("LoadButton", "source/Sprite/Load_Button.bmp", 74, 116, 1, 2, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("DrawButton", "source/Sprite/Draw_Button.bmp", 74, 116, 1, 2, true, RGB(255, 0, 255));
@@ -24,6 +27,8 @@ HRESULT Map::init()
 	IMAGEMANAGER->addFrameImage("LeftButton", "source/Sprite/LeftArrow_Button.bmp", 44, 20, 2, 1, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("RightButton", "source/Sprite/RightArrow_Button.bmp", 44, 20, 2, 1, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("DragButton", "source/Sprite/DragMode_Button.bmp", 48, 48, 2, 2, true, RGB(255, 0, 255));
+
+#pragma endregion
 
 	_buttonSave		= new button;
 	_buttonLoad		= new button;
@@ -38,6 +43,7 @@ HRESULT Map::init()
 	_posY = 0;
 
 	_dragStartX, _dragStartY = 0;
+	_ctrPage = 0;
 
 	_buttonSave->init("SaveButton", WINSIZEX/2 + 75, WINSIZEY / 2 + 100, PointMake(0, 1), PointMake(0, 0), Button, this);
 	_buttonLoad->init("LoadButton", WINSIZEX/2 + 155, WINSIZEY / 2 + 100, PointMake(0, 1), PointMake(0, 0), Button, this);
@@ -51,7 +57,7 @@ HRESULT Map::init()
 	_background = IMAGEMANAGER->findImage("background");
 	_isPicked = false;
 	_isDragMode = false;
-
+	
 	SetSample(CTRL_TERRAINDRAW, "FloorTiles");
 
 
@@ -214,8 +220,8 @@ void Map::render()
 		if (_tiles[i].rc.left + 32 < 0 || _tiles[i].rc.top + 32 < 0) continue;
 		//오브젝트 속성이 아니면 그리지마라 (지우개로 지울때 쓰려고)
 		if (_tiles[i].obj == OBJ_NONE) continue;
-		IMAGEMANAGER->frameRender("ObjectTiles", getMemDC(),
-			_tiles[i].rc.left, _tiles[i].rc.top,
+		IMAGEMANAGER->frameRender("Tree", getMemDC(),
+			_tiles[i].rc.left-32, _tiles[i].rc.top - 160,
 			_tiles[i].objFrameX, _tiles[i].objFrameY);
 
 		if (PtInRect(&_tiles[i].rc, _ptMouse))
@@ -223,14 +229,14 @@ void Map::render()
 			sprintf_s(str, "Cursor Object NUM : %d", i);
 			obj = _tiles[i].obj;
 		}
-		
 	}
 
 	TextOut(getMemDC(), 20, 60, str, strlen(str));
 
 	if (_ctrSelect == CTRL_TERRAINDRAW)IMAGEMANAGER->render("FloorTiles", getMemDC(), WINSIZEX - IMAGEMANAGER->findImage("FloorTiles")->getWidth(), 0);
 
-	else IMAGEMANAGER->render("ObjectTiles", getMemDC(), WINSIZEX - IMAGEMANAGER->findImage("ObjectTiles")->getWidth(), 0);
+	else if (_ctrSelect == CTRL_OBJDRAW && _ctrPage == 0)IMAGEMANAGER->render("ObjectTiles", getMemDC(), WINSIZEX - IMAGEMANAGER->findImage("ObjectTiles")->getWidth(), 0);
+	else if (_ctrSelect == CTRL_OBJDRAW && _ctrPage == 1)IMAGEMANAGER->render("Tree", getMemDC(), WINSIZEX - IMAGEMANAGER->findImage("Tree")->getWidth(), 0);
 
 
 	_buttonSave->render();
@@ -394,6 +400,7 @@ void Map::RectSensor()
 void Map::SetSample(int select, string str)
 {
 	_ctrSelect = select;
+
 	//char numX[128];
 	//char numY[128];
 
@@ -419,6 +426,39 @@ void Map::SetSample(int select, string str)
 			//	INIDATA->iniSave("OBJECT");
 			//}
 
+		}
+	}
+	
+}
+
+void Map::ChangeSample(int page)
+{
+	_ctrPage += page;
+	if (_ctrPage < 0) _ctrPage = 0;
+	else if (_ctrPage > 1) _ctrPage = 1;
+
+	if (_ctrSelect == CTRL_TERRAINDRAW)
+	{
+		switch (_ctrPage)
+		{
+		case 0:  
+			SetSample(CTRL_TERRAINDRAW, "FloorTiles");
+			break;
+		case 1:
+			SetSample(CTRL_TERRAINDRAW, "FloorTiles");
+			break;
+		}
+	}
+	else if(_ctrSelect == CTRL_OBJDRAW)
+	{
+		switch (_ctrPage)
+		{
+		case 0:
+			SetSample(CTRL_OBJDRAW, "ObjectTiles");
+			break;
+		case 1:
+			SetSample(CTRL_OBJDRAW, "Tree");
+			break;
 		}
 	}
 	
@@ -501,6 +541,8 @@ void Map::Button(void* obj)
 	if (map->_buttonObject->getBtnDir() == BUTTONDIRECTION_UP) map->SetSample(CTRL_OBJDRAW, "ObjectTiles");
 	if (map->_buttonErase->getBtnDir() == BUTTONDIRECTION_UP) map->_ctrSelect = CTRL_ERASER;
 	if (map->_buttonDragMode->getBtnDir() == BUTTONDIRECTION_UP) map->_isDragMode = !map->getDragMode();
+	if (map->_buttonRight->getBtnDir() == BUTTONDIRECTION_UP) map->ChangeSample(1);
+	if (map->_buttonLeft->getBtnDir() == BUTTONDIRECTION_UP) map->ChangeSample(-1);;
 
 }
 
