@@ -53,8 +53,9 @@ void loadingScene::update()
 		//이동할 씬 으로 변경
 		//SCENEMANAGER->changeScene("playerScene");
 		//SCENEMANAGER->changeScene("mainMenuScene");
-		//SCENEMANAGER->changeScene("inventory");
-		SCENEMANAGER->changeScene("enemyTestScene");
+		SCENEMANAGER->changeScene("inventory");
+		//SCENEMANAGER->changeScene("enemyTestScene");
+		//SCENEMANAGER->changeScene("map");
 
 	}
 
@@ -82,8 +83,6 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
 	while (loadingHelper->_currentCount != LOADINGMAX)
 	{
 		//소스 파일 추가	
-		//IMAGEMANAGER->addFrameImage("playerTool", "playerTool.bmp", 96, 16, 6, 0, true, RGB(255, 0, 255)); // 플레이어 도구
-
 		IMAGEMANAGER->addFrameImage("player", "source/Images/플레이어이미지3.bmp", 576, 2176, 12, 34, true, MAGENTA);
 		IMAGEMANAGER->addFrameImage("marnie", "source/Images/NPC/npc_item.bmp", 64, 128, 4, 4, true, MAGENTA);
 		IMAGEMANAGER->addFrameImage("wizard", "source/Images/NPC/npc_skill.bmp", 64, 128, 4, 4, true, MAGENTA);
@@ -92,30 +91,48 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
 		//소스 파일 추가
 		//
 		// 인벤토리 UI
-		IMAGEMANAGER->addImage("itemInventory", "source/Images/inventory/itemInventory.bmp", 750, 550, true, MAGENTA);
+		IMAGEMANAGER->addImage("itemInventory",		"source/Images/inventory/itemInventory.bmp", 750, 550, true, MAGENTA);
 		// 퀵슬롯 UI
-		IMAGEMANAGER->addImage("quickSlot",		"source/Images/inventory/playerQuickslot.bmp", 565, 69, true, MAGENTA);
+		IMAGEMANAGER->addImage("quickSlot",			"source/Images/inventory/playerQuickslot.bmp", 565, 69, true, MAGENTA);
 		// 제작메뉴
-		IMAGEMANAGER->addImage("craftMenu",		"source/Images/inventory/Craftinven.bmp", 750, 550, true, MAGENTA);
+		IMAGEMANAGER->addImage("craftMenu",			"source/Images/inventory/Craftinven.bmp", 750, 550, true, MAGENTA);
 		// 스탯메뉴
-		IMAGEMANAGER->addImage("statMenu",		"source/Images/inventory/skill.bmp", 750, 550, true, MAGENTA);
+		IMAGEMANAGER->addImage("statMenu",			"source/Images/inventory/skill.bmp", 750, 550, true, MAGENTA);
 		// 설정메뉴
-		IMAGEMANAGER->addImage("settingMenu",	"source/Images/inventory/setting.bmp", 750, 550, true, MAGENTA);
+		IMAGEMANAGER->addImage("settingMenu",		"source/Images/inventory/setting.bmp", 750, 550, true, MAGENTA);
 		// 나가기메뉴
-		IMAGEMANAGER->addImage("exitMenu",		"source/Images/inventory/exit.bmp", 750, 550, true, MAGENTA);
+		IMAGEMANAGER->addImage("exitMenu",			"source/Images/inventory/exit.bmp", 750, 550, true, MAGENTA);
 		// 아이템 정보
-		IMAGEMANAGER->addImage("itemInfo",		"source/Images/shop/item_info.bmp", 210, 210, true, MAGENTA);
+		IMAGEMANAGER->addImage("itemInfo",			"source/Images/shop/item_info.bmp", 210, 210, true, MAGENTA);
+		//닫기 아이콘
+		IMAGEMANAGER->addImage("closeButton",		"source/Images/inventory/닫기버튼.bmp", 44, 44, true, MAGENTA);
+		
 
+		//모든 오브젝트
+		IMAGEMANAGER->addFrameImage("springObjects", "source/Images/springbojects.bmp", 384, 544, 24, 34, true, MAGENTA);
 		////도구 인벤토리
-		IMAGEMANAGER->addFrameImage("playerTool", "source/Images/playerInventory/playerTool.bmp", 280, 40, 7, 1, true, RGB(255, 0, 255)); // 플레이어 도구
-		////씨앗 아이템
-		//IMAGEMANAGER->addFrameImage("seedItem", "source/Images/BMP/씨앗아이템(original).bmp", 360, 160, 9, 4, true, RGB(255, 0, 255));
-		////씨앗 아이템아이콘용
-		//IMAGEMANAGER->addFrameImage("seedItemSmall", "source/Images/BMP/small씨앗아이템(original).bmp", 144, 64, 9, 4, true, RGB(255, 0, 255));
-		////작물
-		//IMAGEMANAGER->addFrameImage("crops", "source/Images/BMP/열매(ori).bmp", 640, 120, 16, 3, true, RGB(255, 0, 255));
-		////작물 아이콘
-		//IMAGEMANAGER->addFrameImage("cropsSmall", "source/Images/BMP/열매small(ori).bmp", 256, 48, 16, 3, true, RGB(255, 0, 255));
+		IMAGEMANAGER->addFrameImage("playerTool",	"source/Images/playerInventory/playerTool.bmp", 280, 40, 7, 1, true, MAGENTA); // 플레이어 도구
+		//씨앗 아이템
+		IMAGEMANAGER->addFrameImage("seedItem",		"source/Images/BMP/씨앗아이템(original).bmp", 360, 160, 9, 4, true, MAGENTA);
+		//씨앗 아이템아이콘용
+		IMAGEMANAGER->addFrameImage("seedItemSmall","source/Images/BMP/small씨앗아이템(original).bmp", 144, 64, 9, 4, true, MAGENTA);
+		//작물
+		IMAGEMANAGER->addFrameImage("crops",		"source/Images/BMP/열매(ori).bmp", 640, 120, 16, 3, true, MAGENTA);
+		//작물 아이콘
+		IMAGEMANAGER->addFrameImage("cropsSmall",	"source/Images/BMP/열매small(ori).bmp", 256, 48, 16, 3, true, MAGENTA);
+
+		//광물 
+		IMAGEMANAGER->addFrameImage("ores", "source/Images/BMP/광물아이템.bmp", 640, 200, 16, 5, true, MAGENTA);
+
+
+		//오브젝트(크래프팅)아이템
+		IMAGEMANAGER->addFrameImage("craftItem", "source/Images/inventory/craftItem2.bmp", 160, 40, 4, 1, true, MAGENTA);
+		//오브젝트(크래프팅)
+		IMAGEMANAGER->addFrameImage("craftObject", "source/Images/inventory/craftObject2.bmp", 160, 80, 4, 1, true, MAGENTA);
+		//오브젝트(크래프팅)알파
+		IMAGEMANAGER->addFrameImage("craftObjectAlpha", "source/Images/inventory/craftObjectAlpha2.bmp", 160, 80, 4, 1, true, MAGENTA);
+
+		
 		
 		//==================몬스터 부분 파일 추가 본=====================
 		//이미지
@@ -155,7 +172,7 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
 		//SOUNDMANAGER->addSound("day", "source/Sounds/day.mp3", true, true);						//아침이 될 때 나는 소리
 		//SOUNDMANAGER->addSound("night", "source/Sounds/night.mp3", true, true);					//밤이 될 때 나는 소리
 		SOUNDMANAGER->addSound("opening", "source/Sounds/opening.mp3", true, true);				//오프닝 소리
-		//SOUNDMANAGER->addSound("pickUpItem", "source/Sounds/pickUpItem.mp3", true, false);		//픽업 아이템(?)
+		SOUNDMANAGER->addSound("pickUpItem", "source/Sounds/pickUpItem.mp3", true, false);		//픽업 아이템(?)
 		//SOUNDMANAGER->addSound("purchase", "source/Sounds/purchase.mp3", true, false);			//상점 구매 소리
 		//SOUNDMANAGER->addSound("removeGrass", "source/Sounds/removeGrass.mp3", true, false);	//풀 베는 소리
 		//SOUNDMANAGER->addSound("removeRock", "source/Sounds/removeRock.mp3", true, false);		//돌 깨는 소리
@@ -164,13 +181,6 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
 		//SOUNDMANAGER->addSound("slime", "source/Sounds/slime.mp3", true, false);				//슬라임이 공격할 때 나는 소리
 		//SOUNDMANAGER->addSound("toolSwap", "source/Sounds/toolSwap.mp3", true, false);			//탭누르면 나는 소리
 		//SOUNDMANAGER->addSound("watering", "source/Sounds/watering.mp3", true, false);			//물을 담거나 물을 줄 때 나는 소리
-
-
-
-
-		
-
-
 
 		loadingHelper->_currentCount++;
 	}

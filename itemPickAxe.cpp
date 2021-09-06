@@ -24,7 +24,7 @@ HRESULT itemPickAxe::init()
 	_item.sP = 0;
 	_item.isEatAble = false;
 	_item.isHandleAble = false;
-	_item.amount = 1;
+	//_item.amount = 1;
 
     return	S_OK;
 }
@@ -39,5 +39,6 @@ void itemPickAxe::update()
 
 void itemPickAxe::render(int x, int y)
 {
-	_item.itemImg->frameRender(getMemDC(), x, y, _item.frameX, _item.frameY);
+	item::render(x, y);
+	//_item.itemImg->frameRender(getMemDC(), x, y, _item.frameX, _item.frameY);
 }

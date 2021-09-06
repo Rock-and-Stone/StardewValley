@@ -24,7 +24,7 @@ HRESULT itemNull::init()
 	_item.sP = NULL;
 	_item.isEatAble = NULL;
 	_item.isHandleAble = NULL;
-	_item.amount = NULL;
+	//_item.amount = NULL;
 
 	return S_OK;
 }
