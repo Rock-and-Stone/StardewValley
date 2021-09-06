@@ -87,13 +87,6 @@ public:
 	virtual void update();
 	virtual void render();
 
-	//도구 
-	void SetAxe(float x,float y, int amount);
-	void SetPickAxe(float x, float y, int amount);
-	void SetHoe(float x, float y, int amount);
-	void SetCan(float x, float y, int amount);
-	void SetRod(float x, float y, int amount);
-	void SetSickle(float x, float y, int amount);
 
 	//무	기
 	void SetSword(float x, float y, int amount);

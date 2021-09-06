@@ -25,66 +25,7 @@ void objectManager::update()
 void objectManager::render()
 {
 }
-void objectManager::SetAxe(float x, float y, int amount)
-{
-    //for (int i = 0; i < amount; i++)
-    //{
-    //    object* Axe;
-    //    Axe = new axe;
-    //    Axe->init(AXE,"",,,PointMake());
-    //    _vObject.push_back(Axe);
-    //}
-}
-void objectManager::SetPickAxe(float x, float y, int amount)
-{
-    //for (int i = 0; i < amount; i++)
-//{
-//    object* Axe;
-//    Axe = new axe;
-//    Axe->init(AXE,"",,,PointMake());
-//    _vObject.push_back(Axe);
-//}
-}
-void objectManager::SetHoe(float x, float y, int amount)
-{
-    //for (int i = 0; i < amount; i++)
-//{
-//    object* Axe;
-//    Axe = new axe;
-//    Axe->init(AXE,"",,,PointMake());
-//    _vObject.push_back(Axe);
-//}
-}
-void objectManager::SetCan(float x, float y, int amount)
-{
-    //for (int i = 0; i < amount; i++)
-//{
-//    object* Axe;
-//    Axe = new axe;
-//    Axe->init(AXE,"",,,PointMake());
-//    _vObject.push_back(Axe);
-//}
-}
-void objectManager::SetRod(float x, float y, int amount)
-{
-    //for (int i = 0; i < amount; i++)
-//{
-//    object* Axe;
-//    Axe = new axe;
-//    Axe->init(AXE,"",,,PointMake());
-//    _vObject.push_back(Axe);
-//}
-}
-void objectManager::SetSickle(float x, float y, int amount)
-{
-    //for (int i = 0; i < amount; i++)
-//{
-//    object* Axe;
-//    Axe = new axe;
-//    Axe->init(AXE,"",,,PointMake());
-//    _vObject.push_back(Axe);
-//}
-}
+
 void objectManager::SetSword(float x, float y, int amount)
 {
     //for (int i = 0; i < amount; i++)
