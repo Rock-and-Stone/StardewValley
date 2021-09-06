@@ -149,7 +149,7 @@
     <Filter Include="playGround\Item\itemClass\WEAPON">
       <UniqueIdentifier>{5168e6d2-7d19-48bd-ac41-7b7a4da7b947}</UniqueIdentifier>
     </Filter>
-    <Filter Include="playGround\Item\itemClass\WEAPON\CROP">
+    <Filter Include="playGround\Item\itemClass\CROP">
       <UniqueIdentifier>{f249bf8b-bae6-482c-b6f6-e7ff191d9b6d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -419,7 +419,7 @@
       <Filter>playGround\Item\itemClass\CRAFT_ITEM</Filter>
     </ClInclude>
     <ClInclude Include="itemCauliFlower.h">
-      <Filter>playGround\Item\itemClass\WEAPON\CROP</Filter>
+      <Filter>playGround\Item\itemClass\CROP</Filter>
     </ClInclude>
     <ClInclude Include="itemGold.h">
       <Filter>playGround\Item\itemClass\ORE</Filter>
@@ -449,13 +449,13 @@
       <Filter>playGround\Item\itemClass\FISH</Filter>
     </ClInclude>
     <ClInclude Include="itemKale.h">
-      <Filter>playGround\Item\itemClass\WEAPON\CROP</Filter>
+      <Filter>playGround\Item\itemClass\CROP</Filter>
     </ClInclude>
     <ClInclude Include="itemParsnip.h">
-      <Filter>playGround\Item\itemClass\WEAPON\CROP</Filter>
+      <Filter>playGround\Item\itemClass\CROP</Filter>
     </ClInclude>
     <ClInclude Include="itemPotato.h">
-      <Filter>playGround\Item\itemClass\WEAPON\CROP</Filter>
+      <Filter>playGround\Item\itemClass\CROP</Filter>
     </ClInclude>
     <ClInclude Include="itemSlingShot.h">
       <Filter>playGround\Item\itemClass\WEAPON</Filter>
@@ -727,7 +727,7 @@
       <Filter>playGround\Item\itemClass\CRAFT_ITEM</Filter>
     </ClCompile>
     <ClCompile Include="itemCauliFlower.cpp">
-      <Filter>playGround\Item\itemClass\WEAPON\CROP</Filter>
+      <Filter>playGround\Item\itemClass\CROP</Filter>
     </ClCompile>
     <ClCompile Include="itemGold.cpp">
       <Filter>playGround\Item\itemClass\ORE</Filter>
@@ -757,13 +757,13 @@
       <Filter>playGround\Item\itemClass\FISH</Filter>
     </ClCompile>
     <ClCompile Include="itemKale.cpp">
-      <Filter>playGround\Item\itemClass\WEAPON\CROP</Filter>
+      <Filter>playGround\Item\itemClass\CROP</Filter>
     </ClCompile>
     <ClCompile Include="itemParsnip.cpp">
-      <Filter>playGround\Item\itemClass\WEAPON\CROP</Filter>
+      <Filter>playGround\Item\itemClass\CROP</Filter>
     </ClCompile>
     <ClCompile Include="itemPotato.cpp">
-      <Filter>playGround\Item\itemClass\WEAPON\CROP</Filter>
+      <Filter>playGround\Item\itemClass\CROP</Filter>
     </ClCompile>
     <ClCompile Include="itemSlingShot.cpp">
       <Filter>playGround\Item\itemClass\WEAPON</Filter>

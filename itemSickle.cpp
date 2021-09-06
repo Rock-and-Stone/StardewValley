@@ -16,7 +16,7 @@ HRESULT itemSickle::init()
 	_item.frameX = 2;
 	_item.frameY = 0;
 	_item.itemName = "낫";
-	_item.itemInfo = "잡초를 베어낼 수 있다";
+	_item.itemInfo = "잡초를 베어낼수있다";
 	_item.buyPrice = 10;
 	_item.sellPrice = 5;
 	_item.damage = 5;

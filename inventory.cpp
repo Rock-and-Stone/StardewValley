@@ -4,25 +4,86 @@
 
 HRESULT inventory::init()
 {
-    //아이템 자식들 
-    _axe = new itemAxe;
-    _pickAxe = new itemPickAxe;
-    _can = new itemCan;
-    _rod = new itemRod;
-    _hoe = new itemHoe;
-    _sickle = new itemSickle;
+    //아이템 자식들 //흑염룡이 날뛰는 NEW 구문....
+#pragma region Newitems
+    _null           = new itemNull;
 
-    _null = new itemNull;
+    _stone          = new itemStone;
+    _wood           = new itemWood;
 
+    _box            = new  itemBox;
+    _furnance       = new  itemFurNance;
+    _scareCrow1     = new  itemScareCrow1;
+    _scareCrow2     = new  itemScareCrow2;
 
-    _axe->init();
-    _pickAxe->init();
-    _can->init();
-    _rod->init();
-    _hoe->init();
-    _sickle->init();
-    _null->init();
+    _cauliFlower    = new  itemCauliFlower;
+    _kale           = new  itemKale;
+    _parsnip        = new  itemParsnip;
+    _potato         = new  itemPotato;
 
+    _halibut        = new  itemHaliBut;
+    _pufferFish     = new  itemPufferFish;
+    _tuna           = new  itemTuna;
+
+    _copper         = new  itemCopper;
+    _gold           = new  itemGold;
+    _iron           = new  itemIron;
+
+    _cauliSeed      = new  itemCauliSeed;
+    _kaleSeed       = new  itemKaleSeed;
+    _parsnipSeed    = new  itemParsnipSeed;
+    _potatoSeed     = new  itemPotatoSeed;
+
+    _axe            = new  itemAxe;
+    _pickAxe        = new  itemPickAxe;
+    _can            = new  itemCan;
+    _hoe            = new  itemHoe;
+    _rod            = new  itemRod;
+    _sickle         = new  itemSickle;
+
+    _slingShot      = new  itemSlingShot;
+    _sword          = new   itemSword;
+   
+
+    //마 데이타 싹긁어와라 마!
+    _null        ->init();
+                
+    _stone       ->init();
+    _wood        ->init();
+             
+    _box         ->init();
+    _furnance    ->init();
+    _scareCrow1  ->init();
+    _scareCrow2  ->init();
+            
+    _cauliFlower ->init();
+    _kale        ->init();
+    _parsnip     ->init();
+    _potato      ->init();
+               
+    _halibut     ->init();
+    _pufferFish  ->init();
+    _tuna        ->init();
+            
+    _copper      ->init();
+    _gold        ->init();
+    _iron        ->init();
+           
+    _cauliSeed   ->init();
+    _kaleSeed    ->init();
+    _parsnipSeed ->init();
+    _potatoSeed  ->init();
+           
+    _axe         ->init();
+    _pickAxe     ->init();
+    _can         ->init();
+    _hoe         ->init();
+    _rod         ->init();
+    _sickle      ->init();
+          
+    _slingShot   ->init();
+    _sword       ->init();
+#pragma endregion
 
     //버튼용이미지
     IMAGEMANAGER->addFrameImage("ExitButton", "source/Images/inventory/ExitButton.bmp", 185, 292, 1, 2, true, MAGENTA);
@@ -68,20 +129,23 @@ HRESULT inventory::init()
     _buttonToMenu->init("MenuButton", WINSIZEX / 2, WINSIZEY / 2 - 100, PointMake(0, 1), PointMake(0, 0), Button, this);
     _buttonExit->init("ExitButton", WINSIZEX / 2, WINSIZEY / 2 + 100, PointMake(0, 1), PointMake(0, 0), Button, this);
 
+
+    //인벤에 널값이라도 쳐넣자
     for (int i = 0; i < INVENTORYSIZE; i++)
     {
         _vInven.push_back(_null);
     }
-
-
-
-   
+    //기본 툴 넣기
     for (int i = 0; i < 150; i++)
     {
         AddItem(_axe);
-        AddItem(_pickAxe);
     }
-    
+      
+        AddItem(_pickAxe);
+        AddItem(_rod);
+        AddItem(_hoe);
+        AddItem(_sickle);
+        AddItem(_can);
 
 
     
@@ -147,15 +211,13 @@ void inventory::render()
 {
     //디버깅 테스트
     char str[128];
- 
-    sprintf_s(str, "vec : %d", _vInven.size());
-    TextOut(getMemDC(), 10, 60, str, strlen(str));
-    sprintf_s(str, "ptdonw : %d", _downPtItem);
-    TextOut(getMemDC(), 10, 80, str, strlen(str));
-    sprintf_s(str, "ptup : %d", _upPtItem);
-    TextOut(getMemDC(), 10, 100, str, strlen(str));
-    sprintf_s(str, "%d,", _dragActivate);
-    TextOut(getMemDC(), 10, 150, str, strlen(str));
+    SetBkMode(getMemDC(), TRANSPARENT);
+    HFONT oldFont, font1;
+    SetTextColor(getMemDC(), RGB(0, 0, 0));
+    HFONT font2 = CreateFont(30, 0, 0, 0, 400, true, false, false,
+        DEFAULT_CHARSET, OUT_STROKE_PRECIS, CLIP_DEFAULT_PRECIS,
+        PROOF_QUALITY, DEFAULT_PITCH | FF_SWISS, TEXT("sandoll 미생"));
+    HFONT oldFont2 = (HFONT)SelectObject(getMemDC(), font2);
 
     for (int i = 0; i < INVENTORYSIZE; i++)
     {
@@ -163,25 +225,13 @@ void inventory::render()
         {
             sprintf_s(str, "%d", _inven[i].itemExist);
             TextOut(getMemDC(), 10, 180, str, strlen(str));
+
+    
+            sprintf_s(str, "%s", _vInven[i]->GetItemInfo().itemName.c_str());
+            TextOut(getMemDC(), 10, 200, str, strlen(str));
         }
     
     }
-
-
-   //직사각형 위치 테스트
-    if (KEYMANAGER->isToggleKey(VK_TAB))
-    {
-        Rectangle(getMemDC(), _quickSlotRc);
-        Rectangle(getMemDC(), _menuRc);
-        Rectangle(getMemDC(), _storageRc);
-        Rectangle(getMemDC(), _statRc);
-        Rectangle(getMemDC(), _craftRc);
-        Rectangle(getMemDC(), _settingRc);
-        Rectangle(getMemDC(), _exitRc);
-
-    }
-    
-
 
     //메뉴창이 열렸으면 메뉴창 아니면 퀵슬롯용
     if (_isMenuOpen)
@@ -213,8 +263,13 @@ void inventory::render()
                 }
                 if (_dragActivate)
                 {
-                    _vInven[_downPtItem]->render(_ptMouse.x-20, _ptMouse.y-20);
-                    
+                    _vInven[_downPtItem]->render(_ptMouse.x - 20, _ptMouse.y - 20);
+
+                    if (_inven[_downPtItem].amount != 1 && _inven[_downPtItem].amount != 0)
+                    {
+                        sprintf_s(str, "%d", _inven[_downPtItem].amount);
+                        TextOut(getMemDC(), _ptMouse.x + 10, _ptMouse.y + 10, str, strlen(str));
+                    }
                 }
 
                 if (PtInRect(&_inven[i].rc, _ptMouse) && _vInven[i] != _null)
@@ -224,8 +279,26 @@ void inventory::render()
 
                     sprintf_s(str, "%s", _vInven[i]->GetItemInfo().itemName.c_str());
                     TextOut(getMemDC(), _ptMouse.x + 20, _ptMouse.y + 20, str, strlen(str));
-                    sprintf_s(str, "%s", _vInven[i]->GetItemInfo().itemInfo.c_str());
-                    TextOut(getMemDC(), _ptMouse.x + 20, _ptMouse.y + 70, str, strlen(str));  
+                    
+
+                    string  temp = _vInven[i]->GetItemInfo().itemInfo;
+
+
+                    if (temp.length() > 20)
+                    {
+                        sprintf_s(str, "%s", temp.substr(0,20).c_str());
+                        TextOut(getMemDC(), _ptMouse.x + 20, _ptMouse.y + 70, str, strlen(str));
+                        sprintf_s(str, "%s", temp.substr(20, 20).c_str());
+                        TextOut(getMemDC(), _ptMouse.x + 20, _ptMouse.y + 90, str, strlen(str));
+                    }
+                    if (temp.length() < 20)
+                    {
+                        sprintf_s(str, "%s", temp.substr(0, temp.length()).c_str());
+                        TextOut(getMemDC(), _ptMouse.x + 20, _ptMouse.y + 70, str, strlen(str));
+                    }
+            
+
+       
                 }
             }
             break;
@@ -257,7 +330,8 @@ void inventory::render()
 
                     sprintf_s(str, "%s", _vInven[i]->GetItemInfo().itemName.c_str());
                     TextOut(getMemDC(), _ptMouse.x + 20, _ptMouse.y + 20, str, strlen(str));
-                    sprintf_s(str, "%s", _vInven[i]->GetItemInfo().itemInfo.c_str());
+                    
+                    sprintf_s(str, "%s", _vInven[i]->GetItemInfo().itemInfo);
                     TextOut(getMemDC(), _ptMouse.x + 20, _ptMouse.y + 70, str, strlen(str));
                 }
             }
@@ -286,8 +360,12 @@ void inventory::render()
         for (int i = _quickSlotMin; i < _quickSlotMax; i++) 
         {
             _vInven[i]->render(_quick[i % 12].rc.left, _quick[i % 12].rc.top);
-            sprintf_s(str, "%d", _inven[i].amount);
-            TextOut(getMemDC(), _quick[i].rc.right - 25, _quick[i].rc.bottom - 12, str, strlen(str));
+            if (_inven[i].amount != 1 && _inven[i].amount != 0)
+            {
+                sprintf_s(str, "%d", _inven[i].amount);
+                TextOut(getMemDC(), _quick[i].rc.right - 25, _quick[i].rc.bottom - 12, str, strlen(str));
+            }
+       
         }
        
     }
@@ -307,6 +385,8 @@ void inventory::render()
         }
     }
    
+    SelectObject(getMemDC(), oldFont2);
+    DeleteObject(font2);
 
 }
 //메뉴창 열어주고 끄는것
@@ -356,12 +436,18 @@ void inventory::MenuInvetoryOpen()
             {
                 if (KEYMANAGER->isStayKeyDown(VK_LBUTTON)) _dragActivate = true;
 
-               // else 
+        /*        int halfNum ;
+                if (KEYMANAGER->isOnceKeyDown(VK_RBUTTON))
+                {
+                    halfNum = i;
+                    _inven[halfNum].amount /= 2;
+                    AddItem(_vInven[halfNum]);
+                }*/
 
                 if (KEYMANAGER->isOnceKeyDown(VK_LBUTTON))
                 {
                     _downPtItem = i;
-                    if (_vInven[i]->GetItemInfo().items == NONE) continue;
+                    if (!_inven[i].itemExist) continue;
                     SOUNDMANAGER->play("pickUpItem", 0.1f);
                 }
 
@@ -373,7 +459,7 @@ void inventory::MenuInvetoryOpen()
                         if (PtInRect(&_inven[j].rc, _ptMouse))
                         {
                             _upPtItem = j;
-                            if (_vInven[_downPtItem]->GetItemInfo().items == NONE) break;
+                            if (!_inven[_downPtItem].itemExist) break;
                             SOUNDMANAGER->play("pickUpItem", 0.1f);
                         }
 
@@ -393,7 +479,7 @@ void inventory::MenuInvetoryOpen()
               
             }
         }
-
+     
     
 }
 //스탯창
@@ -506,10 +592,7 @@ void inventory::AddItem(item* item)
         }
     }
 }
-void inventory::AddAmount()
-{
-  
-}
+
 //메뉴버튼용
 void inventory::SelectMenu()
 {

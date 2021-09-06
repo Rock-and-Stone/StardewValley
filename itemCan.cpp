@@ -16,7 +16,7 @@ HRESULT itemCan::init()
 	_item.frameX = 4;
 	_item.frameY = 0;
 	_item.itemName = "물쪼리개";
-	_item.itemInfo = "작물이나 땅에 물을 줄 수 있다";
+	_item.itemInfo = "작물이나 땅에 물을   줄 수 있다";
 	_item.buyPrice = 10;
 	_item.sellPrice = 5;
 	_item.damage = 0;

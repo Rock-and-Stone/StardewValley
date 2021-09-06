@@ -44,23 +44,28 @@ private:
 	hoe*				_hoe;
 	can*			    _can;
 	rod*				_rod;
+	sickle*				_sickle;
 	//¹«±â
 	sword*				_sword;
 	slingShot*			_slingShot;
+
 	//»ý¼±
 	pufferFish*			_pufferFish;
 	tuna*				_tuna;
 	haliBut*			_halibut;
+
 	//¾¾¾Ñ
 	cauliFlowerSeed*	_cauliFlowerSeed;
 	parsnipSeed*		_parsnipSeed;
 	potatoSeed*			_potatoSeed;
 	kaleSeed*			_kaleSeed;
+
 	//ÀÛ¹°
 	cauliFlower*		_cauliFlower;
 	parsnip*			_parsnip;
 	potato*				_potato;
 	kale*				_kale;
+
 	//±¤¹°
 	copper*				_copper;
 	iron*				_iron;
@@ -83,32 +88,38 @@ public:
 	virtual void render();
 
 	//µµ±¸ 
-	void SetAxe();
-	void SetPickAxe();
-	void SetHoe();
-	void SetCan();
-	void SetRod();
+	void SetAxe(float x,float y, int amount);
+	void SetPickAxe(float x, float y, int amount);
+	void SetHoe(float x, float y, int amount);
+	void SetCan(float x, float y, int amount);
+	void SetRod(float x, float y, int amount);
+	void SetSickle(float x, float y, int amount);
+
 	//¹«	±â
-	void SetSword();
-	void SetSlingShot();
+	void SetSword(float x, float y, int amount);
+	void SetSlingShot(float x, float y, int amount);
+
 	//»ý	¼±
-	void SetPufferFish();
-	void SetTuna();
-	void SetHaliBut();
+	void SetPufferFish(float x, float y, int amount);
+	void SetTuna(float x, float y, int amount);
+	void SetHaliBut(float x, float y, int amount);
+
 	//¾¾	¾Ñ
-	void SetCauliFlowerSeed();
-	void SetParsnipSeed();
-	void SetPotatoSeed();
-	void SetKaleSeed();
+	void SetCauliFlowerSeed(float x, float y, int amount);
+	void SetParsnipSeed(float x, float y, int amount);
+	void SetPotatoSeed(float x, float y, int amount);
+	void SetKaleSeed(float x, float y, int amount);
+
 	//ÀÛ¹°
-	void SetCauliFlower();
-	void SetParsnip();
-	void SetPotato();
-	void SetKale();
+	void SetCauliFlower(float x, float y, int amount);
+	void SetParsnip(float x, float y, int amount);
+	void SetPotato(float x, float y, int amount);
+	void SetKale(float x, float y, int amount);
+
 	//±¤¹°
-	void SetCopper();
-	void SetIron();
-	void SetGold();
+	void SetCopper(float x, float y, int amount);
+	void SetIron(float x, float y, int amount);
+	void SetGold(float x, float y, int amount);
 
 
 	//======================= Á¢±ÙÀÚ & ¼³Á¤ÀÚ ======================= //

@@ -1,12 +1,45 @@
 #pragma once
 #include "gameNode.h"
 #include <vector>
+//이거 열면 다크판타지 열림
+#pragma region items
+
+#include "itemStone.h"
+#include "itemWood.h"
+#include "itemBox.h"
+#include "itemFurNance.h"
+#include "itemScareCrow1.h"
+#include "itemScareCrow2.h"
+
+#include "itemCauliFlower.h"
+#include "itemKale.h"
+#include "itemParsnip.h"
+#include "itemPotato.h"
+
+#include "itemHaliBut.h"
+#include "itemPufferFish.h"
+#include "itemTuna.h"
+
+#include "itemCopper.h"
+#include "itemGold.h"
+#include "itemIron.h"
+
+#include "itemCauliSeed.h"
+#include "itemKaleSeed.h"
+#include "itemPotatoSeed.h"
+#include "itemParsnipSeed.h"
+
+#include "itemSlingShot.h"
+#include "itemSword.h"
+
 #include "itemAxe.h"
 #include "itemPickAxe.h"
 #include "itemCan.h"
 #include "itemRod.h"
 #include "itemHoe.h"
 #include "itemSickle.h"
+
+#pragma endregion
 
 #include "itemNull.h"
 
@@ -45,6 +78,34 @@ private:
 
 
 	//아이템 정보들
+#pragma region itemnew
+
+	itemStone* _stone;
+	itemWood* _wood;
+
+	itemBox* _box;
+	itemFurNance* _furnance;
+	itemScareCrow1* _scareCrow1;
+	itemScareCrow2* _scareCrow2;
+
+	itemCauliFlower* _cauliFlower;
+	itemKale* _kale;
+	itemParsnip* _parsnip;
+	itemPotato* _potato;
+
+	itemHaliBut* _halibut;
+	itemPufferFish* _pufferFish;
+	itemTuna* _tuna;
+
+	itemCopper* _copper;
+	itemGold* _gold;
+	itemIron* _iron;
+
+	itemCauliSeed* _cauliSeed;
+	itemKaleSeed* _kaleSeed;
+	itemParsnipSeed* _parsnipSeed;
+	itemPotatoSeed* _potatoSeed;
+
 	itemAxe* _axe;
 	itemPickAxe* _pickAxe;
 	itemCan* _can;
@@ -52,7 +113,13 @@ private:
 	itemRod* _rod;
 	itemSickle* _sickle;
 
+	itemSlingShot* _slingShot;
+	itemSword* _sword;
+
 	itemNull* _null;
+#pragma endregion
+
+
 
 
 	//itemManager* _itemManager;
@@ -134,7 +201,6 @@ public:
 	//NULL값 있는 벡터는 지우고 값넣는 
 	void AddItem(item* item);
 	
-	void AddAmount();
 
 	static void Button(void* obj);
 

@@ -16,7 +16,7 @@ HRESULT itemHoe::init()
 	_item.frameX = 1;
 	_item.frameY = 0;
 	_item.itemName = "호미";
-	_item.itemInfo = "땅을 개간하여 농사를\n 지을 수 있는 땅으로 가꿀수있다";
+	_item.itemInfo = "농사를 지을수있는 땅으로 가꿀 수 있다";
 	_item.buyPrice = 20;
 	_item.sellPrice = 10;
 	_item.damage = 0;

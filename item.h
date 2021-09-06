@@ -65,8 +65,8 @@ struct ITEMS
 	image*		itemImg;					//오브젝트 이미지
 
 	//인벤토리에서 띄줄것들
-	string		itemName;					//아이템 이름
-	string		itemInfo;					//아이템 설명
+	string			itemName;					//아이템 이름
+	string			itemInfo;					//아이템 설명
 
 	POINT		pos;
 

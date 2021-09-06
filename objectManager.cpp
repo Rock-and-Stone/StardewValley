@@ -25,109 +25,224 @@ void objectManager::update()
 void objectManager::render()
 {
 }
+void objectManager::SetAxe(float x, float y, int amount)
+{
+    //for (int i = 0; i < amount; i++)
+    //{
+    //    object* Axe;
+    //    Axe = new axe;
+    //    Axe->init(AXE,"",,,PointMake());
+    //    _vObject.push_back(Axe);
+    //}
+}
+void objectManager::SetPickAxe(float x, float y, int amount)
+{
+    //for (int i = 0; i < amount; i++)
+//{
+//    object* Axe;
+//    Axe = new axe;
+//    Axe->init(AXE,"",,,PointMake());
+//    _vObject.push_back(Axe);
+//}
+}
+void objectManager::SetHoe(float x, float y, int amount)
+{
+    //for (int i = 0; i < amount; i++)
+//{
+//    object* Axe;
+//    Axe = new axe;
+//    Axe->init(AXE,"",,,PointMake());
+//    _vObject.push_back(Axe);
+//}
+}
+void objectManager::SetCan(float x, float y, int amount)
+{
+    //for (int i = 0; i < amount; i++)
+//{
+//    object* Axe;
+//    Axe = new axe;
+//    Axe->init(AXE,"",,,PointMake());
+//    _vObject.push_back(Axe);
+//}
+}
+void objectManager::SetRod(float x, float y, int amount)
+{
+    //for (int i = 0; i < amount; i++)
+//{
+//    object* Axe;
+//    Axe = new axe;
+//    Axe->init(AXE,"",,,PointMake());
+//    _vObject.push_back(Axe);
+//}
+}
+void objectManager::SetSickle(float x, float y, int amount)
+{
+    //for (int i = 0; i < amount; i++)
+//{
+//    object* Axe;
+//    Axe = new axe;
+//    Axe->init(AXE,"",,,PointMake());
+//    _vObject.push_back(Axe);
+//}
+}
+void objectManager::SetSword(float x, float y, int amount)
+{
+    //for (int i = 0; i < amount; i++)
+//{
+//    object* Axe;
+//    Axe = new axe;
+//    Axe->init(AXE,"",,,PointMake());
+//    _vObject.push_back(Axe);
+//}
+}
+void objectManager::SetSlingShot(float x, float y, int amount)
+{
+    //for (int i = 0; i < amount; i++)
+//{
+//    object* Axe;
+//    Axe = new axe;
+//    Axe->init(AXE,"",,,PointMake());
+//    _vObject.push_back(Axe);
+//}
+}
+void objectManager::SetPufferFish(float x, float y, int amount)
+{
+    //for (int i = 0; i < amount; i++)
+//{
+//    object* Axe;
+//    Axe = new axe;
+//    Axe->init(AXE,"",,,PointMake());
+//    _vObject.push_back(Axe);
+//}
+}
+void objectManager::SetTuna(float x, float y, int amount)
+{
+    //for (int i = 0; i < amount; i++)
+//{
+//    object* Axe;
+//    Axe = new axe;
+//    Axe->init(AXE,"",,,PointMake());
+//    _vObject.push_back(Axe);
+//}
+}
+void objectManager::SetHaliBut(float x, float y, int amount)
+{
+    //for (int i = 0; i < amount; i++)
+//{
+//    object* Axe;
+//    Axe = new axe;
+//    Axe->init(AXE,"",,,PointMake());
+//    _vObject.push_back(Axe);
+//}
+}
+void objectManager::SetCauliFlowerSeed(float x, float y, int amount)
+{
+    //for (int i = 0; i < amount; i++)
+//{
+//    object* Axe;
+//    Axe = new axe;
+//    Axe->init(AXE,"",,,PointMake());
+//    _vObject.push_back(Axe);
+//}
+}
+void objectManager::SetParsnipSeed(float x, float y, int amount)
+{
+    //for (int i = 0; i < amount; i++)
+//{
+//    object* Axe;
+//    Axe = new axe;
+//    Axe->init(AXE,"",,,PointMake());
+//    _vObject.push_back(Axe);
+//}
+}
+void objectManager::SetPotatoSeed(float x, float y, int amount)
+{
+    //for (int i = 0; i < amount; i++)
+//{
+//    object* Axe;
+//    Axe = new axe;
+//    Axe->init(AXE,"",,,PointMake());
+//    _vObject.push_back(Axe);
+//}
+}
+void objectManager::SetKaleSeed(float x, float y, int amount)
+{
+    //for (int i = 0; i < amount; i++)
+//{
+//    object* Axe;
+//    Axe = new axe;
+//    Axe->init(AXE,"",,,PointMake());
+//    _vObject.push_back(Axe);
+//}
+}
+void objectManager::SetCauliFlower(float x, float y, int amount)
+{
+    //for (int i = 0; i < amount; i++)
+//{
+//    object* Axe;
+//    Axe = new axe;
+//    Axe->init(AXE,"",,,PointMake());
+//    _vObject.push_back(Axe);
+//}
+}
+void objectManager::SetParsnip(float x, float y, int amount)
+{
+    //for (int i = 0; i < amount; i++)
+//{
+//    object* Axe;
+//    Axe = new axe;
+//    Axe->init(AXE,"",,,PointMake());
+//    _vObject.push_back(Axe);
+//}
+}
+void objectManager::SetPotato(float x, float y, int amount)
+{
+    //for (int i = 0; i < amount; i++)
+//{
+//    object* Axe;
+//    Axe = new axe;
+//    Axe->init(AXE,"",,,PointMake());
+//    _vObject.push_back(Axe);
+//}
+}
+void objectManager::SetKale(float x, float y, int amount)
+{
+    //for (int i = 0; i < amount; i++)
+//{
+//    object* Axe;
+//    Axe = new axe;
+//    Axe->init(AXE,"",,,PointMake());
+//    _vObject.push_back(Axe);
+//}
+}
+void objectManager::SetCopper(float x, float y, int amount)
+{
+    //for (int i = 0; i < amount; i++)
+//{
+//    object* Axe;
+//    Axe = new axe;
+//    Axe->init(AXE,"",,,PointMake());
+//    _vObject.push_back(Axe);
+//}
+}
+void objectManager::SetIron(float x, float y, int amount)
+{
+    //for (int i = 0; i < amount; i++)
+//{
+//    object* Axe;
+//    Axe = new axe;
+//    Axe->init(AXE,"",,,PointMake());
+//    _vObject.push_back(Axe);
+//}
+}
+void objectManager::SetGold(float x, float y, int amount)
+{
+    //for (int i = 0; i < amount; i++)
+//{
+//    object* Axe;
+//    Axe = new axe;
+//    Axe->init(AXE,"",,,PointMake());
+//    _vObject.push_back(Axe);
+//}
+}
 // =[ ============================================= »ý ¼º ========================================= ]=
-void objectManager::SetAxe()
-{
-
-
-}
-
-void objectManager::SetPickAxe()
-{
-    //object* PickAxe;
-    //PickAxe = new pickAxe;
-    //PickAxe->init("playerTool", PointMake(WINSIZEX / 2, WINSIZEY / 2), AXE, TOOL, 0, 0);
-
-    //_vObject.push_back(PickAxe);
-}
-
-void objectManager::SetHoe()
-{
- /*   object* Hoe;
-    Hoe = new hoe;
-    Hoe->init("playerTool", PointMake(WINSIZEX / 2, WINSIZEY / 2), AXE, TOOL, 1, 0);
-
-    _vObject.push_back(Hoe);*/
-}
-
-void objectManager::SetCan()
-{
-    //object* Can;
-    //Can = new can;
-    //Can->init("playerTool", PointMake(WINSIZEX / 2, WINSIZEY / 2), AXE, TOOL, 4, 0);
-
-    //_vObject.push_back(Can);
-}
-
-void objectManager::SetRod()
-{
-    //object* Rod;
-    //Rod = new rod;
-    //Rod->init("playerTool", PointMake(WINSIZEX / 2, WINSIZEY / 2), AXE, TOOL, 5, 0);
-
-    //_vObject.push_back(Rod);
-}
-
-void objectManager::SetSword()
-{
-}
-
-void objectManager::SetSlingShot()
-{
-}
-
-void objectManager::SetPufferFish()
-{
-}
-
-void objectManager::SetTuna()
-{
-}
-
-void objectManager::SetHaliBut()
-{
-}
-
-void objectManager::SetCauliFlowerSeed()
-{
-}
-
-void objectManager::SetParsnipSeed()
-{
-}
-
-void objectManager::SetPotatoSeed()
-{
-}
-
-void objectManager::SetKaleSeed()
-{
-}
-
-void objectManager::SetCauliFlower()
-{
-}
-
-void objectManager::SetParsnip()
-{
-}
-
-void objectManager::SetPotato()
-{
-}
-
-void objectManager::SetKale()
-{
-}
-
-void objectManager::SetCopper()
-{
-}
-
-void objectManager::SetIron()
-{
-}
-
-void objectManager::SetGold()
-{
-}
