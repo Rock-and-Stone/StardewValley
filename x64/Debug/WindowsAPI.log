@@ -1,25 +1,74 @@
-﻿  inventory.cpp
-S:\TeamPotopolio\Battlefield4\button.h(73,28): warning C4244: 'return': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-S:\TeamPotopolio\Battlefield4\button.h(74,32): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-S:\TeamPotopolio\Battlefield4\inventory.cpp(228,58): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-S:\TeamPotopolio\Battlefield4\inventory.cpp(232,58): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-S:\TeamPotopolio\Battlefield4\inventory.cpp(248,93): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-S:\TeamPotopolio\Battlefield4\inventory.cpp(263,108): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-S:\TeamPotopolio\Battlefield4\inventory.cpp(272,95): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-S:\TeamPotopolio\Battlefield4\inventory.cpp(282,91): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-S:\TeamPotopolio\Battlefield4\inventory.cpp(291,95): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-S:\TeamPotopolio\Battlefield4\inventory.cpp(293,95): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-S:\TeamPotopolio\Battlefield4\inventory.cpp(298,95): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-S:\TeamPotopolio\Battlefield4\inventory.cpp(319,98): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-S:\TeamPotopolio\Battlefield4\inventory.cpp(333,91): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-S:\TeamPotopolio\Battlefield4\inventory.cpp(335,36): warning C4477: 'sprintf_s' : 서식 문자열 '%s'에 'char *' 형식의 인수가 필요하지만 variadic 인수 1의 형식이 'std::string'입니다.
-S:\TeamPotopolio\Battlefield4\inventory.cpp(336,91): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-S:\TeamPotopolio\Battlefield4\inventory.cpp(367,104): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-S:\TeamPotopolio\Battlefield4\inventory.cpp(215,11): warning C4101: 'oldFont' :참조되지 않은 지역 변수입니다.
-S:\TeamPotopolio\Battlefield4\inventory.cpp(215,20): warning C4101: 'font1' :참조되지 않은 지역 변수입니다.
-S:\TeamPotopolio\Battlefield4\inventory.cpp(416,62): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-S:\TeamPotopolio\Battlefield4\inventory.cpp(430,54): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-S:\TeamPotopolio\Battlefield4\inventory.cpp(500,68): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-S:\TeamPotopolio\Battlefield4\inventory.cpp(500,50): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  LINK : S:\TeamPotopolio\Battlefield4\x64\Debug\WindowsAPI.exe을(를) 찾을 수 없거나 마지막 증분 링크에 의해 빌드되지 않았습니다. 전체 링크를 수행하고 있습니다.
-  WindowsAPI.vcxproj -> S:\TeamPotopolio\Battlefield4\x64\Debug\WindowsAPI.exe
+﻿  Enemy.cpp
+C:\Users\user\Desktop\teamPOW\Battlefield4\Enemy.cpp(170,56): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Desktop\teamPOW\Battlefield4\Enemy.cpp(177,88): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Desktop\teamPOW\Battlefield4\Enemy.cpp(177,77): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Desktop\teamPOW\Battlefield4\Enemy.cpp(177,66): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Desktop\teamPOW\Battlefield4\Enemy.cpp(177,55): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Desktop\teamPOW\Battlefield4\Enemy.cpp(177,92): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Desktop\teamPOW\Battlefield4\Enemy.cpp(275,58): warning C4244: '+=': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Desktop\teamPOW\Battlefield4\Enemy.cpp(341,21): warning C4244: '-=': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Desktop\teamPOW\Battlefield4\Enemy.cpp(344,21): warning C4244: '-=': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Desktop\teamPOW\Battlefield4\Enemy.cpp(347,21): warning C4244: '+=': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Desktop\teamPOW\Battlefield4\Enemy.cpp(350,21): warning C4244: '+=': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  EnemyManager.cpp
+  RenderManager.cpp
+C:\Users\user\Desktop\teamPOW\Battlefield4\RenderManager.cpp(35,7): warning C4101: 'str' :참조되지 않은 지역 변수입니다.
+  RockStone.cpp
+  WindowsAPI.cpp
+C:\Users\user\Desktop\teamPOW\Battlefield4\button.h(73,28): warning C4244: 'return': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Desktop\teamPOW\Battlefield4\button.h(74,32): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Desktop\teamPOW\Battlefield4\WindowsAPI.cpp(102,16): warning C4244: 'return': 'WPARAM'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  enemyTestScene.cpp
+  entity.cpp
+  homeMap.cpp
+  inventory.cpp
+C:\Users\user\Desktop\teamPOW\Battlefield4\button.h(73,28): warning C4244: 'return': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Desktop\teamPOW\Battlefield4\button.h(74,32): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Desktop\teamPOW\Battlefield4\inventory.cpp(229,58): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Desktop\teamPOW\Battlefield4\inventory.cpp(233,58): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Desktop\teamPOW\Battlefield4\inventory.cpp(249,93): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Desktop\teamPOW\Battlefield4\inventory.cpp(265,108): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Desktop\teamPOW\Battlefield4\inventory.cpp(274,95): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Desktop\teamPOW\Battlefield4\inventory.cpp(284,91): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Desktop\teamPOW\Battlefield4\inventory.cpp(293,95): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Desktop\teamPOW\Battlefield4\inventory.cpp(295,95): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Desktop\teamPOW\Battlefield4\inventory.cpp(300,95): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Desktop\teamPOW\Battlefield4\inventory.cpp(321,98): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Desktop\teamPOW\Battlefield4\inventory.cpp(335,91): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Desktop\teamPOW\Battlefield4\inventory.cpp(337,36): warning C4477: 'sprintf_s' : 서식 문자열 '%s'에 'char *' 형식의 인수가 필요하지만 variadic 인수 1의 형식이 'std::string'입니다.
+C:\Users\user\Desktop\teamPOW\Battlefield4\inventory.cpp(338,91): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Desktop\teamPOW\Battlefield4\inventory.cpp(370,104): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Desktop\teamPOW\Battlefield4\inventory.cpp(216,11): warning C4101: 'oldFont' :참조되지 않은 지역 변수입니다.
+C:\Users\user\Desktop\teamPOW\Battlefield4\inventory.cpp(216,20): warning C4101: 'font1' :참조되지 않은 지역 변수입니다.
+C:\Users\user\Desktop\teamPOW\Battlefield4\inventory.cpp(420,62): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Desktop\teamPOW\Battlefield4\inventory.cpp(434,54): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Desktop\teamPOW\Battlefield4\inventory.cpp(504,68): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Desktop\teamPOW\Battlefield4\inventory.cpp(504,50): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  marnie.cpp
+C:\Users\user\Desktop\teamPOW\Battlefield4\marnie.cpp(134,56): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Desktop\teamPOW\Battlefield4\marnie.cpp(141,88): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Desktop\teamPOW\Battlefield4\marnie.cpp(141,77): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Desktop\teamPOW\Battlefield4\marnie.cpp(141,66): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Desktop\teamPOW\Battlefield4\marnie.cpp(141,55): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Desktop\teamPOW\Battlefield4\marnie.cpp(141,92): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  npcManager.cpp
+C:\Users\user\Desktop\teamPOW\Battlefield4\npcManager.cpp(41,48): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  playGround.cpp
+C:\Users\user\Desktop\teamPOW\Battlefield4\button.h(73,28): warning C4244: 'return': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Desktop\teamPOW\Battlefield4\button.h(74,32): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Desktop\teamPOW\Battlefield4\playGround.cpp(69,45): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  player.cpp
+C:\Users\user\Desktop\teamPOW\Battlefield4\player.cpp(109,18): warning C4244: '-=': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Desktop\teamPOW\Battlefield4\player.cpp(117,18): warning C4244: '+=': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Desktop\teamPOW\Battlefield4\player.cpp(125,18): warning C4244: '+=': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Desktop\teamPOW\Battlefield4\player.cpp(133,18): warning C4244: '-=': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  playerScene.cpp
+C:\Users\user\Desktop\teamPOW\Battlefield4\playerScene.cpp(35,55): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Desktop\teamPOW\Battlefield4\playerScene.cpp(35,38): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Desktop\teamPOW\Battlefield4\playerScene.cpp(50,51): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Desktop\teamPOW\Battlefield4\playerScene.cpp(51,51): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Desktop\teamPOW\Battlefield4\playerScene.cpp(61,48): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  playerState.cpp
+  wizard.cpp
+  코드를 생성하고 있습니다...
+  WindowsAPI.vcxproj -> C:\Users\user\Desktop\teamPOW\Battlefield4\x64\Debug\WindowsAPI.exe

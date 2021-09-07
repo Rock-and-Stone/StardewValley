@@ -1,6 +1,7 @@
 #pragma once
 #include "gameNode.h"
 #include "tileNode.h"
+#include <vector>
 
 #define TILEHEIGHT 32
 #define TILEWIDTH 32
@@ -17,6 +18,9 @@ private:
 
 	int _pos[2];
 
+	typedef vector<tagTile>			  _vTile;
+	typedef vector<tagTile>::iterator _viTile;
+
 public:
 	homeMap();
 	~homeMap();
@@ -31,7 +35,6 @@ public:
 
 
 	tagTile* getTile() { return _tiles; }
-
 
 	//STEP2
 	//타일속성에 대한 접근자도 만들어주어야 할껍니다

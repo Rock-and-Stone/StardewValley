@@ -4,7 +4,7 @@
 #include "npcManager.h"
 #include "homeMap.h"
 #include "CameraManager.h"
-#include <vector>
+#include "inventory.h"
 
 class playerScene : public gameNode
 {
@@ -13,9 +13,8 @@ private:
 	npcManager* _npcManager;
 	homeMap* _homeMap;
 	CameraManager* _cameraManager;
+	inventory* _inventory;
 
-	typedef vector<entity*>				_vRender;
-	typedef vector<entity*>::iterator   _viRender;
 
 public:
 	virtual HRESULT init();

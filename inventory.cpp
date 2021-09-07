@@ -135,6 +135,7 @@ HRESULT inventory::init()
     {
         _vInven.push_back(_null);
     }
+
     //기본 툴 넣기
     for (int i = 0; i < 150; i++)
     {
@@ -248,6 +249,7 @@ void inventory::render()
                 TextOut(getMemDC(), _inven[i].rc.left, _inven[i].rc.bottom, str, strlen(str));
             }
         }
+
         //메뉴창에서 실행될 렌더
         switch (_menuPage)
         {
@@ -361,6 +363,7 @@ void inventory::render()
         for (int i = _quickSlotMin; i < _quickSlotMax; i++) 
         {
             _vInven[i]->render(_quick[i % 12].rc.left, _quick[i % 12].rc.top);
+
             if (_inven[i].amount != 1 && _inven[i].amount != 0)
             {
                 sprintf_s(str, "%d", _inven[i].amount);
@@ -374,6 +377,7 @@ void inventory::render()
     if (KEYMANAGER->isOnceKeyDown(VK_TAB))
     {
         SOUNDMANAGER->play("pickUpItem", 0.1f);
+
         _quickSlotMin += 12;
         _quickSlotMax += 12;
 
