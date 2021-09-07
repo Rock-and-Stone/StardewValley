@@ -88,6 +88,15 @@ HRESULT inventory::init()
     //버튼용이미지
     IMAGEMANAGER->addFrameImage("ExitButton", "source/Images/inventory/ExitButton.bmp", 185, 292, 1, 2, true, MAGENTA);
     IMAGEMANAGER->addFrameImage("MenuButton", "source/Images/inventory/MenuButton.bmp", 185, 292, 1, 2, true, MAGENTA);
+    IMAGEMANAGER->addImage("BOX", "source/Images/inventory/box.bmp", 42, 42, true, MAGENTA);
+    
+    for (int i = 0; i < 4; i++) 
+    {
+        _craftObjImg[i] = IMAGEMANAGER->findImage("craftObject");
+        
+    }
+  
+   
    
     _quickSlotMin = 0;
     _quickSlotMax = 12;
@@ -95,7 +104,7 @@ HRESULT inventory::init()
     _buttonExit = new button;
     _buttonToMenu = new button;
 
-
+    _BOXImg = IMAGEMANAGER->findImage("BOX");
     //아이템정보창 이미지
     _itemInfoImg = IMAGEMANAGER->findImage("itemInfo");
      
@@ -115,20 +124,22 @@ HRESULT inventory::init()
     //메뉴와 퀵슬롯 Rc 위치 초기화
     _quickSlotRc = RectMakeCenter(WINSIZEX / 2, WINSIZEY - _quickSlot->getHeight() / 2, _quickSlot->getWidth(), _quickSlot->getHeight());
     _menuRc = RectMakeCenter(WINSIZEX / 2, WINSIZEY / 2, _currentMenuImg->getWidth(), _currentMenuImg->getHeight());
-
+    
     //버튼용 RC 초기화
     _storageRc = RectMake(_menuRc.left + 46, _menuRc.top, 53, 60);
     _statRc = RectMake(_storageRc.right + 5, _storageRc.top, 53, 60);
     _craftRc = RectMake(_statRc.right + 5, _statRc.top, 53, 60);
     _settingRc = RectMake(_craftRc.right + 5, _craftRc.top, 53, 60);
     _exitRc = RectMake(_settingRc.right + 5, _settingRc.top, 53, 60);
-    
+    _BOXRc = RectMake((_quickSlotRc.left + 15), (_quickSlotRc.top + 13), _BOXImg->getWidth(), _BOXImg->getHeight());
+
     _isMenuOpen = false;
 
     //버튼메뉴
     _buttonToMenu->init("MenuButton", WINSIZEX / 2, WINSIZEY / 2 - 100, PointMake(0, 1), PointMake(0, 0), Button, this);
     _buttonExit->init("ExitButton", WINSIZEX / 2, WINSIZEY / 2 + 100, PointMake(0, 1), PointMake(0, 0), Button, this);
 
+  
 
     //인벤에 널값이라도 쳐넣자
     for (int i = 0; i < INVENTORYSIZE; i++)
@@ -140,6 +151,8 @@ HRESULT inventory::init()
     for (int i = 0; i < 150; i++)
     {
         AddItem(_axe);
+        AddItem(_stone);
+        AddItem(_wood);
     }
       
         AddItem(_pickAxe);
@@ -201,7 +214,7 @@ void inventory::update()
 
     else if (!_isMenuOpen)
     {
-       //QuickSlot();
+       QuickSlot();
 
 
     }
@@ -277,30 +290,32 @@ void inventory::render()
 
                 if (PtInRect(&_inven[i].rc, _ptMouse) && _vInven[i] != _null)
                 {
-               
-                    _itemInfoImg->render(getMemDC(), _ptMouse.x, _ptMouse.y);
-
-                    sprintf_s(str, "%s", _vInven[i]->GetItemInfo().itemName.c_str());
-                    TextOut(getMemDC(), _ptMouse.x + 20, _ptMouse.y + 20, str, strlen(str));
-                    
-
-                    string  temp = _vInven[i]->GetItemInfo().itemInfo;
-
-
-                    if (temp.length() > 20)
+                    if (!_dragActivate) 
                     {
-                        sprintf_s(str, "%s", temp.substr(0,20).c_str());
-                        TextOut(getMemDC(), _ptMouse.x + 20, _ptMouse.y + 70, str, strlen(str));
-                        sprintf_s(str, "%s", temp.substr(20, 20).c_str());
-                        TextOut(getMemDC(), _ptMouse.x + 20, _ptMouse.y + 90, str, strlen(str));
-                    }
-                    if (temp.length() < 20)
-                    {
-                        sprintf_s(str, "%s", temp.substr(0, temp.length()).c_str());
-                        TextOut(getMemDC(), _ptMouse.x + 20, _ptMouse.y + 70, str, strlen(str));
-                    }
+                   
+                         _itemInfoImg->render(getMemDC(), _ptMouse.x, _ptMouse.y);
+
+                         sprintf_s(str, "%s", _vInven[i]->GetItemInfo().itemName.c_str());
+                         TextOut(getMemDC(), _ptMouse.x + 20, _ptMouse.y + 20, str, strlen(str));
+                         
+
+                         string  temp = _vInven[i]->GetItemInfo().itemInfo;
+
+
+                         if (temp.length() > 20)
+                         {
+                             sprintf_s(str, "%s", temp.substr(0,20).c_str());
+                             TextOut(getMemDC(), _ptMouse.x + 20, _ptMouse.y + 70, str, strlen(str));
+                             sprintf_s(str, "%s", temp.substr(20, 20).c_str());
+                             TextOut(getMemDC(), _ptMouse.x + 20, _ptMouse.y + 90, str, strlen(str));
+                         }
+                         if (temp.length() < 20)
+                         {
+                             sprintf_s(str, "%s", temp.substr(0, temp.length()).c_str());
+                             TextOut(getMemDC(), _ptMouse.x + 20, _ptMouse.y + 70, str, strlen(str));
+                         }
             
-
+                    }
        
                 }
             }
@@ -310,6 +325,31 @@ void inventory::render()
             break;
 
         case CraftPage:
+
+            for (int i = 0; i < 4; i++) 
+            {
+         
+                    Rectangle(getMemDC(), _craftObjRc[i]);
+               
+                IMAGEMANAGER->findImage("craftObjectAlpha")->frameRender(getMemDC(), _menuRc.left + 40 + (i * 80), _menuRc.top + 80, i, 0);     
+
+                if (_canBox)
+                {
+                    _craftObjImg[0]->frameRender(getMemDC(), _menuRc.left + 40 + (0 * 80), _menuRc.top + 80, 0, 0);
+                }
+                if (_canFur)
+                {
+                    _craftObjImg[1]->frameRender(getMemDC(), _menuRc.left + 40 + (1 * 80), _menuRc.top + 80, 1, 0);
+                }     
+        /*        if (_canBox)
+                {
+                    _craftObjImg[0]->frameRender(getMemDC(), _menuRc.left + 40 + (0 * 80), _menuRc.top + 80, 0, 0);
+                }     
+                if (_canBox)
+                {
+                    _craftObjImg[0]->frameRender(getMemDC(), _menuRc.left + 40 + (0 * 80), _menuRc.top + 80, 0, 0);
+                }*/
+            }
 
             for (int i = 0; i < _vInven.size(); i++)
             {
@@ -325,27 +365,22 @@ void inventory::render()
                     _vInven[_downPtItem]->render(_ptMouse.x - 20, _ptMouse.y - 20);
 
                 }
-
-                if (PtInRect(&_inven[i].rc, _ptMouse) && _vInven[i] != _null)
-                {
-
-                    _itemInfoImg->render(getMemDC(), _ptMouse.x, _ptMouse.y);
-
-                    sprintf_s(str, "%s", _vInven[i]->GetItemInfo().itemName.c_str());
-                    TextOut(getMemDC(), _ptMouse.x + 20, _ptMouse.y + 20, str, strlen(str));
-                    
-                    sprintf_s(str, "%s", _vInven[i]->GetItemInfo().itemInfo);
-                    TextOut(getMemDC(), _ptMouse.x + 20, _ptMouse.y + 70, str, strlen(str));
-                }
             }
+
+
+
+
+
             break;
 
         case SettingPage:
+
+
             break;
 
         case ExitPage:
-           _buttonExit->render();
-           _buttonToMenu->render();
+                 _buttonExit->render();
+                 _buttonToMenu->render();
             break;
 
         default:
@@ -357,21 +392,28 @@ void inventory::render()
     //메뉴창이 꺼졌을땐 퀵슬롯을 렌더한다
     else if (!_isMenuOpen)
     {
+
         //퀵슬롯의 이미지를 렌더한다
         _quickSlot->render(getMemDC(), _quickSlotRc.left, _quickSlotRc.top);
 
         for (int i = _quickSlotMin; i < _quickSlotMax; i++) 
         {
+           // Rectangle(getMemDC(), _quick[i%12].rc);
             _vInven[i]->render(_quick[i % 12].rc.left, _quick[i % 12].rc.top);
+
+            _BOXImg->render(getMemDC(), _BOXRc.left, _BOXRc.top);
 
             if (_inven[i].amount != 1 && _inven[i].amount != 0)
             {
                 sprintf_s(str, "%d", _inven[i].amount);
                 TextOut(getMemDC(), _quick[i].rc.right - 25, _quick[i].rc.bottom - 12, str, strlen(str));
             }
-       
+
+         
         }
-       
+        sprintf_s(str, "%s", _vInven[_nowQuickItem]->GetItemInfo().itemName.c_str());
+        TextOut(getMemDC(), 200, 200, str, strlen(str));
+        
     }
     //퀵슬롯 벡터 넘겨주는 용도
     if (KEYMANAGER->isOnceKeyDown(VK_TAB))
@@ -381,12 +423,13 @@ void inventory::render()
         _quickSlotMin += 12;
         _quickSlotMax += 12;
 
+        _nowQuickItem += 12;
 
         if (_quickSlotMax > 36)
         {
             _quickSlotMin = 0;
             _quickSlotMax = 12;
-
+            _nowQuickItem -= 36;
         }
     }
    
@@ -394,7 +437,7 @@ void inventory::render()
     DeleteObject(font2);
 
 }
-//메뉴창 열어주고 끄는것
+//메뉴창 열어주고 끄는것(완)
 void inventory::MenuOpen()
 {
     //메뉴 키고 끄는 버튼
@@ -409,7 +452,7 @@ void inventory::MenuOpen()
             SOUNDMANAGER->play("menuOpen", 0.5f);
     }
 }
-//퀵슬롯 칸생성
+//퀵슬롯 칸생성(완)
 void inventory::QuickSlot()
 {
     if (!_isMenuOpen)
@@ -418,10 +461,71 @@ void inventory::QuickSlot()
         {
             //12개 칸으로 생성하고
             _quick[i].rc = RectMake((_quickSlotRc.left + 15) + (i * 44.7), (_quickSlotRc.top + 13), 42, 42); 
+      
+          
+            if (KEYMANAGER->isOnceKeyDown('1'))
+            {
+                _BOXRc = RectMake(_quick[0].rc.left, _quick[0].rc.top, _BOXImg->getWidth(), _BOXImg->getHeight());
+                _nowQuickItem = _quickSlotMin;
+            }
+            if (KEYMANAGER->isOnceKeyDown('2'))
+            {
+                _BOXRc = RectMake(_quick[1].rc.left, _quick[1].rc.top, _BOXImg->getWidth(), _BOXImg->getHeight());
+                _nowQuickItem = _quickSlotMin + 1;
+            }
+            if (KEYMANAGER->isOnceKeyDown('3'))
+            {
+                _BOXRc = RectMake(_quick[2].rc.left, _quick[2].rc.top, _BOXImg->getWidth(), _BOXImg->getHeight());
+                _nowQuickItem = _quickSlotMin + 2;
+            }
+            if (KEYMANAGER->isOnceKeyDown('4'))
+            {
+                _BOXRc = RectMake(_quick[3].rc.left, _quick[3].rc.top, _BOXImg->getWidth(), _BOXImg->getHeight());
+                _nowQuickItem = _quickSlotMin + 3;
+            }
+            if (KEYMANAGER->isOnceKeyDown('5'))
+            {
+                _BOXRc = RectMake(_quick[4].rc.left, _quick[4].rc.top, _BOXImg->getWidth(), _BOXImg->getHeight());
+                _nowQuickItem = _quickSlotMin + 4;
+            }
+            if (KEYMANAGER->isOnceKeyDown('6'))
+            {
+                _BOXRc = RectMake(_quick[5].rc.left, _quick[5].rc.top, _BOXImg->getWidth(), _BOXImg->getHeight());
+                _nowQuickItem = _quickSlotMin + 5;
+            }
+            if (KEYMANAGER->isOnceKeyDown('7'))
+            {
+                _BOXRc = RectMake(_quick[6].rc.left, _quick[6].rc.top, _BOXImg->getWidth(), _BOXImg->getHeight());
+                _nowQuickItem = _quickSlotMin + 6;
+            }
+            if (KEYMANAGER->isOnceKeyDown('8'))
+            {
+                _BOXRc = RectMake(_quick[7].rc.left, _quick[7].rc.top, _BOXImg->getWidth(), _BOXImg->getHeight());
+                _nowQuickItem = _quickSlotMin + 7;
+            }
+            if (KEYMANAGER->isOnceKeyDown('9'))
+            {
+                _BOXRc = RectMake(_quick[8].rc.left, _quick[8].rc.top, _BOXImg->getWidth(), _BOXImg->getHeight());
+                _nowQuickItem = _quickSlotMin + 8;
+            }
+            if (KEYMANAGER->isOnceKeyDown('0'))
+            {
+                _BOXRc = RectMake(_quick[9].rc.left, _quick[9].rc.top, _BOXImg->getWidth(), _BOXImg->getHeight());
+                _nowQuickItem = _quickSlotMin + 9;
+            }
+            if (KEYMANAGER->isOnceKeyDown(VK_OEM_MINUS))
+            {
+                _BOXRc = RectMake(_quick[10].rc.left, _quick[10].rc.top, _BOXImg->getWidth(), _BOXImg->getHeight());
+                _nowQuickItem = _quickSlotMin + 10;
+            }
+            if (KEYMANAGER->isOnceKeyDown(VK_OEM_PLUS))
+            {
+                _BOXRc = RectMake(_quick[11].rc.left, _quick[11].rc.top, _BOXImg->getWidth(), _BOXImg->getHeight());
+                _nowQuickItem = _quickSlotMin + 11;
+            }
         }
     }   
 }
-
 //메뉴창에서 인벤토리창
 void inventory::MenuInvetoryOpen()
 {
@@ -441,14 +545,6 @@ void inventory::MenuInvetoryOpen()
             {
                 if (KEYMANAGER->isStayKeyDown(VK_LBUTTON)) _dragActivate = true;
 
-        /*        int halfNum ;
-                if (KEYMANAGER->isOnceKeyDown(VK_RBUTTON))
-                {
-                    halfNum = i;
-                    _inven[halfNum].amount /= 2;
-                    AddItem(_vInven[halfNum]);
-                }*/
-
                 if (KEYMANAGER->isOnceKeyDown(VK_LBUTTON))
                 {
                     _downPtItem = i;
@@ -459,6 +555,7 @@ void inventory::MenuInvetoryOpen()
                 if (KEYMANAGER->isOnceKeyUp(VK_LBUTTON))
                 {
                     _dragActivate = false;
+
                     for (int j = 0; j < INVENTORYSIZE; j++)
                     {
                         if (PtInRect(&_inven[j].rc, _ptMouse))
@@ -481,18 +578,16 @@ void inventory::MenuInvetoryOpen()
             if (PtInRect(&_menuRc, _ptMouse))
             {
                 swap(_vInven[_downPtItem], _vInven[_downPtItem]);
-              
+
             }
         }
-     
-    
 }
-//스탯창
+//스탯창의미가 있나 싶고
 void inventory::MenuStatOpen()
 {
 
 }
-//제작창
+//제작창(미완)
 void inventory::MenuCraftOpen()
 {
     //직사각형 칸생성
@@ -511,29 +606,29 @@ void inventory::MenuCraftOpen()
         {
             if (KEYMANAGER->isStayKeyDown(VK_LBUTTON)) _dragActivate = true;
 
-            // else 
-
             if (KEYMANAGER->isOnceKeyDown(VK_LBUTTON))
             {
                 _downPtItem = i;
-                if (_vInven[i]->GetItemInfo().items == NONE) continue;
+                if (!_inven[i].itemExist) continue;
                 SOUNDMANAGER->play("pickUpItem", 0.1f);
             }
 
             if (KEYMANAGER->isOnceKeyUp(VK_LBUTTON))
             {
                 _dragActivate = false;
+
                 for (int j = 0; j < INVENTORYSIZE; j++)
                 {
                     if (PtInRect(&_inven[j].rc, _ptMouse))
                     {
                         _upPtItem = j;
-                        if (_vInven[_downPtItem]->GetItemInfo().items == NONE) break;
+                        if (!_inven[_downPtItem].itemExist) break;
                         SOUNDMANAGER->play("pickUpItem", 0.1f);
                     }
 
                 }
                 swap(_vInven[_downPtItem], _vInven[_upPtItem]);
+                swap(_inven[_downPtItem], _inven[_upPtItem]);
             }
         }
     }
@@ -544,20 +639,53 @@ void inventory::MenuCraftOpen()
         if (PtInRect(&_menuRc, _ptMouse))
         {
             swap(_vInven[_downPtItem], _vInven[_downPtItem]);
+
         }
     }
+    //제작이 가능한가?확인
+    for (int i = 0; i < INVENTORYSIZE; i++)
+    {
+        if (_vInven[i]->GetItemInfo().items == WOOD)
+        {
+            if (_inven[i].amount > _box->GetItemInfo().needAmountToCraft)
+            {
+                _canBox = true;
+            }
+        }
+        if (_vInven[i]->GetItemInfo().items == STONE)
+        {
+            if (_inven[i].amount > _furnance->GetItemInfo().needAmountToCraft)
+            {
+                _canFur = true;
+            }
+        }
+        //if (_vInven[i]->GetItemInfo().items == STONE)
+        //{
+        //    if (_inven[i].amount > _box->GetItemInfo().needAmountToCraft)
+        //    {
+        //        _canBox = true;
+        //    }
+        //}
+        //if (_vInven[i]->GetItemInfo().items == WOOD)
+        //{
+        //    if (_inven[i].amount > _box->GetItemInfo().needAmountToCraft)
+        //    {
+        //        _canBox = true;
+        //    }
+        //}
+    }
+    for (int i = 0; i < 4; i++)
+    {
+        _craftObjRc[i] = RectMake(_menuRc.left + 40 + (i * 80), _menuRc.top + 80, _craftObjImg[i]->getFrameWidth(), _craftObjImg[i]->getFrameHeight());
+    }
+   
 
 }
-
-//세팅창
+//세팅창(미완)
 void inventory::MenuSettingOpen()
 {
 }
-//나가는창
-void inventory::MenuExitOpen()
-{
-}
-//아이템 추가
+//아이템 추가(완)
 void inventory::AddItem(item* item)
 {
     //신세대
@@ -596,8 +724,7 @@ void inventory::AddItem(item* item)
         }
     }
 }
-
-//메뉴버튼용
+//메뉴버튼용(완)
 void inventory::SelectMenu()
 {
     if (PtInRect(&_storageRc, _ptMouse) || PtInRect(&_statRc, _ptMouse)
@@ -639,7 +766,6 @@ void inventory::SelectMenu()
         }
     }
 }
-
 //나가기버튼 콜백함수
 void inventory::Button(void* obj)
 {

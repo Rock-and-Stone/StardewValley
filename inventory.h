@@ -51,6 +51,15 @@
 
 class button;
 
+enum CraftItem 
+{
+	craftBox,
+	craftFurnance,
+	craftCrow1,
+	craftCrow2,
+};
+
+
 enum MenuPage
 {
 	InvenPage,
@@ -72,9 +81,6 @@ class inventory : public gameNode
 private:
 	vector<item*>				_vInven;
 	vector<item*>::iterator		_viInven;
-
-	vector<item*>				_vItemInfo;
-	vector<item*>::iterator		_viItemInfo;
 
 	//아이템 정보들
 #pragma region itemnew
@@ -117,12 +123,7 @@ private:
 
 	itemNull* _null;
 #pragma endregion
-
-
-
-
-	//itemManager* _itemManager;
-
+	CRAFTITEMS _craft;
 	MenuPage _menuPage;
 
 	tagInventory _inven[INVENTORYSIZE];
@@ -147,6 +148,10 @@ private:
 	image* _settingImg;
 	image* _exitImg;
 	image* _itemInfoImg;
+	image* _BOXImg;
+	
+	//제작용
+	image* _craftObjImg[4];
 
 	//메뉴바꾸는 버튼스?
 	RECT	_storageRc;
@@ -154,7 +159,9 @@ private:
 	RECT	_craftRc;
 	RECT	_settingRc;
 	RECT	_exitRc;
+	RECT	_BOXRc;
 
+	RECT	_craftObjRc[4];
 	//메뉴가 열렷는지
 	BOOL _isMenuOpen;
 
@@ -169,12 +176,18 @@ private:
 	int _quickSlotMin;
 	int _quickSlotMax;
 
+	int _nowQuickItem;
+
 	BOOL	_invenIsFull;
 
 	//버튼스
 	button* _buttonToMenu;
 	button* _buttonExit;
 	
+	BOOL	_canBox;
+	BOOL	_canFur;
+	BOOL	_canCrow1;
+	BOOL	_canCrow2;
 
 
 
@@ -195,7 +208,7 @@ public:
 	void MenuStatOpen();
 	void MenuCraftOpen();
 	void MenuSettingOpen();
-	void MenuExitOpen();
+
 
 	//NULL값 있는 벡터는 지우고 값넣는 
 	void AddItem(item* item);
@@ -204,7 +217,23 @@ public:
 	static void Button(void* obj);
 
 	//======================= 접근자 & 설정자 ======================= //
-	//		
+	vector<item*> GetvInven() { return _vInven; }
+	vector<item*>::iterator GetviInven() { return _viInven; }
+
+	MenuPage GetMenuPage() { return _menuPage; }
+	void SetMenuPage(MenuPage page) { _menuPage = page; }
+
+	tagInventory GetInven() { return _inven[INVENTORYSIZE]; }
+	//아몰랑 만들어둘래...
+	void SetInven(tagInventory inv[INVENTORYSIZE]) { _inven[INVENTORYSIZE] = inv[INVENTORYSIZE]; }
+
+	BOOL GetIsMenuOpen() { return _isMenuOpen; }
+	void SetIsMenuOpen(BOOL open) { _isMenuOpen = open; }
+
+	int GetQuickItemType() { return _nowQuickItem; }
+	void SetQuickItemType(int now) { _nowQuickItem = now; }
+	
+
 	//======================= ============== ======================= //
 
 	//=======================   메모리 링크   ======================= //
