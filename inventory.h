@@ -178,7 +178,10 @@ private:
 
 	int _nowQuickItem;
 
-	int temp;
+	int woodTemp;
+	int stoneTemp;
+	int ironTemp;
+	int copperTemp;
 
 	BOOL	_invenIsFull;
 

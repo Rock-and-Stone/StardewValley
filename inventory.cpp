@@ -92,8 +92,7 @@ HRESULT inventory::init()
     
     for (int i = 0; i < 4; i++) 
     {
-        _craftObjImg[i] = IMAGEMANAGER->findImage("craftObject");
-        
+        _craftObjImg[i] = IMAGEMANAGER->findImage("craftObject");    
     }
   
     _quickSlotMin = 0;
@@ -154,7 +153,7 @@ HRESULT inventory::init()
     AddItem(_slingShot);
     AddItem(_sword);
 
-    for (int i = 0; i < 100; i++)
+    for (int i = 0; i < 2000; i++)
     {
         AddItem(_stone);
         AddItem(_wood);
@@ -162,8 +161,8 @@ HRESULT inventory::init()
 
 
     //테스트 아이템 집어넣기
-        _canBox = false;
-        _canFur = false;
+    _canBox = false;
+    _canFur = false;
     QuickSlot();
     
     _downPtItem = NULL;
@@ -233,13 +232,16 @@ void inventory::render()
         PROOF_QUALITY, DEFAULT_PITCH | FF_SWISS, TEXT("sandoll 미생"));
     HFONT oldFont2 = (HFONT)SelectObject(getMemDC(), font2);
 
-    sprintf_s(str, "%d", temp);
+    sprintf_s(str, "%d", woodTemp);
     TextOut(getMemDC(), 100, 400, str, strlen(str));
-    sprintf_s(str, "f%d", _canFur);
+    sprintf_s(str, "%d", stoneTemp);
     TextOut(getMemDC(), 100, 420, str, strlen(str));
-
-    sprintf_s(str, "%d", _box->GetItemInfo().needAmountToCraft);
+    sprintf_s(str, "%d", copperTemp);
     TextOut(getMemDC(), 100, 440, str, strlen(str));
+    sprintf_s(str, "%d", ironTemp);
+    TextOut(getMemDC(), 100, 460, str, strlen(str));
+   
+
 
     for (int i = 0; i < INVENTORYSIZE; i++)
     {
@@ -352,14 +354,22 @@ void inventory::render()
           {
               IMAGEMANAGER->findImage("craftObjectAlpha")->frameRender(getMemDC(), _menuRc.left + 40 + (1 * 80), _menuRc.top + 80, 1, 0);
           }
-        /*  if (_canBox)
+          if (_canCrow1)
           {
               _craftObjImg[0]->frameRender(getMemDC(), _menuRc.left + 40 + (0 * 80), _menuRc.top + 80, 0, 0);
-          }     
-          if (_canBox)
+          }   
+          else
+          {
+              IMAGEMANAGER->findImage("craftObjectAlpha")->frameRender(getMemDC(), _menuRc.left + 40 + (2 * 80), _menuRc.top + 80, 2, 0);
+          }
+          if (_canCrow2)
           {
               _craftObjImg[0]->frameRender(getMemDC(), _menuRc.left + 40 + (0 * 80), _menuRc.top + 80, 0, 0);
-          }*/
+          }
+          else
+          {
+              IMAGEMANAGER->findImage("craftObjectAlpha")->frameRender(getMemDC(), _menuRc.left + 40 + (3 * 80), _menuRc.top + 80, 3, 0);
+          }
 
              
             
@@ -600,6 +610,12 @@ void inventory::MenuInvetoryOpen()
             {
                 swap(_vInven[_downPtItem], _vInven[_downPtItem]);
             }
+            if (!PtInRect(&_menuRc, _ptMouse))
+            {
+                _vInven[_downPtItem] = _null;
+                _inven[_downPtItem].amount = 0;
+                _inven[_downPtItem].itemExist = false;
+            }
         }
 }
 //스탯창의미가 있나 싶고
@@ -610,6 +626,11 @@ void inventory::MenuStatOpen()
 //제작창(미완)
 void inventory::MenuCraftOpen()
 {
+    // 제작할 직사각형 생성
+    for (int i = 0; i < 4; i++)
+    {
+        _craftObjRc[i] = RectMake(_menuRc.left + 40 + (i * 80), _menuRc.top + 80, _craftObjImg[i]->getFrameWidth(), _craftObjImg[i]->getFrameHeight());
+    }
     //직사각형 칸생성
     for (int j = 0; j < 3; ++j)
     {
@@ -649,22 +670,31 @@ void inventory::MenuCraftOpen()
 
 
                 }
-                    //그냥 통상적으로 서로 다른 해당칸에 갔다 놨을때
+                
+                //그냥 통상적으로 서로 다른 해당칸에 갔다 놨을때
+                if (_vInven[_downPtItem] != _vInven[_upPtItem])
+                {
                     swap(_vInven[_downPtItem], _vInven[_upPtItem]);
                     swap(_inven[_downPtItem].amount, _inven[_upPtItem].amount);
                     swap(_inven[_downPtItem].itemExist, _inven[_upPtItem].itemExist);
+                }
+                else
+                {
+                    if (_inven[_upPtItem].amount < 999)
+                    {
+                        _inven[_upPtItem].amount += _inven[_downPtItem].amount;
+                        if (_inven[_upPtItem].amount > 998)
+                        {
+                            continue;
+                        }
+                        _inven[_downPtItem].amount = 0;
+                    }
+             
+                }
                 
-              
-
             }
-        }
-    }
 
-    for (int i = 0; i < INVENTORYSIZE; i++)
-    {
-        if (_inven[i].amount < 1)
-        {
-      
+
         }
     }
 
@@ -678,90 +708,91 @@ void inventory::MenuCraftOpen()
 
         }
     }
-
-    for (int i = 0; i < 4; i++)
-    {
-        _craftObjRc[i] = RectMake(_menuRc.left + 40 + (i * 80), _menuRc.top + 80, _craftObjImg[i]->getFrameWidth(), _craftObjImg[i]->getFrameHeight());
-    }
-    //제작이 가능한가?확인
-    temp = 0;
-    int newtemp = 0;
-    bool tempbool = true;
-    
-    
+    //0보다 적게 가지고 있다면
     for (int i = 0; i < INVENTORYSIZE; i++)
     {
-      
-            if (_vInven[i] == _wood)
-            {
-                newtemp = i;
-                if ((_inven[i].amount >= _box->GetItemInfo().needAmountToCraft))
-                {
-                    _canBox = true;
-                    if (PtInRect(&_craftObjRc[0], _ptMouse) && KEYMANAGER->isOnceKeyDown(VK_LBUTTON))
-                    {
-                        AddItem(_box);
-                        _inven[i].amount -= 50;
-                    }
-                }
-                else
-                {
-                    _canBox = false;
-                }
-            }
-        
-  
-
-        //if (_vInven[i]==_stone)
-        //{
-        //     if ((_inven[i].amount >= _furnance->GetItemInfo().needAmountToCraft))
-        //     {
-        //         _canFur = true;
-        //         if (PtInRect(&_craftObjRc[1], _ptMouse) && KEYMANAGER->isOnceKeyDown(VK_LBUTTON))
-        //         {
-        //             AddItem(_furnance);
-        //             _inven[i].amount -= 10;
-        //         }
-        //     }
-        //     else
-        //     {
-        //         _canFur = false;
-        //     }
-        //}
-        //if (_vInven[i] == _copper)
-        //{
-        //    if ((_inven[i].amount > _furnance->GetItemInfo().needAmountToCraft))
-        //    {
-        //        _canFur = true;
-        //        if (PtInRect(&_craftObjRc[2], _ptMouse) && KEYMANAGER->isOnceKeyDown(VK_LBUTTON))
-        //        {
-        //            AddItem(_scareCrow1);
-        //            _inven[i].amount -= 5;
-        //        }
-        //    }
-        //    else
-        //    {
-        //        _canFur = false;
-        //    }
-        //}
-        //if (_vInven[i] == _iron)
-        //{
-        //    if ((_inven[i].amount > _furnance->GetItemInfo().needAmountToCraft))
-        //    {
-        //        _canFur = true;
-        //        if (PtInRect(&_craftObjRc[3], _ptMouse) && KEYMANAGER->isOnceKeyDown(VK_LBUTTON))
-        //        {
-        //            AddItem(_scareCrow2);
-        //            _inven[i].amount -= 5;
-        //        }
-        //    }
-        //    else
-        //    {
-        //        _canFur = false;
-        //    }
-        //}
+        if (_inven[i].amount < 1)
+        {
+            _vInven[i] = _null;
+            _inven[i].amount = 0;
+            _inven[i].itemExist = false;
+        }
     }
-     temp += _inven[newtemp].amount;
+
+    for (int i = 0; i < INVENTORYSIZE; i++)
+    {
+        if (_vInven[i] == _wood)
+        {
+            if ((_inven[i].amount >= _box->GetItemInfo().needAmountToCraft))
+            {
+                _canBox = true;
+                if (PtInRect(&_craftObjRc[0], _ptMouse) && KEYMANAGER->isOnceKeyDown(VK_LBUTTON))
+                {
+                    AddItem(_box);
+                   _inven[i].amount -= 50;       
+                }
+
+            }
+            else
+            {
+                _canBox = false;
+            }
+        }
+        if (_vInven[i] == _stone)
+        {
+            if ((_inven[i].amount >= _furnance->GetItemInfo().needAmountToCraft))
+            {
+                _canFur = true;
+                if (PtInRect(&_craftObjRc[1], _ptMouse) && KEYMANAGER->isOnceKeyDown(VK_LBUTTON))
+                {
+                    AddItem(_furnance);
+                    _inven[i].amount -= 10;     
+                }
+
+            }
+            else
+            {
+                _canFur = false;
+            }
+        }
+        if (_vInven[i] == _copper)
+        {
+            if ((_inven[i].amount >= _scareCrow1->GetItemInfo().needAmountToCraft))
+            {
+                _canCrow1 = true;
+                if (PtInRect(&_craftObjRc[2], _ptMouse) && KEYMANAGER->isOnceKeyDown(VK_LBUTTON))
+                {
+                    AddItem(_scareCrow1);
+                    _inven[i].amount -= 10;    
+                }
+
+            }
+            else
+            {
+                _canCrow1 = false;
+            }
+        }
+        if (_vInven[i] == _iron)
+        {
+            if ((_inven[i].amount >= _scareCrow2->GetItemInfo().needAmountToCraft))
+            {
+                _canCrow2 = true;
+                if (PtInRect(&_craftObjRc[3], _ptMouse) && KEYMANAGER->isOnceKeyDown(VK_LBUTTON))
+                {
+                    AddItem(_scareCrow2);
+                    _inven[i].amount -= 10; 
+                }
+
+            }
+            else
+            {
+                _canCrow2 = false;
+            }
+        }
+    }
+  
+    
+
         
 
 
@@ -787,7 +818,7 @@ void inventory::AddItem(item* item)
                 continue;
             }
             else 
-            { 
+            {
                 _inven[i].amount++; 
                 _inven[i].itemExist = true;
                 break; 
@@ -799,9 +830,12 @@ void inventory::AddItem(item* item)
             //빈자리입니까?
             if (!_inven[i].itemExist)
             {
+                if (item == _null) continue;
                 _vInven[i] = item;
-                _inven[i].amount = 1;
+                
                 _inven[i].itemExist = true;
+               
+                _inven[i].amount = 1;
                 break;
             }
             //임자있네요
