@@ -110,6 +110,12 @@
       <UniqueIdentifier>{cf41ccd9-2877-4d15-9825-4769a35641ef}</UniqueIdentifier>
     </Filter>
     <Filter Include="playGround\Object\object" />
+    <Filter Include="playGround\Inventory">
+      <UniqueIdentifier>{e5fcde7e-b654-4007-bf8a-036c93e87401}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGround\Entity">
+      <UniqueIdentifier>{7dd8f635-9d24-45fb-85d4-875859a2ffd6}</UniqueIdentifier>
+    </Filter>
     <Filter Include="playGround\Item">
       <UniqueIdentifier>{947e6709-ecd6-43ac-8508-cb125a78d8a4}</UniqueIdentifier>
     </Filter>
@@ -121,12 +127,6 @@
     </Filter>
     <Filter Include="playGround\Item\itemClass">
       <UniqueIdentifier>{88492d57-1a12-4dfd-8969-43ebf572615b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="playGround\Inventory">
-      <UniqueIdentifier>{e5fcde7e-b654-4007-bf8a-036c93e87401}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="playGround\Entity">
-      <UniqueIdentifier>{7dd8f635-9d24-45fb-85d4-875859a2ffd6}</UniqueIdentifier>
     </Filter>
     <Filter Include="playGround\Item\itemClass\TOOL">
       <UniqueIdentifier>{9c7a76c3-f430-47ff-b0b6-005a42e56c61}</UniqueIdentifier>
@@ -472,6 +472,9 @@
     <ClInclude Include="itemRod.h">
       <Filter>playGround\Item\itemClass\TOOL</Filter>
     </ClInclude>
+    <ClInclude Include="homeMap.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WindowsAPI.cpp">
@@ -779,6 +782,9 @@
     </ClCompile>
     <ClCompile Include="itemRod.cpp">
       <Filter>playGround\Item\itemClass\TOOL</Filter>
+    </ClCompile>
+    <ClCompile Include="homeMap.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

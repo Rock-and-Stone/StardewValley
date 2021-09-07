@@ -51,6 +51,15 @@
 
 class button;
 
+enum CraftItem 
+{
+	craftBox,
+	craftFurnance,
+	craftCrow1,
+	craftCrow2,
+};
+
+
 enum MenuPage
 {
 	InvenPage,
@@ -72,8 +81,6 @@ class inventory : public gameNode
 private:
 	vector<item*>				_vInven;
 	vector<item*>::iterator		_viInven;
-
-
 
 	//아이템 정보들
 #pragma region itemnew
@@ -116,9 +123,7 @@ private:
 
 	itemNull* _null;
 #pragma endregion
-
-	//itemManager* _itemManager;
-
+	CRAFTITEMS _craft;
 	MenuPage _menuPage;
 
 	tagInventory _inven[INVENTORYSIZE];
@@ -144,6 +149,9 @@ private:
 	image* _exitImg;
 	image* _itemInfoImg;
 	image* _BOXImg;
+	
+	//제작용
+	image* _craftObjImg[4];
 
 	//메뉴바꾸는 버튼스?
 	RECT	_storageRc;
@@ -153,6 +161,7 @@ private:
 	RECT	_exitRc;
 	RECT	_BOXRc;
 
+	RECT	_craftObjRc[4];
 	//메뉴가 열렷는지
 	BOOL _isMenuOpen;
 
@@ -175,6 +184,10 @@ private:
 	button* _buttonToMenu;
 	button* _buttonExit;
 	
+	BOOL	_canBox;
+	BOOL	_canFur;
+	BOOL	_canCrow1;
+	BOOL	_canCrow2;
 
 
 
@@ -195,7 +208,7 @@ public:
 	void MenuStatOpen();
 	void MenuCraftOpen();
 	void MenuSettingOpen();
-	void MenuExitOpen();
+
 
 	//NULL값 있는 벡터는 지우고 값넣는 
 	void AddItem(item* item);
