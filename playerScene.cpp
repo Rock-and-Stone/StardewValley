@@ -16,9 +16,6 @@ HRESULT playerScene::init()
 	_cameraManager = new CameraManager;
 	_cameraManager->init(TILESIZEX,TILESIZEY);
 
-	_inventory = new inventory;
-	_inventory->init();
-
 	_player->setMapAddressLink(_homeMap);
 	_homeMap->setCameraLink(_cameraManager);
 	_npcManager->setCameraAddressLink(_cameraManager);
@@ -35,7 +32,6 @@ void playerScene::update()
 	_cameraManager->update(_player->getX(), _player->getY());
 	_player->update();
 	_homeMap->update();
-	_inventory->update();
 	RENDERMANAGER->update();
 }
 
@@ -55,7 +51,6 @@ void playerScene::render()
 
 	RENDERMANAGER->render(getMemDC());
 
-	_inventory->render();
 	char str[25];
 	sprintf_s(str, "%d", _player->getRenderPosY());
 	TextOut(getMemDC(), 300, 200, str, strlen(str));

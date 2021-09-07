@@ -51,8 +51,12 @@ void loadingScene::update()
 	if (_currentCount == LOADINGMAX)
 	{
 		//이동할 씬 으로 변경
-		SCENEMANAGER->changeScene("playerScene");
+		//SCENEMANAGER->changeScene("playerScene");
 		//SCENEMANAGER->changeScene("mainMenuScene");
+
+		SCENEMANAGER->changeScene("inventory");
+	
+
 		//SCENEMANAGER->changeScene("inventory");
 		//SCENEMANAGER->changeScene("enemyTestScene");
 		//SCENEMANAGER->changeScene("map");

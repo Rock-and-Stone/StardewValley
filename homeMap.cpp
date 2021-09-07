@@ -61,7 +61,6 @@ void homeMap::load()
 
 	for (int i = 0; i < TILEX * TILEY; ++i)
 	{
-		
 		if (_tiles[i].terrain == TR_WATER) _attribute[i] |= ATTR_UNMOVE;
 		if (_tiles[i].obj == OBJ_WALL) _attribute[i] |= ATTR_UNMOVE;
 		if (_tiles[i].obj == OBJ_POND) _attribute[i] |= ATTR_UNMOVE;

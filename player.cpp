@@ -45,6 +45,8 @@ void player::release()
 void player::update()
 {
 	
+	
+
 	if (KEYMANAGER->isStayKeyDown('W'))
 	{
 		_upWalk->update();
@@ -68,12 +70,6 @@ void player::update()
 		_rightWalk->update();
 		move();
 	}
-	//////////////////////////////////////////////
-
-	if (KEYMANAGER->isOnceKeyUp('A'))  _frameX = 0;
-	if (KEYMANAGER->isOnceKeyUp('D'))  _frameX = 0;
-	if (KEYMANAGER->isOnceKeyUp('W'))  _frameX = 0;
-	if (KEYMANAGER->isOnceKeyUp('S'))  _frameX = 0;
 
 	_rc = RectMakeCenter(_x + 32, _y + 32, TILEWIDTH, TILEHEIGHT);
 
@@ -134,6 +130,7 @@ void player::move()
 
 		rcCollision = RectMakeCenter(_x, _y, TILESIZE, TILESIZE);
 		break;
+
 	}
 
 
