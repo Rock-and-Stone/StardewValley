@@ -4,7 +4,7 @@
 HRESULT itemTuna::init()
 {
 	_item.items = TUNA;
-	_item.itemImg = IMAGEMANAGER->findImage("playerTool");
+	_item.itemImg = IMAGEMANAGER->findImage("springObjects");
 	_item.frameX = 19;
 	_item.frameY = 5;
 	_item.itemName = "ÂüÄ¡"; 

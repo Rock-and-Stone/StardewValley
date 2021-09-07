@@ -4,7 +4,7 @@
 HRESULT itemPotato::init()
 {
 	_item.items = POTATO;
-	_item.itemImg = IMAGEMANAGER->findImage("playerTool");
+	_item.itemImg = IMAGEMANAGER->findImage("crops");
 	_item.frameX = 5;
 	_item.frameY = 1;
 	_item.itemName = "대홍단 감자";

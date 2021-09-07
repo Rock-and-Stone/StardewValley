@@ -45,8 +45,11 @@ enum ALLOBJECTS
 	IRON,			//√∂			10G
 	GOLD,			//∞ÒµÂ		25G
 
-	//NONE;
-	NONE
+	//¡¶¿€
+	BOX,
+	FURNACE,
+	SCARECROW1,
+	SCARECROW2,
 };
 
 class object : public gameNode

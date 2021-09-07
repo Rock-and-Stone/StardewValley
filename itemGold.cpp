@@ -5,10 +5,10 @@ HRESULT itemGold::init()
 {
 	_item.items = GOLD;
 	_item.itemImg = IMAGEMANAGER->findImage("ores");
-	_item.frameX = 13;
+	_item.frameX = 12;
 	_item.frameY = 4;
-	_item.itemName = "금 비싸다....";
-	_item.itemInfo = "나무를 자를수 있음";
+	_item.itemName = "금";
+	_item.itemInfo = "금..비싸다..";
 	_item.buyPrice = 300;
 	_item.sellPrice = 150;
 	_item.damage = 0;

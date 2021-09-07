@@ -114,7 +114,7 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
 		
 
 		//모든 오브젝트
-		IMAGEMANAGER->addFrameImage("springObjects", "source/Images/springbojects.bmp", 384, 544, 24, 34, true, MAGENTA);
+		IMAGEMANAGER->addFrameImage("springObjects", "source/Images/springobjects2.bmp", 960, 1360, 24, 34, true, MAGENTA);
 		////도구 인벤토리
 		IMAGEMANAGER->addFrameImage("playerTool",	"source/Images/playerInventory/playerTool.bmp", 280, 40, 7, 1, true, MAGENTA); // 플레이어 도구
 		//씨앗 아이템
@@ -127,18 +127,22 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
 		IMAGEMANAGER->addFrameImage("cropsSmall",	"source/Images/BMP/열매small(ori).bmp", 256, 48, 16, 3, true, MAGENTA);
 
 		//광물 
-		IMAGEMANAGER->addFrameImage("ores", "source/Images/BMP/광물아이템.bmp", 640, 200, 16, 5, true, MAGENTA);
+		IMAGEMANAGER->addFrameImage("ores",			"source/Images/BMP/oreItem.bmp", 640, 200, 16, 5, true, MAGENTA);
 
 
-		//오브젝트(크래프팅)아이템
-		IMAGEMANAGER->addFrameImage("craftItem", "source/Images/inventory/craftItem2.bmp", 160, 40, 4, 1, true, MAGENTA);
-		//오브젝트(크래프팅)
-		IMAGEMANAGER->addFrameImage("craftObject", "source/Images/inventory/craftObject2.bmp", 160, 80, 4, 1, true, MAGENTA);
-		//오브젝트(크래프팅)알파
+		//오브젝트아이템
+		IMAGEMANAGER->addFrameImage("craftItems",	 "source/Images/inventory/craftItem3.bmp", 160, 40, 4, 1, true, MAGENTA);
+
+		//오브젝트
+		IMAGEMANAGER->addFrameImage("craftObject",	 "source/Images/inventory/craftObject2.bmp", 160, 80, 4, 1, true, MAGENTA);
+		//오브젝트알파
 		IMAGEMANAGER->addFrameImage("craftObjectAlpha", "source/Images/inventory/craftObjectAlpha2.bmp", 160, 80, 4, 1, true, MAGENTA);
 
+		//배치용 오브젝트
+		IMAGEMANAGER->addFrameImage("craftObjectSmall", "source/Images/inventory/craftObjectSmall1.bmp", 176, 32, 11, 1, true, MAGENTA);
+
 		
-		
+			
 		//==================몬스터 부분 파일 추가 본=====================
 		//이미지
 		IMAGEMANAGER->addFrameImage("RockStone", "source/Images/monster/RockStone.bmp", 52, 60, 4, 4, true, MAGENTA);

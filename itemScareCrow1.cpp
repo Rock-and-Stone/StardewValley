@@ -4,8 +4,8 @@
 HRESULT itemScareCrow1::init()
 {
 	_item.craftItems = SCARECROW1;
-	_item.itemImg = IMAGEMANAGER->findImage("craftItem");
-	_item.frameX = 0;
+	_item.itemImg = IMAGEMANAGER->findImage("craftItems");
+	_item.frameX = 2;
 	_item.frameY = 0;
 	_item.itemName = "허수아비";
 	_item.itemInfo = "허수아비를 설치해서 새들을 겁주세요!";
@@ -31,4 +31,5 @@ void itemScareCrow1::update()
 
 void itemScareCrow1::render(int x, int y)
 {
+	item::render(x, y);
 }

@@ -4,9 +4,9 @@
 HRESULT itemPufferFish::init()
 {
 	_item.items = PUFFERFISH;
-	_item.itemImg = IMAGEMANAGER->findImage("playerTool");
+	_item.itemImg = IMAGEMANAGER->findImage("springObjects");
 	_item.frameX = 8;
-	_item.frameY = 4;
+	_item.frameY = 5;
 	_item.itemName = "뽂어";
 	_item.itemInfo = "생으로 먹으면 치명적인 독으로 사망할 수 있다. 반드시 전문가에 팔도록....";
 	_item.buyPrice = 0;

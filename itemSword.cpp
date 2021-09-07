@@ -4,7 +4,7 @@
 HRESULT itemSword::init()
 {
 	_item.items = SWORD;
-	_item.itemImg = IMAGEMANAGER->findImage("playerTool");
+	_item.itemImg = IMAGEMANAGER->findImage("springObjects");
 	_item.frameX = 13;
 	_item.frameY = 4;
 	_item.itemName = "°Ë";

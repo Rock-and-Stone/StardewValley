@@ -4,7 +4,7 @@
 HRESULT itemCauliSeed::init()
 {
 	_item.items = CAULIFLOWERSEED;
-	_item.itemImg = IMAGEMANAGER->findImage("playerTool");
+	_item.itemImg = IMAGEMANAGER->findImage("seedItem");
 	_item.frameX = 2;
 	_item.frameY = 0;
 	_item.itemName = "ÄÝ¸®ÇÃ¶ó¿ö ¾¾¾Ñ";

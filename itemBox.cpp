@@ -5,7 +5,7 @@
 HRESULT itemBox::init()
 {
 	_item.craftItems = BOX;
-	_item.itemImg = IMAGEMANAGER->findImage("craftItem");
+	_item.itemImg = IMAGEMANAGER->findImage("craftItems");
 	_item.frameX = 0;
 	_item.frameY = 0;
 	_item.itemName = "»óÀÚ";
@@ -33,4 +33,5 @@ void itemBox::update()
 
 void itemBox::render(int x, int y)
 {
+	item::render(x, y);
 }

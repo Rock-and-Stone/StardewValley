@@ -4,7 +4,7 @@
 HRESULT itemPotatoSeed::init()
 {
 	_item.items = POTATOSEED;
-	_item.itemImg = IMAGEMANAGER->findImage("playerTool");
+	_item.itemImg = IMAGEMANAGER->findImage("seedItem");
 	_item.frameX = 4;
 	_item.frameY = 2;
 	_item.itemName = "°¨ÀÚ¾¾¾Ñ";

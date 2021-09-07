@@ -4,7 +4,7 @@
 HRESULT itemHaliBut::init()
 {
 	_item.items = HALIBUT;
-	_item.itemImg = IMAGEMANAGER->findImage("playerTool");
+	_item.itemImg = IMAGEMANAGER->findImage("springObjects");
 	_item.frameX = 23;
 	_item.frameY = 5;
 	_item.itemName = "±¤¾î";

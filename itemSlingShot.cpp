@@ -4,11 +4,11 @@
 HRESULT itemSlingShot::init()
 {
 	_item.items = SLINGSHOT;
-	_item.itemImg = IMAGEMANAGER->findImage("playerTool");
+	_item.itemImg = IMAGEMANAGER->findImage("springObjects");
 	_item.frameX = 1;
 	_item.frameY = 7;
 	_item.itemName = "새총";
-	_item.itemInfo = "비싸지만 강한....새총";
+	_item.itemInfo = "비싸지만 강하다..";
 	_item.buyPrice = 1500;
 	_item.sellPrice = 750;
 	_item.damage = 40;

@@ -4,7 +4,7 @@
 HRESULT itemParsnipSeed::init()
 {
 	_item.items = PARSNIPSEED;
-	_item.itemImg = IMAGEMANAGER->findImage("playerTool");
+	_item.itemImg = IMAGEMANAGER->findImage("seedItem");
 	_item.frameX = 0;
 	_item.frameY = 0;
 	_item.itemName = "ÆÄ½º´Õ¾¾¾Ñ";

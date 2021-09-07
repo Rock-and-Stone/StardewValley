@@ -4,7 +4,7 @@
 HRESULT itemKaleSeed::init()
 {
 	_item.items =  KALESEED;
-	_item.itemImg = IMAGEMANAGER->findImage("playerTool");
+	_item.itemImg = IMAGEMANAGER->findImage("seedItem");
 	_item.frameX = 5;
 	_item.frameY = 0;
 	_item.itemName = "диюо ╬╬╬я";

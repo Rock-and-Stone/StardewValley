@@ -30,4 +30,5 @@ void itemWood::update()
 
 void itemWood::render(int x, int y)
 {
+	item::render(x, y);
 }

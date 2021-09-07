@@ -5,7 +5,7 @@ HRESULT itemStone::init()
 {
 	_item.items = STONE;
 	_item.itemImg = IMAGEMANAGER->findImage("ores");
-	_item.frameX = 3;
+	_item.frameX = 2;
 	_item.frameY = 0;
 	_item.itemName = "µ¹";
 	_item.itemInfo = "±×Àú ¶¥¹Ù´Ú¿¡ ±¼·¯´Ù´Ï´Â µ¹... ";
@@ -30,4 +30,5 @@ void itemStone::update()
 
 void itemStone::render(int x, int y)
 {
+	item::render(x, y);
 }

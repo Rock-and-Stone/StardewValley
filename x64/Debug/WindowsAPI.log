@@ -1,22 +1,27 @@
 ﻿  inventory.cpp
 S:\TeamPotopolio\Battlefield4\button.h(73,28): warning C4244: 'return': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
 S:\TeamPotopolio\Battlefield4\button.h(74,32): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-S:\TeamPotopolio\Battlefield4\inventory.cpp(241,58): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-S:\TeamPotopolio\Battlefield4\inventory.cpp(245,58): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-S:\TeamPotopolio\Battlefield4\inventory.cpp(261,93): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-S:\TeamPotopolio\Battlefield4\inventory.cpp(276,108): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-S:\TeamPotopolio\Battlefield4\inventory.cpp(285,95): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-S:\TeamPotopolio\Battlefield4\inventory.cpp(297,96): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-S:\TeamPotopolio\Battlefield4\inventory.cpp(306,100): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-S:\TeamPotopolio\Battlefield4\inventory.cpp(308,100): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-S:\TeamPotopolio\Battlefield4\inventory.cpp(313,100): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-S:\TeamPotopolio\Battlefield4\inventory.cpp(359,98): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-S:\TeamPotopolio\Battlefield4\inventory.cpp(406,104): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-S:\TeamPotopolio\Battlefield4\inventory.cpp(412,55): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-S:\TeamPotopolio\Battlefield4\inventory.cpp(228,11): warning C4101: 'oldFont' :참조되지 않은 지역 변수입니다.
-S:\TeamPotopolio\Battlefield4\inventory.cpp(228,20): warning C4101: 'font1' :참조되지 않은 지역 변수입니다.
-S:\TeamPotopolio\Battlefield4\inventory.cpp(459,62): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-S:\TeamPotopolio\Battlefield4\inventory.cpp(534,54): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-S:\TeamPotopolio\Battlefield4\inventory.cpp(595,68): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-S:\TeamPotopolio\Battlefield4\inventory.cpp(595,50): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+S:\TeamPotopolio\Battlefield4\inventory.cpp(237,51): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+S:\TeamPotopolio\Battlefield4\inventory.cpp(239,51): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+S:\TeamPotopolio\Battlefield4\inventory.cpp(242,51): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+S:\TeamPotopolio\Battlefield4\inventory.cpp(249,58): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+S:\TeamPotopolio\Battlefield4\inventory.cpp(253,58): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+S:\TeamPotopolio\Battlefield4\inventory.cpp(269,93): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+S:\TeamPotopolio\Battlefield4\inventory.cpp(284,108): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+S:\TeamPotopolio\Battlefield4\inventory.cpp(293,95): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+S:\TeamPotopolio\Battlefield4\inventory.cpp(308,95): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+S:\TeamPotopolio\Battlefield4\inventory.cpp(317,99): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+S:\TeamPotopolio\Battlefield4\inventory.cpp(319,99): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+S:\TeamPotopolio\Battlefield4\inventory.cpp(324,99): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+S:\TeamPotopolio\Battlefield4\inventory.cpp(373,86): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+S:\TeamPotopolio\Battlefield4\inventory.cpp(381,104): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+S:\TeamPotopolio\Battlefield4\inventory.cpp(389,95): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+S:\TeamPotopolio\Battlefield4\inventory.cpp(427,104): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+S:\TeamPotopolio\Battlefield4\inventory.cpp(433,55): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+S:\TeamPotopolio\Battlefield4\inventory.cpp(229,11): warning C4101: 'oldFont' :참조되지 않은 지역 변수입니다.
+S:\TeamPotopolio\Battlefield4\inventory.cpp(229,20): warning C4101: 'font1' :참조되지 않은 지역 변수입니다.
+S:\TeamPotopolio\Battlefield4\inventory.cpp(480,62): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+S:\TeamPotopolio\Battlefield4\inventory.cpp(555,54): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+S:\TeamPotopolio\Battlefield4\inventory.cpp(619,68): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+S:\TeamPotopolio\Battlefield4\inventory.cpp(619,50): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   WindowsAPI.vcxproj -> S:\TeamPotopolio\Battlefield4\x64\Debug\WindowsAPI.exe

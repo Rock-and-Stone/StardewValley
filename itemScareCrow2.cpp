@@ -4,7 +4,7 @@
 HRESULT itemScareCrow2::init()
 {
 	_item.craftItems = SCARECROW2;
-	_item.itemImg = IMAGEMANAGER->findImage("craftItem");
+	_item.itemImg = IMAGEMANAGER->findImage("craftItems");
 	_item.frameX = 3;
 	_item.frameY = 0;
 	_item.itemName = "냥수아비";
@@ -31,4 +31,5 @@ void itemScareCrow2::update()
 
 void itemScareCrow2::render(int x, int y)
 {
+	item::render(x, y);
 }

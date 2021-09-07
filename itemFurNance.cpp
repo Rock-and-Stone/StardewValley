@@ -5,7 +5,7 @@ HRESULT itemFurNance::init()
 {
 
 	_item.craftItems = FURNACE;
-	_item.itemImg = IMAGEMANAGER->findImage("craftItem");
+	_item.itemImg = IMAGEMANAGER->findImage("craftItems");
 	_item.frameX = 1;
 	_item.frameY = 0;
 	_item.itemName = "¿ë±¤·Î";
@@ -32,4 +32,5 @@ void itemFurNance::update()
 
 void itemFurNance::render(int x, int y)
 {
+	item::render(x, y);
 }

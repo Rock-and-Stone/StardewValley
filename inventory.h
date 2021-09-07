@@ -85,43 +85,43 @@ private:
 	//아이템 정보들
 #pragma region itemnew
 
-	itemStone* _stone;
-	itemWood* _wood;
+	itemStone*			_stone;
+	itemWood*			_wood;
 
-	itemBox* _box;
-	itemFurNance* _furnance;
-	itemScareCrow1* _scareCrow1;
-	itemScareCrow2* _scareCrow2;
+	itemBox*			_box;
+	itemFurNance*		_furnance;
+	itemScareCrow1*		_scareCrow1;
+	itemScareCrow2*		_scareCrow2;
 
-	itemCauliFlower* _cauliFlower;
-	itemKale* _kale;
-	itemParsnip* _parsnip;
-	itemPotato* _potato;
+	itemCauliFlower*	_cauliFlower;
+	itemKale*			_kale;
+	itemParsnip*		_parsnip;
+	itemPotato*			_potato;
 
-	itemHaliBut* _halibut;
-	itemPufferFish* _pufferFish;
-	itemTuna* _tuna;
+	itemHaliBut*		_halibut;
+	itemPufferFish*		_pufferFish;
+	itemTuna*			_tuna;
 
-	itemCopper* _copper;
-	itemGold* _gold;
-	itemIron* _iron;
+	itemCopper*			_copper;
+	itemGold*			_gold;
+	itemIron*			_iron;
 
-	itemCauliSeed* _cauliSeed;
-	itemKaleSeed* _kaleSeed;
-	itemParsnipSeed* _parsnipSeed;
-	itemPotatoSeed* _potatoSeed;
+	itemCauliSeed*		_cauliSeed;
+	itemKaleSeed*		_kaleSeed;
+	itemParsnipSeed*	_parsnipSeed;
+	itemPotatoSeed*		_potatoSeed;
 
-	itemAxe* _axe;
-	itemPickAxe* _pickAxe;
-	itemCan* _can;
-	itemHoe* _hoe;
-	itemRod* _rod;
-	itemSickle* _sickle;
+	itemAxe*			_axe;
+	itemPickAxe*		_pickAxe;
+	itemCan*			_can;
+	itemHoe*			_hoe;
+	itemRod*			_rod;
+	itemSickle*			_sickle;
 
-	itemSlingShot* _slingShot;
-	itemSword* _sword;
+	itemSlingShot*		_slingShot;
+	itemSword*			_sword;
 
-	itemNull* _null;
+	itemNull*			_null;
 #pragma endregion
 	CRAFTITEMS _craft;
 	MenuPage _menuPage;
@@ -177,6 +177,8 @@ private:
 	int _quickSlotMax;
 
 	int _nowQuickItem;
+
+	int temp;
 
 	BOOL	_invenIsFull;
 
