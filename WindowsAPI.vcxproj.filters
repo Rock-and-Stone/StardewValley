@@ -88,6 +88,9 @@
     <Filter Include="playGround\Object\objectClass">
       <UniqueIdentifier>{38b8a5a6-79eb-4e53-8eff-0e7931ad99d1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="playGround\Object\objectClass\Weapon">
+      <UniqueIdentifier>{2f0b67ee-8639-497c-af29-bc6343ba7b01}</UniqueIdentifier>
+    </Filter>
     <Filter Include="playGround\Object\objectClass\Crop">
       <UniqueIdentifier>{130982d6-cb19-43ee-82f0-ee7d04144531}</UniqueIdentifier>
     </Filter>
@@ -151,9 +154,6 @@
     </Filter>
     <Filter Include="playGround\Object\objectClass\ToolNoUse">
       <UniqueIdentifier>{80518842-e02e-45d7-b271-c2750c3aba36}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="playGround\Object\objectClass\ToolNoUse\Weapon">
-      <UniqueIdentifier>{2f0b67ee-8639-497c-af29-bc6343ba7b01}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -320,10 +320,10 @@
       <Filter>playGround\Object\objectClass\Ore</Filter>
     </ClInclude>
     <ClInclude Include="slingShot.h">
-      <Filter>playGround\Object\objectClass\ToolNoUse\Weapon</Filter>
+      <Filter>playGround\Object\objectClass\Weapon</Filter>
     </ClInclude>
     <ClInclude Include="sword.h">
-      <Filter>playGround\Object\objectClass\ToolNoUse\Weapon</Filter>
+      <Filter>playGround\Object\objectClass\Weapon</Filter>
     </ClInclude>
     <ClInclude Include="haliBut.h">
       <Filter>playGround\Object\objectClass\Fish</Filter>
@@ -476,7 +476,6 @@
       <Filter>playGround\Item\itemClass\TOOL</Filter>
     </ClInclude>
     <ClInclude Include="homeMap.h">
-      <Filter>playGround\Maptool</Filter>
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Box.h">
@@ -486,10 +485,7 @@
       <Filter>playGround\Object\objectClass\BASIC_RESOURCE</Filter>
     </ClInclude>
     <ClInclude Include="stone.h">
-    </ClInclude>
       <Filter>playGround\Object\objectClass\BASIC_RESOURCE</Filter>
-    <ClInclude Include="Fishing.h">
-      <Filter>playGround\Enemy</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -611,10 +607,10 @@
       <Filter>playGround\Object\objectClass\ToolNoUse</Filter>
     </ClCompile>
     <ClCompile Include="sword.cpp">
-      <Filter>playGround\Object\objectClass\ToolNoUse\Weapon</Filter>
+      <Filter>playGround\Object\objectClass\Weapon</Filter>
     </ClCompile>
     <ClCompile Include="slingShot.cpp">
-      <Filter>playGround\Object\objectClass\ToolNoUse\Weapon</Filter>
+      <Filter>playGround\Object\objectClass\Weapon</Filter>
     </ClCompile>
     <ClCompile Include="cauliFlower.cpp">
       <Filter>playGround\Object\objectClass\Crop</Filter>
@@ -799,9 +795,7 @@
     <ClCompile Include="itemRod.cpp">
       <Filter>playGround\Item\itemClass\TOOL</Filter>
     </ClCompile>
-
     <ClCompile Include="homeMap.cpp">
-      <Filter>playGround\Maptool</Filter>
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Box.cpp">
@@ -812,9 +806,6 @@
     </ClCompile>
     <ClCompile Include="wood.cpp">
       <Filter>playGround\Object\objectClass\BASIC_RESOURCE</Filter>
-    </ClCompile>
-    <ClCompile Include="Fishing.cpp">
-      <Filter>playGround\Enemy</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
