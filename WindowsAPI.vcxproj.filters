@@ -379,6 +379,9 @@
     <ClInclude Include="npcManager.h">
       <Filter>playGround\Npc\NpcManager</Filter>
     </ClInclude>
+    <ClInclude Include="Fishing.h">
+      <Filter>playGround\Enemy</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WindowsAPI.cpp">
@@ -617,6 +620,9 @@
     </ClCompile>
     <ClCompile Include="npcManager.cpp">
       <Filter>playGround\Npc\NpcManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Fishing.cpp">
+      <Filter>playGround\Enemy</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
