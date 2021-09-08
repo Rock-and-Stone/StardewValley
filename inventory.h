@@ -67,6 +67,16 @@ enum MenuPage
 	SettingPage,
 	ExitPage,
 };
+enum PLAYERTOOL
+{
+	PLAYERTOOL_AXE,
+	PLAYERTOOL_CAN,
+	PLAYERTOOL_HOE,
+	PLAYERTOOL_PICKAXE,
+	PLAYERTOOL_ROD,
+	PLAYERTOOL_SICKLE,
+	PLAYERTOOL_SWORD
+};
 
 struct tagInventory
 {
@@ -193,6 +203,7 @@ private:
 	BOOL	_canCrow2;
 
 
+	PLAYERTOOL _playerTool;
 
 
 public:
@@ -219,6 +230,8 @@ public:
 
 	static void Button(void* obj);
 
+	void checkPlayerTool();
+
 	//======================= 접근자 & 설정자 ======================= //
 	vector<item*> GetvInven() { return _vInven; }
 	vector<item*>::iterator GetviInven() { return _viInven; }
@@ -236,6 +249,7 @@ public:
 	int GetQuickItemType() { return _nowQuickItem; }
 	void SetQuickItemType(int now) { _nowQuickItem = now; }
 	
+	PLAYERTOOL getPlayerTool() { return _playerTool; }
 
 	//======================= ============== ======================= //
 

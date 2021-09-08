@@ -476,6 +476,7 @@
       <Filter>playGround\Item\itemClass\TOOL</Filter>
     </ClInclude>
     <ClInclude Include="homeMap.h">
+      <Filter>playGround\Maptool</Filter>
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Box.h">
@@ -795,7 +796,9 @@
     <ClCompile Include="itemRod.cpp">
       <Filter>playGround\Item\itemClass\TOOL</Filter>
     </ClCompile>
+
     <ClCompile Include="homeMap.cpp">
+      <Filter>playGround\Maptool</Filter>
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Box.cpp">

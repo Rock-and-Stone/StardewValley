@@ -86,3 +86,109 @@ public:
 	virtual void render(HDC hdc) override;
 	virtual void setPlayer(player* player) override { _player = player; }
 };
+
+class playerSword : public playerState
+{
+private:
+	player* _player;
+	int _frameX, _frameY, _count;
+public:
+	playerSword();
+	~playerSword();
+	virtual HRESULT init() override;
+	virtual void release()override;
+	virtual void update() override;
+	virtual void render(HDC hdc) override;
+	virtual void setPlayer(player* player) override { _player = player; }
+};
+
+class playerHoe : public playerState
+{
+private:
+	player* _player;
+	int _frameX, _frameY, _count;
+public:
+	playerHoe();
+	~playerHoe();
+	virtual HRESULT init() override;
+	virtual void release()override;
+	virtual void update() override;
+	virtual void render(HDC hdc) override;
+	virtual void setPlayer(player* player) override { _player = player; }
+};
+
+class playerAxe : public playerState
+{
+private:
+	player* _player;
+	int _frameX, _frameY, _count;
+public:
+	playerAxe();
+	~playerAxe();
+	virtual HRESULT init() override;
+	virtual void release()override;
+	virtual void update() override;
+	virtual void render(HDC hdc) override;
+	virtual void setPlayer(player* player) override { _player = player; }
+};
+
+class playerCan : public playerState
+{
+private:
+	player* _player;
+	int _frameX, _frameY, _count;
+public:
+	playerCan();
+	~playerCan();
+	virtual HRESULT init() override;
+	virtual void release()override;
+	virtual void update() override;
+	virtual void render(HDC hdc) override;
+	virtual void setPlayer(player* player) override { _player = player; }
+
+};
+
+class playerPickAxe : public playerState
+{
+private:
+	player* _player;
+	int _frameX, _frameY, _count;
+public:
+	playerPickAxe();
+	~playerPickAxe();
+	virtual HRESULT init() override;
+	virtual void release()override;
+	virtual void update() override;
+	virtual void render(HDC hdc) override;
+	virtual void setPlayer(player* player) override { _player = player; }
+};
+
+class playerRod : public playerState
+{
+private:
+	player* _player;
+	int _frameX, _frameY, _count;
+public:
+	playerRod();
+	~playerRod();
+	virtual HRESULT init() override;
+	virtual void release()override;
+	virtual void update() override;
+	virtual void render(HDC hdc) override;
+	virtual void setPlayer(player* player) override { _player = player; }
+};
+
+class playerSickle : public playerState
+{
+private:
+	player* _player;
+	int _frameX, _frameY, _count;
+public:
+	playerSickle();
+	~playerSickle();
+	virtual HRESULT init() override;
+	virtual void release()override;
+	virtual void update() override;
+	virtual void render(HDC hdc) override;
+	virtual void setPlayer(player* player) override { _player = player; }
+};

@@ -212,8 +212,7 @@ void inventory::update()
     else if (!_isMenuOpen)
     {
        QuickSlot();
-
-
+       checkPlayerTool();
     }
    
 }
@@ -428,6 +427,7 @@ void inventory::render()
         for (int i = _quickSlotMin; i < _quickSlotMax; i++) 
         {
             _vInven[i]->render(_quick[i % 12].rc.left, _quick[i % 12].rc.top);
+
             _BOXImg->render(getMemDC(), _BOXRc.left, _BOXRc.top);
 
             if (_inven[i].amount != 1 && _inven[i].amount != 0)
@@ -942,3 +942,30 @@ void inventory::Button(void* obj)
     if (invento->_buttonToMenu->getBtnDir() == BUTTONDIRECTION_UP) SCENEMANAGER->changeScene("mainMenuScene");
 }
 
+void inventory::checkPlayerTool()
+{
+    switch (_vInven[_nowQuickItem]->GetItemInfo().items)
+    {
+    case AXE:
+        _playerTool = PLAYERTOOL_AXE;
+        break;
+    case PICKAXE:
+        _playerTool = PLAYERTOOL_PICKAXE;
+        break;
+    case HOE:
+        _playerTool = PLAYERTOOL_HOE;
+        break;
+    case SICKLE:
+        _playerTool = PLAYERTOOL_SICKLE;
+        break;
+    case CAN:
+        _playerTool = PLAYERTOOL_CAN;
+        break;
+    case ROD:
+        _playerTool = PLAYERTOOL_ROD;
+        break;
+    case SWORD:
+        _playerTool = PLAYERTOOL_SWORD;
+        break;
+    }
+}
