@@ -1,6 +1,7 @@
 #pragma once
 #include "gameNode.h"
 #include <vector>
+#include "inventory.h"
 
 #include "axe.h"
 #include "pickAxe.h"
@@ -30,6 +31,7 @@
 #include "iron.h"
 #include "gold.h"
 
+#include "wood.h"
 
 class objectManager : public gameNode
 {
@@ -39,6 +41,8 @@ private:
 
 private:
 	//도구
+	inventory* _inven;
+	
 	axe*				_axe;
 	pickAxe*			_pickAxe;
 	hoe*				_hoe;
@@ -71,7 +75,7 @@ private:
 	iron*				_iron;
 	gold*				_gold;
 
-	
+	wood*				_wood;
 
 
 	int _objectNum;
@@ -87,7 +91,7 @@ public:
 	virtual void update();
 	virtual void render();
 
-
+	void SetWood(float x, float y, int amount);
 	//무	기
 	void SetSword(float x, float y, int amount);
 	void SetSlingShot(float x, float y, int amount);

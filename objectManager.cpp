@@ -26,6 +26,17 @@ void objectManager::render()
 {
 }
 
+void objectManager::SetWood(float x, float y, int amount)
+{
+    for (int i = 0; i < amount; i++)
+    {
+         object* Wood;
+         Wood = new wood;
+         Wood->init(OBJ_WOOD, "springObjects", 6, 12, PointMake(100, 100));
+         _vObject.push_back(Wood);
+    }
+}
+
 void objectManager::SetSword(float x, float y, int amount)
 {
     //for (int i = 0; i < amount; i++)

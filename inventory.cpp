@@ -710,8 +710,15 @@ void inventory::MenuCraftOpen()
                         }
                         else //작다면 집은 아이템을 대상위치에 넣기
                         {
+                            if (_upPtItem != _downPtItem)
+                            {
                             _inven[_upPtItem].amount += _inven[_downPtItem].amount;
                             _inven[_downPtItem].amount = 0;
+                            }
+                            else
+                            {
+                                continue;
+                            }
                         }  
                 
                     }
