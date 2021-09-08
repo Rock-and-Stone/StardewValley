@@ -3,7 +3,7 @@
 
 HRESULT Box::init()
 {
-	_obj = BOX;
+	_obj = OBJ_BOX;
 	//_objectImg = IMAGEMANAGER->findImage("")
 	return S_OK;
 }

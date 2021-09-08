@@ -92,7 +92,9 @@ HRESULT inventory::init()
     
     for (int i = 0; i < 4; i++) 
     {
-        _craftObjImg[i] = IMAGEMANAGER->findImage("craftObject");    
+        _craftObjImg[i] = IMAGEMANAGER->findImage("craftObject");  
+        _alphaObjImg[i] = IMAGEMANAGER->findImage("craftObjectAlpha");
+
     }
   
     _quickSlotMin = 0;
@@ -124,8 +126,7 @@ HRESULT inventory::init()
     
     //버튼용 RC 초기화
     _storageRc = RectMake(_menuRc.left + 46, _menuRc.top, 53, 60);
-    _statRc = RectMake(_storageRc.right + 5, _storageRc.top, 53, 60);
-    _craftRc = RectMake(_statRc.right + 5, _statRc.top, 53, 60);
+    _craftRc = RectMake(_storageRc.right + 5, _storageRc.top, 53, 60);
     _settingRc = RectMake(_craftRc.right + 5, _craftRc.top, 53, 60);
     _exitRc = RectMake(_settingRc.right + 5, _settingRc.top, 53, 60);
     _BOXRc = RectMake((_quickSlotRc.left + 15), (_quickSlotRc.top + 13), _BOXImg->getWidth(), _BOXImg->getHeight());
@@ -190,10 +191,7 @@ void inventory::update()
         switch (_menuPage)
         {
         case InvenPage:
-            MenuInvetoryOpen();
-          
-            break;
-        case StatPage:
+            MenuInvetoryOpen();       
             break;
         case CraftPage:
             MenuCraftOpen();
@@ -232,9 +230,9 @@ void inventory::render()
         PROOF_QUALITY, DEFAULT_PITCH | FF_SWISS, TEXT("sandoll 미생"));
     HFONT oldFont2 = (HFONT)SelectObject(getMemDC(), font2);
 
-    sprintf_s(str, "%d", woodTemp);
+    sprintf_s(str, "%d", _canBox);
     TextOut(getMemDC(), 100, 400, str, strlen(str));
-    sprintf_s(str, "%d", stoneTemp);
+    sprintf_s(str, "%d", _canFur);
     TextOut(getMemDC(), 100, 420, str, strlen(str));
     sprintf_s(str, "%d", copperTemp);
     TextOut(getMemDC(), 100, 440, str, strlen(str));
@@ -332,9 +330,6 @@ void inventory::render()
             }
             break;
 
-        case StatPage:
-            break;
-
         case CraftPage:
       
           if (_canBox)
@@ -343,7 +338,8 @@ void inventory::render()
           }
           else
           {
-              IMAGEMANAGER->findImage("craftObjectAlpha")->frameRender(getMemDC(), _menuRc.left + 40 + (0 * 80), _menuRc.top + 80, 0, 0);
+              _alphaObjImg[0]->frameRender(getMemDC(), _menuRc.left + 40 + (0 * 80), _menuRc.top + 80, 0, 0);
+              //IMAGEMANAGER->findImage("craftObjectAlpha")->frameRender(getMemDC(), _menuRc.left + 40 + (0 * 80), _menuRc.top + 80, 0, 0);
           }
 
           if (_canFur)
@@ -352,23 +348,26 @@ void inventory::render()
           }
           else
           {
-              IMAGEMANAGER->findImage("craftObjectAlpha")->frameRender(getMemDC(), _menuRc.left + 40 + (1 * 80), _menuRc.top + 80, 1, 0);
+              _alphaObjImg[1]->frameRender(getMemDC(), _menuRc.left + 40 + (1 * 80), _menuRc.top + 80, 1, 0);
+             // IMAGEMANAGER->findImage("craftObjectAlpha")->frameRender(getMemDC(), _menuRc.left + 40 + (1 * 80), _menuRc.top + 80, 1, 0);
           }
           if (_canCrow1)
           {
-              _craftObjImg[0]->frameRender(getMemDC(), _menuRc.left + 40 + (0 * 80), _menuRc.top + 80, 0, 0);
+              _craftObjImg[2]->frameRender(getMemDC(), _menuRc.left + 40 + (2 * 80), _menuRc.top + 80, 2, 0);
           }   
           else
           {
-              IMAGEMANAGER->findImage("craftObjectAlpha")->frameRender(getMemDC(), _menuRc.left + 40 + (2 * 80), _menuRc.top + 80, 2, 0);
+              _alphaObjImg[2]->frameRender(getMemDC(), _menuRc.left + 40 + (2 * 80), _menuRc.top + 80, 2, 0);
+            //  IMAGEMANAGER->findImage("craftObjectAlpha")->frameRender(getMemDC(), _menuRc.left + 40 + (2 * 80), _menuRc.top + 80, 2, 0);
           }
           if (_canCrow2)
           {
-              _craftObjImg[0]->frameRender(getMemDC(), _menuRc.left + 40 + (0 * 80), _menuRc.top + 80, 0, 0);
+              _craftObjImg[3]->frameRender(getMemDC(), _menuRc.left + 40 + (3 * 80), _menuRc.top + 80, 3, 0);
           }
           else
           {
-              IMAGEMANAGER->findImage("craftObjectAlpha")->frameRender(getMemDC(), _menuRc.left + 40 + (3 * 80), _menuRc.top + 80, 3, 0);
+              _alphaObjImg[3]->frameRender(getMemDC(), _menuRc.left + 40 + (3 * 80), _menuRc.top + 80, 3, 0);
+             // IMAGEMANAGER->findImage("craftObjectAlpha")->frameRender(getMemDC(), _menuRc.left + 40 + (3 * 80), _menuRc.top + 80, 3, 0);
           }
 
              
@@ -595,9 +594,32 @@ void inventory::MenuInvetoryOpen()
 
                     }
 
-                  swap(_vInven[_downPtItem], _vInven[_upPtItem]);
-                  swap(_inven[_downPtItem].amount, _inven[_upPtItem].amount);
-                  swap(_inven[_downPtItem].itemExist, _inven[_upPtItem].itemExist);
+                    //그냥 통상적으로 서로 다른 해당칸에 갔다 놨을때
+                    if (_vInven[_downPtItem] != _vInven[_upPtItem])
+                    {
+                        swap(_vInven[_downPtItem], _vInven[_upPtItem]);
+                        swap(_inven[_downPtItem].amount, _inven[_upPtItem].amount);
+                        swap(_inven[_downPtItem].itemExist, _inven[_upPtItem].itemExist);
+                    }
+                    else
+                    {
+                        //대상이 999보다 작으면
+                        if (_inven[_upPtItem].amount < 999)
+                        {
+                            //만약 더한게 998보다 크다면 스킵
+                            if (_inven[_upPtItem].amount + _inven[_downPtItem].amount > 998)
+                            {
+                                continue;
+                            }
+                            else //작다면 집은 아이템을 대상위치에 넣기
+                            {
+                                _inven[_upPtItem].amount += _inven[_downPtItem].amount;
+                                _inven[_downPtItem].amount = 0;
+                            }
+                        }
+
+                    }
+
          
                 }
             }
@@ -666,9 +688,6 @@ void inventory::MenuCraftOpen()
                         if (!_inven[_downPtItem].itemExist) break;
                         SOUNDMANAGER->play("pickUpItem", 0.1f);
                     }
-
-
-
                 }
                 
                 //그냥 통상적으로 서로 다른 해당칸에 갔다 놨을때
@@ -680,20 +699,41 @@ void inventory::MenuCraftOpen()
                 }
                 else
                 {
+
+                    //대상이 999보다 작으면
                     if (_inven[_upPtItem].amount < 999)
                     {
-                        _inven[_upPtItem].amount += _inven[_downPtItem].amount;
-                        if (_inven[_upPtItem].amount > 998)
+                        //만약 더한게 998보다 크다면 스킵
+                        if (_inven[_upPtItem].amount + _inven[_downPtItem].amount > 998)
                         {
-                            continue;
+                             continue;
                         }
-                        _inven[_downPtItem].amount = 0;
+                        else //작다면 집은 아이템을 대상위치에 넣기
+                        {
+                            _inven[_upPtItem].amount += _inven[_downPtItem].amount;
+                            _inven[_downPtItem].amount = 0;
+                        }  
+                
                     }
-             
+                  
                 }
                 
             }
+            if (KEYMANAGER->isOnceKeyUp(VK_LBUTTON))
+            {
+                _dragActivate = false;
 
+                if (PtInRect(&_menuRc, _ptMouse))
+                {
+                    swap(_vInven[_downPtItem], _vInven[_downPtItem]);
+                }
+                if (!PtInRect(&_menuRc, _ptMouse))
+                {
+                    _vInven[_downPtItem] = _null;
+                    _inven[_downPtItem].amount = 0;
+                    _inven[_downPtItem].itemExist = false;
+                }
+            }
 
         }
     }
@@ -719,34 +759,39 @@ void inventory::MenuCraftOpen()
         }
     }
 
+ 
     for (int i = 0; i < INVENTORYSIZE; i++)
     {
-        if (_vInven[i] == _wood)
+        if (_vInven[i] == _wood && _inven[i].amount >= _box->GetItemInfo().needAmountToCraft)
         {
-            if ((_inven[i].amount >= _box->GetItemInfo().needAmountToCraft))
-            {
-                _canBox = true;
-                if (PtInRect(&_craftObjRc[0], _ptMouse) && KEYMANAGER->isOnceKeyDown(VK_LBUTTON))
-                {
-                    AddItem(_box);
-                   _inven[i].amount -= 50;       
-                }
-
-            }
-            else
+            if (_inven[i].amount < _box->GetItemInfo().needAmountToCraft)
             {
                 _canBox = false;
+                break;
+            }
+            else if (_inven[i].amount >= _box->GetItemInfo().needAmountToCraft)
+            {
+                _canBox = true;
+           
+            } 
+            if ((PtInRect(&_craftObjRc[0], _ptMouse) && KEYMANAGER->isOnceKeyDown(VK_LBUTTON)) && _canBox)
+            {
+
+                AddItem(_box);
+                _inven[i].amount -= _box->GetItemInfo().needAmountToCraft;
             }
         }
+      
         if (_vInven[i] == _stone)
         {
+            if (_inven[i].amount < _furnance->GetItemInfo().needAmountToCraft) continue;
             if ((_inven[i].amount >= _furnance->GetItemInfo().needAmountToCraft))
             {
                 _canFur = true;
                 if (PtInRect(&_craftObjRc[1], _ptMouse) && KEYMANAGER->isOnceKeyDown(VK_LBUTTON))
                 {
                     AddItem(_furnance);
-                    _inven[i].amount -= 10;     
+                    _inven[i].amount -= _furnance->GetItemInfo().needAmountToCraft;
                 }
 
             }
@@ -763,7 +808,7 @@ void inventory::MenuCraftOpen()
                 if (PtInRect(&_craftObjRc[2], _ptMouse) && KEYMANAGER->isOnceKeyDown(VK_LBUTTON))
                 {
                     AddItem(_scareCrow1);
-                    _inven[i].amount -= 10;    
+                    _inven[i].amount -= _scareCrow1->GetItemInfo().needAmountToCraft;
                 }
 
             }
@@ -780,7 +825,7 @@ void inventory::MenuCraftOpen()
                 if (PtInRect(&_craftObjRc[3], _ptMouse) && KEYMANAGER->isOnceKeyDown(VK_LBUTTON))
                 {
                     AddItem(_scareCrow2);
-                    _inven[i].amount -= 10; 
+                    _inven[i].amount -= _scareCrow2->GetItemInfo().needAmountToCraft;
                 }
 
             }
@@ -849,8 +894,7 @@ void inventory::AddItem(item* item)
 //메뉴버튼용(완)
 void inventory::SelectMenu()
 {
-    if (PtInRect(&_storageRc, _ptMouse) || PtInRect(&_statRc, _ptMouse)
-        || PtInRect(&_craftRc, _ptMouse) || PtInRect(&_settingRc, _ptMouse) || PtInRect(&_exitRc, _ptMouse))
+    if (PtInRect(&_storageRc, _ptMouse) || PtInRect(&_craftRc, _ptMouse) || PtInRect(&_settingRc, _ptMouse) || PtInRect(&_exitRc, _ptMouse))
     {
         if (KEYMANAGER->isOnceKeyDown(VK_LBUTTON))
         {
@@ -860,12 +904,6 @@ void inventory::SelectMenu()
                 _currentMenuImg = _invenImg;
                 _menuPage = InvenPage;
 
-            }
-            if (PtInRect(&_statRc, _ptMouse) && _menuPage != StatPage)
-            {
-                SOUNDMANAGER->play("menuSelect", 0.5f);
-                _currentMenuImg = _statImg;
-                _menuPage = StatPage;
             }
             if (PtInRect(&_craftRc, _ptMouse) && _menuPage != CraftPage)
             {

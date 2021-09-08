@@ -88,9 +88,6 @@
     <Filter Include="playGround\Object\objectClass">
       <UniqueIdentifier>{38b8a5a6-79eb-4e53-8eff-0e7931ad99d1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="playGround\Object\objectClass\Tool">
-      <UniqueIdentifier>{80518842-e02e-45d7-b271-c2750c3aba36}</UniqueIdentifier>
-    </Filter>
     <Filter Include="playGround\Object\objectClass\Weapon">
       <UniqueIdentifier>{2f0b67ee-8639-497c-af29-bc6343ba7b01}</UniqueIdentifier>
     </Filter>
@@ -151,6 +148,12 @@
     </Filter>
     <Filter Include="playGround\Item\itemClass\CROP">
       <UniqueIdentifier>{f249bf8b-bae6-482c-b6f6-e7ff191d9b6d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGround\Object\objectClass\BASIC_RESOURCE">
+      <UniqueIdentifier>{c4220d7e-4aac-44a2-af74-d6d22a7fee92}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGround\Object\objectClass\ToolNoUse">
+      <UniqueIdentifier>{80518842-e02e-45d7-b271-c2750c3aba36}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -269,19 +272,19 @@
       <Filter>playGround\Scene</Filter>
     </ClInclude>
     <ClInclude Include="axe.h">
-      <Filter>playGround\Object\objectClass\Tool</Filter>
+      <Filter>playGround\Object\objectClass\ToolNoUse</Filter>
     </ClInclude>
     <ClInclude Include="hoe.h">
-      <Filter>playGround\Object\objectClass\Tool</Filter>
+      <Filter>playGround\Object\objectClass\ToolNoUse</Filter>
     </ClInclude>
     <ClInclude Include="can.h">
-      <Filter>playGround\Object\objectClass\Tool</Filter>
+      <Filter>playGround\Object\objectClass\ToolNoUse</Filter>
     </ClInclude>
     <ClInclude Include="pickAxe.h">
-      <Filter>playGround\Object\objectClass\Tool</Filter>
+      <Filter>playGround\Object\objectClass\ToolNoUse</Filter>
     </ClInclude>
     <ClInclude Include="rod.h">
-      <Filter>playGround\Object\objectClass\Tool</Filter>
+      <Filter>playGround\Object\objectClass\ToolNoUse</Filter>
     </ClInclude>
     <ClInclude Include="cauliFlower.h">
       <Filter>playGround\Object\objectClass\Crop</Filter>
@@ -356,7 +359,7 @@
       <Filter>playGround\Enemy</Filter>
     </ClInclude>
     <ClInclude Include="sickle.h">
-      <Filter>playGround\Object\objectClass\Tool</Filter>
+      <Filter>playGround\Object\objectClass\ToolNoUse</Filter>
     </ClInclude>
     <ClInclude Include="item.h">
       <Filter>playGround\Item\item</Filter>
@@ -478,6 +481,12 @@
     <ClInclude Include="Box.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="wood.h">
+      <Filter>playGround\Object\objectClass\BASIC_RESOURCE</Filter>
+    </ClInclude>
+    <ClInclude Include="stone.h">
+      <Filter>playGround\Object\objectClass\BASIC_RESOURCE</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WindowsAPI.cpp">
@@ -583,19 +592,19 @@
       <Filter>playGround\Scene</Filter>
     </ClCompile>
     <ClCompile Include="axe.cpp">
-      <Filter>playGround\Object\objectClass\Tool</Filter>
+      <Filter>playGround\Object\objectClass\ToolNoUse</Filter>
     </ClCompile>
     <ClCompile Include="can.cpp">
-      <Filter>playGround\Object\objectClass\Tool</Filter>
+      <Filter>playGround\Object\objectClass\ToolNoUse</Filter>
     </ClCompile>
     <ClCompile Include="hoe.cpp">
-      <Filter>playGround\Object\objectClass\Tool</Filter>
+      <Filter>playGround\Object\objectClass\ToolNoUse</Filter>
     </ClCompile>
     <ClCompile Include="pickAxe.cpp">
-      <Filter>playGround\Object\objectClass\Tool</Filter>
+      <Filter>playGround\Object\objectClass\ToolNoUse</Filter>
     </ClCompile>
     <ClCompile Include="rod.cpp">
-      <Filter>playGround\Object\objectClass\Tool</Filter>
+      <Filter>playGround\Object\objectClass\ToolNoUse</Filter>
     </ClCompile>
     <ClCompile Include="sword.cpp">
       <Filter>playGround\Object\objectClass\Weapon</Filter>
@@ -670,7 +679,7 @@
       <Filter>playGround\Enemy</Filter>
     </ClCompile>
     <ClCompile Include="sickle.cpp">
-      <Filter>playGround\Object\objectClass\Tool</Filter>
+      <Filter>playGround\Object\objectClass\ToolNoUse</Filter>
     </ClCompile>
     <ClCompile Include="item.cpp">
       <Filter>playGround\Item\item</Filter>
@@ -791,6 +800,12 @@
     </ClCompile>
     <ClCompile Include="Box.cpp">
       <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="stone.cpp">
+      <Filter>playGround\Object\objectClass\BASIC_RESOURCE</Filter>
+    </ClCompile>
+    <ClCompile Include="wood.cpp">
+      <Filter>playGround\Object\objectClass\BASIC_RESOURCE</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

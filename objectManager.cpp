@@ -17,7 +17,7 @@ HRESULT objectManager::init()
 void objectManager::release()
 {
 }
-
+ 
 void objectManager::update()
 {
 }

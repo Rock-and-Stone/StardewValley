@@ -63,7 +63,6 @@ enum CraftItem
 enum MenuPage
 {
 	InvenPage,
-	StatPage,
 	CraftPage,
 	SettingPage,
 	ExitPage,
@@ -152,10 +151,9 @@ private:
 	
 	//제작용
 	image* _craftObjImg[4];
-
+	image* _alphaObjImg[4];
 	//메뉴바꾸는 버튼스?
 	RECT	_storageRc;
-	RECT	_statRc;
 	RECT	_craftRc;
 	RECT	_settingRc;
 	RECT	_exitRc;

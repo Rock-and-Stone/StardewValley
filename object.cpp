@@ -9,7 +9,7 @@ object::~object()
 {
 }
 
-HRESULT object::init(ALLOBJECTS obj, const char* imageName,int framex,int framey, POINT pos)
+HRESULT object::init(ALLOBJECTS obj, const char* imageName, int framex, int framey, POINT pos)
 {
     _obj = obj;
     _objectImg = IMAGEMANAGER->findImage(imageName);
