@@ -94,9 +94,6 @@
     <Filter Include="playGround\Object\objectClass\Crop">
       <UniqueIdentifier>{130982d6-cb19-43ee-82f0-ee7d04144531}</UniqueIdentifier>
     </Filter>
-    <Filter Include="playGround\Object\objectClass\Seed">
-      <UniqueIdentifier>{d897d97f-9e90-4e9c-af9e-151c7161cf5e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="playGround\Object\objectClass\Ore">
       <UniqueIdentifier>{1dffb600-c7a1-4a18-9fab-541de5418f38}</UniqueIdentifier>
     </Filter>
@@ -154,6 +151,9 @@
     </Filter>
     <Filter Include="playGround\Object\objectClass\ToolNoUse">
       <UniqueIdentifier>{80518842-e02e-45d7-b271-c2750c3aba36}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGround\Object\objectClass\Ore\Seed">
+      <UniqueIdentifier>{d897d97f-9e90-4e9c-af9e-151c7161cf5e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -299,16 +299,16 @@
       <Filter>playGround\Object\objectClass\Crop</Filter>
     </ClInclude>
     <ClInclude Include="kaleSeed.h">
-      <Filter>playGround\Object\objectClass\Seed</Filter>
+      <Filter>playGround\Object\objectClass\Ore\Seed</Filter>
     </ClInclude>
     <ClInclude Include="parsnipSeed.h">
-      <Filter>playGround\Object\objectClass\Seed</Filter>
+      <Filter>playGround\Object\objectClass\Ore\Seed</Filter>
     </ClInclude>
     <ClInclude Include="potatoSeed.h">
-      <Filter>playGround\Object\objectClass\Seed</Filter>
+      <Filter>playGround\Object\objectClass\Ore\Seed</Filter>
     </ClInclude>
     <ClInclude Include="cauliFlowerSeed.h">
-      <Filter>playGround\Object\objectClass\Seed</Filter>
+      <Filter>playGround\Object\objectClass\Ore\Seed</Filter>
     </ClInclude>
     <ClInclude Include="copper.h">
       <Filter>playGround\Object\objectClass\Ore</Filter>
@@ -487,6 +487,9 @@
     <ClInclude Include="stone.h">
       <Filter>playGround\Object\objectClass\BASIC_RESOURCE</Filter>
     </ClInclude>
+    <ClInclude Include="Fishing.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WindowsAPI.cpp">
@@ -625,16 +628,16 @@
       <Filter>playGround\Object\objectClass\Crop</Filter>
     </ClCompile>
     <ClCompile Include="cauliFlowerSeed.cpp">
-      <Filter>playGround\Object\objectClass\Seed</Filter>
+      <Filter>playGround\Object\objectClass\Ore\Seed</Filter>
     </ClCompile>
     <ClCompile Include="kaleSeed.cpp">
-      <Filter>playGround\Object\objectClass\Seed</Filter>
+      <Filter>playGround\Object\objectClass\Ore\Seed</Filter>
     </ClCompile>
     <ClCompile Include="parsnipSeed.cpp">
-      <Filter>playGround\Object\objectClass\Seed</Filter>
+      <Filter>playGround\Object\objectClass\Ore\Seed</Filter>
     </ClCompile>
     <ClCompile Include="potatoSeed.cpp">
-      <Filter>playGround\Object\objectClass\Seed</Filter>
+      <Filter>playGround\Object\objectClass\Ore\Seed</Filter>
     </ClCompile>
     <ClCompile Include="copper.cpp">
       <Filter>playGround\Object\objectClass\Ore</Filter>
@@ -806,6 +809,9 @@
     </ClCompile>
     <ClCompile Include="wood.cpp">
       <Filter>playGround\Object\objectClass\BASIC_RESOURCE</Filter>
+    </ClCompile>
+    <ClCompile Include="Fishing.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

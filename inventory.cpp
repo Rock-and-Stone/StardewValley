@@ -159,7 +159,11 @@ HRESULT inventory::init()
         AddItem(_stone);
         AddItem(_wood);
     }
-
+    for (int i = 0; i < 20; i++)
+    {
+        AddItem(_iron);
+    }
+ 
 
     //테스트 아이템 집어넣기
     _canBox = false;
