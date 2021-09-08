@@ -167,6 +167,7 @@
     <ClInclude Include="EnemyState.h" />
     <ClInclude Include="enemyTestScene.h" />
     <ClInclude Include="entity.h" />
+    <ClInclude Include="Fishing.h" />
     <ClInclude Include="gameData.h" />
     <ClInclude Include="gameNode.h" />
     <ClInclude Include="gold.h" />
@@ -278,6 +279,7 @@
     <ClCompile Include="EnemyState.cpp" />
     <ClCompile Include="enemyTestScene.cpp" />
     <ClCompile Include="entity.cpp" />
+    <ClCompile Include="Fishing.cpp" />
     <ClCompile Include="gameData.cpp" />
     <ClCompile Include="gameNode.cpp" />
     <ClCompile Include="gold.cpp" />
