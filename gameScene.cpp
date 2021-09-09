@@ -4,20 +4,21 @@
 
 HRESULT gameScene::init()
 {
+	_homeMap = new homeMap;
 	_player = new player;
 	_npcManager = new npcManager;
 	_cameraManager = new CameraManager;
 	_enemyManager = new EnemyManager;
 	_uiManager = new UserInterface;
 
-
+	_homeMap->init();
 	_player->init(10, 15);
 	_npcManager->init();
 	_cameraManager->init(TILESIZEX, TILESIZEY);
 	_enemyManager->init();
 	_uiManager->init();
 	_uiManager->SetMemoryAddressLink(_player);
-
+	
 	
 	
 	_npcManager->setCameraAddressLink(_cameraManager);
@@ -35,7 +36,7 @@ void gameScene::update()
 {
 	_cameraManager->update(_player->getX(), _player->getY());
 	_player->update();
-
+	_homeMap->Movement(_player->getX(), _player->getY());
 	RENDERMANAGER->update();
 }
 
@@ -46,7 +47,7 @@ void gameScene::release()
 void gameScene::render()
 {
 	//_npcManager->render();
-
+	_homeMap->render();
 	_player->setRenderX(_cameraManager->getRenderPosX());
 	_player->setRenderY(_cameraManager->getRenderPosY());
 	RENDERMANAGER->render(getMemDC());

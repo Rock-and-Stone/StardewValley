@@ -29,6 +29,9 @@ public:
 	
 	void load();
 
+	void Movement(float posX, float posY);
+	void DrawTile();
+	void DrawObject();
 
 	tagTile* getTile() { return _tiles; }
 
