@@ -674,11 +674,6 @@ void inventory::MenuInvetoryOpen()
             }
         }
 }
-//스탯창의미가 있나 싶고
-void inventory::MenuStatOpen()
-{
-
-}
 //제작창(미완)
 void inventory::MenuCraftOpen()
 {
@@ -823,79 +818,71 @@ void inventory::MenuCraftOpen()
         
         }
         
-
-        
-      
         if (_vInven[i] == _stone)
         {
-            if (_inven[i].amount < _furnance->GetItemInfo().needAmountToCraft) continue;
-            if ((_inven[i].amount >= _furnance->GetItemInfo().needAmountToCraft))
+            TempCount2++;
+            if (_inven[i].amount > _furnance->GetItemInfo().needAmountToCraft)
             {
                 _canFur = true;
-                if (PtInRect(&_craftObjRc[1], _ptMouse) && KEYMANAGER->isOnceKeyDown(VK_LBUTTON))
-                {
-                    AddItem(_furnance);
-                    _inven[i].amount -= _furnance->GetItemInfo().needAmountToCraft;
-                }
-
             }
-            else
+            if ((PtInRect(&_craftObjRc[1], _ptMouse) && KEYMANAGER->isOnceKeyDown(VK_LBUTTON)) && _canFur)
             {
-                _canFur = false;
+
+                AddItem(_furnance);
+                _inven[i].amount -= _furnance->GetItemInfo().needAmountToCraft;
             }
+
         }
+
         if (_vInven[i] == _copper)
         {
-            if ((_inven[i].amount >= _scareCrow1->GetItemInfo().needAmountToCraft))
+            TempCount3++;
+            if (_inven[i].amount > _scareCrow1->GetItemInfo().needAmountToCraft)
             {
                 _canCrow1 = true;
-                if (PtInRect(&_craftObjRc[2], _ptMouse) && KEYMANAGER->isOnceKeyDown(VK_LBUTTON))
-                {
-                    AddItem(_scareCrow1);
-                    _inven[i].amount -= _scareCrow1->GetItemInfo().needAmountToCraft;
-                }
-
             }
-            else
+            if ((PtInRect(&_craftObjRc[2], _ptMouse) && KEYMANAGER->isOnceKeyDown(VK_LBUTTON)) && _canCrow1)
             {
-                _canCrow1 = false;
+
+                AddItem(_scareCrow1);
+                _inven[i].amount -= _scareCrow1->GetItemInfo().needAmountToCraft;
             }
+
         }
+
         if (_vInven[i] == _iron)
         {
-            if ((_inven[i].amount >= _scareCrow2->GetItemInfo().needAmountToCraft))
+            TempCount4++;
+            if (_inven[i].amount > _scareCrow2->GetItemInfo().needAmountToCraft)
             {
                 _canCrow2 = true;
-                if (PtInRect(&_craftObjRc[3], _ptMouse) && KEYMANAGER->isOnceKeyDown(VK_LBUTTON))
-                {
-                    AddItem(_scareCrow2);
-                    _inven[i].amount -= _scareCrow2->GetItemInfo().needAmountToCraft;
-                }
-
             }
-            else
+            if ((PtInRect(&_craftObjRc[3], _ptMouse) && KEYMANAGER->isOnceKeyDown(VK_LBUTTON)) && _canCrow2)
             {
-                _canCrow2 = false;
+
+                AddItem(_scareCrow2);
+                _inven[i].amount -= _scareCrow2->GetItemInfo().needAmountToCraft;
             }
+
         }
     }
-    //아이템이 있다
+    //아이템이 없다
     if (TempCount1 == 0)
     {
         _canBox = false;
     }
-  
-    
-
-        
-
-
-   
-
-}
-//세팅창(미완)
-void inventory::MenuSettingOpen()
-{
+    if (TempCount2 == 0)
+    {
+        _canFur = false;
+    }
+    if (TempCount3 == 0)
+    {
+        _canCrow1 = false;
+    }
+    if (TempCount4 == 0)
+    {
+        _canCrow2 = false;
+    }
 }
 //아이템 추가(완)
 void inventory::AddItem(item* item)
