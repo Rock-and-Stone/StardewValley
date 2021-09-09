@@ -20,10 +20,19 @@ void objectManager::release()
  
 void objectManager::update()
 {
+    for (_viObject = _vObject.begin(); _viObject != _vObject.end(); _viObject++)
+    {
+        (*_viObject)->update();
+    }
 }
 
 void objectManager::render()
 {
+    for (_viObject = _vObject.begin(); _viObject != _vObject.end(); _viObject++)
+    {
+        RECT Temp = (*_viObject)->GetObjectRect();
+        (*_viObject)->update();
+    }
 }
 
 void objectManager::SetWood(float x, float y, int amount)

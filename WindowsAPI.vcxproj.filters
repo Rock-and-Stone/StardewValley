@@ -490,6 +490,9 @@
     <ClInclude Include="Fishing.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="gameScene.h">
+      <Filter>playGround\Scene</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WindowsAPI.cpp">
@@ -812,6 +815,9 @@
     </ClCompile>
     <ClCompile Include="Fishing.cpp">
       <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="gameScene.cpp">
+      <Filter>playGround\Scene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

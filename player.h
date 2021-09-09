@@ -4,6 +4,7 @@
 #include "inventory.h"
 
 class homeMap;
+class CameraManager;
 
 enum PLAYERDIRECTION
 {
@@ -75,9 +76,15 @@ public:
 	int getDir() { return _dir; }
 	void setRenderX(int rendX) { _rendX = rendX; }
 	void setRenderY(int rendY) { _rendY = rendY; }
+	
+	int getRenderY() { return _rendY; }
+
 
 	virtual int getRenderPosY() { return _y + 20; }
 
 	RECT getRect() { return _rc; }
+
+
+	void SetInventoryCameraMemoryLink(CameraManager* cm) { _inventory->SetCameraMemoryLink(cm); }
 };
 

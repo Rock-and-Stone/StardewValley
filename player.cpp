@@ -2,6 +2,7 @@
 #include "player.h"
 #include "playerState.h"
 #include "homeMap.h"
+#include "CameraManager.h"
 
 player::player()
 {
@@ -43,12 +44,17 @@ HRESULT player::init(int indX, int indY)
 	_playerRod->setPlayer(this);
 	_playerSickle->setPlayer(this);
 	_playerSword->setPlayer(this);
+	
+
+
+
 
 	_homeMap = new homeMap;
 
 	_inventory = new inventory;
 	_inventory->init();
-
+	_inventory->SetPlayerMemoryLink(this);
+	
 	_img = IMAGEMANAGER->findImage("player");
 
 	_rc = RectMakeCenter(_x,_y,TILEWIDTH,TILEHEIGHT);

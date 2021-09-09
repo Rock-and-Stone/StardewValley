@@ -20,6 +20,7 @@ public :
 	virtual bool getReleased();
 	virtual void setMapAddressLink(homeMap* hm);
 	virtual void setCameraAddressLink(CameraManager* cm);
+	virtual void SetInventoryCameraMemoryLink(CameraManager* cm);
 
 	virtual int getX();
 	virtual int getY();

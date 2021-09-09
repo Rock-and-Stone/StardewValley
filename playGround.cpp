@@ -24,6 +24,7 @@ HRESULT playGround::init()
 	SCENEMANAGER->addScene("mainMenuScene", new mainMenuScene);
 	SCENEMANAGER->addScene("enemyTestScene", new enemyTestScene);
 	SCENEMANAGER->addScene("inventory", new inventory);
+	SCENEMANAGER->addScene("gameScene", new gameScene);
 	SCENEMANAGER->addScene("map", new Map);
 	SCENEMANAGER->changeScene("openingScene");
 

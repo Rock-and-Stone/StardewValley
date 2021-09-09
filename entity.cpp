@@ -20,6 +20,10 @@ void entity::setCameraAddressLink(CameraManager* cm)
 {
 }
 
+void entity::SetInventoryCameraMemoryLink(CameraManager* cm)
+{
+}
+
 int entity::getX()
 {
 	return 0;

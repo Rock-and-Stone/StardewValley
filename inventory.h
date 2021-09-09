@@ -40,9 +40,7 @@
 #include "itemSickle.h"
 
 #pragma endregion
-
 #include "itemNull.h"
-
 
 
 
@@ -50,6 +48,8 @@
 #define QUICKSLOTSIZE 36
 
 class button;
+class player;
+class CameraManager;
 
 enum CraftItem 
 {
@@ -204,7 +204,8 @@ private:
 
 
 	PLAYERTOOL _playerTool;
-
+	player* _player;
+	CameraManager* _cm;
 
 public:
 
@@ -254,7 +255,9 @@ public:
 	//======================= ============== ======================= //
 
 	//=======================   메모리 링크   ======================= //
-	// 
+	void SetPlayerMemoryLink(player* pl) { _player = pl; }
+
+	void SetCameraMemoryLink(CameraManager* cm) { _cm = cm; }
 	//======================= ============== ======================= //
 };
 

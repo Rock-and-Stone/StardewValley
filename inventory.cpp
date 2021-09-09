@@ -1,6 +1,8 @@
 #include "pch.h"
 #include "inventory.h"
 #include "button.h"
+#include "player.h"
+#include "CameraManager.h"
 
 HRESULT inventory::init()
 {
@@ -121,9 +123,10 @@ HRESULT inventory::init()
     _currentMenuImg = _invenImg;
     
     //메뉴와 퀵슬롯 Rc 위치 초기화
-    _quickSlotRc = RectMakeCenter(WINSIZEX / 2, WINSIZEY - _quickSlot->getHeight() / 2, _quickSlot->getWidth(), _quickSlot->getHeight());
+  
     _menuRc = RectMakeCenter(WINSIZEX / 2, WINSIZEY / 2, _currentMenuImg->getWidth(), _currentMenuImg->getHeight());
-    
+    _quickSlotRc = RectMakeCenter(WINSIZEX / 2, WINSIZEY - _quickSlot->getHeight() / 2, _quickSlot->getWidth(), _quickSlot->getHeight());
+
     //버튼용 RC 초기화
     _storageRc = RectMake(_menuRc.left + 46, _menuRc.top, 53, 60);
     _craftRc = RectMake(_storageRc.right + 5, _storageRc.top, 53, 60);
@@ -168,7 +171,7 @@ HRESULT inventory::init()
     //테스트 아이템 집어넣기
     _canBox = false;
     _canFur = false;
-    QuickSlot();
+   //QuickSlot();
     
     _downPtItem = NULL;
     _upPtItem = NULL;
@@ -233,8 +236,9 @@ void inventory::render()
         PROOF_QUALITY, DEFAULT_PITCH | FF_SWISS, TEXT("sandoll 미생"));
     HFONT oldFont2 = (HFONT)SelectObject(getMemDC(), font2);
 
-    sprintf_s(str, "%d", _canBox);
-    TextOut(getMemDC(), 100, 400, str, strlen(str));
+    sprintf_s(str, "%f", _cm->getRenderPosY());
+    TextOut(getMemDC(), 300, 400, str, strlen(str));
+
     sprintf_s(str, "%d", _canFur);
     TextOut(getMemDC(), 100, 420, str, strlen(str));
     sprintf_s(str, "%d", copperTemp);
@@ -485,74 +489,98 @@ void inventory::MenuOpen()
 //퀵슬롯 칸생성(완)
 void inventory::QuickSlot()
 {
+    
+    int Temp = 0;
     if (!_isMenuOpen)
     {
         for (int i = 0; i < 12; i++)
         {
-            //12개 칸으로 생성하고
-            _quick[i].rc = RectMake((_quickSlotRc.left + 15) + (i * 44.7), (_quickSlotRc.top + 13), 42, 42); 
-      
-          
+           
+             if (_cm->getRenderPosY() > 360)
+            {
+                 _quickSlotRc = RectMakeCenter(WINSIZEX / 2, 0 + _quickSlot->getHeight() / 2, _quickSlot->getWidth(), _quickSlot->getHeight());  
+                 _BOXRc = RectMake(_quick[Temp].rc.left, _quick[Temp].rc.top, _BOXImg->getWidth(), _BOXImg->getHeight());
+            }
+            else if (_cm->getRenderPosY()<360)
+            {
+                 _quickSlotRc = RectMakeCenter(WINSIZEX / 2, WINSIZEY - _quickSlot->getHeight() / 2, _quickSlot->getWidth(), _quickSlot->getHeight());   
+                 _BOXRc = RectMake(_quick[Temp].rc.left, _quick[Temp].rc.top, _BOXImg->getWidth(), _BOXImg->getHeight());
+            }
+             _quick[i].rc = RectMake((_quickSlotRc.left + 15) + (i * 44.7), (_quickSlotRc.top + 13), 42, 42);
+
             if (KEYMANAGER->isOnceKeyDown('1'))
             {
                 _BOXRc = RectMake(_quick[0].rc.left, _quick[0].rc.top, _BOXImg->getWidth(), _BOXImg->getHeight());
                 _nowQuickItem = _quickSlotMin;
+                Temp = 0;
             }
             if (KEYMANAGER->isOnceKeyDown('2'))
             {
                 _BOXRc = RectMake(_quick[1].rc.left, _quick[1].rc.top, _BOXImg->getWidth(), _BOXImg->getHeight());
                 _nowQuickItem = _quickSlotMin + 1;
+                Temp = 1;
             }
             if (KEYMANAGER->isOnceKeyDown('3'))
             {
                 _BOXRc = RectMake(_quick[2].rc.left, _quick[2].rc.top, _BOXImg->getWidth(), _BOXImg->getHeight());
                 _nowQuickItem = _quickSlotMin + 2;
+                Temp = 2;
             }
             if (KEYMANAGER->isOnceKeyDown('4'))
             {
                 _BOXRc = RectMake(_quick[3].rc.left, _quick[3].rc.top, _BOXImg->getWidth(), _BOXImg->getHeight());
                 _nowQuickItem = _quickSlotMin + 3;
+                Temp = 3;
             }
             if (KEYMANAGER->isOnceKeyDown('5'))
             {
                 _BOXRc = RectMake(_quick[4].rc.left, _quick[4].rc.top, _BOXImg->getWidth(), _BOXImg->getHeight());
                 _nowQuickItem = _quickSlotMin + 4;
+                Temp = 4;
             }
             if (KEYMANAGER->isOnceKeyDown('6'))
             {
                 _BOXRc = RectMake(_quick[5].rc.left, _quick[5].rc.top, _BOXImg->getWidth(), _BOXImg->getHeight());
                 _nowQuickItem = _quickSlotMin + 5;
+                Temp = 5;
             }
             if (KEYMANAGER->isOnceKeyDown('7'))
             {
                 _BOXRc = RectMake(_quick[6].rc.left, _quick[6].rc.top, _BOXImg->getWidth(), _BOXImg->getHeight());
                 _nowQuickItem = _quickSlotMin + 6;
+                Temp = 6;
             }
             if (KEYMANAGER->isOnceKeyDown('8'))
             {
                 _BOXRc = RectMake(_quick[7].rc.left, _quick[7].rc.top, _BOXImg->getWidth(), _BOXImg->getHeight());
                 _nowQuickItem = _quickSlotMin + 7;
+                Temp = 7;
             }
             if (KEYMANAGER->isOnceKeyDown('9'))
             {
                 _BOXRc = RectMake(_quick[8].rc.left, _quick[8].rc.top, _BOXImg->getWidth(), _BOXImg->getHeight());
                 _nowQuickItem = _quickSlotMin + 8;
+                Temp = 8;
             }
             if (KEYMANAGER->isOnceKeyDown('0'))
             {
                 _BOXRc = RectMake(_quick[9].rc.left, _quick[9].rc.top, _BOXImg->getWidth(), _BOXImg->getHeight());
                 _nowQuickItem = _quickSlotMin + 9;
+                Temp = 9;
             }
             if (KEYMANAGER->isOnceKeyDown(VK_OEM_MINUS))
             {
                 _BOXRc = RectMake(_quick[10].rc.left, _quick[10].rc.top, _BOXImg->getWidth(), _BOXImg->getHeight());
                 _nowQuickItem = _quickSlotMin + 10;
+                Temp = 10;
             }
             if (KEYMANAGER->isOnceKeyDown(VK_OEM_PLUS))
             {
                 _BOXRc = RectMake(_quick[11].rc.left, _quick[11].rc.top, _BOXImg->getWidth(), _BOXImg->getHeight());
                 _nowQuickItem = _quickSlotMin + 11;
+                Temp = 11;
             }
+          
         }
     }   
 }

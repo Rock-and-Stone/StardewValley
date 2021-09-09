@@ -8,6 +8,7 @@
 #include "inventory.h"
 #include "Map.h"
 #include "enemyTestScene.h"
+#include "gameScene.h"
 
 
 
