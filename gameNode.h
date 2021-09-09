@@ -1,10 +1,11 @@
 #pragma once
+#include "gameData.h"
 #include "image.h"
 
 static image* _backBuffer = IMAGEMANAGER->addImage("backBuffer", WINSIZEX, WINSIZEY);
 
 
-class gameNode
+class gameNode : public gameData
 {
 private:
 	HDC _hdc;

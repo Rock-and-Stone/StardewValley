@@ -12,7 +12,7 @@ homeMap::~homeMap()
 HRESULT homeMap::init()
 {
 	IMAGEMANAGER->addFrameImage("FloorTiles", "source/Sprite/TileSheet.bmp", 416, 576, SAMPLETILEX, SAMPLETILEY, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("ObjectTiles", "source/Sprite/ObjectSheet.bmp", 416, 576, SAMPLEOBJECTX, SAMPLEOBJECTY, true, RGB(255, 0, 255));
+	//IMAGEMANAGER->addFrameImage("ObjectTiles", "source/Sprite/ObjectSheet.bmp", 416, 576, SAMPLEOBJECTX, SAMPLEOBJECTY, true, RGB(255, 0, 255));
 
 
 	load();
@@ -63,7 +63,7 @@ void homeMap::load()
 	{
 		if (_tiles[i].terrain == TR_WATER) _attribute[i] |= ATTR_UNMOVE;
 		if (_tiles[i].obj == OBJ_WALL) _attribute[i] |= ATTR_UNMOVE;
-		if (_tiles[i].obj == OBJ_POND) _attribute[i] |= ATTR_UNMOVE;
+		//if (_tiles[i].obj == OBJ_POND) _attribute[i] |= ATTR_UNMOVE;
 		if (_tiles[i].obj == OBJ_BUILD) _attribute[i] |= ATTR_UNMOVE;
 	}
 

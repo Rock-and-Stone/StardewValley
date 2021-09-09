@@ -47,5 +47,7 @@ public:
 	//»£ø¡Ω√¿Ã ∏Ù∂Ûº≠ «ÿµ“
 	bool isPlaySound(string keyName);
 	bool isPauseSound(string keyName);
+
+	void setVolume(string keyName, float volume);
 };
 

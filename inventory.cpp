@@ -172,6 +172,8 @@ HRESULT inventory::init()
     
     _downPtItem = NULL;
     _upPtItem = NULL;
+
+    SettingInit();
     return S_OK;
 }
 
@@ -202,6 +204,7 @@ void inventory::update()
 
             break;
         case SettingPage:
+            SettingUpdate();
             break;
         case ExitPage:
             _buttonExit->update();
@@ -406,8 +409,7 @@ void inventory::render()
             break;
 
         case SettingPage:
-
-
+            SettingRender();
             break;
 
         case ExitPage:
@@ -972,4 +974,236 @@ void inventory::checkPlayerTool()
         _playerTool = PLAYERTOOL_SWORD;
         break;
     }
+}
+
+void inventory::SettingInit()
+{
+    _frame.img = IMAGEMANAGER->addImage("settingFrame", "source/Images/mainScene/settingFrame.bmp", 403, 210, true, MAGENTA);
+    for (int i = 0; i < 2; i++)
+    {
+        _select[i].img = IMAGEMANAGER->addImage("volumeSelect", "source/Images/mainScene/volumeSelect.bmp", 40, 24, true, MAGENTA);
+        _select[i].x = WINSIZEX / 2 - 80;
+        _select[i].y = WINSIZEY / 2- 4 + 78 * i;
+        _select[i].rc = RectMake(_select[i].x, _select[i].y, _select[i].img->getWidth(), _select[i].img->getHeight());
+        _select[i].cx = _select[i].x + _select[i].img->getWidth() / 2;
+        _select[i].cy = _select[i].y + _select[i].img->getHeight() / 2;
+        _select[i].src = RectMakeCenter(_select[i].sx, _select[i].sy, 10, 10);
+    }
+
+    for (int i = 0; i < 2; i++)
+    {
+        for (int j = 0; j < 10; j++)
+        {
+            _volumeRC[j+10*i] = RectMake(452 +19 * j, WINSIZEY / 2 - 4 + 78 * i, 19, 24);
+        }
+    }
+
+    _currentTotalVolume = getBGMVolume() / 10;
+    _currentSFXVolume = getSFXVolume() / 10;
+}
+
+void inventory::SettingUpdate()
+{
+    SettingVolumeFrame();
+
+    for (int i = 0; i < 2; i++)
+    {
+        _select[i].cx = _select[i].x + _select[i].img->getWidth() / 2;
+        _select[i].cy = _select[i].y + _select[i].img->getHeight() / 2;
+        _select[i].rc = RectMake(_select[i].x, _select[i].y, _select[i].img->getWidth(), _select[i].img->getHeight());
+        _select[i].src = RectMakeCenter(_select[i].cx, _select[i].cy, 3, 3);
+      
+    }
+    //볼륨 설정창 여기다가 넣으면 됩니다요
+    SOUNDMANAGER->setVolume("opening", _currentTotalVolume);
+}
+
+void inventory::SettingRender()
+{
+    _frame.img->render(getMemDC(), WINSIZEX / 2 - _frame.img->getWidth() / 2, WINSIZEY / 2 - _frame.img->getHeight() / 2 + 30);
+    for (int i = 0; i < 2; i++)
+    {
+        _select[i].img->render(getMemDC(), _select[i].x, _select[i].y);
+        if (KEYMANAGER->isToggleKey(VK_F2))
+        {
+            Rectangle(getMemDC(), _select[i].src);
+        }
+        
+    
+    }
+    if (KEYMANAGER->isToggleKey(VK_F1))
+    {
+        for (int i = 0; i < 20; i++)
+        {
+            Rectangle(getMemDC(), _volumeRC[i]);
+        }
+    }
+
+    char str[256];
+    sprintf_s(str, "%d %d", _ptMouse.x, _ptMouse.y);
+    TextOut(getMemDC(), _ptMouse.x, _ptMouse.y, str, strlen(str));
+
+    sprintf_s(str, "%f %f", _select[0].cx, _select[1].cx);
+    TextOut(getMemDC(), 50, 100, str, strlen(str));
+}
+
+void inventory::SettingVolumeFrame()
+{
+   
+    if (PtInRect(&_select[0].rc, _ptMouse) )
+    {
+        if (KEYMANAGER->isStayKeyDown(VK_LBUTTON) && _select[0].x > 455 && _select[0].x < 600)
+        {
+            _isClickUp = true;
+            _select[0].x = _ptMouse.x /*- _select[i].img->getWidth() / 2*/;
+        }
+        else if (_select[0].x <= 455)
+        {
+            _select[0].x = 456;
+        }
+        else if (_select[0].x >= 600)
+        {
+            _select[0].x = 599;
+        }
+    }
+
+    if (PtInRect(&_select[1].rc, _ptMouse))
+    {
+        if (KEYMANAGER->isStayKeyDown(VK_LBUTTON) && _select[1].x > 455 && _select[1].x < 600)
+        {
+            _isClickDown = true;
+            _select[1].x = _ptMouse.x /*- _select[i].img->getWidth() / 2*/;
+        }
+        else if (_select[1].x <= 455)
+        {
+            _select[1].x = 456;
+        }
+        else if (_select[1].x >= 600)
+        {
+            _select[1].x = 599;
+        }
+    }
+ 
+    if (_isClickUp )
+    {
+         if (_select[0].x > 455 && _select[0].x < 600)
+         {
+             _select[0].x = _ptMouse.x;
+         }
+         else if (_select[0].x <= 455)
+         {
+             _select[0].x = 456;
+         }
+         else if (_select[0].x >= 600)
+         {
+             _select[0].x = 599;
+         }
+    }
+
+    if (_isClickDown)
+    {
+        if (_select[1].x > 455 && _select[1].x < 600)
+        {
+            _select[1].x = _ptMouse.x;
+        }
+        else if (_select[1].x <= 455)
+        {
+            _select[1].x = 456;
+        }
+        else if (_select[1].x >= 600)
+        {
+            _select[1].x = 599;
+        }
+    }
+    
+    if (KEYMANAGER->isOnceKeyUp(VK_LBUTTON))
+    {
+        _isClickUp = false;
+        _isClickDown = false;
+    }
+
+    //자 이제 볼륨 조절 제대로 스타또
+    RECT temp;
+    for (int i = 0; i < 10; i++)
+    {
+        if (IntersectRect(&temp, &_volumeRC[i], &_select[i].src))
+        {
+            switch (i)
+            {
+            case 0:
+                _currentTotalVolume = 0;
+                break;
+            case 1:
+                _currentTotalVolume = 0.1f;
+                break;
+            case 2:
+                _currentTotalVolume = 0.2f;
+                break;
+            case 3:
+                _currentTotalVolume = 0.3f;
+                break;
+            case 4:
+                _currentTotalVolume = 0.4f;
+                break;
+            case 5:
+                _currentTotalVolume = 0.5f;
+                break;
+            case 6:
+                _currentTotalVolume = 0.6f;
+                break;
+            case 7:
+                _currentTotalVolume = 0.7f;
+                break;
+            case 8:
+                _currentTotalVolume = 0.8f;
+                break;
+            case 9:
+                _currentTotalVolume = 1.0f;
+                break;
+            }
+        }
+    }
+
+    for (int i = 10; i < 20; i++)
+    {
+        if (IntersectRect(&temp, &_volumeRC[i], &_select[i].src))
+        {
+            switch (i)
+            {
+            case 10:
+                _currentSFXVolume = 0;
+                break;
+            case 11:
+                _currentSFXVolume = 0.1f;
+                break;
+            case 12:
+                _currentSFXVolume = 0.2f;
+                break;
+            case 13:
+                _currentSFXVolume = 0.3f;
+                break;
+            case 14:
+                _currentSFXVolume = 0.4f;
+                break;
+            case 15:
+                _currentSFXVolume = 0.5f;
+                break;
+            case 16:
+                _currentSFXVolume = 0.6f;
+                break;
+            case 17:
+                _currentSFXVolume = 0.7f;
+                break;
+            case 18:
+                _currentSFXVolume = 0.8f;
+                break;
+            case 19:
+                _currentSFXVolume = 1.0f;
+                break;
+            }
+        }
+    }
+    
+    setBGMVolume(_currentTotalVolume * 10);
+    setSFXVolume(_currentSFXVolume * 10);
 }
