@@ -2,6 +2,7 @@
 #include "gameNode.h"
 #include <string>
 
+
 enum WEATHER
 {
     FINE, RAINY, SNOW, THUNDER
@@ -49,6 +50,7 @@ private:
     int _hour, _minute, _date;
     bool _isCheck;
 
+   
 
 public:
     Clock();

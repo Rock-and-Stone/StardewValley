@@ -5,7 +5,7 @@
 
 class entity : public gameNode
 {
-public : 
+public:
 	entity();
 	~entity();
 
@@ -29,4 +29,7 @@ public :
 	virtual void setRenderX(int rendX);
 	virtual void setRenderY(int rendY);
 	RECT getRect();
+
+	virtual int getGold();
+
 };

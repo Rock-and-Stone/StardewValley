@@ -47,6 +47,11 @@ RECT entity::getRect()
 	return RECT();
 }
 
+int entity::getGold()
+{
+	return 0;
+}
+
 entity::entity()
 {
 }
