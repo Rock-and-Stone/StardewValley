@@ -19,6 +19,9 @@ struct tagCurrentTile
 {
 	int x;
 	int y;
+	CTRL ctrl;
+	string str;
+	int page;
 };
 
 
@@ -31,9 +34,12 @@ private:
 	tagCurrentTile _currentTile;
 	tagSampleTile _sampleTile[SAMPLETILEX * SAMPLETILEY];
 
+	string _currentSampleString;
+
 	RECT _dragRC;
 
 	image* _background;
+	image* _currentSample;
 
 	button* _buttonSave;
 	button* _buttonLoad;
@@ -73,8 +79,8 @@ public:
 	
 	void RectSensor();
 
-	void SetSample(int select, string str);
-	void ChangeSample(int page);
+	void SetSample();
+	void ChangeSample();
 	void PickSample();
 	void DrawMap();
 	void DragMap(bool isDrag);
@@ -88,8 +94,8 @@ public:
 	//타일속성에 대한 접근자도 만들어주어야 할껍니다
 	DWORD* getAttribute() { return _attribute; }
 
-	TERRAIN terrainSelect(int frameX, int frameY);
-	OBJECT objSelect(int frameX, int frameY);
+	TERRAIN terrainSelect(int frameX, int frameY, int page);
+	OBJECT objSelect(int frameX, int frameY, int page);
 
 	//우린 사용하고 있지 않습니다
 	int getPosFirst() { return _pos[0]; }
