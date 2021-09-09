@@ -39,7 +39,10 @@ void gameScene::update()
 	_player->update();
 	_npcManager->update();
 	_homeMap->Movement(_player->getX(), _player->getY());
+	if (KEYMANAGER->isOnceKeyDown(VK_F9)) _objectManager->SetWood(100, 100, 10);
+	
 	RENDERMANAGER->update();
+	
 }
 
 void gameScene::release()

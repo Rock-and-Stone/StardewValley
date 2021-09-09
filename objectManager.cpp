@@ -41,7 +41,7 @@ void objectManager::SetWood(float x, float y, int amount)
     {
          object* Wood;
          Wood = new wood;
-         Wood->init(OBJ_WOOD, "springObjects", 6, 12, PointMake(100, 100));
+         Wood->init(OBJ_WOOD, "springObjects", 6, 12, PointMake(x,y));
          _vObject.push_back(Wood);
     }
 }

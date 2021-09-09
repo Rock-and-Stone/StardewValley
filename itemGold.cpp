@@ -17,6 +17,7 @@ HRESULT itemGold::init()
 	_item.isEatAble = false;
 	_item.isHandleAble = false;
 	//_item.amount = 1;
+	_item.itemNum = 15;
 	return S_OK;
 }
 

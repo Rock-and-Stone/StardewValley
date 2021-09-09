@@ -17,6 +17,7 @@ HRESULT itemKale::init()
 	_item.isEatAble = true;
 	_item.isHandleAble = false;
 	//_item.amount = 1;
+	_item.itemNum = 8;
     return S_OK;
 }
 

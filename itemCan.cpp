@@ -25,6 +25,7 @@ HRESULT itemCan::init()
 	_item.isEatAble = false;
 	_item.isHandleAble = true;
 	//_item.amount = 1;
+	_item.itemNum = 22;
     return S_OK;
 }
 

@@ -17,7 +17,7 @@ HRESULT itemCopper::init()
 	_item.isEatAble = false;
 	_item.isHandleAble = false;
 	//_item.amount = 1;
-
+	_item.itemNum = 14;
     return S_OK;
 }
 

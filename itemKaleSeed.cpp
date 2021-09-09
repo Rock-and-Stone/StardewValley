@@ -17,6 +17,7 @@ HRESULT itemKaleSeed::init()
 	_item.isEatAble = false;
 	_item.isHandleAble = true;
 	//_item.amount = 1;
+	_item.itemNum = 18;
     return S_OK;
 }
 
