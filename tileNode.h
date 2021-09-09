@@ -14,11 +14,11 @@
 #define SAMPLETILEX 13
 #define SAMPLETILEY 18
 
-#define SAMPLEOBJECTX 13
-#define SAMPLEOBJECTY 18
+#define SAMPLE2XOBJECTX 13
+#define SAMPLE2XOBJECTY 4
 
 #define SAMPLETREEX 3
-#define SAMPLETREEY 1
+#define SAMPLETREEY 2
 
 //이넘문으로 해도 되지만 옛날에는 메모리 아낀다고 많이 썼던
 //비트필드로 한 번 해보겠슴다 (요즘은 걍 이넘문 써도 무방함)
@@ -39,7 +39,7 @@ enum TERRAIN
 //오브젝트
 enum OBJECT
 {
-	OBJ_WALL, OBJ_POND, OBJ_TREE, OBJ_BUILD, OBJ_PROP, OBJ_NONE
+	OBJ_WALL, OBJ_GRASS, OBJ_TREE, OBJ_ROCK, OBJ_BUILD, OBJ_PROP, OBJ_NONE
 };
 
 enum POS
@@ -59,6 +59,9 @@ struct tagTile
 	int objFrameX;
 	int objFrameY;
 	int posX, posY;
+
+ 	int tilePage;
+	int objPage;
 };
 
 //타일 셋

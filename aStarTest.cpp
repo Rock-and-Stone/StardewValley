@@ -21,7 +21,7 @@ HRESULT aStarTest::init()
 	return S_OK;
 }
 
-void aStarTest::setTiles()
+void aStarTest::setTiles() // 타일 세팅
 {
 	_startTile = new tile;
 	_startTile->init(4, 12);
@@ -34,41 +34,48 @@ void aStarTest::setTiles()
 	//현재 타일은 시작타일로 둔다
 	_currentTile = _startTile;
 
-	for (int i = 0; i < TILENUMY; ++i)
+	for (int i = 0; i < TILENUMY; ++i) // 열 길이만큼
 	{
-		for (int j = 0; j < TILENUMX; ++j)
+		for (int j = 0; j < TILENUMX; ++j) // 행 길이만큼
 		{
-			if (j == _startTile->getIdX() && i == _startTile->getIdY())
+			if (j == _startTile->getIdX() && i == _startTile->getIdY()) // 시작점 노드일경우 색지정후 벡터에 집어넣는다.
 			{
 				_startTile->setColor(RGB(0, 255, 255));
 				_vTotalList.push_back(_startTile);
 				continue;
 			}
-			if (j == _endTile->getIdX() && i == _endTile->getIdY())
+			if (j == _endTile->getIdX() && i == _endTile->getIdY()) // 도착점 노드일경우 색지정후 벡터에 집어넣는다.
 			{
 				_endTile->setColor(RGB(10, 120, 55));
 				_vTotalList.push_back(_endTile);
 				continue;
 			}
 
-			tile* node = new tile;
+			tile* node = new tile; // 이외에 노드들의 경우 초기화 후 벡터에 집어넣는다.
 			node->init(j, i);
 			_vTotalList.push_back(node);
 		}
 	}
 }
 
+void aStarTest::resetTiles()
+{
+
+}
+
 //갈수있는 길을 추가하는 함수
 vector<tile*> aStarTest::addOpenList(tile* currentTile)
 {
-	int startX = currentTile->getIdX() - 1;
+	//검색 시작점을 상단좌측 노드로 지정
+	int startX = currentTile->getIdX() - 1; 
 	int startY = currentTile->getIdY() - 1;
 
-	for (int i = 0; i < 3; ++i)
+	// 자신을 포함한 9칸을 검색
+	for (int i = 0; i < 3; ++i) 
 	{
 		for (int j = 0; j < 3; ++j)
 		{
-			tile* node = _vTotalList[(startY * TILENUMX) + startX + j + (i * TILENUMX)];
+			tile* node = _vTotalList[(startY * TILENUMX) + startX + j + (i * TILENUMX)]; //노드를 새로생성하여 검색된 노드를 대입
 
 			//예외처리
 			if (!node->getIsOpen()) continue;
@@ -78,7 +85,7 @@ vector<tile*> aStarTest::addOpenList(tile* currentTile)
 			//현재 타일 갱신해준다
 			node->setParentNode(_currentTile);
 
-			bool addObj = true;
+			bool addObj = true; 
 
 			for (_viOpenList = _vOpenList.begin(); _viOpenList != _vOpenList.end(); ++_viOpenList)
 			{
@@ -105,7 +112,7 @@ vector<tile*> aStarTest::addOpenList(tile* currentTile)
 //길을 찾아라~
 void aStarTest::pathFinder(tile* currentTile)
 {
-	//비교하기 쉽게 임의의 경로비용을 설정해웁시둡시다
+	//비교하기 쉽게 임의의 경로비용을 설정해둔다
 	float tempTotalCost = 5000;
 	tile* tempTile = nullptr;
 
@@ -128,7 +135,7 @@ void aStarTest::pathFinder(tile* currentTile)
 									_vOpenList[i]->getCostFromStart());
 
 
-		//뽑아낸 총 경로비용 중에 가장 작은 비용인 애를 찾자
+		//뽑아낸 총 경로비용 중에 가장 작은 비용 검색
 		if (tempTotalCost > _vOpenList[i]->getTotalCost())
 		{
 			tempTotalCost = _vOpenList[i]->getTotalCost();
@@ -137,6 +144,7 @@ void aStarTest::pathFinder(tile* currentTile)
 
 		bool addObj = true;
 		
+		//만약 경로비용이 적은노드가 뽑혔다면 해당 노드는 검색에서 제외함
 		for (_viOpenList = _vOpenList.begin(); _viOpenList != _vOpenList.end(); ++_viOpenList)
 		{
 			if (*_viOpenList == tempTile)
@@ -152,10 +160,10 @@ void aStarTest::pathFinder(tile* currentTile)
 		_vOpenList.push_back(tempTile);
 	}
 
-	//도착했다
+	//도착
 	if (tempTile->getAttribute() == "end")
 	{
-		//최단 경로는 색칠해웁시줍시다
+		//최단 경로 색칠
 		while (_currentTile->getParentNode() != NULL)
 		{
 			_currentTile->setColor(RGB(22, 14, 128));
@@ -166,6 +174,7 @@ void aStarTest::pathFinder(tile* currentTile)
 
 	_vCloseList.push_back(tempTile);
 
+	//추가경로 검색
 	for (_viOpenList = _vOpenList.begin(); _viOpenList != _vOpenList.end(); ++_viOpenList)
 	{
 		if (*_viOpenList == tempTile)
@@ -191,12 +200,23 @@ void aStarTest::release()
 
 void aStarTest::update()
 {
-	if (KEYMANAGER->isOnceKeyDown('S')) _start = true;
+	if (KEYMANAGER->isOnceKeyDown('R'))
+	{
+		resetTiles();
+	}
+
+
+
+	if (KEYMANAGER->isToggleKey(VK_TAB)) _start = false;
+	else _start = true;
+
+
+	if(KEYMANAGER->isOnceKeyDown(VK_SPACE))pathFinder(_currentTile);
 
 	if (_start)
 	{
 		_count++;
-		if (_count % 5 == 0)
+		if (_count % 1 == 0)
 		{
 			pathFinder(_currentTile);
 			_count = 0;
@@ -207,9 +227,8 @@ void aStarTest::update()
 	{
 		for (int i = 0; i < _vTotalList.size(); ++i)
 		{
-			RECT rc = _vTotalList[i]->getRect();
-
-			if (PtInRect(&rc, _ptMouse))
+			RECT temp = _vTotalList[i]->getRect();
+			if (PtInRect(&temp, _ptMouse))
 			{
 				if (_vTotalList[i]->getAttribute() == "start") continue;
 				if (_vTotalList[i]->getAttribute() == "end") continue;
