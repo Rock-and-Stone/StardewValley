@@ -34,7 +34,7 @@ private:
 	int _dir; // 0 ¿À 1 ¿Þ 2 À§ 3¾Æ·¡
 	int _count;
 
-	int _gold, _stamina;
+	int _HP, _gold, _stamina;
 
 	playerState* _playerState;
 	leftWalk* _leftWalk;
@@ -92,10 +92,12 @@ public:
 
 	virtual int getRenderPosY() { return _y + 20; }
 	
-	void setGold(int gold) { _gold = gold; }
-	int getGold() { return _gold; }
-	void setStamina(int stamina) { _stamina = stamina; }
-	int getStamina() { return _stamina; }
+	virtual void setGold(int gold) { _gold = gold; }
+	virtual int getGold() { return _gold; }
+	virtual void setStamina(int stamina) { _stamina = stamina; }
+	virtual int getStamina() { return _stamina; }
+	
+	void GoldGet(int gold);
 
 	RECT getRect() { return _rc; }
 

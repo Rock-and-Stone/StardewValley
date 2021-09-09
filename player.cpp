@@ -46,8 +46,8 @@ HRESULT player::init(int indX, int indY)
 	_playerSword->setPlayer(this);
 	
 
-
-
+	
+	_gold = getSaveGold();
 
 	_homeMap = new homeMap;
 
@@ -69,7 +69,6 @@ void player::release()
 void player::update()
 {
 	_inventory->update();
-
 
 	activate();
 
@@ -329,4 +328,9 @@ void player::activate()
 void player::InventoryDraw()
 {
 	_inventory->render();
+}
+
+void player::GoldGet(int gold)
+{
+	_gold += gold;
 }

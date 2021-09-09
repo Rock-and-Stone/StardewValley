@@ -16,7 +16,7 @@ HRESULT gameScene::init()
 	_cameraManager->init(TILESIZEX, TILESIZEY);
 	_enemyManager->init();
 	_uiManager->init();
-
+	_uiManager->SetMemoryAddressLink(_player);
 
 	
 	
