@@ -85,6 +85,25 @@ struct tagInventory
 	RECT	rc;				//메뉴 칸마다 있을 칸들	
 };
 
+struct tagFrame
+{
+	image* img;
+	RECT rc;
+	float x, y;
+};
+
+struct tagSelectV
+{
+	image* img;
+	RECT rc;
+	RECT src;
+	float x, y;
+	float sx, sy;
+	float cx, cy;
+};
+
+
+
 class inventory : public gameNode
 {
 private:
@@ -207,6 +226,15 @@ private:
 	player* _player;
 	CameraManager* _cm;
 
+
+	//=========재용이의 작업장===========
+	tagFrame	 _frame;
+	tagSelectV	 _select[2];
+	RECT		 _volumeRC[20];
+	float _currentTotalVolume, _currentSFXVolume;
+	bool _isClickUp, _isClickDown;
+
+
 public:
 
 	virtual HRESULT init();
@@ -232,6 +260,12 @@ public:
 	static void Button(void* obj);
 
 	void checkPlayerTool();
+
+	//재용이의 작업함수
+	void SettingInit();
+	void SettingUpdate();
+	void SettingRender();
+	void SettingVolumeFrame();
 
 	//======================= 접근자 & 설정자 ======================= //
 	vector<item*> GetvInven() { return _vInven; }
