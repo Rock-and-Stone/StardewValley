@@ -15,12 +15,14 @@ public :
 	virtual void update();
 	virtual void render();
 	virtual void render(int camX, int camY);
-	
+	virtual void InventoryDraw();
+
 	virtual int getRenderPosY();
 	virtual bool getReleased();
 	virtual void setMapAddressLink(homeMap* hm);
 	virtual void setCameraAddressLink(CameraManager* cm);
 	virtual void SetInventoryCameraMemoryLink(CameraManager* cm);
+
 
 	virtual int getX();
 	virtual int getY();

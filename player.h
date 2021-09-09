@@ -64,6 +64,14 @@ public:
 	void move();
 	void changePlayerTool();
 	void activate();
+	void InventoryDraw();
+
+
+
+
+
+
+
 	void setPlayerDirection(PLAYERDIRECTION direction) { _direction = direction; }
 	void setFrameX(int x) { _frameX = x; }
 	void setFrameY(int y) { _frameY = y; }

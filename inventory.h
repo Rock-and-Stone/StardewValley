@@ -261,11 +261,15 @@ public:
 
 	void checkPlayerTool();
 
+	
+
 	//재용이의 작업함수
 	void SettingInit();
 	void SettingUpdate();
 	void SettingRender();
 	void SettingVolumeFrame();
+
+
 
 	//======================= 접근자 & 설정자 ======================= //
 	vector<item*> GetvInven() { return _vInven; }
@@ -285,6 +289,7 @@ public:
 	void SetQuickItemType(int now) { _nowQuickItem = now; }
 	
 	PLAYERTOOL getPlayerTool() { return _playerTool; }
+
 
 	//======================= ============== ======================= //
 

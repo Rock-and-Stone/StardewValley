@@ -52,16 +52,6 @@ void loadingScene::update()
 	{
 		//이동할 씬 으로 변경
 		SCENEMANAGER->changeScene("gameScene");
-		//SCENEMANAGER->changeScene("mainMenuScene");
-
-		//SCENEMANAGER->changeScene("inventory");
-	
-
-		//SCENEMANAGER->changeScene("inventory");
-		//SCENEMANAGER->changeScene("enemyTestScene");
-		//SCENEMANAGER->changeScene("map");
-
-
 	}
 
 	_count++;

@@ -22,9 +22,9 @@ private:
 	typedef map<string, Channel**>::iterator	arrChannelIter;
 
 private:
-	System*			_system;
-	Sound**			_sound;
-	Channel**		_channel;
+	System* _system;
+	Sound** _sound;
+	Channel** _channel;
 
 	arrSounds		_mTotalSounds;
 

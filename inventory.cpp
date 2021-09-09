@@ -1003,7 +1003,6 @@ void inventory::checkPlayerTool()
         break;
     }
 }
-
 void inventory::SettingInit()
 {
     _frame.img = IMAGEMANAGER->addImage("settingFrame", "source/Images/mainScene/settingFrame.bmp", 403, 210, true, MAGENTA);

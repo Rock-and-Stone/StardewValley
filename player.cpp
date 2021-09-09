@@ -125,7 +125,7 @@ void player::render()
 		Rectangle(getMemDC(), _renderRC);
 	}
 
-	_inventory->render();
+
 
 	char str[25];
 	sprintf_s(str, "%d", _inventory->getPlayerTool());
@@ -324,4 +324,9 @@ void player::activate()
 	
 		}
 	}
+}
+
+void player::InventoryDraw()
+{
+	_inventory->render();
 }

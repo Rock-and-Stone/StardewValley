@@ -80,3 +80,7 @@ void entity::render()
 void entity::render(int x, int y)
 {
 }
+
+void entity::InventoryDraw()
+{
+}

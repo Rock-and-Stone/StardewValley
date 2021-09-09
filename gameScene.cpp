@@ -24,6 +24,7 @@ HRESULT gameScene::init()
 	_npcManager->setMarnieCameraLink(_cameraManager);
 	_npcManager->setWizardCameraLink(_cameraManager);
 	_player->SetInventoryCameraMemoryLink(_cameraManager);
+	
 	RENDERMANAGER->addRender(_player);
 
 
@@ -44,11 +45,11 @@ void gameScene::release()
 
 void gameScene::render()
 {
+	//_npcManager->render();
+
 	_player->setRenderX(_cameraManager->getRenderPosX());
 	_player->setRenderY(_cameraManager->getRenderPosY());
-
-	_npcManager->render();
-
 	RENDERMANAGER->render(getMemDC());
-
+	_player->InventoryDraw();
+	_uiManager->render();
 }

@@ -81,7 +81,7 @@ void playGround::ChangeWindowSize()
 {
 	if (SCENEMANAGER->isCurrentScene("loadingScene"))
 	{
-		SetWindowSize({WINSIZEX2, WINSIZEY2});
+		SetWindowSize({WINSIZEX, WINSIZEY});
 	}
 	else
 	{
