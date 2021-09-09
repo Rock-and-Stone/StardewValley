@@ -79,6 +79,9 @@ public:
 	
 	void RectSensor();
 
+	void DrawTile();
+	void DrawObject();
+
 	void SetSample();
 	void ChangeSample();
 	void PickSample();
