@@ -1,6 +1,6 @@
 #pragma once
 #include "gameNode.h"
-#include "Map.h"
+#include "homeMap.h"
 //#include "player.h" //<- inventory 포함
 #include "npcManager.h"
 #include "EnemyManager.h"
@@ -16,7 +16,7 @@ private:
 	entity* _player;	//플레이어
 	npcManager* _npcManager; //NPC 매니져
 	EnemyManager* _enemyManager; //에너미 매니져
-	
+	homeMap* _homeMap;
 	CameraManager* _cameraManager; //카메라매니져
 	objectManager* _objectManager; //오브젝트 매니져
 	UserInterface* _uiManager;

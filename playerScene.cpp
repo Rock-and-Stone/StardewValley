@@ -32,6 +32,7 @@ void playerScene::update()
 	_cameraManager->update(_player->getX(), _player->getY());
 	_player->update();
 	_homeMap->update();
+	_npcManager->update();
 	RENDERMANAGER->update();
 }
 

@@ -7,8 +7,8 @@ private:
 	int _SFXVolume;
 
 	int _playerHP = getPlayerSaveHP();
-	int _playerGP = getPlayerSaveGP();
-	int _coin = getSaveCoin();
+	int _playerSM = getPlayerSaveSM();
+	int _gold = getSaveGold();
 
 	float _playerPosX = 200;
 	float _playerPosY = 800;
@@ -23,26 +23,26 @@ public:
 	int getPlayerSaveHP();
 	void SavePlayerHP(int hp);
 
-	int getPlayerSaveGP();
-	void SavePlayerGP(int gp);
+	int getPlayerSaveSM();
+	void SavePlayerSM(int sm);
 
-	int getSaveCoin();
-	void SaveCoin(int coin);
+	int getSaveGold();
+	void SaveGold(int gold);
 
 	int getPlayerHP() { return _playerHP; }
 	void setPlayerHP(int hp) { _playerHP = hp; }
 
-	int getPlayerGP() { return _playerGP; }
-	void setPlayerGP(int gp) { _playerGP = gp; }
+	int getPlayerSM() { return _playerSM; }
+	void setPlayerSM(int sm) { _playerSM = sm; }
 
-	int GetCoin() { return _coin; }
-	void setCoin(int coin) { _coin = coin; }
+	int getGold() { return _gold; }
+	void setGold(int gold) { _gold = gold; }
 
 	float getPlayerPosX() { return _playerPosX; }
 	void setPlayerPosX(float x) { _playerPosX = x; }
 	float getPlayerPosY() { return _playerPosY; }
 	void setPlayerPosY(float y) { _playerPosY = y; }
 
-	void SaveData(int hp, int gp, int coin) { SavePlayerHP(hp); SavePlayerGP(gp); SaveCoin(coin); }
+	void SaveData(int hp, int sm, int gold) { SavePlayerHP(hp); SavePlayerSM(sm); SaveGold(gold); }
 };
 

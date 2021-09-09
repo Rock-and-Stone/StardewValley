@@ -49,35 +49,35 @@ void gameData::SavePlayerHP(int hp)
 	INIDATA->iniSave("gameData");
 }
 
-int gameData::getPlayerSaveGP()
+int gameData::getPlayerSaveSM()
 {
 	int gp;
-	gp = INIDATA->loadDataInterger("gameData", "player", "gp");
+	gp = INIDATA->loadDataInterger("gameData", "player", "sm");
 	return gp;
 }
 
-void gameData::SavePlayerGP(int gp)
+void gameData::SavePlayerSM(int sm)
 {
 	char str[30];
-	_playerGP = gp;
-	sprintf_s(str, "%d", _playerGP);
-	INIDATA->addData("player", "gp", str);
+	_playerSM = sm;
+	sprintf_s(str, "%d", _playerSM);
+	INIDATA->addData("player", "sm", str);
 	INIDATA->iniSave("gameData");
 }
 
-int gameData::getSaveCoin()
+int gameData::getSaveGold()
 {
-	int coin;
-	coin = INIDATA->loadDataInterger("gameData", "player", "coin");
-	return coin;
+	int gold;
+	gold = INIDATA->loadDataInterger("gameData", "player", "gold");
+	return gold;
 }
 
-void gameData::SaveCoin(int coin)
+void gameData::SaveGold(int gold)
 {
 	char str[30];
-	_coin = coin;
-	sprintf_s(str, "%d", _coin);
-	INIDATA->addData("player", "coin", str);
+	_gold = gold;
+	sprintf_s(str, "%d", _gold);
+	INIDATA->addData("player", "gold", str);
 	INIDATA->iniSave("gameData");
 }
 

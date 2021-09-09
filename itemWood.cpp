@@ -16,6 +16,7 @@ HRESULT itemWood::init()
 	_item.sP = 0;
 	_item.isEatAble = false;
 	_item.isHandleAble = false;
+	_item.itemNum = 2;
 	//_item.amount = 1;
     return  S_OK;
 }

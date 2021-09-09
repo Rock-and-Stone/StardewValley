@@ -17,6 +17,7 @@ HRESULT Clock::init()
 	IMAGEMANAGER->addImage("RainyDay", "source/clock/RainyDay.bmp", 48, 32, true, MAGENTA);
 	_seasonImg = IMAGEMANAGER->addImage("Spring", "source/clock/Spring.bmp", 48, 32, true, MAGENTA);
 	IMAGEMANAGER->addImage("Summer", "source/clock/Summer.bmp", 48, 32, true, MAGENTA);
+	
 
 	_hour = 06;			//오전 6시 시작
 	_minute = 00;		//00분
@@ -32,6 +33,10 @@ HRESULT Clock::init()
 	_rc = RectMakeCenter(_x, _y,
 		_needleMoveImg->getFrameWidth(), _needleMoveImg->getHeight());
 	_radius = _needleMoveImg->getFrameWidth() / 2;
+
+
+	
+	
 	return S_OK;
 }
 
@@ -49,6 +54,7 @@ void Clock::update()
 void Clock::render()
 {
 	ClockRender();
+	
 	Font();
 	char str[128];
 	sprintf_s(str, "X : %d", _ptMouse.x);
@@ -78,6 +84,8 @@ void Clock::ClockRender()
 
 void Clock::MoneyRender()
 {
+	
+	
 }
 
 void Clock::Move()

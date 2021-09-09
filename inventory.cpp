@@ -177,6 +177,8 @@ HRESULT inventory::init()
     _upPtItem = NULL;
 
     SettingInit();
+
+
     return S_OK;
 }
 
@@ -186,6 +188,15 @@ void inventory::release()
 
 void inventory::update()
 {
+    if (KEYMANAGER->isOnceKeyDown(VK_F1))
+    {
+        saveInventory();
+    }
+    if (KEYMANAGER->isOnceKeyDown(VK_F2))
+    {
+        loadInventory();
+    }
+
     //메뉴를 키기 위한 함수
     MenuOpen();
 
@@ -242,14 +253,15 @@ void inventory::render()
     sprintf_s(str, "%f", _cm->getRenderPosY());
     TextOut(getMemDC(), 300, 400, str, strlen(str));
 
-    sprintf_s(str, "%d", _canFur);
+    sprintf_s(str, "%d", INIDATA->loadDataInterger("inventory", "14", "아이템번호"));
     TextOut(getMemDC(), 100, 420, str, strlen(str));
-    sprintf_s(str, "%d", copperTemp);
+    sprintf_s(str, "%d", INIDATA->loadDataInterger("inventory", "14", "어마운트"));
     TextOut(getMemDC(), 100, 440, str, strlen(str));
     sprintf_s(str, "%d", ironTemp);
     TextOut(getMemDC(), 100, 460, str, strlen(str));
    
-
+    
+     
 
     for (int i = 0; i < INVENTORYSIZE; i++)
     {
@@ -1229,4 +1241,45 @@ void inventory::SettingVolumeFrame()
     
     setBGMVolume(_currentTotalVolume * 10);
     setSFXVolume(_currentSFXVolume * 10);
+}
+
+void inventory::saveInventory()
+{
+    for (int i = 0; i < _vInven.size(); i++)
+    {
+        // i 인벤토리 벡터 배열 인덱스  , 고유 넘버,  수량
+        _vInven[i]->GetItemInfo().itemNum;
+
+        char str[5], str2[5], str3[5];
+        sprintf_s(str, "%d", i);
+        sprintf_s(str2, "%d", _vInven[i]->GetItemInfo().itemNum);
+        sprintf_s(str3, "%d", _inven[i].amount);
+
+        INIDATA->addData(str, "아이템번호" , str2);
+        INIDATA->addData(str, "어마운트", str3);
+        INIDATA->iniSave("inventory");
+    }
+}
+
+void inventory::loadInventory()
+{
+    char str[5];
+
+    for (int i = 0; i < INVENTORYSIZE; ++i)
+    {
+        sprintf_s(str, "%d", i);
+
+        switch (INIDATA->loadDataInterger("inventory", str, "아이템번호"))
+        {
+        case 0:                    //고유 넘버 값
+            _vInven[i] = _stone;  //돌
+            _inven[i].amount = INIDATA->loadDataInterger("inventory", str, "어마운트");
+            break;
+        case 1:   //나무
+            break;
+        case 2:
+            break;
+        }
+
+    }
 }
