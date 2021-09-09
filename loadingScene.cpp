@@ -88,9 +88,9 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
 	while (loadingHelper->_currentCount != LOADINGMAX)
 	{
 		//소스 파일 추가	
-		IMAGEMANAGER->addFrameImage("player", "source/Images/플레이어이미지3.bmp", 576, 2176, 12, 34, true, MAGENTA);
-		IMAGEMANAGER->addFrameImage("marnie", "source/Images/NPC/npc_item.bmp", 64, 128, 4, 4, true, MAGENTA);
-		IMAGEMANAGER->addFrameImage("wizard", "source/Images/NPC/npc_skill.bmp", 64, 128, 4, 4, true, MAGENTA);
+		IMAGEMANAGER->addFrameImage("player", "source/Images/플레이어이미지3.bmp", 1152, 4352, 12, 34, true, MAGENTA);
+		IMAGEMANAGER->addFrameImage("marnie", "source/Images/NPC/npc_item.bmp", 128, 256, 4, 4, true, MAGENTA);
+		IMAGEMANAGER->addFrameImage("wizard", "source/Images/NPC/npc_skill.bmp",128, 256, 4, 4, true, MAGENTA);
 		IMAGEMANAGER->addFrameImage("fisher", "source/Images/NPC/할아버지.bmp", 64, 128, 4, 4, true, MAGENTA);
 
 		//소스 파일 추가
