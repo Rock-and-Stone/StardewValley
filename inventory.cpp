@@ -800,28 +800,30 @@ void inventory::MenuCraftOpen()
         }
     }
 
- 
+    int TempCount1 = 0;
+    int TempCount2 = 0;
+    int TempCount3 = 0;
+    int TempCount4 = 0;
+
     for (int i = 0; i < INVENTORYSIZE; i++)
     {
-        if (_vInven[i] == _wood && _inven[i].amount >= _box->GetItemInfo().needAmountToCraft)
+        if (_vInven[i] == _wood)
         {
-            if (_inven[i].amount < _box->GetItemInfo().needAmountToCraft)
-            {
-                _canBox = false;
-                break;
-            }
-            else if (_inven[i].amount >= _box->GetItemInfo().needAmountToCraft)
+            TempCount1++;
+            if (_inven[i].amount > _box->GetItemInfo().needAmountToCraft)
             {
                 _canBox = true;
-           
-            } 
+            }
             if ((PtInRect(&_craftObjRc[0], _ptMouse) && KEYMANAGER->isOnceKeyDown(VK_LBUTTON)) && _canBox)
             {
 
                 AddItem(_box);
                 _inven[i].amount -= _box->GetItemInfo().needAmountToCraft;
             }
+        
         }
+
+        
       
         if (_vInven[i] == _stone)
         {
@@ -876,6 +878,12 @@ void inventory::MenuCraftOpen()
             }
         }
     }
+    //아이템이 있다
+    if (TempCount1 == 0)
+    {
+        _canBox = false;
+    }
+
   
     
 
