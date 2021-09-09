@@ -4,7 +4,7 @@
 
 HRESULT openingScene::init()
 {
-	_opening = MCIWndCreate(_hWnd, NULL, WS_CHILD | WS_VISIBLE | MCIWNDF_NOPLAYBAR, "source/video/opening.wmv");
+	_opening = MCIWndCreate(_hWnd, NULL, WS_CHILD | WS_VISIBLE | MCIWNDF_NOPLAYBAR, "source/intro.wmv");
 	MoveWindow(_opening, 0, 0, WINSIZEX, WINSIZEY, NULL);
 	MCIWndPlay(_opening);
 
