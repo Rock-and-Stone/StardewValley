@@ -6,6 +6,7 @@
 #include "loadingScene.h"
 #include "mainMenuScene.h"
 #include "inventory.h"
+#include "Map.h"
 #include "enemyTestScene.h"
 
 

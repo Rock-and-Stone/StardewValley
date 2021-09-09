@@ -58,10 +58,6 @@ void aStarTest::setTiles() // 타일 세팅
 	}
 }
 
-void aStarTest::resetTiles()
-{
-
-}
 
 //갈수있는 길을 추가하는 함수
 vector<tile*> aStarTest::addOpenList(tile* currentTile)
@@ -200,12 +196,6 @@ void aStarTest::release()
 
 void aStarTest::update()
 {
-	if (KEYMANAGER->isOnceKeyDown('R'))
-	{
-		resetTiles();
-	}
-
-
 
 	if (KEYMANAGER->isToggleKey(VK_TAB)) _start = false;
 	else _start = true;
