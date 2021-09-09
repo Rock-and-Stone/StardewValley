@@ -7,7 +7,7 @@ class CameraManager;
 class marnie : public entity
 {
 private:
-	RECT _rc;
+	RECT _rc,_renderRc;
 	image* _img;
 	int _x, _y;   //ÁßÁ¡
 	int _idX, _idY;
@@ -27,6 +27,6 @@ public:
 	void setCameraAddressLink(CameraManager* cm) { _cameraManager = cm; }
 	virtual int getRenderPosY() { return _y; }
 	RECT getRect() { return _rc; }
-
+	RECT getRenderRc() { return _renderRc; }
 };
 

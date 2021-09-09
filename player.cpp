@@ -98,12 +98,13 @@ void player::update()
 	}
 
 	//움직임이 멈추면 가만히 있는 상태로
-	if (KEYMANAGER->isOnceKeyUp('W')) _frameX = 0;
-	if (KEYMANAGER->isOnceKeyUp('A')) _frameX = 0;
-	if (KEYMANAGER->isOnceKeyUp('S')) _frameX = 0;
-	if (KEYMANAGER->isOnceKeyUp('D')) _frameX = 0;
+	if (KEYMANAGER->isOnceKeyUp('W') && _direction != PLAYERDIRECTION_ACTIVATE) _frameX = 0;
+	if (KEYMANAGER->isOnceKeyUp('A') && _direction != PLAYERDIRECTION_ACTIVATE) _frameX = 0;
+	if (KEYMANAGER->isOnceKeyUp('S') && _direction != PLAYERDIRECTION_ACTIVATE) _frameX = 0;
+	if (KEYMANAGER->isOnceKeyUp('D') && _direction != PLAYERDIRECTION_ACTIVATE) _frameX = 0;
 
-	_rc = RectMakeCenter(_x + 32, _y + 32, TILEWIDTH, TILEHEIGHT);
+	_rc = RectMakeCenter(_x + 48, _y + 84, TILEWIDTH, TILEHEIGHT);
+	_renderRC = RectMakeCenter(_rendX + 48, _rendY + 84, TILEWIDTH, TILEWIDTH);
 
 	if (KEYMANAGER->isOnceKeyDown(VK_LBUTTON) && !_inventory->GetIsMenuOpen() && _direction != PLAYERDIRECTION_ACTIVATE)
 	{
@@ -120,8 +121,8 @@ void player::render()
 
 	if (KEYMANAGER->isToggleKey(VK_TAB))
 	{
-		_renderRC = RectMakeCenter(_rendX + 32, _rendY + 32, TILEWIDTH, TILEWIDTH);
 		Rectangle(getMemDC(), _renderRC);
+		Rectangle(getMemDC(), _intRenderRc);
 	}
 
 
@@ -130,7 +131,7 @@ void player::render()
 	sprintf_s(str, "%d", _inventory->getPlayerTool());
 	TextOut(getMemDC(), 300, 300, str, strlen(str));
 
-	sprintf_s(str, "%d", _count);
+	sprintf_s(str, "gold : %d", _gold);
 	TextOut(getMemDC(), 300, 320, str, strlen(str));
 
 	sprintf_s(str, "%d", _frameX);
@@ -199,18 +200,29 @@ void player::move()
 	case PLAYERDIRECTION_LEFT:
 		tileIndex[0] = tileX + (tileY * TILEX);
 		tileIndex[1] = tileX + (tileY + 1) * TILEX;
+		_interectiveRc = RectMakeCenter(_x     + 48 - 32, _y     + 84, TILEWIDTH, TILEWIDTH);
+		_intRenderRc   = RectMakeCenter(_rendX + 48 - 32, _rendY + 84, TILEWIDTH, TILEWIDTH);
 		break;
 	case PLAYERDIRECTION_UP:
 		tileIndex[0] = tileX + (tileY * TILEX);
 		tileIndex[1] = (tileX + 1) + tileY * TILEX;
+		_interectiveRc = RectMakeCenter(_x     + 48, _y     + 84 - 32, TILEWIDTH, TILEWIDTH);
+		_intRenderRc   = RectMakeCenter(_rendX + 48, _rendY + 84 - 32, TILEWIDTH, TILEWIDTH);
+
 		break;
 	case PLAYERDIRECTION_RIGHT:
 		tileIndex[0] = (tileX + tileY * TILEX) + 1;
 		tileIndex[1] = (tileX + (tileY + 1) * TILEX) + 1;
+		_interectiveRc = RectMakeCenter(_x     + 48 + 32, _y     + 84, TILEWIDTH, TILEWIDTH);
+		_intRenderRc   = RectMakeCenter(_rendX + 48 + 32, _rendY + 84, TILEWIDTH, TILEWIDTH);
+
 		break;
 	case PLAYERDIRECTION_DOWN:
 		tileIndex[0] = (tileX + tileY * TILEX) + TILEX;
 		tileIndex[1] = (tileX + 1 + tileY * TILEX) + TILEX;
+		_interectiveRc = RectMakeCenter(_x     + 48, _y     + 84 + 32, TILEWIDTH, TILEWIDTH);
+		_intRenderRc   = RectMakeCenter(_rendX + 48, _rendY + 84 + 32, TILEWIDTH, TILEWIDTH);
+
 		break;
 	}
 
@@ -258,7 +270,6 @@ void player::move()
 	_rc = rcCollision;
 
 	_rc = RectMakeCenter(_x, _y, TILESIZE, TILESIZE);
-
 }
 
 //플레이어가 들고 있는 도구를 받아 상태 패턴을 실행하는 함수
@@ -328,9 +339,4 @@ void player::activate()
 void player::InventoryDraw()
 {
 	_inventory->render();
-}
-
-void player::GoldGet(int gold)
-{
-	_gold += gold;
 }

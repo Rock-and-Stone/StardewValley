@@ -226,7 +226,6 @@ private:
 	player* _player;
 	CameraManager* _cm;
 
-
 	//=========재용이의 작업장===========
 	tagFrame	 _frame;
 	tagSelectV	 _select[2];
@@ -268,6 +267,10 @@ public:
 	void SettingUpdate();
 	void SettingRender();
 	void SettingVolumeFrame();
+
+	void saveInventory();
+
+	void loadInventory();
 
 
 

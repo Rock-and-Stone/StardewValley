@@ -16,6 +16,8 @@ HRESULT itemStone::init()
 	_item.sP = 0;
 	_item.isEatAble = false;
 	_item.isHandleAble = false;
+	_item.itemNum = 1;
+
 	//_item.amount = 1;
 	return S_OK;
 }

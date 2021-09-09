@@ -19,6 +19,7 @@ HRESULT itemBox::init()
 	_item.isHandleAble = true;
 	//_item.amount = 1;
 	_item.needAmountToCraft = 50;
+	_item.itemNum = 3;
 
 	return S_OK;
 }

@@ -23,6 +23,7 @@ HRESULT gameScene::init()
 	_npcManager->setCameraAddressLink(_cameraManager);
 	_npcManager->setMarnieCameraLink(_cameraManager);
 	_npcManager->setWizardCameraLink(_cameraManager);
+	_npcManager->setPlayerMemAddressLink(_player);
 	_player->SetInventoryCameraMemoryLink(_cameraManager);
 	
 	RENDERMANAGER->addRender(_player);
@@ -35,7 +36,7 @@ void gameScene::update()
 {
 	_cameraManager->update(_player->getX(), _player->getY());
 	_player->update();
-
+	_npcManager->update();
 	RENDERMANAGER->update();
 }
 
@@ -52,4 +53,5 @@ void gameScene::render()
 	RENDERMANAGER->render(getMemDC());
 	_player->InventoryDraw();
 	_uiManager->render();
+	_npcManager->render();
 }
