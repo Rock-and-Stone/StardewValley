@@ -31,7 +31,7 @@ void objectManager::render()
     for (_viObject = _vObject.begin(); _viObject != _vObject.end(); _viObject++)
     {
         RECT Temp = (*_viObject)->GetObjectRect();
-        (*_viObject)->update();
+        (*_viObject)->render();
     }
 }
 
@@ -205,5 +205,15 @@ void objectManager::SetGold(float x, float y, int amount)
 //    Axe->init(AXE,"",,,PointMake());
 //    _vObject.push_back(Axe);
 //}
+}
+void objectManager::ObjectCollsion()
+{
+    RECT temp;
+    RECT playerRc;
+    RECT ObjcetRc;
+    for (int i = 0; i < _vObject.size(); i++)
+    {
+
+    }
 }
 // =[ ============================================= »ý ¼º ========================================= ]=

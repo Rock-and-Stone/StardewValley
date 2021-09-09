@@ -118,6 +118,7 @@ public:
 	void SetIron(float x, float y, int amount);
 	void SetGold(float x, float y, int amount);
 
+	void ObjectCollsion();
 
 	//======================= 접근자 & 설정자 ======================= //
 	vector<object*> GetVObject() { return _vObject; }
