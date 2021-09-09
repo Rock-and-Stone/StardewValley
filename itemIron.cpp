@@ -16,6 +16,7 @@ HRESULT itemIron::init()
 	_item.sP = 0;
 	_item.isEatAble = false;
 	_item.isHandleAble = true;
+	_item.itemNum = 10;
 	//_item.amount = 1;
 
     return S_OK;

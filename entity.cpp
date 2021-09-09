@@ -47,9 +47,37 @@ RECT entity::getRect()
 	return RECT();
 }
 
+RECT entity::getRenderRc()
+{
+	return RECT();
+}
+
+RECT entity::getIntRenderRc()
+{
+	return RECT();
+}
+
+
+RECT entity::getInterectiveRc()
+{
+	return RECT();
+}
+
 int entity::getGold()
 {
 	return 0;
+}
+
+void entity::setX(int x)
+{
+}
+
+void entity::setY(int y)
+{
+}
+
+void entity::GoldGet(int gold)
+{
 }
 
 entity::entity()
