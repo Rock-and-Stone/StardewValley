@@ -19,8 +19,6 @@ HRESULT gameScene::init()
 	_uiManager->init();
 	_uiManager->SetMemoryAddressLink(_player);
 	
-	
-	
 	_npcManager->setCameraAddressLink(_cameraManager);
 	_npcManager->setMarnieCameraLink(_cameraManager);
 	_npcManager->setWizardCameraLink(_cameraManager);
@@ -36,7 +34,7 @@ void gameScene::update()
 {
 	_cameraManager->update(_player->getX(), _player->getY());
 	_player->update();
-	_homeMap->Movement(_player->getX(), _player->getY());
+	_homeMap->Movement(_cameraManager->getCamX(), _cameraManager->getCamY());
 	RENDERMANAGER->update();
 }
 

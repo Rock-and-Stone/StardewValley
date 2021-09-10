@@ -1,6 +1,7 @@
 #pragma once
 #include "gameNode.h"
 #include "tileNode.h"
+#include "object.h"
 
 #define TILEHEIGHT 32
 #define TILEWIDTH 32
@@ -33,12 +34,15 @@ public:
 	void DrawTile();
 	void DrawObject();
 
+	void PlaceObject(ALLOBJECTS object, int num);
+
 	tagTile* getTile() { return _tiles; }
-
-
+	
 	//STEP2
 	//타일속성에 대한 접근자도 만들어주어야 할껍니다
 	DWORD* getAttribute() { return _attribute; }
+
+	OBJECT objSelect(int frameX, int frameY);
 
 	//우린 사용하고 있지 않습니다
 	int getPosFirst() { return _pos[0]; }
