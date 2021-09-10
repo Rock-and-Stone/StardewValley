@@ -3,6 +3,7 @@
 #include "button.h"
 #include "player.h"
 #include "CameraManager.h"
+#include "objectManager.h"
 
 HRESULT inventory::init()
 {
@@ -671,8 +672,127 @@ void inventory::MenuInvetoryOpen()
             {
                 swap(_vInven[_downPtItem], _vInven[_downPtItem]);
             }
-            if (!PtInRect(&_menuRc, _ptMouse))
-            {
+            if (!PtInRect(&_menuRc, _ptMouse)) //밖에다 버리면
+            {  
+                switch (_vInven[_downPtItem]->GetItemInfo().itemNum)
+                {
+                case 0:                    //고유 넘버 값
+                    break;
+                case 1:
+                        //_vInven[i] = _stone;  //돌
+                    break;
+                case 2:
+                    _om->SetWood(_player->getPlayerPosX(), _player->getPlayerPosY(), _inven[_downPtItem].amount);
+         
+                    break;
+                //case 3:
+                //    _vInven[i] = _box;  //돌
+                //    _inven[i].amount = INIDATA->loadDataInterger("inventory", str, "어마운트");
+                //    break;
+                //case 4:
+                //    _vInven[i] = _furnance;  //돌
+                //    _inven[i].amount = INIDATA->loadDataInterger("inventory", str, "어마운트");
+                //    break;
+                //case 5:
+                //    _vInven[i] = _scareCrow1;  //돌
+                //    _inven[i].amount = INIDATA->loadDataInterger("inventory", str, "어마운트");
+                //    break;
+                //case 6:
+                //    _vInven[i] = _scareCrow2;  //돌
+                //    _inven[i].amount = INIDATA->loadDataInterger("inventory", str, "어마운트");
+                //    break;
+                //case 7:
+                //    _vInven[i] = _cauliFlower;  //돌
+                //    _inven[i].amount = INIDATA->loadDataInterger("inventory", str, "어마운트");
+                //    break;
+                //case 8:
+                //    _vInven[i] = _kale;  //돌
+                //    _inven[i].amount = INIDATA->loadDataInterger("inventory", str, "어마운트");
+                //    break;
+                //case 9:
+                //    _vInven[i] = _parsnip;  //돌
+                //    _inven[i].amount = INIDATA->loadDataInterger("inventory", str, "어마운트");
+                //    break;
+                //case 10:
+                //    _vInven[i] = _potato;  //돌
+                //    _inven[i].amount = INIDATA->loadDataInterger("inventory", str, "어마운트");
+                //    break;
+                //case 11:
+                //    _vInven[i] = _halibut;  //돌
+                //    _inven[i].amount = INIDATA->loadDataInterger("inventory", str, "어마운트");
+                //    break;
+                //case 12:
+                //    _vInven[i] = _pufferFish;  //돌
+                //    _inven[i].amount = INIDATA->loadDataInterger("inventory", str, "어마운트");
+                //    break;
+                //case 13:
+                //    _vInven[i] = _tuna;  //돌
+                //    _inven[i].amount = INIDATA->loadDataInterger("inventory", str, "어마운트");
+                //    break;
+                //case 14:
+                //    _vInven[i] = _copper;  //돌
+                //    _inven[i].amount = INIDATA->loadDataInterger("inventory", str, "어마운트");
+                //    break;
+                //case 15:
+                //    _vInven[i] = _gold;  //돌
+                //    _inven[i].amount = INIDATA->loadDataInterger("inventory", str, "어마운트");
+                //    break;
+                //case 16:
+                //    _vInven[i] = _iron;  //돌
+                //    _inven[i].amount = INIDATA->loadDataInterger("inventory", str, "어마운트");
+                //    break;
+                //case 17:
+                //    _vInven[i] = _cauliSeed;  //돌
+                //    _inven[i].amount = INIDATA->loadDataInterger("inventory", str, "어마운트");
+                //    break;
+                //case 18:
+                //    _vInven[i] = _kaleSeed;  //돌
+                //    _inven[i].amount = INIDATA->loadDataInterger("inventory", str, "어마운트");
+                //    break;
+                //case 19:
+                //    _vInven[i] = _parsnipSeed;  //돌
+                //    _inven[i].amount = INIDATA->loadDataInterger("inventory", str, "어마운트");
+                //    break;
+                //case 20:
+                //    _vInven[i] = _potatoSeed;  //돌
+                //    _inven[i].amount = INIDATA->loadDataInterger("inventory", str, "어마운트");
+                //    break;
+                //case 21:
+                //    _vInven[i] = _axe;  //돌
+                //    _inven[i].amount = INIDATA->loadDataInterger("inventory", str, "어마운트");
+                //    break;
+                //case 22:
+                //    _vInven[i] = _can;  //돌
+                //    _inven[i].amount = INIDATA->loadDataInterger("inventory", str, "어마운트");
+                //    break;
+                //case 23:
+                //    _vInven[i] = _hoe;  //돌
+                //    _inven[i].amount = INIDATA->loadDataInterger("inventory", str, "어마운트");
+                //    break;
+                //case 24:
+                //    _vInven[i] = _pickAxe;  //돌
+                //    _inven[i].amount = INIDATA->loadDataInterger("inventory", str, "어마운트");
+                //    break;
+                //case 25:
+                //    _vInven[i] = _rod;  //돌
+                //    _inven[i].amount = INIDATA->loadDataInterger("inventory", str, "어마운트");
+                //    break;
+                //case 26:
+                //    _vInven[i] = _sickle;  //돌
+                //    _inven[i].amount = INIDATA->loadDataInterger("inventory", str, "어마운트");
+                //    break;
+                //case 27:
+                //    _vInven[i] = _slingShot;  //돌
+                //    _inven[i].amount = INIDATA->loadDataInterger("inventory", str, "어마운트");
+                //    break;
+                //case 28:
+                //    _vInven[i] = _sword;  //돌
+                //    _inven[i].amount = INIDATA->loadDataInterger("inventory", str, "어마운트");
+                //    break;
+                //default:
+                //    break;
+        
+                }
                 _vInven[_downPtItem] = _null;
                 _inven[_downPtItem].amount = 0;
                 _inven[_downPtItem].itemExist = false;
@@ -1375,9 +1495,13 @@ void inventory::loadInventory()
         case 27:
             _vInven[i] = _slingShot;  //돌
             _inven[i].amount = INIDATA->loadDataInterger("inventory", str, "어마운트");
+            break;
         case 28:
             _vInven[i] = _sword;  //돌
             _inven[i].amount = INIDATA->loadDataInterger("inventory", str, "어마운트");
+            break;
+        default:
+            break;
         }
 
     }

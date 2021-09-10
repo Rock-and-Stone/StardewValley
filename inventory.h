@@ -50,6 +50,7 @@
 class button;
 class player;
 class CameraManager;
+class objectManager;
 
 enum CraftItem 
 {
@@ -210,23 +211,24 @@ private:
 	int ironTemp;
 	int copperTemp;
 
+	//인벤 다찻다
 	BOOL	_invenIsFull;
 
 	//버튼스
 	button* _buttonToMenu;
 	button* _buttonExit;
-	
+	//제작가능하니?
 	BOOL	_canBox;
 	BOOL	_canFur;
 	BOOL	_canCrow1;
 	BOOL	_canCrow2;
-
+	
 
 	PLAYERTOOL _playerTool;
 	player* _player;
 	CameraManager* _cm;
+	objectManager* _om;
 
-	//=========재용이의 작업장===========
 	tagFrame	 _frame;
 	tagSelectV	 _select[2];
 	RECT		 _volumeRC[20];
