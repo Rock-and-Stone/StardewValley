@@ -18,7 +18,7 @@ HRESULT itemIron::init()
 	_item.isHandleAble = true;
 	_item.itemNum = 10;
 	//_item.amount = 1;
-
+	_item.itemNum = 16;
     return S_OK;
 }
 

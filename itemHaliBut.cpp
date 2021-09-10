@@ -16,6 +16,7 @@ HRESULT itemHaliBut::init()
 	_item.sP = 80;
 	_item.isEatAble = true;
 	_item.isHandleAble = false;
+	_item.itemNum = 11;
 	//_item.amount = 1;
     return S_OK;
 }

@@ -17,6 +17,7 @@ HRESULT itemScareCrow1::init()
 	_item.isEatAble = false;
 	_item.isHandleAble = true;
 	//_item.amount = 1;
+	_item.itemNum = 5;
 	_item.needAmountToCraft = 10;
     return S_OK;
 }

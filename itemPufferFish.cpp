@@ -17,6 +17,7 @@ HRESULT itemPufferFish::init()
 	_item.isEatAble = true;
 	_item.isHandleAble = false;
 	//_item.amount = 1;
+	_item.itemNum = 12;
     return S_OK;
 }
 

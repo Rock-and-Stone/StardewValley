@@ -188,15 +188,6 @@ void inventory::release()
 
 void inventory::update()
 {
-    if (KEYMANAGER->isOnceKeyDown(VK_F1))
-    {
-        saveInventory();
-    }
-    if (KEYMANAGER->isOnceKeyDown(VK_F2))
-    {
-        loadInventory();
-    }
-
     //메뉴를 키기 위한 함수
     MenuOpen();
 
@@ -479,6 +470,8 @@ void inventory::render()
             _quickSlotMax = 12;
             _nowQuickItem -= 36;
         }
+        SOUNDMANAGER->play("toolSwap", 1.0f);
+
     }
    
     SelectObject(getMemDC(), oldFont2);
@@ -686,11 +679,6 @@ void inventory::MenuInvetoryOpen()
             }
         }
 }
-//스탯창의미가 있나 싶고
-void inventory::MenuStatOpen()
-{
-
-}
 //제작창(미완)
 void inventory::MenuCraftOpen()
 {
@@ -834,80 +822,72 @@ void inventory::MenuCraftOpen()
             }
         
         }
-
         
-      
         if (_vInven[i] == _stone)
         {
-            if (_inven[i].amount < _furnance->GetItemInfo().needAmountToCraft) continue;
-            if ((_inven[i].amount >= _furnance->GetItemInfo().needAmountToCraft))
+            TempCount2++;
+            if (_inven[i].amount > _furnance->GetItemInfo().needAmountToCraft)
             {
                 _canFur = true;
-                if (PtInRect(&_craftObjRc[1], _ptMouse) && KEYMANAGER->isOnceKeyDown(VK_LBUTTON))
-                {
-                    AddItem(_furnance);
-                    _inven[i].amount -= _furnance->GetItemInfo().needAmountToCraft;
-                }
-
             }
-            else
+            if ((PtInRect(&_craftObjRc[1], _ptMouse) && KEYMANAGER->isOnceKeyDown(VK_LBUTTON)) && _canFur)
             {
-                _canFur = false;
+
+                AddItem(_furnance);
+                _inven[i].amount -= _furnance->GetItemInfo().needAmountToCraft;
             }
+
         }
+
         if (_vInven[i] == _copper)
         {
-            if ((_inven[i].amount >= _scareCrow1->GetItemInfo().needAmountToCraft))
+            TempCount3++;
+            if (_inven[i].amount > _scareCrow1->GetItemInfo().needAmountToCraft)
             {
                 _canCrow1 = true;
-                if (PtInRect(&_craftObjRc[2], _ptMouse) && KEYMANAGER->isOnceKeyDown(VK_LBUTTON))
-                {
-                    AddItem(_scareCrow1);
-                    _inven[i].amount -= _scareCrow1->GetItemInfo().needAmountToCraft;
-                }
-
             }
-            else
+            if ((PtInRect(&_craftObjRc[2], _ptMouse) && KEYMANAGER->isOnceKeyDown(VK_LBUTTON)) && _canCrow1)
             {
-                _canCrow1 = false;
+
+                AddItem(_scareCrow1);
+                _inven[i].amount -= _scareCrow1->GetItemInfo().needAmountToCraft;
             }
+
         }
+
         if (_vInven[i] == _iron)
         {
-            if ((_inven[i].amount >= _scareCrow2->GetItemInfo().needAmountToCraft))
+            TempCount4++;
+            if (_inven[i].amount > _scareCrow2->GetItemInfo().needAmountToCraft)
             {
                 _canCrow2 = true;
-                if (PtInRect(&_craftObjRc[3], _ptMouse) && KEYMANAGER->isOnceKeyDown(VK_LBUTTON))
-                {
-                    AddItem(_scareCrow2);
-                    _inven[i].amount -= _scareCrow2->GetItemInfo().needAmountToCraft;
-                }
-
             }
-            else
+            if ((PtInRect(&_craftObjRc[3], _ptMouse) && KEYMANAGER->isOnceKeyDown(VK_LBUTTON)) && _canCrow2)
             {
-                _canCrow2 = false;
+
+                AddItem(_scareCrow2);
+                _inven[i].amount -= _scareCrow2->GetItemInfo().needAmountToCraft;
             }
+
         }
     }
-    //아이템이 있다
+    //아이템이 없다
     if (TempCount1 == 0)
     {
         _canBox = false;
     }
-
-  
-    
-
-        
-
-
-   
-
-}
-//세팅창(미완)
-void inventory::MenuSettingOpen()
-{
+    if (TempCount2 == 0)
+    {
+        _canFur = false;
+    }
+    if (TempCount3 == 0)
+    {
+        _canCrow1 = false;
+    }
+    if (TempCount4 == 0)
+    {
+        _canCrow2 = false;
+    }
 }
 //아이템 추가(완)
 void inventory::AddItem(item* item)
@@ -995,7 +975,7 @@ void inventory::Button(void* obj)
     if (invento->_buttonExit->getBtnDir() == BUTTONDIRECTION_UP) exit(1);
     if (invento->_buttonToMenu->getBtnDir() == BUTTONDIRECTION_UP) SCENEMANAGER->changeScene("mainMenuScene");
 }
-
+//현재 툴이뭔지
 void inventory::checkPlayerTool()
 {
     switch (_vInven[_nowQuickItem]->GetItemInfo().items)
@@ -1023,7 +1003,7 @@ void inventory::checkPlayerTool()
         break;
     }
 }
-
+//세팅창 사운드
 void inventory::SettingInit()
 {
     _frame.img = IMAGEMANAGER->addImage("settingFrame", "source/Images/mainScene/settingFrame.bmp", 403, 210, true, MAGENTA);
@@ -1049,7 +1029,7 @@ void inventory::SettingInit()
     _currentTotalVolume = getBGMVolume() / 10;
     _currentSFXVolume = getSFXVolume() / 10;
 }
-
+//세팅 초기화
 void inventory::SettingUpdate()
 {
     SettingVolumeFrame();
@@ -1065,7 +1045,7 @@ void inventory::SettingUpdate()
     //볼륨 설정창 여기다가 넣으면 됩니다요
     SOUNDMANAGER->setVolume("opening", _currentTotalVolume);
 }
-
+//세팅 렌더
 void inventory::SettingRender()
 {
     _frame.img->render(getMemDC(), WINSIZEX / 2 - _frame.img->getWidth() / 2, WINSIZEY / 2 - _frame.img->getHeight() / 2 + 30);
@@ -1094,7 +1074,7 @@ void inventory::SettingRender()
     sprintf_s(str, "%f %f", _select[0].cx, _select[1].cx);
     TextOut(getMemDC(), 50, 100, str, strlen(str));
 }
-
+//세팅 볼륨조절
 void inventory::SettingVolumeFrame()
 {
    
@@ -1255,7 +1235,7 @@ void inventory::SettingVolumeFrame()
     setBGMVolume(_currentTotalVolume * 10);
     setSFXVolume(_currentSFXVolume * 10);
 }
-
+//인벤토리 세이브하는 곳
 void inventory::saveInventory()
 {
     for (int i = 0; i < _vInven.size(); i++)
@@ -1273,7 +1253,7 @@ void inventory::saveInventory()
         INIDATA->iniSave("inventory");
     }
 }
-
+//인벤토리 로드하는 함수
 void inventory::loadInventory()
 {
     char str[5];
@@ -1285,13 +1265,119 @@ void inventory::loadInventory()
         switch (INIDATA->loadDataInterger("inventory", str, "아이템번호"))
         {
         case 0:                    //고유 넘버 값
+            _vInven[i] = _null;  
+            _inven[i].amount = INIDATA->loadDataInterger("inventory", str, "어마운트");
+            break;
+        case 1:   
             _vInven[i] = _stone;  //돌
             _inven[i].amount = INIDATA->loadDataInterger("inventory", str, "어마운트");
             break;
-        case 1:   //나무
-            break;
         case 2:
+            _vInven[i] = _wood;  //돌
+            _inven[i].amount = INIDATA->loadDataInterger("inventory", str, "어마운트");
             break;
+        case 3:
+            _vInven[i] = _box;  //돌
+            _inven[i].amount = INIDATA->loadDataInterger("inventory", str, "어마운트");
+            break;
+        case 4:
+            _vInven[i] = _furnance;  //돌
+            _inven[i].amount = INIDATA->loadDataInterger("inventory", str, "어마운트");
+            break;
+        case 5:
+            _vInven[i] = _scareCrow1;  //돌
+            _inven[i].amount = INIDATA->loadDataInterger("inventory", str, "어마운트");
+            break;
+        case 6:
+            _vInven[i] = _scareCrow2;  //돌
+            _inven[i].amount = INIDATA->loadDataInterger("inventory", str, "어마운트");
+            break;
+        case 7:
+            _vInven[i] = _cauliFlower;  //돌
+            _inven[i].amount = INIDATA->loadDataInterger("inventory", str, "어마운트");
+            break;
+        case 8:
+            _vInven[i] = _kale;  //돌
+            _inven[i].amount = INIDATA->loadDataInterger("inventory", str, "어마운트");
+            break;
+        case 9:
+            _vInven[i] = _parsnip;  //돌
+            _inven[i].amount = INIDATA->loadDataInterger("inventory", str, "어마운트");
+            break;
+        case 10:
+            _vInven[i] = _potato;  //돌
+            _inven[i].amount = INIDATA->loadDataInterger("inventory", str, "어마운트");
+            break;
+        case 11:
+            _vInven[i] = _halibut;  //돌
+            _inven[i].amount = INIDATA->loadDataInterger("inventory", str, "어마운트");
+            break;
+        case 12:
+            _vInven[i] = _pufferFish;  //돌
+            _inven[i].amount = INIDATA->loadDataInterger("inventory", str, "어마운트");
+            break;
+        case 13:
+            _vInven[i] = _tuna;  //돌
+            _inven[i].amount = INIDATA->loadDataInterger("inventory", str, "어마운트");
+            break;
+        case 14:
+            _vInven[i] = _copper;  //돌
+            _inven[i].amount = INIDATA->loadDataInterger("inventory", str, "어마운트");
+            break;
+        case 15:
+            _vInven[i] = _gold;  //돌
+            _inven[i].amount = INIDATA->loadDataInterger("inventory", str, "어마운트");
+            break;
+        case 16:
+            _vInven[i] = _iron;  //돌
+            _inven[i].amount = INIDATA->loadDataInterger("inventory", str, "어마운트");
+            break;
+        case 17:
+            _vInven[i] = _cauliSeed;  //돌
+            _inven[i].amount = INIDATA->loadDataInterger("inventory", str, "어마운트");
+            break;
+        case 18:
+            _vInven[i] = _kaleSeed;  //돌
+            _inven[i].amount = INIDATA->loadDataInterger("inventory", str, "어마운트");
+            break;
+        case 19:
+            _vInven[i] = _parsnipSeed;  //돌
+            _inven[i].amount = INIDATA->loadDataInterger("inventory", str, "어마운트");
+            break;
+        case 20:
+            _vInven[i] = _potatoSeed;  //돌
+            _inven[i].amount = INIDATA->loadDataInterger("inventory", str, "어마운트");
+            break;
+        case 21:
+            _vInven[i] = _axe;  //돌
+            _inven[i].amount = INIDATA->loadDataInterger("inventory", str, "어마운트");
+            break;
+        case 22:
+            _vInven[i] = _can;  //돌
+            _inven[i].amount = INIDATA->loadDataInterger("inventory", str, "어마운트");
+            break;
+        case 23:
+            _vInven[i] = _hoe;  //돌
+            _inven[i].amount = INIDATA->loadDataInterger("inventory", str, "어마운트");
+            break;
+        case 24:
+            _vInven[i] = _pickAxe;  //돌
+            _inven[i].amount = INIDATA->loadDataInterger("inventory", str, "어마운트");
+            break;
+        case 25:
+            _vInven[i] = _rod;  //돌
+            _inven[i].amount = INIDATA->loadDataInterger("inventory", str, "어마운트");
+            break;
+        case 26:
+            _vInven[i] = _sickle;  //돌
+            _inven[i].amount = INIDATA->loadDataInterger("inventory", str, "어마운트");
+            break;
+        case 27:
+            _vInven[i] = _slingShot;  //돌
+            _inven[i].amount = INIDATA->loadDataInterger("inventory", str, "어마운트");
+        case 28:
+            _vInven[i] = _sword;  //돌
+            _inven[i].amount = INIDATA->loadDataInterger("inventory", str, "어마운트");
         }
 
     }

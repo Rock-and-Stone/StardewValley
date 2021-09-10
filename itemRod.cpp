@@ -26,6 +26,7 @@ HRESULT itemRod::init()
 	_item.isHandleAble = true;
 	//_item.amount = 1;
 
+	_item.itemNum = 25;
 	return	S_OK;
 }
 

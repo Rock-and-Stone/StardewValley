@@ -247,9 +247,8 @@ public:
 
 	void QuickSlot();
 	void MenuInvetoryOpen();
-	void MenuStatOpen();
 	void MenuCraftOpen();
-	void MenuSettingOpen();
+
 
 
 	//NULL값 있는 벡터는 지우고 값넣는 
