@@ -31,24 +31,17 @@ void marnie::update()
 {
 	_rc = RectMakeCenter(_x, _y, TILEWIDTH, TILEHEIGHT);
 
-	int tileX, tileY;
+	_rc = RectMakeCenter(_x + 16, _y + 52, TILEWIDTH, TILEHEIGHT);
 
-	RECT rcCollision;
-	rcCollision = _rc;
-
-	rcCollision.left += 2;
-	rcCollision.top += 2;
-	rcCollision.right -= 2;
-	rcCollision.bottom -= 2;
-
-	tileX = rcCollision.left / TILEWIDTH;
-	tileY = rcCollision.top / TILEHEIGHT;
-
-	_idX = tileX;
-	_idY = tileY;
+	_renderRc = RectMakeCenter(_x - _cameraManager->getCamX() + 16, _y - _cameraManager->getCamY() + 52, TILEWIDTH, TILEHEIGHT);
 }
 
 void marnie::render()
 {
 	_img->frameRender(getMemDC(), _x - _cameraManager->getCamX(), _y - _cameraManager->getCamY());
+
+	if (KEYMANAGER->isToggleKey(VK_TAB))
+	{
+		Rectangle(getMemDC(), _renderRc);
+	}
 }

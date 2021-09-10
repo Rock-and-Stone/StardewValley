@@ -28,8 +28,13 @@ public:
 	virtual int getY();
 	virtual void setRenderX(int rendX);
 	virtual void setRenderY(int rendY);
-	RECT getRect();
+	virtual RECT getRect();
+	virtual RECT getRenderRc();
+	virtual RECT getIntRenderRc();
+	virtual RECT getInterectiveRc();
 
 	virtual int getGold();
+	virtual void setX(int x), setY(int y);
+	void GoldGet(int gold);
 
 };

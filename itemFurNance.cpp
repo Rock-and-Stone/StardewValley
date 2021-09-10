@@ -19,6 +19,7 @@ HRESULT itemFurNance::init()
 	_item.isHandleAble = true;
 	//_item.amount = 1;
 	_item.needAmountToCraft = 10;
+	_item.itemNum = 4;
     return S_OK;
 }
 

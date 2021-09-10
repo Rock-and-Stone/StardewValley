@@ -21,8 +21,8 @@ class player : public entity
 private:
 
 	PLAYERDIRECTION	_direction;
-	RECT _rc;
-	RECT _renderRC;
+	RECT _rc,_interectiveRc;
+	RECT _renderRC,_intRenderRc;
 
 	image* _img;
 
@@ -66,12 +66,6 @@ public:
 	void activate();
 	void InventoryDraw();
 
-
-
-
-
-
-
 	void setPlayerDirection(PLAYERDIRECTION direction) { _direction = direction; }
 	void setFrameX(int x) { _frameX = x; }
 	void setFrameY(int y) { _frameY = y; }
@@ -86,7 +80,6 @@ public:
 	int getDir() { return _dir; }
 	void setRenderX(int rendX) { _rendX = rendX; }
 	void setRenderY(int rendY) { _rendY = rendY; }
-	
 	int getRenderY() { return _rendY; }
 
 
@@ -97,10 +90,12 @@ public:
 	virtual void setStamina(int stamina) { _stamina = stamina; }
 	virtual int getStamina() { return _stamina; }
 	
-	void GoldGet(int gold);
+	void GoldGet(int gold) { _gold += gold; };
 
 	RECT getRect() { return _rc; }
-
+	RECT getRenderRc() { return _renderRC; }
+	RECT getInterectiveRc() { return _interectiveRc; }
+	RECT getIntRenderRc() { return _intRenderRc; }
 
 	void SetInventoryCameraMemoryLink(CameraManager* cm) { _inventory->SetCameraMemoryLink(cm); }
 };

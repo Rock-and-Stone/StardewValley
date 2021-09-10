@@ -80,6 +80,7 @@ struct ITEMS
 	//int			amount;						//갯수
 
 	int			needAmountToCraft;			//제작하는데 필요한 갯수
+	int			itemNum;                    // 아이템 고유 넘버
 
 	BOOL		isHandleAble;				//손에보여지는 물건?
 	BOOL		isEatAble;					//먹을수 있는 물건
