@@ -32,6 +32,7 @@
 #include "gold.h"
 
 #include "wood.h"
+#include "stone.h"
 
 class objectManager : public gameNode
 {
@@ -76,7 +77,7 @@ private:
 	gold*				_gold;
 
 	wood*				_wood;
-
+	stone*				_stone;
 
 	int _objectNum;
 
@@ -92,9 +93,7 @@ public:
 	virtual void render();
 
 	void SetWood(float x, float y, int amount);
-	//무	기
-	void SetSword(float x, float y, int amount);
-	void SetSlingShot(float x, float y, int amount);
+	void SetStone(float x, float y, int amount);
 
 	//생	선
 	void SetPufferFish(float x, float y, int amount);

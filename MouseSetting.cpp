@@ -14,6 +14,10 @@ HRESULT MouseSetting::init()
 	_mouse = IMAGEMANAGER->addFrameImage("mouse", "source/images/mainScene/Cursor.bmp", 144, 96, 3, 2, true, MAGENTA);
 	_frameX = 0;
 	_frameY = 1;
+
+
+	
+
 	// X,Y 값 기준으로 마우스 이미지
 	// 0,0 기본 갈색 마우스
 	// 0,1 다이얼로그 마우스
@@ -36,6 +40,7 @@ void MouseSetting::update()
 	{
 		//ShowCursor(true);
 	}
+
 }
 
 void MouseSetting::render()

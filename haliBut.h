@@ -1,5 +1,6 @@
 #pragma once
-class haliBut
+#include "object.h"
+class haliBut : public object
 {
 };
 

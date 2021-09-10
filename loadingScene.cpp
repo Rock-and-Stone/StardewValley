@@ -104,6 +104,7 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
 		
 
 		//모든 오브젝트
+		IMAGEMANAGER->addFrameImage("springObjectsItem", "source/Images/springobjects3.bmp", 768,1088, 24, 34, true, MAGENTA);
 		IMAGEMANAGER->addFrameImage("springObjects", "source/Images/springobjects2.bmp", 960, 1360, 24, 34, true, MAGENTA);
 		////도구 인벤토리
 		IMAGEMANAGER->addFrameImage("playerTool",	"source/Images/playerInventory/playerTool.bmp", 280, 40, 7, 1, true, MAGENTA); // 플레이어 도구
@@ -155,12 +156,12 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
 		SOUNDMANAGER->addSound("doorOpen", "source/Sounds/doorOpen.mp3", true, false);			//문열 때 나는 소리
 		SOUNDMANAGER->addSound("springBGM", "source/Sounds/springBGM.mp3", true, true);			//인게임 배경 음악
 		//SOUNDMANAGER->addSound("fireSpell", "source/Sounds/fireSpell.mp3", true, false);		//용광로 불지피는 소리
-		//SOUNDMANAGER->addSound("getItem", "source/Sounds/getItem.mp3", true, false);			//아이템 주울 때 나는 소리
-		//SOUNDMANAGER->addSound("hitGrass", "source/Sounds/hitGrass.mp3", true, false);			//낫으로 풀 벨 때 나는 효과음
-		//SOUNDMANAGER->addSound("hitRock", "source/Sounds/hitRock.mp3", true, false);			//곡괭이로 돌 때릴 때 나는 효과음
-		//SOUNDMANAGER->addSound("hitTree", "source/Sounds/hitTree.mp3", true, false);			//도끼로 나무 때릴 때 나는 효과음
-		//SOUNDMANAGER->addSound("hitPlayer", "source/Sounds/hitPlayer.mp3", true, false);		//공격 할 때 나는 소리
-		//SOUNDMANAGER->addSound("hoe", "source/Sounds/hoe.mp3", true, false);					//밭 갈때 나는 소리
+		SOUNDMANAGER->addSound("getItem", "source/Sounds/getItem.mp3", true, false);			//아이템 주울 때 나는 소리
+		SOUNDMANAGER->addSound("hitGrass", "source/Sounds/hitGrass.mp3", true, false);			//낫으로 풀 벨 때 나는 효과음
+		SOUNDMANAGER->addSound("hitRock", "source/Sounds/hitRock.mp3", true, false);			//곡괭이로 돌 때릴 때 나는 효과음
+		SOUNDMANAGER->addSound("hitTree", "source/Sounds/hitTree.mp3", true, false);			//도끼로 나무 때릴 때 나는 효과음
+		SOUNDMANAGER->addSound("hitPlayer", "source/Sounds/hitPlayer.mp3", true, false);		//공격 할 때 나는 소리
+		SOUNDMANAGER->addSound("hoe", "source/Sounds/hoe.mp3", true, false);					//밭 갈때 나는 소리
 		SOUNDMANAGER->addSound("menuClose", "source/Sounds/menuClose.mp3", true, false);		//메뉴 닫는 소리
 		SOUNDMANAGER->addSound("menuOpen", "source/Sounds/menuOpen.mp3", true, false);			//메뉴 여는 소리
 		SOUNDMANAGER->addSound("menuSelect", "source/Sounds/menuSelect.mp3", true, false);		//메뉴 선택 소리
@@ -178,7 +179,7 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
 		//SOUNDMANAGER->addSound("removeTree", "source/Sounds/removeTree.mp3", true, false);		//나무 베는 소리
 		//SOUNDMANAGER->addSound("seeds", "source/Sounds/seeds.mp3", true, false);				//씨앗 심는 소리
 		//SOUNDMANAGER->addSound("slime", "source/Sounds/slime.mp3", true, false);				//슬라임이 공격할 때 나는 소리
-		//SOUNDMANAGER->addSound("toolSwap", "source/Sounds/toolSwap.mp3", true, false);			//탭누르면 나는 소리
+		SOUNDMANAGER->addSound("toolSwap", "source/Sounds/toolSwap.mp3", true, false);			//탭누르면 나는 소리
 		//SOUNDMANAGER->addSound("watering", "source/Sounds/watering.mp3", true, false);			//물을 담거나 물을 줄 때 나는 소리
 
 		loadingHelper->_currentCount++;

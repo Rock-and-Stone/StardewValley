@@ -1,5 +1,6 @@
 #pragma once
-class parsnip
+#include "object.h"
+class parsnip : public object
 {
 };
 

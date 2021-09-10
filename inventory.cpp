@@ -188,15 +188,6 @@ void inventory::release()
 
 void inventory::update()
 {
-    if (KEYMANAGER->isOnceKeyDown(VK_F1))
-    {
-        saveInventory();
-    }
-    if (KEYMANAGER->isOnceKeyDown(VK_F2))
-    {
-        loadInventory();
-    }
-
     //메뉴를 키기 위한 함수
     MenuOpen();
 
@@ -479,6 +470,8 @@ void inventory::render()
             _quickSlotMax = 12;
             _nowQuickItem -= 36;
         }
+        SOUNDMANAGER->play("toolSwap", 1.0f);
+
     }
    
     SelectObject(getMemDC(), oldFont2);
@@ -982,7 +975,7 @@ void inventory::Button(void* obj)
     if (invento->_buttonExit->getBtnDir() == BUTTONDIRECTION_UP) exit(1);
     if (invento->_buttonToMenu->getBtnDir() == BUTTONDIRECTION_UP) SCENEMANAGER->changeScene("mainMenuScene");
 }
-
+//현재 툴이뭔지
 void inventory::checkPlayerTool()
 {
     switch (_vInven[_nowQuickItem]->GetItemInfo().items)
@@ -1010,7 +1003,7 @@ void inventory::checkPlayerTool()
         break;
     }
 }
-
+//세팅창 사운드
 void inventory::SettingInit()
 {
     _frame.img = IMAGEMANAGER->addImage("settingFrame", "source/Images/mainScene/settingFrame.bmp", 403, 210, true, MAGENTA);
@@ -1036,7 +1029,7 @@ void inventory::SettingInit()
     _currentTotalVolume = getBGMVolume() / 10;
     _currentSFXVolume = getSFXVolume() / 10;
 }
-
+//세팅 초기화
 void inventory::SettingUpdate()
 {
     SettingVolumeFrame();
@@ -1052,7 +1045,7 @@ void inventory::SettingUpdate()
     //볼륨 설정창 여기다가 넣으면 됩니다요
     SOUNDMANAGER->setVolume("opening", _currentTotalVolume);
 }
-
+//세팅 렌더
 void inventory::SettingRender()
 {
     _frame.img->render(getMemDC(), WINSIZEX / 2 - _frame.img->getWidth() / 2, WINSIZEY / 2 - _frame.img->getHeight() / 2 + 30);
@@ -1081,7 +1074,7 @@ void inventory::SettingRender()
     sprintf_s(str, "%f %f", _select[0].cx, _select[1].cx);
     TextOut(getMemDC(), 50, 100, str, strlen(str));
 }
-
+//세팅 볼륨조절
 void inventory::SettingVolumeFrame()
 {
    
@@ -1242,7 +1235,7 @@ void inventory::SettingVolumeFrame()
     setBGMVolume(_currentTotalVolume * 10);
     setSFXVolume(_currentSFXVolume * 10);
 }
-
+//인벤토리 세이브하는 곳
 void inventory::saveInventory()
 {
     for (int i = 0; i < _vInven.size(); i++)
@@ -1260,7 +1253,7 @@ void inventory::saveInventory()
         INIDATA->iniSave("inventory");
     }
 }
-
+//인벤토리 로드하는 함수
 void inventory::loadInventory()
 {
     char str[5];

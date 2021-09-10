@@ -193,6 +193,7 @@ playerSword::~playerSword()
 
 HRESULT playerSword::init()
 {
+
 	_player = new player;
 	return S_OK;
 }
@@ -203,6 +204,7 @@ void playerSword::release()
 
 void playerSword::update()
 {
+	SOUNDMANAGER->play("hitPlayer", 1.0f);
 	switch (_player->getDir())
 	{
 	case 0:
@@ -299,6 +301,7 @@ void playerAxe::release()
 
 void playerAxe::update()
 {
+	SOUNDMANAGER->play("hitTree", 1.0f);
 	switch (_player->getDir())
 	{
 	case 0:
@@ -395,6 +398,7 @@ void playerPickAxe::release()
 
 void playerPickAxe::update()
 {
+	SOUNDMANAGER->play("hitRock", 1.0f);
 	switch (_player->getDir())
 	{
 	case 0:
@@ -471,6 +475,7 @@ void playerSickle::release()
 
 void playerSickle::update()
 {
+	SOUNDMANAGER->play("hitGrass", 1.0f);
 	switch (_player->getDir())
 	{
 	case 0:
