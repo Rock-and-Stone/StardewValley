@@ -21,14 +21,21 @@ HRESULT gameScene::init()
 	_uiManager->init();
 
 
+	_objectManager->SetObjectCameraManagerMemoryLink(_cameraManager);
 	_objectManager->SetInventoryMemoryLink(_player->GetInventory());
+	_objectManager->SetplayerMemoryLink(_player);
+
 	_player->SetPlayerObjectManagerMemoryLink(_objectManager);
+	_player->SetInventoryCameraMemoryLink(_cameraManager);
+
 	_uiManager->SetMemoryAddressLink(_player);
+
 	_npcManager->setCameraAddressLink(_cameraManager);
 	_npcManager->setMarnieCameraLink(_cameraManager);
 	_npcManager->setWizardCameraLink(_cameraManager);
 	_npcManager->setPlayerMemAddressLink(_player);
-	_player->SetInventoryCameraMemoryLink(_cameraManager);
+
+	
 	
 	RENDERMANAGER->addRender(_player);
 
@@ -38,13 +45,14 @@ HRESULT gameScene::init()
 
 void gameScene::update()
 {
+
 	_cameraManager->update(_player->getX(), _player->getY());
 	_player->update();
 	_homeMap->Movement(_cameraManager->getCamX(), _cameraManager->getCamY());
 	_npcManager->update();
-	_homeMap->Movement(_player->getX(), _player->getY());
 	_objectManager->update();
-	if (KEYMANAGER->isOnceKeyDown(VK_F9)) _objectManager->SetWood(100, 100, 10);
+
+	if (KEYMANAGER->isOnceKeyDown(VK_F9)) _objectManager->SetWood(500, 500, 10);
 
 	RENDERMANAGER->update();
 	
