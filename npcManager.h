@@ -5,6 +5,12 @@
 class CameraManager;
 class entity;
 
+enum DIALOGUE
+{
+	MARNIE,
+	WIZARD
+};
+
 class npcManager : public gameNode
 {
 private:
@@ -13,6 +19,8 @@ private:
 	entity* _player;
 
 	CameraManager* _cameraManager;
+	DIALOGUE _dialogue;
+	bool _isDialogue;
 
 public:
 	npcManager();

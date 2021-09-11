@@ -158,12 +158,14 @@ HRESULT inventory::init()
     AddItem(_slingShot);
     AddItem(_sword);
 
+    for(int i = 0 ; i < 3 ; i++) AddItem(_box);
 
  
 
     //테스트 아이템 집어넣기
     _canBox = false;
     _canFur = false;
+
    //QuickSlot();
     
     _downPtItem = NULL;
@@ -1058,29 +1060,37 @@ void inventory::Button(void* obj)
 //현재 툴이뭔지
 void inventory::checkPlayerTool()
 {
-    switch (_vInven[_nowQuickItem]->GetItemInfo().items)
+    switch (_vInven[_nowQuickItem]->GetItemInfo().itemNum)
     {
-    case AXE:
+    case 0 :
+        _playerTool = PLAYERTOOL_NULL;
+        break;
+    case 21:
         _playerTool = PLAYERTOOL_AXE;
         break;
-    case PICKAXE:
+    case 24:
         _playerTool = PLAYERTOOL_PICKAXE;
         break;
-    case HOE:
+    case 23:
         _playerTool = PLAYERTOOL_HOE;
         break;
-    case SICKLE:
+    case 26:
         _playerTool = PLAYERTOOL_SICKLE;
         break;
-    case CAN:
+    case 22:
         _playerTool = PLAYERTOOL_CAN;
         break;
-    case ROD:
+    case 25:
         _playerTool = PLAYERTOOL_ROD;
         break;
-    case SWORD:
+    case 28:
         _playerTool = PLAYERTOOL_SWORD;
         break;
+
+    default :
+        _playerTool = PLAYERTOOL_ITEMS;
+    break;
+
     }
 }
 //세팅창 사운드
@@ -1464,5 +1474,22 @@ void inventory::loadInventory()
             break;
         }
 
+    }
+}
+
+void inventory::drawOnThePlayer()
+{
+    if (_playerTool == PLAYERTOOL_ITEMS)
+    {
+        _vInven[_nowQuickItem]->render( _player->getRenderX() + 25, _player->getRenderY());
+    }
+}
+
+void inventory::eraseSelectQuickNum()
+{
+    _inven[_nowQuickItem].amount--;
+    if (_inven[_nowQuickItem].amount <= 0)
+    {
+        _vInven[_nowQuickItem] = _null;
     }
 }

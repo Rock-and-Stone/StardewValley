@@ -13,7 +13,8 @@ enum PLAYERDIRECTION
 	PLAYERDIRECTION_RIGHT,
 	PLAYERDIRECTION_DOWN,
 	PLAYERDIRECTION_IDLE,
-	PLAYERDIRECTION_ACTIVATE
+	PLAYERDIRECTION_ACTIVATE,
+	PLAYERDIRECTION_LIFT
 };
 
 class player : public entity
@@ -66,6 +67,8 @@ public:
 	void activate();
 	void InventoryDraw();
 
+	void liftItem();
+
 	void setPlayerDirection(PLAYERDIRECTION direction) { _direction = direction; }
 	void setFrameX(int x) { _frameX = x; }
 	void setFrameY(int y) { _frameY = y; }
@@ -80,6 +83,7 @@ public:
 	int getDir() { return _dir; }
 	void setRenderX(int rendX) { _rendX = rendX; }
 	void setRenderY(int rendY) { _rendY = rendY; }
+	int getRenderX() { return _rendX; }
 	int getRenderY() { return _rendY; }
 
 

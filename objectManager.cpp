@@ -80,10 +80,15 @@ void objectManager::render()
     for (_viObject = _vObject.begin(); _viObject != _vObject.end(); _viObject++)
     {
         RECT Temp = (*_viObject)->GetObjectRect();
+
         (*_viObject)->Draw(_cm->getCamX(),_cm->getCamY());
      
         
+
+        (*_viObject)->render();  
+
     }
+
 }
 // =[ ============================================= »ý ¼º ========================================= ]= //
 void objectManager::SetWood(float x, float y, int amount)

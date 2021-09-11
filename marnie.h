@@ -28,6 +28,6 @@ public:
 	virtual int getRenderPosY() { return _y; }
 	RECT getRect() { return _rc; }
 	RECT getRenderRc() { return _renderRc; }
-	void dialog();
+	void dialogue();
 };
 

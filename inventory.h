@@ -77,7 +77,9 @@ enum PLAYERTOOL
 	PLAYERTOOL_PICKAXE,
 	PLAYERTOOL_ROD,
 	PLAYERTOOL_SICKLE,
-	PLAYERTOOL_SWORD
+	PLAYERTOOL_SWORD,
+	PLAYERTOOL_ITEMS,
+	PLAYERTOOL_NULL
 };
 
 struct tagInventory
@@ -273,6 +275,10 @@ public:
 	void saveInventory();
 
 	void loadInventory();
+
+	void drawOnThePlayer();
+
+	void eraseSelectQuickNum();
 
 
 
