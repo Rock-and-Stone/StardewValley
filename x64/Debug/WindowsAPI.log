@@ -1,1 +1,11 @@
-﻿  WindowsAPI.vcxproj -> S:\TeamPotopolio\Battlefield4\x64\Debug\WindowsAPI.exe
+﻿  Box.cpp
+  CameraManager.cpp
+S:\TeamPotopolio\Battlefield4\CameraManager.cpp(37,47): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+S:\TeamPotopolio\Battlefield4\CameraManager.cpp(37,28): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+S:\TeamPotopolio\Battlefield4\CameraManager.cpp(50,62): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  UserInterface.cpp
+S:\TeamPotopolio\Battlefield4\UserInterface.cpp(59,62): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  wizard.cpp
+S:\TeamPotopolio\Battlefield4\wizard.cpp(55,74): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  코드를 생성하고 있습니다...
+  WindowsAPI.vcxproj -> S:\TeamPotopolio\Battlefield4\x64\Debug\WindowsAPI.exe

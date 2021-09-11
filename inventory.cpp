@@ -158,7 +158,7 @@ HRESULT inventory::init()
     AddItem(_slingShot);
     AddItem(_sword);
 
-    for(int i = 0 ; i < 3 ; i++) AddItem(_wood);
+    for(int i = 0 ; i < 3 ; i++) AddItem(_box);
 
  
 
