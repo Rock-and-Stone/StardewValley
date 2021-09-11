@@ -277,7 +277,7 @@ void objectManager::SetBox(float x, float y, int amount)
     {
         object* box;
         box = new Box;
-        box->init(OBJ_BOX, "", 0, 14, PointMake(x, y));
+        box->init(OBJ_BOX, "", 0, 14, PointMake(x, y),3);
         _vObject.push_back(box);
     }
 }
@@ -287,7 +287,7 @@ void objectManager::SetFurnance(float x, float y, int amount)
     {
         object* Furnance;
         Furnance = new furnance;
-        Furnance->init(OBJ_FURNACE, "2", 0, 14, PointMake(x, y));
+        Furnance->init(OBJ_FURNACE, "2", 0, 14, PointMake(x, y),4);
         _vObject.push_back(Furnance);
     }
 }
@@ -297,7 +297,7 @@ void objectManager::SetScarecrow1(float x, float y, int amount)
     {
         object* crow1;
         crow1 = new scarecrow1;
-        crow1->init(OBJ_SCARECROW1, "2", 0, 14, PointMake(x, y));
+        crow1->init(OBJ_SCARECROW1, "2", 0, 14, PointMake(x, y),5);
         _vObject.push_back(crow1);
     }
 }
@@ -307,7 +307,7 @@ void objectManager::SetScarecrow2(float x, float y, int amount)
     {
         object* crow2;
         crow2 = new scarecrow2;
-        crow2->init(OBJ_SCARECROW2, "2", 0, 14, PointMake(x, y));
+        crow2->init(OBJ_SCARECROW2, "2", 0, 14, PointMake(x, y),6);
         _vObject.push_back(crow2);
     }
 }

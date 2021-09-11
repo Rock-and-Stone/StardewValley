@@ -701,10 +701,10 @@ void inventory::MenuInvetoryOpen()
                         _om->SetFurnance(0, 0, _inven[_downPtItem].amount);
                          break;
                      case 5:
-                         _om->SetScareCrow1(0, 0, _inven[_downPtItem].amount);
+                         _om->SetScarecrow1(0, 0, _inven[_downPtItem].amount);
                          break;
                      case 6:
-                         _om->SetScareCrow2(0, 0, _inven[_downPtItem].amount);
+                         _om->SetScarecrow2(0, 0, _inven[_downPtItem].amount);
                          break;
                      case 7:
                          _om->SetCauliFlower(0, 0, _inven[_downPtItem].amount);
