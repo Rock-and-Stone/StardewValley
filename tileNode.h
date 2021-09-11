@@ -4,7 +4,8 @@
 #define TILEX 80	//가로 타일 갯수
 #define TILEY 65	//세로 타일 갯수
 
-
+#define MINETILEX 40	//가로 타일 갯수
+#define MINETILEY 23	//세로 타일 갯수
 
 //타일 규격 20 X 32 사이즈니까 -> 총 사이즈는 640 X 640
 #define TILESIZEX TILESIZE * TILEX

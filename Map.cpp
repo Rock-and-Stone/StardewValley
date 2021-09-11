@@ -15,7 +15,7 @@ HRESULT Map::init()
 {
 #pragma region IMAGES
 
-	IMAGEMANAGER->addImage("background", "source/Sprite/background.bmp", 2560, 2080, false, RGB(255,0,255));
+	IMAGEMANAGER->addImage("background", "source/Sprite/Mine.bmp", 1280, 736, false, RGB(255,0,255));
 	IMAGEMANAGER->addImage("SampleBoard_White", "source/Sprite/SampleBoard_White.bmp", 452, 612, true, RGB(255,0,255));
 	IMAGEMANAGER->addFrameImage("Home_TileSheet", "source/Sprite/Home_TileSheet.bmp", 416, 576, SAMPLETILEX, SAMPLETILEY, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("Home_ObjectSheet", "source/Sprite/Home_ObjectSheet.bmp", 416, 576, SAMPLETILEX, SAMPLETILEY, true, RGB(255, 0, 255));
@@ -182,16 +182,116 @@ void Map::render()
 	int type = 0;
 	int obj = 0;
 
-	DrawTile();
-	DrawObject();
-	
-	//샘플 타일 뒷 배경
+	//지형 그리기
+	SetBkMode(getMemDC(), TRANSPARENT);
+
+	sprintf_s(str, "Cursor Tile NUM : NONE");
+
+	_background->alphaRender(getMemDC(), -_posX,- _posY, 150);
+
+	for (int i = 0; i < TILEX * TILEY; ++i)
+	{
+		char tileStr[128];
+		if (_tiles[i].rc.left > WINSIZEX || _tiles[i].rc.top > WINSIZEY) continue;
+		if (_tiles[i].rc.left + 32 < 0 || _tiles[i].rc.top + 32 < 0) continue;
+
+		switch (_tiles[i].tilePage)
+		{
+		case 0:
+			sprintf_s(tileStr, "Home_TileSheet");
+			break;
+		case 1:
+			sprintf_s(tileStr, "Mine_TileSheet");
+			break;
+		default:
+			sprintf_s(tileStr, "Mine_TileSheet");
+			break;
+		}
+
+		IMAGEMANAGER->frameRender(tileStr, getMemDC(),
+			_tiles[i].rc.left, _tiles[i].rc.top,
+			_tiles[i].terrainFrameX, _tiles[i].terrainFrameY);
+
+		if (PtInRect(&_tiles[i].rc, _ptMouse))
+		{
+			sprintf_s(str, "Cursor Tile NUM : %d", i);
+			type = _tiles[i].terrain;
+		}
+	}
+
+	TextOut(getMemDC(), 20, 20, str, strlen(str));
+
+	switch (type)
+	{
+	case TR_GRASS:
+		sprintf_s(str, "Cursor Tile TYPE : GRASS");
+		break;
+	case TR_DIRT:
+		sprintf_s(str, "Cursor Tile TYPE : DIRT");
+		break;
+	case TR_DIRT_WET:
+		sprintf_s(str, "Cursor Tile TYPE : DIRT_WET");
+		break;
+	case TR_WATER:
+		sprintf_s(str, "Cursor Tile TYPE : WATER");
+		break;
+	case TR_WOOD:
+		sprintf_s(str, "Cursor Tile TYPE : WOOD");
+		break;
+	case TR_NULL:
+		sprintf_s(str, "Cursor Tile TYPE : NULL");
+		break;
+	}
+
+	TextOut(getMemDC(), 20, 40, str, strlen(str));
+
+	for (int i = 0; i < TILEX * TILEY; ++i)
+	{
+		if (PtInRect(&_tiles[i].rc, _ptMouse))
+		{
+			sprintf_s(str, "Cursor Object NUM : %d", i);
+			obj = _tiles[i].obj;
+		}
+
+		char tileStr[128];
+		int  tileReposX = 0;
+		int  tileReposY = 0;
+		if (_tiles[i].rc.left > WINSIZEX || _tiles[i].rc.top > WINSIZEY) continue;
+		if (_tiles[i].rc.left + 32 < 0 || _tiles[i].rc.top + 32 < 0) continue;
+		//오브젝트 속성이 아니면 그리지마라 (지우개로 지울때 쓰려고)
+		if (_tiles[i].obj == OBJ_NONE) continue;
+
+		switch (_tiles[i].objPage)
+		{
+			 case 0:
+				 sprintf_s(tileStr, "Home_ObjectSheet");
+				 break;
+			 case 1:
+				 sprintf_s(tileStr, "Mine_ObjectSheet");
+				 break;
+			 case 2:
+				 sprintf_s(tileStr, "2xObjectSheet");
+				 tileReposY = 32;
+				 break;
+			 case 3:
+				 sprintf_s(tileStr, "TreeSheet");
+				 tileReposX = 32;
+				 tileReposY = 160;
+				 break;
+			 case 4:
+				 sprintf_s(tileStr, "BuildingSheet");
+				 break;
+		}
+
+		IMAGEMANAGER->frameRender(tileStr, getMemDC(), _tiles[i].rc.left - tileReposX, _tiles[i].rc.top - tileReposY, _tiles[i].objFrameX, _tiles[i].objFrameY);
+
+	}
+
+	TextOut(getMemDC(), 20, 60, str, strlen(str));
+
 	IMAGEMANAGER->render("SampleBoard_White", getMemDC(), WINSIZEX - IMAGEMANAGER->findImage("SampleBoard_White")->getWidth(), 0);
-	
-	//현재 샘플 타일을 그려줍니다.
 	_currentSample->render(getMemDC(), WINSIZEX - 416 - 18, 18);
 
-#pragma region BUTTON
 	_buttonSave->render();
 	_buttonLoad->render();
 	_buttonDraw->render();
@@ -199,10 +299,36 @@ void Map::render()
 	_buttonErase->render();
 	_buttonLeft->render();
 	_buttonRight->render();
+
+	sprintf_s(str, "Cursor OBJECT TYPE : NONE");
+
+	switch (obj)
+	{
+	case OBJ_WALL:
+		sprintf_s(str, "Cursor OBJECT TYPE : WALL");
+		break;
+	case OBJ_TREE:
+		sprintf_s(str, "Cursor OBJECT TYPE : TREE");
+		break;
+	case OBJ_BUILD:
+		sprintf_s(str, "Cursor OBJECT TYPE : BUILD");
+		break;
+	case OBJ_PROP:
+		sprintf_s(str, "Cursor OBJECT TYPE : PROP");
+		break;
+	case OBJ_GRASS:
+		sprintf_s(str, "Cursor OBJECT TYPE : GRASS");
+		break;
+	case OBJ_ROCK:
+		sprintf_s(str, "Cursor OBJECT TYPE : ROCK");
+		break;
+	}
+
+	TextOut(getMemDC(), 20, 90, str, strlen(str));
+
+
 	_buttonDragMode->render(_isDragMode);
-#pragma endregion
-	
-	//드래그 모드중에 나올 드래그 영역
+
 	HPEN hpen = CreatePen(PS_SOLID, 2, RGB(255, 20, 20));
 	HPEN oldPen = (HPEN)SelectObject(getMemDC(), hpen);
 	if (_isDragMode) LineRectangle(getMemDC(), _dragRC);
@@ -270,6 +396,7 @@ void Map::Movement()
 	}
 }
 
+
 void Map::DragMap(bool isDrag)
 {
 	if (isDrag == true)
@@ -314,6 +441,7 @@ void Map::DragMap(bool isDrag)
 	}
 }
 
+
 void Map::RectSensor()
 {
 	for (int i = 0; i < SAMPLETILEX * SAMPLETILEY; ++i)
@@ -325,75 +453,6 @@ void Map::RectSensor()
 		}
 
 		else _isSample = false;
-	}
-}
-
-void Map::DrawTile() // 각 타일의 정보값을 불러와 메인 타일을 그려줍니다.
-{
-	for (int i = 0; i < TILEX * TILEY; ++i)
-	{
-		char tileStr[128];
-		if (_tiles[i].rc.left > WINSIZEX || _tiles[i].rc.top > WINSIZEY) continue;
-		if (_tiles[i].rc.left + 32 < 0 || _tiles[i].rc.top + 32 < 0) continue;
-
-		switch (_tiles[i].tilePage)
-		{
-		case 0:
-			sprintf_s(tileStr, "Home_TileSheet");
-			break;
-		case 1:
-			sprintf_s(tileStr, "Mine_TileSheet");
-			break;
-		default:
-			sprintf_s(tileStr, "Mine_TileSheet");
-			break;
-		}
-
-		IMAGEMANAGER->frameRender(tileStr, getMemDC(),
-			_tiles[i].rc.left, _tiles[i].rc.top,
-			_tiles[i].terrainFrameX, _tiles[i].terrainFrameY);
-	}
-}
-
-void Map::DrawObject() //각 타일의 정보값을 불러와 오브젝트 타일을 그려줍니다.
-{
-	for (int i = 0; i < TILEX * TILEY; ++i)
-	{
-		char tileStr[128];
-		int  tileReposX = 0;
-		int  tileReposY = 0;
-		if (_tiles[i].rc.left > WINSIZEX || _tiles[i].rc.top > WINSIZEY) continue;
-		if (_tiles[i].rc.left + 32 < 0 || _tiles[i].rc.top + 32 < 0) continue;
-		//오브젝트 속성이 아니면 그리지마라 (지우개로 지울때 쓰려고)
-		if (_tiles[i].obj == OBJ_NONE) continue;
-
-		switch (_tiles[i].objPage)
-		{
-			case 0:
-				sprintf_s(tileStr, "Home_ObjectSheet");
-				break;
-			case 1:
-				sprintf_s(tileStr, "Mine_ObjectSheet");
-				break;
-			case 2:
-				sprintf_s(tileStr, "2xObjectSheet");
-				tileReposY = 32;
-				break;
-			case 3:
-				sprintf_s(tileStr, "TreeSheet");
-				tileReposX = 32;
-				tileReposY = 160;
-				break;
-			case 4:
-				sprintf_s(tileStr, "BuildingSheet");
-				break;
-
-			default:
-				sprintf_s(tileStr, "Home_ObjectSheet");
-				break;
-		}
-
-		IMAGEMANAGER->frameRender(tileStr, getMemDC(), _tiles[i].rc.left - tileReposX, _tiles[i].rc.top - tileReposY, _tiles[i].objFrameX, _tiles[i].objFrameY);
 	}
 }
 
