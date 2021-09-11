@@ -44,7 +44,7 @@ void marnie::render()
 	}
 }
 
-void marnie::dialog()
+void marnie::dialogue()
 {
-	GAMEDATA->setIsPause(true);
+	IMAGEMANAGER->findImage("dialogueBox")->render(getMemDC(), WINSIZEX / 2 - 300, WINSIZEY - 250);
 }

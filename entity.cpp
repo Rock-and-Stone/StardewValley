@@ -64,7 +64,7 @@ RECT entity::getInterectiveRc()
 	return RECT();
 }
 
-void entity::dialog()
+void entity::dialogue()
 {
 }
 

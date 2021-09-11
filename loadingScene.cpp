@@ -82,7 +82,7 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
 		IMAGEMANAGER->addFrameImage("marnie", "source/Images/NPC/npc_item.bmp", 128, 256, 4, 4, true, MAGENTA);
 		IMAGEMANAGER->addFrameImage("wizard", "source/Images/NPC/npc_skill.bmp",128, 256, 4, 4, true, MAGENTA);
 		IMAGEMANAGER->addFrameImage("fisher", "source/Images/NPC/할아버지.bmp", 64, 128, 4, 4, true, MAGENTA);
-
+		IMAGEMANAGER->addImage("dialogueBox", "source/Images/초상화대화.bmp", 720, 278, true, MAGENTA);
 		//소스 파일 추가
 		//
 		// 인벤토리 UI

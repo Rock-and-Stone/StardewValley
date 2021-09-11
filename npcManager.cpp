@@ -24,6 +24,8 @@ HRESULT npcManager::init()
 	RENDERMANAGER->addRender(_marnie);
 	RENDERMANAGER->addRender(_wizard);
 
+	_isDialogue = false;
+
 	return S_OK;
 }
 
@@ -43,6 +45,13 @@ void npcManager::render()
 	char str[25];
 	sprintf_s(str, "%d, %d,%d", _marnie->getRenderPosY(), _wizard->getRenderPosY(), _player->getRenderPosY());
 	TextOut(getMemDC(), WINSIZEX /2 , WINSIZEY /2 , str, strlen(str));
+
+	if (_isDialogue)
+	{
+		if(_dialogue == MARNIE) _marnie->dialogue();
+		else if(_dialogue == WIZARD) _wizard->dialogue();
+	}
+
 }
 
 void npcManager::interact()
@@ -56,7 +65,8 @@ void npcManager::interact()
 	{
 		if (IntersectRect(&temp, &rc, &rc2))
 		{
-			_wizard->dialog();
+			GAMEDATA->setIsPause(true);
+			_isDialogue = true;
 		}
 	}
 
@@ -66,7 +76,8 @@ void npcManager::interact()
 	{
 		if (IntersectRect(&temp, &rc3, &rc2))
 		{
-			_marnie->dialog();
+			GAMEDATA->setIsPause(true);
+			_isDialogue = true;
 		}
 	}
 }

@@ -38,24 +38,17 @@ HRESULT gameScene::init()
 
 void gameScene::update()
 {
-	_cameraManager->update(_player->getX(), _player->getY());
-	_player->update();
-	_homeMap->Movement(_cameraManager->getCamX(), _cameraManager->getCamY());
-	_npcManager->update();
-	_homeMap->Movement(_player->getX(), _player->getY());
-	_objectManager->update();
-	if (KEYMANAGER->isOnceKeyDown(VK_F9)) _objectManager->SetWood(100, 100, 10);
-
-	RENDERMANAGER->update();
-	
 	if (!GAMEDATA->getIsPause())
 	{
 		_cameraManager->update(_player->getX(), _player->getY());
 		_player->update();
-		_npcManager->update();
-		_homeMap->Movement(_player->getX(), _player->getY());
+		_homeMap->Movement(_cameraManager->getCamX(), _cameraManager->getCamY());
+		_objectManager->update();
+		if (KEYMANAGER->isOnceKeyDown(VK_F9)) _objectManager->SetWood(100, 100, 10);
 		RENDERMANAGER->update();
 	}
+
+	_npcManager->update();
 }
 
 void gameScene::release()

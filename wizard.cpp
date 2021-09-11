@@ -43,8 +43,15 @@ void wizard::render()
 	}
 }
 
-void wizard::dialog()
+void wizard::dialogue()
 {
-	GAMEDATA->setIsPause(true);
+	IMAGEMANAGER->findImage("dialogueBox")->render(getMemDC(), WINSIZEX / 2 - 300, WINSIZEY - 250);
+
+	INIDATA->addData("dialogue 1", "test", "100");
+	INIDATA->iniSave("test");
+
+	char str[256];
+	sprintf_s(str,"%d",INIDATA->loadDataInterger("dialogue", "dialogue 1", "test"));
+	TextOut(getMemDC(), WINSIZEX / 2 - 300, WINSIZEY - 250, str, strlen(str));
 }
 

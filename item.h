@@ -55,7 +55,6 @@ enum CRAFTITEMS
 	FURNACE,
 	SCARECROW1,
 	SCARECROW2,
-
 };
 struct ITEMS
 {

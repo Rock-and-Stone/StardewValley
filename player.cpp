@@ -58,6 +58,8 @@ HRESULT player::init(int indX, int indY)
 	_img = IMAGEMANAGER->findImage("player");
 
 	_rc = RectMakeCenter(_x,_y,TILEWIDTH,TILEHEIGHT);
+	_isMoving = false;
+
 
 	return S_OK;
 }
@@ -72,26 +74,28 @@ void player::update()
 
 	activate();
 
+	liftItem();
+
 	//이동 상태 패턴
-	if (KEYMANAGER->isStayKeyDown('W') && _direction != PLAYERDIRECTION_ACTIVATE)
+	if (KEYMANAGER->isStayKeyDown('W') && _direction != PLAYERDIRECTION_ACTIVATE  && _direction != PLAYERDIRECTION_LIFT)
 	{
 		_upWalk->update();
 		move();
 	}
 
-	if (KEYMANAGER->isStayKeyDown('S') && _direction != PLAYERDIRECTION_ACTIVATE)
+	if (KEYMANAGER->isStayKeyDown('S') && _direction != PLAYERDIRECTION_ACTIVATE && _direction != PLAYERDIRECTION_LIFT)
 	{
 		_downWalk->update();
 		move();
 	}
 
-	if (KEYMANAGER->isStayKeyDown('A') && _direction != PLAYERDIRECTION_ACTIVATE)
+	if (KEYMANAGER->isStayKeyDown('A') && _direction != PLAYERDIRECTION_ACTIVATE && _direction != PLAYERDIRECTION_LIFT)
 	{
 		_leftWalk->update();
 		move();
 	}
 
-	if (KEYMANAGER->isStayKeyDown('D') && _direction != PLAYERDIRECTION_ACTIVATE)
+	if (KEYMANAGER->isStayKeyDown('D') && _direction != PLAYERDIRECTION_ACTIVATE && _direction != PLAYERDIRECTION_LIFT)
 	{
 		_rightWalk->update();
 		move();
@@ -106,7 +110,7 @@ void player::update()
 	_rc = RectMakeCenter(_x + 48, _y + 84, TILEWIDTH, TILEHEIGHT);
 	_renderRC = RectMakeCenter(_rendX + 48, _rendY + 84, TILEWIDTH, TILEWIDTH);
 
-	if (KEYMANAGER->isOnceKeyDown(VK_LBUTTON) && !_inventory->GetIsMenuOpen() && _direction != PLAYERDIRECTION_ACTIVATE)
+	if (KEYMANAGER->isOnceKeyDown(VK_LBUTTON) && !_inventory->GetIsMenuOpen() && _direction != PLAYERDIRECTION_ACTIVATE && _direction != PLAYERDIRECTION_LIFT && _inventory->getPlayerTool() != PLAYERTOOL_NULL)
 	{
 		_frameX = 0;
 		changePlayerTool();
@@ -118,14 +122,13 @@ void player::update()
 void player::render()
 {
 	_img->frameRender(getMemDC(), _rendX ,  _rendY ,_frameX,_frameY);
+	_inventory->drawOnThePlayer();
 
 	if (KEYMANAGER->isToggleKey(VK_TAB))
 	{
 		Rectangle(getMemDC(), _renderRC);
 		Rectangle(getMemDC(), _intRenderRc);
 	}
-
-
 
 	char str[25];
 	sprintf_s(str, "%d", _inventory->getPlayerTool());
@@ -280,23 +283,29 @@ void player::changePlayerTool()
 	case PLAYERTOOL_AXE:
 		_playerAxe->update();
 		break;
+
 	case PLAYERTOOL_CAN:
 		_playerCan->update();
 		break;
 	case PLAYERTOOL_HOE:
 		_playerHoe->update();
 		break;
+
 	case PLAYERTOOL_PICKAXE:
 		_playerPickAxe->update();
 		break;
+
 	case PLAYERTOOL_ROD:
 		_playerRod->update();
 		break;
+
 	case PLAYERTOOL_SICKLE:
 		_playerSickle->update();
 		break;
+
 	case PLAYERTOOL_SWORD:
 		_playerSword->update();
+		break;
 	}
 }
 
@@ -341,4 +350,77 @@ void player::activate()
 void player::InventoryDraw()
 {
 	_inventory->render();
+}
+
+void player::liftItem()
+{
+	if (_inventory->getPlayerTool() == PLAYERTOOL_ITEMS)
+	{
+		_direction = PLAYERDIRECTION_LIFT;
+
+		switch (_dir)  // 0 오 1 왼 2 위 3아래
+		{
+		case 0:
+			_frameY = 22;
+			_maxFrameX = 4;
+			break;
+		case 1:
+			_frameY = 21;
+			_maxFrameX = 4;
+			break;
+		case 2:
+			_frameY = 23;
+			_maxFrameX = 5;
+
+			break;
+		case 3:
+			_frameY = 20;
+			_maxFrameX = 5;
+			break;
+		}
+
+		if (KEYMANAGER->isStayKeyDown('W'))
+		{
+			_dir = 2;
+			_y -= 5;
+		}
+		if (KEYMANAGER->isStayKeyDown('S'))
+		{
+			_dir = 3;
+			_y += 5;
+		}
+		if (KEYMANAGER->isStayKeyDown('A'))
+		{
+			_dir = 1;
+			_x -= 5;
+		}
+		if (KEYMANAGER->isStayKeyDown('D'))
+		{
+			_dir = 0;
+			_x += 5;
+		}
+
+
+		if (KEYMANAGER->isStayKeyDown('W') || KEYMANAGER->isStayKeyDown('S') || KEYMANAGER->isStayKeyDown('A') || KEYMANAGER->isStayKeyDown('D')) _count++;
+
+		if (_count % 10 == 5)
+		{
+			_frameX++;
+		}
+
+		if (_frameX > _maxFrameX)
+		{
+			_frameX = 0;
+		}
+
+		if (KEYMANAGER->isOnceKeyDown(VK_LBUTTON))
+		{
+			_inventory->eraseSelectQuickNum();
+		}
+	}
+
+	else if(_direction != PLAYERDIRECTION_ACTIVATE)
+	{
+		_direction = PLAYERDIRECTION_IDLE;
+	}
 }
