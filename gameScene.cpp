@@ -38,8 +38,11 @@ HRESULT gameScene::init()
 	_npcManager->setPlayerMemAddressLink(_player);
 
 	_homeMap->setCameraLink(_cameraManager);
-	
-	
+	for (int i = 0; i < TILEX * TILEY; i++)
+	{
+		//RENDERMANAGER->addRender()
+	}
+
 	RENDERMANAGER->addRender(_player);
 
 
