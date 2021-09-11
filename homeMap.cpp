@@ -157,6 +157,8 @@ void homeMap::DrawObject()
 
 void homeMap::PlaceObject(ALLOBJECTS object, int num) //오브젝트 설치 (설치한 오브젝트 enum, 설치한 타일 번호)
 {
+	if (_tiles[num].obj != OBJ_NONE) return;
+
 	int frameX = 0;
 	int frameY = 0;
 
@@ -185,6 +187,16 @@ void homeMap::PlaceObject(ALLOBJECTS object, int num) //오브젝트 설치 (설치한 오
 	_tiles[num].obj = objSelect(frameX, frameY);
 	_tiles[num].objPage = 5;
 
+}
+
+void homeMap::RemoveObject(int num)
+{
+	if (_tiles[num].obj == OBJ_BUILD || _tiles[num].obj == OBJ_WALL || _tiles[num].obj == OBJ_PROP) return;
+
+	_tiles[num].objFrameX = 0;
+	_tiles[num].objFrameY = 0;
+	_tiles[num].obj = OBJ_NONE;
+	_tiles[num].objPage = 0;
 }
 
 OBJECT homeMap::objSelect(int frameX, int frameY)

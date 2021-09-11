@@ -35,6 +35,7 @@ public:
 	void DrawObject();
 
 	void PlaceObject(ALLOBJECTS object, int num);
+	void RemoveObject(int num);
 
 	tagTile* getTile() { return _tiles; }
 	
