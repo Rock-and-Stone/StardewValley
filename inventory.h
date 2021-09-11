@@ -41,6 +41,7 @@
 
 #pragma endregion
 #include "itemNull.h"
+#include <algorithm>
 
 
 
@@ -301,6 +302,8 @@ public:
 	void SetPlayerMemoryLink(player* pl) { _player = pl; }
 
 	void SetCameraMemoryLink(CameraManager* cm) { _cm = cm; }
+
+	void SetObjectManagerMemoryLink(objectManager* om) { _om = om; }
 	//======================= ============== ======================= //
 };
 

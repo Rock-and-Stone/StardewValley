@@ -1,7 +1,7 @@
 #pragma once
 #include "gameNode.h"
 #include <vector>
-#include "inventory.h"
+
 
 #include "axe.h"
 #include "pickAxe.h"
@@ -33,6 +33,8 @@
 
 #include "wood.h"
 #include "stone.h"
+
+class inventory;
 
 class objectManager : public gameNode
 {
@@ -125,7 +127,7 @@ public:
 
 	//======================= ============== ======================= //
 	//=======================   메모리 링크   ======================= //
-	// 
+	void SetInventoryMemoryLink(inventory* inven) { _inven = inven; }
 	//======================= ============== ======================= //
 
 

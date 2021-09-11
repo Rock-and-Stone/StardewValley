@@ -2,6 +2,7 @@
 #include "entity.h"
 
 
+
 int entity::getRenderPosY()
 {
 	return 0;
@@ -77,6 +78,15 @@ void entity::setY(int y)
 }
 
 void entity::GoldGet(int gold)
+{
+}
+
+inventory* entity::GetInventory()
+{
+	return nullptr;
+}
+
+void entity::SetPlayerObjectManagerMemoryLink(objectManager* om)
 {
 }
 

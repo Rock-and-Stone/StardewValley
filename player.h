@@ -97,6 +97,9 @@ public:
 	RECT getInterectiveRc() { return _interectiveRc; }
 	RECT getIntRenderRc() { return _intRenderRc; }
 
+	inventory* GetInventory() { return _inventory; }
+
 	void SetInventoryCameraMemoryLink(CameraManager* cm) { _inventory->SetCameraMemoryLink(cm); }
+	void SetPlayerObjectManagerMemoryLink(objectManager* om) { _inventory->SetObjectManagerMemoryLink(om); }
 };
 

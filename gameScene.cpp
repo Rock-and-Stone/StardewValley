@@ -19,8 +19,11 @@ HRESULT gameScene::init()
 	_cameraManager->init(TILESIZEX, TILESIZEY);
 	_enemyManager->init();
 	_uiManager->init();
+
+
+	_objectManager->SetInventoryMemoryLink(_player->GetInventory());
+	_player->SetPlayerObjectManagerMemoryLink(_objectManager);
 	_uiManager->SetMemoryAddressLink(_player);
-	
 	_npcManager->setCameraAddressLink(_cameraManager);
 	_npcManager->setMarnieCameraLink(_cameraManager);
 	_npcManager->setWizardCameraLink(_cameraManager);

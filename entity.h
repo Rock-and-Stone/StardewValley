@@ -2,6 +2,8 @@
 #include "gameNode.h"
 #include "homeMap.h"
 #include "CameraManager.h"
+#include "inventory.h"
+#include "objectManager.h"
 
 class entity : public gameNode
 {
@@ -36,5 +38,6 @@ public:
 	virtual int getGold();
 	virtual void setX(int x), setY(int y);
 	void GoldGet(int gold);
-
+	virtual inventory* GetInventory();
+	virtual void SetPlayerObjectManagerMemoryLink(objectManager* om);
 };

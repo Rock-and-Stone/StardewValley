@@ -158,15 +158,7 @@ HRESULT inventory::init()
     AddItem(_slingShot);
     AddItem(_sword);
 
-    for (int i = 0; i < 2000; i++)
-    {
-        AddItem(_stone);
-        AddItem(_wood);
-    }
-    for (int i = 0; i < 20; i++)
-    {
-        AddItem(_iron);
-    }
+
  
 
     //테스트 아이템 집어넣기
@@ -595,6 +587,7 @@ void inventory::QuickSlot()
 //메뉴창에서 인벤토리창
 void inventory::MenuInvetoryOpen()
 {
+
     //먼저 직사각형 생성해준다
         for (int j = 0; j < 3; ++j)
         {
@@ -608,6 +601,7 @@ void inventory::MenuInvetoryOpen()
         //스왑 구문
         for (int i = 0; i < INVENTORYSIZE; i++)
         {
+       
             if (PtInRect(&_inven[i].rc, _ptMouse))
             {
                 if (KEYMANAGER->isStayKeyDown(VK_LBUTTON)) _dragActivate = true;
@@ -672,131 +666,97 @@ void inventory::MenuInvetoryOpen()
             {
                 swap(_vInven[_downPtItem], _vInven[_downPtItem]);
             }
+            //버릴떄
             if (!PtInRect(&_menuRc, _ptMouse)) //밖에다 버리면
-            {  
-                switch (_vInven[_downPtItem]->GetItemInfo().itemNum)
+            {
+                if (   _vInven[_downPtItem]->GetItemInfo().itemNum == 21
+                    || _vInven[_downPtItem]->GetItemInfo().itemNum == 22
+                    || _vInven[_downPtItem]->GetItemInfo().itemNum == 23
+                    || _vInven[_downPtItem]->GetItemInfo().itemNum == 24
+                    || _vInven[_downPtItem]->GetItemInfo().itemNum == 25
+                    || _vInven[_downPtItem]->GetItemInfo().itemNum == 26
+                    || _vInven[_downPtItem]->GetItemInfo().itemNum == 27
+                    || _vInven[_downPtItem]->GetItemInfo().itemNum == 28)
                 {
-                case 0:                    //고유 넘버 값
-                    break;
-                case 1:
-                        //_vInven[i] = _stone;  //돌
-                    break;
-                case 2:
-                    _om->SetWood(_player->getPlayerPosX(), _player->getPlayerPosY(), _inven[_downPtItem].amount);
-         
-                    break;
-                //case 3:
-                //    _vInven[i] = _box;  //돌
-                //    _inven[i].amount = INIDATA->loadDataInterger("inventory", str, "어마운트");
-                //    break;
-                //case 4:
-                //    _vInven[i] = _furnance;  //돌
-                //    _inven[i].amount = INIDATA->loadDataInterger("inventory", str, "어마운트");
-                //    break;
-                //case 5:
-                //    _vInven[i] = _scareCrow1;  //돌
-                //    _inven[i].amount = INIDATA->loadDataInterger("inventory", str, "어마운트");
-                //    break;
-                //case 6:
-                //    _vInven[i] = _scareCrow2;  //돌
-                //    _inven[i].amount = INIDATA->loadDataInterger("inventory", str, "어마운트");
-                //    break;
-                //case 7:
-                //    _vInven[i] = _cauliFlower;  //돌
-                //    _inven[i].amount = INIDATA->loadDataInterger("inventory", str, "어마운트");
-                //    break;
-                //case 8:
-                //    _vInven[i] = _kale;  //돌
-                //    _inven[i].amount = INIDATA->loadDataInterger("inventory", str, "어마운트");
-                //    break;
-                //case 9:
-                //    _vInven[i] = _parsnip;  //돌
-                //    _inven[i].amount = INIDATA->loadDataInterger("inventory", str, "어마운트");
-                //    break;
-                //case 10:
-                //    _vInven[i] = _potato;  //돌
-                //    _inven[i].amount = INIDATA->loadDataInterger("inventory", str, "어마운트");
-                //    break;
-                //case 11:
-                //    _vInven[i] = _halibut;  //돌
-                //    _inven[i].amount = INIDATA->loadDataInterger("inventory", str, "어마운트");
-                //    break;
-                //case 12:
-                //    _vInven[i] = _pufferFish;  //돌
-                //    _inven[i].amount = INIDATA->loadDataInterger("inventory", str, "어마운트");
-                //    break;
-                //case 13:
-                //    _vInven[i] = _tuna;  //돌
-                //    _inven[i].amount = INIDATA->loadDataInterger("inventory", str, "어마운트");
-                //    break;
-                //case 14:
-                //    _vInven[i] = _copper;  //돌
-                //    _inven[i].amount = INIDATA->loadDataInterger("inventory", str, "어마운트");
-                //    break;
-                //case 15:
-                //    _vInven[i] = _gold;  //돌
-                //    _inven[i].amount = INIDATA->loadDataInterger("inventory", str, "어마운트");
-                //    break;
-                //case 16:
-                //    _vInven[i] = _iron;  //돌
-                //    _inven[i].amount = INIDATA->loadDataInterger("inventory", str, "어마운트");
-                //    break;
-                //case 17:
-                //    _vInven[i] = _cauliSeed;  //돌
-                //    _inven[i].amount = INIDATA->loadDataInterger("inventory", str, "어마운트");
-                //    break;
-                //case 18:
-                //    _vInven[i] = _kaleSeed;  //돌
-                //    _inven[i].amount = INIDATA->loadDataInterger("inventory", str, "어마운트");
-                //    break;
-                //case 19:
-                //    _vInven[i] = _parsnipSeed;  //돌
-                //    _inven[i].amount = INIDATA->loadDataInterger("inventory", str, "어마운트");
-                //    break;
-                //case 20:
-                //    _vInven[i] = _potatoSeed;  //돌
-                //    _inven[i].amount = INIDATA->loadDataInterger("inventory", str, "어마운트");
-                //    break;
-                //case 21:
-                //    _vInven[i] = _axe;  //돌
-                //    _inven[i].amount = INIDATA->loadDataInterger("inventory", str, "어마운트");
-                //    break;
-                //case 22:
-                //    _vInven[i] = _can;  //돌
-                //    _inven[i].amount = INIDATA->loadDataInterger("inventory", str, "어마운트");
-                //    break;
-                //case 23:
-                //    _vInven[i] = _hoe;  //돌
-                //    _inven[i].amount = INIDATA->loadDataInterger("inventory", str, "어마운트");
-                //    break;
-                //case 24:
-                //    _vInven[i] = _pickAxe;  //돌
-                //    _inven[i].amount = INIDATA->loadDataInterger("inventory", str, "어마운트");
-                //    break;
-                //case 25:
-                //    _vInven[i] = _rod;  //돌
-                //    _inven[i].amount = INIDATA->loadDataInterger("inventory", str, "어마운트");
-                //    break;
-                //case 26:
-                //    _vInven[i] = _sickle;  //돌
-                //    _inven[i].amount = INIDATA->loadDataInterger("inventory", str, "어마운트");
-                //    break;
-                //case 27:
-                //    _vInven[i] = _slingShot;  //돌
-                //    _inven[i].amount = INIDATA->loadDataInterger("inventory", str, "어마운트");
-                //    break;
-                //case 28:
-                //    _vInven[i] = _sword;  //돌
-                //    _inven[i].amount = INIDATA->loadDataInterger("inventory", str, "어마운트");
-                //    break;
-                //default:
-                //    break;
-        
+                    swap(_vInven[_downPtItem], _vInven[_downPtItem]);
                 }
-                _vInven[_downPtItem] = _null;
-                _inven[_downPtItem].amount = 0;
-                _inven[_downPtItem].itemExist = false;
+                else
+                {
+                    switch (_vInven[_downPtItem]->GetItemInfo().itemNum)
+                    {
+                    case 0:                    //고유 넘버 값
+                        break;
+                    case 1:
+                        //_vInven[i] = _stone;  //돌
+                        break;
+                    case 2:
+                        _om->SetWood(0, 0, _inven[_downPtItem].amount);
+                        break;
+                     case 3:
+                         //_om->SetBox(0, 0, _inven[_downPtItem].amount);
+                         break;
+                     case 4:
+                        //_om->SetFurnance(0, 0, _inven[_downPtItem].amount);
+                         break;
+                     case 5:
+                         //_om->SetScareCrow1(0, 0, _inven[_downPtItem].amount);
+                         break;
+                     case 6:
+                         //_om->SetScareCrow2(0, 0, _inven[_downPtItem].amount);
+                         break;
+                     case 7:
+                         _om->SetCauliFlower(0, 0, _inven[_downPtItem].amount);
+                         break;
+                     case 8:
+                         _om->SetKale(0, 0, _inven[_downPtItem].amount);
+                         break;
+                     case 9:
+                         _om->SetParsnip(0, 0, _inven[_downPtItem].amount);
+                         break;
+                     case 10:
+                         _om->SetPotato(0, 0, _inven[_downPtItem].amount);                         
+                         break;
+                     case 11:                 
+                         _om->SetHaliBut(0, 0, _inven[_downPtItem].amount);
+                         break;
+                     case 12:
+                         _om->SetPufferFish(0, 0, _inven[_downPtItem].amount);
+                         break;
+                     case 13:
+                         _om->SetTuna(0, 0, _inven[_downPtItem].amount);
+                         break;
+                     case 14:
+                         _om->SetCopper(0, 0, _inven[_downPtItem].amount);
+                         break;
+                     case 15:
+                         _om->SetGold(0, 0, _inven[_downPtItem].amount);
+                         break;
+                     case 16:
+                         _om->SetIron(0, 0, _inven[_downPtItem].amount);
+                         break;
+                     case 17:
+                         _om->SetCauliFlowerSeed(0, 0, _inven[_downPtItem].amount);
+                         break;
+                     case 18:
+                         _om->SetKaleSeed(0, 0, _inven[_downPtItem].amount);
+                         break;
+                     case 19:
+                         _om->SetParsnipSeed(0, 0, _inven[_downPtItem].amount);
+                         break;
+                     case 20:
+                         _om->SetPotatoSeed(0, 0, _inven[_downPtItem].amount);
+                         break;
+   
+                     default:
+                         break;
+
+                    }
+                    _vInven[_downPtItem] = _null;
+                    _inven[_downPtItem].amount = 0;
+                    _inven[_downPtItem].itemExist = false;
+                }
             }
+            
         }
 }
 //제작창(미완)

@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "objectManager.h"
+#include "inventory.h"
 
 objectManager::objectManager()
 {
@@ -32,16 +33,25 @@ void objectManager::render()
     {
         RECT Temp = (*_viObject)->GetObjectRect();
         (*_viObject)->render();
+     
+        
     }
 }
-
+// =[ ============================================= 持 失 ========================================= ]= //
 void objectManager::SetWood(float x, float y, int amount)
 {
     for (int i = 0; i < amount; i++)
     {
          object* Wood;
          Wood = new wood;
-         Wood->init(OBJ_WOOD, "springObjects", 6, 12, PointMake(x+(i*10),y));
+         if (amount < 10)
+         {
+             Wood->init(OBJ_WOOD, "springObjects", 6, 12, PointMake(x + (5 * i), y + (5 * i)));
+         }
+         else
+             Wood->init(OBJ_WOOD, "springObjects", 6, 12, PointMake(x, y));
+
+         
          _vObject.push_back(Wood);
     }
 }
@@ -205,4 +215,4 @@ void objectManager::ObjectCollsion()
 
     }
 }
-// =[ ============================================= 持 失 ========================================= ]=
+
