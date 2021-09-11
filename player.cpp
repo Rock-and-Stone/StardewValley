@@ -120,12 +120,12 @@ void player::update()
 			_direction = PLAYERDIRECTION_ACTIVATE;
 		}
 
-		else if (_isLift)
+		else if (_isLift && _homeMap->getAttribute()[_tileIndex] != ATTR_UNMOVE)
 		{
 
 			switch (_inventory->getCraft())
 			{
-			case CRAFTBOX:
+			case CRAFTBOX: 
 				_inventory->eraseSelectQuickNum();
 				_homeMap->PlaceObject(OBJ_BOX, _tileIndex);
 				break;
@@ -137,7 +137,7 @@ void player::update()
 			case CRAFTCROW1:
 				_inventory->eraseSelectQuickNum();
 				_homeMap->PlaceObject(OBJ_SCARECROW1, _tileIndex);
-				break;
+				break; 
 			case CRAFTCROW2:
 				_inventory->eraseSelectQuickNum();
 				_homeMap->PlaceObject(OBJ_SCARECROW2, _tileIndex);
