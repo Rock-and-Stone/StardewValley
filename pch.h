@@ -26,6 +26,7 @@ using namespace std;
 #include "utils.h"
 #include "txtData.h"
 #include "iniDataManager.h"
+#include "gameData.h"
 
 using namespace TN_UTILS;
 
@@ -55,7 +56,7 @@ using namespace TN_UTILS;
 #define RENDERMANAGER RenderManager::getSingleton()
 #define TXTDATA txtData::getSingleton()
 #define INIDATA iniDataManager::getSingleton()
-
+#define GAMEDATA gameData::getSingleton()
 
 
 #define SAFE_DELETE(p) {if(p) {delete(p); (p) = nullptr;}}

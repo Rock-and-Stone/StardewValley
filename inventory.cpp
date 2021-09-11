@@ -1046,8 +1046,8 @@ void inventory::SettingInit()
         }
     }
 
-    _currentTotalVolume = getBGMVolume() / 10;
-    _currentSFXVolume = getSFXVolume() / 10;
+    _currentTotalVolume = GAMEDATA->getBGMVolume() / 10;
+    _currentSFXVolume = GAMEDATA->getSFXVolume() / 10;
 }
 
 void inventory::SettingUpdate()
@@ -1252,8 +1252,8 @@ void inventory::SettingVolumeFrame()
         }
     }
     
-    setBGMVolume(_currentTotalVolume * 10);
-    setSFXVolume(_currentSFXVolume * 10);
+    GAMEDATA->setBGMVolume(_currentTotalVolume * 10);
+    GAMEDATA->setSFXVolume(_currentSFXVolume * 10);
 }
 
 void inventory::saveInventory()

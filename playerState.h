@@ -145,7 +145,6 @@ public:
 	virtual void update() override;
 	virtual void render(HDC hdc) override;
 	virtual void setPlayer(player* player) override { _player = player; }
-
 };
 
 class playerPickAxe : public playerState

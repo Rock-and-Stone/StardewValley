@@ -32,9 +32,8 @@ public:
 	virtual RECT getRenderRc();
 	virtual RECT getIntRenderRc();
 	virtual RECT getInterectiveRc();
-
+	virtual void dialog();
 	virtual int getGold();
 	virtual void setX(int x), setY(int y);
 	void GoldGet(int gold);
-
 };

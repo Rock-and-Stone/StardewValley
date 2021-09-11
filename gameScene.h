@@ -22,8 +22,6 @@ private:
 	UserInterface* _uiManager;
 
 
-
-
 public:
 	virtual HRESULT init();
 	virtual void update();

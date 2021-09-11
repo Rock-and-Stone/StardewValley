@@ -15,7 +15,7 @@ HRESULT wizard::init(int indX, int indY)
 	_x = indX * TILEWIDTH + (TILEWIDTH / 2),
 	_y = indY * TILEHEIGHT + (TILEHEIGHT / 2);
 
-	_rc = RectMakeCenter(_x + 16, _y + 52, TILEWIDTH, TILEHEIGHT);
+	_rc = RectMakeCenter(_x + 16, _y + 32, TILEWIDTH, TILEHEIGHT);
 
 	_img = IMAGEMANAGER->findImage("wizard");
 
@@ -28,8 +28,9 @@ void wizard::release()
 
 void wizard::update()
 {
-	_rc = RectMakeCenter(_x + 16, _y + 52, TILEWIDTH, TILEHEIGHT+32);
-	_renderRc = RectMakeCenter(_x - _cameraManager->getCamX() + 16, _y - _cameraManager->getCamY() + 36, TILEWIDTH, TILEHEIGHT+32);
+
+	_rc = RectMakeCenter(_x + 16, _y + 32, TILEWIDTH, TILEHEIGHT+32);
+	_renderRc = RectMakeCenter(_x - _cameraManager->getCamX() + 16, _y - _cameraManager->getCamY() + 32, TILEWIDTH, TILEHEIGHT+32);
 }
 
 void wizard::render()
@@ -40,5 +41,10 @@ void wizard::render()
 	{
 		Rectangle(getMemDC(), _renderRc);
 	}
+}
+
+void wizard::dialog()
+{
+	GAMEDATA->setIsPause(true);
 }
 

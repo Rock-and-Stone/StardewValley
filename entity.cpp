@@ -63,6 +63,10 @@ RECT entity::getInterectiveRc()
 	return RECT();
 }
 
+void entity::dialog()
+{
+}
+
 int entity::getGold()
 {
 	return 0;
