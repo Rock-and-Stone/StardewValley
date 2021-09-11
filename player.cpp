@@ -47,7 +47,7 @@ HRESULT player::init(int indX, int indY)
 	
 
 	
-	_gold = getSaveGold();
+	_gold = GAMEDATA->getGold();
 
 	_homeMap = new homeMap;
 
@@ -171,9 +171,9 @@ void player::move()
 		_frameY = 0;
 		_dir = 0;
 		_x += moveSpeed;
-
 		rcCollision = RectMakeCenter(_x, _y, TILESIZE, TILESIZE);
 		break;
+
 	case PLAYERDIRECTION_UP:
 		_img->setFrameX(0);
 		_frameY = 2;
@@ -295,6 +295,8 @@ void player::changePlayerTool()
 	case PLAYERTOOL_SICKLE:
 		_playerSickle->update();
 		break;
+	case PLAYERTOOL_SWORD:
+		_playerSword->update();
 	}
 }
 

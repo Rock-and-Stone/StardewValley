@@ -15,8 +15,8 @@ HRESULT marnie::init(int indX, int indY)
 
 	_x = indX * TILESIZE + (TILESIZE / 2),
 	_y = indY * TILESIZE + (TILESIZE / 2);
-
-	_rc = RectMakeCenter(_x, _y, TILESIZE, TILESIZE);
+	
+	_rc = RectMakeCenter(_x + 16, _y + 32, TILEWIDTH, TILEHEIGHT + 32);
 
 	_img = IMAGEMANAGER->findImage("marnie");
 
@@ -29,11 +29,9 @@ void marnie::release()
 
 void marnie::update()
 {
-	_rc = RectMakeCenter(_x, _y, TILEWIDTH, TILEHEIGHT);
+	_rc = RectMakeCenter(_x + 16, _y + 32, TILEWIDTH, TILEHEIGHT + 32);
 
-	_rc = RectMakeCenter(_x + 16, _y + 52, TILEWIDTH, TILEHEIGHT);
-
-	_renderRc = RectMakeCenter(_x - _cameraManager->getCamX() + 16, _y - _cameraManager->getCamY() + 52, TILEWIDTH, TILEHEIGHT);
+	_renderRc = RectMakeCenter(_x - _cameraManager->getCamX() + 16, _y - _cameraManager->getCamY() + 32, TILEWIDTH, TILEHEIGHT + 32);
 }
 
 void marnie::render()
@@ -44,4 +42,9 @@ void marnie::render()
 	{
 		Rectangle(getMemDC(), _renderRc);
 	}
+}
+
+void marnie::dialog()
+{
+	GAMEDATA->setIsPause(true);
 }

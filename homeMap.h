@@ -8,7 +8,7 @@
 
 class CameraManager;
 
-class homeMap : public  gameNode
+class homeMap : public gameNode
 {
 private:
 	tagTile _tiles[TILEX * TILEY];		//≈∏¿œ

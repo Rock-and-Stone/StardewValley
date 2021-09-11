@@ -1,7 +1,6 @@
 #pragma once
 #include "Enemy.h"
-class RockStone :
-    public Enemy
+class RockStone :  public Enemy
 {
 private:
 

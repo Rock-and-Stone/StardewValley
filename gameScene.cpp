@@ -48,6 +48,14 @@ void gameScene::update()
 
 	RENDERMANAGER->update();
 	
+	if (!GAMEDATA->getIsPause())
+	{
+		_cameraManager->update(_player->getX(), _player->getY());
+		_player->update();
+		_npcManager->update();
+		_homeMap->Movement(_player->getX(), _player->getY());
+		RENDERMANAGER->update();
+	}
 }
 
 void gameScene::release()
@@ -67,5 +75,9 @@ void gameScene::render()
 	_player->InventoryDraw();
 	_uiManager->render();
 	_npcManager->render();
+
+	char str[25];
+	sprintf_s(str, "%d", GAMEDATA->getIsPause());
+	TextOut(getMemDC(), 0, 100, str, strlen(str));
 
 }

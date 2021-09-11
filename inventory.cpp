@@ -1106,8 +1106,8 @@ void inventory::SettingInit()
         }
     }
 
-    _currentTotalVolume = getBGMVolume() / 10;
-    _currentSFXVolume = getSFXVolume() / 10;
+    _currentTotalVolume = GAMEDATA->getBGMVolume() / 10;
+    _currentSFXVolume = GAMEDATA->getSFXVolume() / 10;
 }
 //세팅 초기화
 void inventory::SettingUpdate()
@@ -1312,8 +1312,8 @@ void inventory::SettingVolumeFrame()
         }
     }
     
-    setBGMVolume(_currentTotalVolume * 10);
-    setSFXVolume(_currentSFXVolume * 10);
+    GAMEDATA->setBGMVolume(_currentTotalVolume * 10);
+    GAMEDATA->setSFXVolume(_currentSFXVolume * 10);
 }
 //인벤토리 세이브하는 곳
 void inventory::saveInventory()

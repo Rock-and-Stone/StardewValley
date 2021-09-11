@@ -1,7 +1,8 @@
 #pragma once
+#include "singletonBase.h"
 
-class gameData
-{
+class gameData : public singletonBase<gameData>
+{ 
 private:
 	int _BGMVolume;
 	int _SFXVolume;
@@ -12,6 +13,8 @@ private:
 
 	float _playerPosX = 200;
 	float _playerPosY = 800;
+
+	bool _isPause = false;
 
 public:
 	float getBGMVolume();
@@ -44,5 +47,8 @@ public:
 	void setPlayerPosY(float y) { _playerPosY = y; }
 
 	void SaveData(int hp, int sm, int gold) { SavePlayerHP(hp); SavePlayerSM(sm); SaveGold(gold); }
+
+	bool getIsPause() { return _isPause; }
+	void setIsPause(bool isPause) { _isPause = isPause; }
 };
 

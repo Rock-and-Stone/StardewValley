@@ -25,5 +25,6 @@ public:
 	RECT getRect() { return _rc; }
 	RECT getRenderRc() { return _renderRc; }
 	void setX(int x) { _x = x; }
+	void dialog();
 };
 

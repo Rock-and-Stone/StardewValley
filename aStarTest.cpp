@@ -6,7 +6,6 @@ aStarTest::aStarTest()
 {
 }
 
-
 aStarTest::~aStarTest()
 {
 }
@@ -57,7 +56,6 @@ void aStarTest::setTiles() // 타일 세팅
 		}
 	}
 }
-
 
 //갈수있는 길을 추가하는 함수
 vector<tile*> aStarTest::addOpenList(tile* currentTile)

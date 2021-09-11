@@ -35,10 +35,7 @@ void npcManager::update()
 {
 	_wizard->update();
 	_marnie->update();
-
-	dialogue();
-
-
+	interact();
 }
 
 void npcManager::render()
@@ -48,9 +45,9 @@ void npcManager::render()
 	TextOut(getMemDC(), WINSIZEX /2 , WINSIZEY /2 , str, strlen(str));
 }
 
-void npcManager::dialogue()
+void npcManager::interact()
 {
-	RECT rc, rc2, temp;
+	RECT rc, rc2, rc3, temp;
 
 	rc = _wizard->getRenderRc();
 	rc2 = _player->getIntRenderRc();
@@ -59,17 +56,17 @@ void npcManager::dialogue()
 	{
 		if (IntersectRect(&temp, &rc, &rc2))
 		{
-			///위자드 다이얼로그 발생
+			_wizard->dialog();
 		}
 	}
 
-	rc = _marnie->getRenderRc();
+	rc3 = _marnie->getRenderRc();
 
-	if (PtInRect(&rc, _ptMouse) && KEYMANAGER->isOnceKeyDown(VK_RBUTTON))
+	if (PtInRect(&rc3, _ptMouse) && KEYMANAGER->isOnceKeyDown(VK_RBUTTON))
 	{
-		if (IntersectRect(&temp, &rc, &rc2))
+		if (IntersectRect(&temp, &rc3, &rc2))
 		{
-			///위자드 다이얼로그 발생
+			_marnie->dialog();
 		}
 	}
 }
