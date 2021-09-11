@@ -1086,12 +1086,33 @@ void inventory::checkPlayerTool()
     case 28:
         _playerTool = PLAYERTOOL_SWORD;
         break;
-
     default :
         _playerTool = PLAYERTOOL_ITEMS;
     break;
-
     }
+
+    if (_playerTool == PLAYERTOOL_ITEMS)
+    {
+        switch (_vInven[_nowQuickItem]->GetItemInfo().itemNum)
+        {
+        case 3:
+            _CRAFT = CRAFTBOX;
+            break;
+        case 4:
+            _CRAFT = CRAFTFURNANCE;
+            break;
+        case 5:
+            _CRAFT = CRAFTCROW1;
+            break;
+        case 6:
+            _CRAFT = CRAFTCROW2;
+            break;
+        default:
+            _CRAFT = CRAFTNULL;
+            break;
+        }
+    }
+
 }
 //세팅창 사운드
 void inventory::SettingInit()
@@ -1481,13 +1502,14 @@ void inventory::drawOnThePlayer()
 {
     if (_playerTool == PLAYERTOOL_ITEMS)
     {
-        _vInven[_nowQuickItem]->render( _player->getRenderX() + 25, _player->getRenderY());
+        _vInven[_nowQuickItem]->render( _player->getRenderX() - 24, _player->getRenderY() - 84);
     }
 }
 
 void inventory::eraseSelectQuickNum()
 {
     _inven[_nowQuickItem].amount--;
+
     if (_inven[_nowQuickItem].amount <= 0)
     {
         _vInven[_nowQuickItem] = _null;

@@ -13,8 +13,7 @@ enum PLAYERDIRECTION
 	PLAYERDIRECTION_RIGHT,
 	PLAYERDIRECTION_DOWN,
 	PLAYERDIRECTION_IDLE,
-	PLAYERDIRECTION_ACTIVATE,
-	PLAYERDIRECTION_LIFT
+	PLAYERDIRECTION_ACTIVATE
 };
 
 class player : public entity
@@ -29,13 +28,13 @@ private:
 
 	int _x, _y; // 중점
 	int _frameX, _frameY,_maxFrameX;
-	bool _isMoving;
 	int _rendX, _rendY;
 	int _idX, _idY;
 	int _dir; // 0 오 1 왼 2 위 3아래
 	int _count;
-
+	int _tileIndex;
 	int _HP, _gold, _stamina;
+	bool _isLift;
 
 	playerState* _playerState;
 	leftWalk* _leftWalk;
@@ -53,6 +52,7 @@ private:
 
 	homeMap* _homeMap;
 	inventory* _inventory;
+	CameraManager* _cameraManager;
 public:
 	player();
 	~player();
@@ -105,5 +105,7 @@ public:
 
 	void SetInventoryCameraMemoryLink(CameraManager* cm) { _inventory->SetCameraMemoryLink(cm); }
 	void SetPlayerObjectManagerMemoryLink(objectManager* om) { _inventory->SetObjectManagerMemoryLink(om); }
+	void SetHomeMapMemoryLink(homeMap* hm) { _homeMap = hm; }
+	void setCameraMemoryLink(CameraManager* cm) { _cameraManager = cm; }
 };
 

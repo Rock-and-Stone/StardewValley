@@ -83,8 +83,6 @@ void objectManager::render()
 
         (*_viObject)->Draw(_cm->getCamX(),_cm->getCamY());
      
-        
-
         (*_viObject)->render();  
 
     }
@@ -99,10 +97,12 @@ void objectManager::SetWood(float x, float y, int amount)
          Wood = new wood;
          if (amount < 10)
          {
-             Wood->init(OBJ_WOOD, "springObjectsItem", 6, 12, PointMake(x + (5 * i), y + (5 * i)));
+
+             Wood->init(OBJ_WOOD, "springObjectsItem", 6, 12, PointMake(x + (5 * i), y + (5 * i)),2);
          }
          else
-             Wood->init(OBJ_WOOD, "springObjectsItem", 6, 12, PointMake(x, y));
+             Wood->init(OBJ_WOOD, "springObjectsItem", 6, 12, PointMake(x, y),2);
+
 
          
          _vObject.push_back(Wood);
@@ -114,7 +114,8 @@ void objectManager::SetStone(float x, float y, int amount)
     {
         object*  Stone;
         Stone = new stone;
-        Stone->init(OBJ_STONE, "springObjectsItem", 10, 1, PointMake(x, y));
+        Stone->init(OBJ_STONE, "springObjectsItem", 10, 1, PointMake(x+(i*10), y),1);
+
         _vObject.push_back(Stone);
     }
 }
@@ -124,7 +125,8 @@ void objectManager::SetPufferFish(float x, float y, int amount)
     {
         object* PufferFish;
         PufferFish = new pufferFish;
-        PufferFish->init(OBJ_PUFFERFISH, "springObjectsItem", 8, 5, PointMake(x + (i * 10), y));
+        PufferFish->init(OBJ_PUFFERFISH, "springObjectsItem", 8, 5, PointMake(x + (i * 10), y),12);
+
         _vObject.push_back(PufferFish);
     }
 }
@@ -134,7 +136,8 @@ void objectManager::SetTuna(float x, float y, int amount)
     {
         object* Tuna;
         Tuna = new tuna;
-        Tuna->init(OBJ_TUNA, "springObjectsItem", 19, 5, PointMake(x , y));
+        Tuna->init(OBJ_TUNA, "springObjectsItem", 19, 5, PointMake(x , y),13);
+
         _vObject.push_back(Tuna);
     }
 }
@@ -144,7 +147,8 @@ void objectManager::SetHaliBut(float x, float y, int amount)
     {
         object* Halibut;
         Halibut = new haliBut;
-        Halibut->init(OBJ_HALIBUT, "springObjectsItem", 23, 5, PointMake(x + (i * 10), y));
+        Halibut->init(OBJ_HALIBUT, "springObjectsItem", 23, 5, PointMake(x + (i * 10), y),11);
+
         _vObject.push_back(Halibut);
     }
 }
@@ -154,7 +158,8 @@ void objectManager::SetCauliFlowerSeed(float x, float y, int amount)
 {
     object* CauliSeed;
     CauliSeed = new cauliFlowerSeed;
-    CauliSeed->init(OBJ_CAULIFLOWERSEED,"springObjectsItem",18,19,PointMake(x,y));
+    CauliSeed->init(OBJ_CAULIFLOWERSEED, "springObjectsItem", 18, 19, PointMake(x, y), 17);
+
     _vObject.push_back(CauliSeed);
 }
 }
@@ -164,7 +169,8 @@ void objectManager::SetParsnipSeed(float x, float y, int amount)
     {
         object* ParsnipSeed;
         ParsnipSeed = new axe;
-        ParsnipSeed->init(OBJ_PARSNIPSEED,"springObjectsItem",16,19,PointMake(x,y));
+        ParsnipSeed->init(OBJ_PARSNIPSEED,"springObjectsItem",16,19,PointMake(x,y),19);
+
         _vObject.push_back(ParsnipSeed);
     }
 }
@@ -174,7 +180,8 @@ void objectManager::SetPotatoSeed(float x, float y, int amount)
     {
         object* PotatoSeed;
         PotatoSeed = new potatoSeed;
-        PotatoSeed->init(OBJ_POTATOSEED, "springObjectsItem", 19, 19, PointMake(x, y));
+        PotatoSeed->init(OBJ_POTATOSEED, "springObjectsItem", 19, 19, PointMake(x, y),20);
+
         _vObject.push_back(PotatoSeed);
     }
 }
@@ -184,7 +191,8 @@ void objectManager::SetKaleSeed(float x, float y, int amount)
     {
         object* KaleSeed;
         KaleSeed = new kaleSeed;
-        KaleSeed->init(OBJ_KALESEED, "springObjectsItem", 21, 19, PointMake(x, y));
+        KaleSeed->init(OBJ_KALESEED, "springObjectsItem", 21, 19, PointMake(x, y), 18);
+
         _vObject.push_back(KaleSeed);
     }
 }
@@ -194,7 +202,7 @@ void objectManager::SetCauliFlower(float x, float y, int amount)
     {
         object* CauliFlower;
         CauliFlower = new cauliFlower;
-        CauliFlower->init(OBJ_PARSNIPSEED, "crops", 1, 0, PointMake(x, y));
+        CauliFlower->init(OBJ_PARSNIPSEED, "crops", 1, 0, PointMake(x, y), 17);
         _vObject.push_back(CauliFlower);
     }
 }
@@ -204,7 +212,8 @@ void objectManager::SetParsnip(float x, float y, int amount)
     {
         object* Parsnip;
         Parsnip = new parsnip;
-        Parsnip->init(OBJ_PARSNIP, "crops", 0, 0, PointMake(x, y));
+        Parsnip->init(OBJ_PARSNIP, "crops", 0, 0, PointMake(x, y),9);
+
         _vObject.push_back(Parsnip);
     }
 }
@@ -214,7 +223,8 @@ void objectManager::SetPotato(float x, float y, int amount)
     {
         object* Potato;
         Potato = new potato;
-        Potato->init(OBJ_POTATO, "crops", 5, 1, PointMake(x, y));
+        Potato->init(OBJ_POTATO, "crops", 5, 1, PointMake(x, y),10);
+
         _vObject.push_back(Potato);
     }
 }
@@ -224,7 +234,7 @@ void objectManager::SetKale(float x, float y, int amount)
     {
         object* Kale;
         Kale = new kale;
-        Kale->init(OBJ_KALE, "crops", 6, 1, PointMake(x, y));
+        Kale->init(OBJ_KALE, "crops", 6, 1, PointMake(x, y),8);
         _vObject.push_back(Kale);
     }
 }
@@ -234,7 +244,8 @@ void objectManager::SetCopper(float x, float y, int amount)
     {
         object* Copper;
         Copper = new copper;
-        Copper->init(OBJ_COPPER, "springObjectsItem", 22, 13, PointMake(x, y));
+        Copper->init(OBJ_COPPER, "springObjectsItem", 22, 13, PointMake(x, y),14);
+
         _vObject.push_back(Copper);
     }
 }
@@ -244,7 +255,7 @@ void objectManager::SetIron(float x, float y, int amount)
     {
         object* Iron;
         Iron = new iron;
-        Iron->init(OBJ_IRON, "springObjectsItem", 23, 13, PointMake(x, y));
+        Iron->init(OBJ_IRON, "springObjectsItem", 23, 13, PointMake(x, y), 15);
         _vObject.push_back(Iron);
     }
 }
@@ -254,7 +265,9 @@ void objectManager::SetGold(float x, float y, int amount)
     {
         object* Gold;
         Gold = new gold;
-        Gold->init(OBJ_GOLD, "2", 0, 14, PointMake(x, y));
+
+        Gold->init(OBJ_GOLD, "springObjectsItem", 0, 14, PointMake(x, y), 16);
+
         _vObject.push_back(Gold);
     }
 }
@@ -264,7 +277,7 @@ void objectManager::SetBox(float x, float y, int amount)
     {
         object* box;
         box = new Box;
-        box->init(OBJ_BOX, "2", 0, 14, PointMake(x, y));
+        box->init(OBJ_BOX, "", 0, 14, PointMake(x, y));
         _vObject.push_back(box);
     }
 }

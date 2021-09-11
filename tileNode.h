@@ -55,6 +55,7 @@ struct tagTile
 	TERRAIN terrain;
 	OBJECT obj;
 	RECT rc;
+
 	int terrainFrameX;
 	int terrainFrameY;
 	int objFrameX;
