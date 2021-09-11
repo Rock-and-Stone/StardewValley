@@ -56,7 +56,7 @@ protected:
 	int			_frameX, _frameY;
 	float		_posX, _posY;
 	float		_speed;
-	
+	int			_objectNum;
 	bool		_isdelete;
 
 	CameraManager* _cm;
@@ -66,7 +66,7 @@ public:
 	object();
 	~object();
 
-	virtual HRESULT init(ALLOBJECTS obj, const char* imageName, int framex, int framey, POINT pos);
+	virtual HRESULT init(ALLOBJECTS obj, const char* imageName, int framex, int framey, POINT pos, int objNum);
 	virtual HRESULT init();
 	virtual void release();
 	virtual void update();

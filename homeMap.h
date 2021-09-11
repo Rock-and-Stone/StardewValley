@@ -30,9 +30,8 @@ public:
 	
 	void load();
 
-	void Movement(float posX, float posY);
-	void DrawTile();
-	void DrawObject();
+	void DrawTile(float posX, float posY);
+	void DrawObject(float posX, float posY);
 
 	void PlaceObject(ALLOBJECTS object, int num);
 	void RemoveObject(int num);

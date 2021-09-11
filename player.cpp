@@ -49,8 +49,6 @@ HRESULT player::init(int indX, int indY)
 	
 	_gold = GAMEDATA->getGold();
 
-	_homeMap = new homeMap;
-
 	_inventory = new inventory;
 	_inventory->init();
 	_inventory->SetPlayerMemoryLink(this);
@@ -58,8 +56,7 @@ HRESULT player::init(int indX, int indY)
 	_img = IMAGEMANAGER->findImage("player");
 
 	_rc = RectMakeCenter(_x,_y,TILEWIDTH,TILEHEIGHT);
-	_isMoving = false;
-
+	_isLift = false;
 
 	return S_OK;
 }
@@ -74,30 +71,34 @@ void player::update()
 
 	activate();
 
-	liftItem();
 
 	//이동 상태 패턴
-	if (KEYMANAGER->isStayKeyDown('W') && _direction != PLAYERDIRECTION_ACTIVATE  && _direction != PLAYERDIRECTION_LIFT)
+	if (KEYMANAGER->isStayKeyDown('W') && _direction != PLAYERDIRECTION_ACTIVATE)
 	{
-		_upWalk->update();
+		if (!_isLift) { _upWalk->update(); }
+		_direction = PLAYERDIRECTION_UP;
 		move();
 	}
 
-	if (KEYMANAGER->isStayKeyDown('S') && _direction != PLAYERDIRECTION_ACTIVATE && _direction != PLAYERDIRECTION_LIFT)
+	if (KEYMANAGER->isStayKeyDown('S') && _direction != PLAYERDIRECTION_ACTIVATE)
 	{
-		_downWalk->update();
+		if (!_isLift) { _downWalk->update(); }
+		_direction = PLAYERDIRECTION_DOWN;
 		move();
 	}
 
-	if (KEYMANAGER->isStayKeyDown('A') && _direction != PLAYERDIRECTION_ACTIVATE && _direction != PLAYERDIRECTION_LIFT)
+	if (KEYMANAGER->isStayKeyDown('A') && _direction != PLAYERDIRECTION_ACTIVATE)
 	{
-		_leftWalk->update();
+		if (!_isLift) { _leftWalk->update(); }
+		_direction = PLAYERDIRECTION_LEFT;
+
 		move();
 	}
 
-	if (KEYMANAGER->isStayKeyDown('D') && _direction != PLAYERDIRECTION_ACTIVATE && _direction != PLAYERDIRECTION_LIFT)
+	if (KEYMANAGER->isStayKeyDown('D') && _direction != PLAYERDIRECTION_ACTIVATE )
 	{
-		_rightWalk->update();
+		if (!_isLift) { _rightWalk->update(); }
+		_direction = PLAYERDIRECTION_RIGHT;
 		move();
 	}
 
@@ -107,21 +108,53 @@ void player::update()
 	if (KEYMANAGER->isOnceKeyUp('S') && _direction != PLAYERDIRECTION_ACTIVATE) _frameX = 0;
 	if (KEYMANAGER->isOnceKeyUp('D') && _direction != PLAYERDIRECTION_ACTIVATE) _frameX = 0;
 
-	_rc = RectMakeCenter(_x + 48, _y + 84, TILEWIDTH, TILEHEIGHT);
-	_renderRC = RectMakeCenter(_rendX + 48, _rendY + 84, TILEWIDTH, TILEWIDTH);
+	_rc = RectMakeCenter(_x, _y ,TILEWIDTH, TILEHEIGHT);
+	_renderRC = RectMakeCenter(_rendX, _rendY, TILEWIDTH, TILEWIDTH);
 
-	if (KEYMANAGER->isOnceKeyDown(VK_LBUTTON) && !_inventory->GetIsMenuOpen() && _direction != PLAYERDIRECTION_ACTIVATE && _direction != PLAYERDIRECTION_LIFT && _inventory->getPlayerTool() != PLAYERTOOL_NULL)
+	if (KEYMANAGER->isOnceKeyDown(VK_LBUTTON) && !_inventory->GetIsMenuOpen() && _direction != PLAYERDIRECTION_ACTIVATE  && _inventory->getPlayerTool() != PLAYERTOOL_NULL)
 	{
-		_frameX = 0;
-		changePlayerTool();
-		_direction = PLAYERDIRECTION_ACTIVATE;
+		if (!_isLift)
+		{
+			_frameX = 0;
+			changePlayerTool();
+			_direction = PLAYERDIRECTION_ACTIVATE;
+		}
+
+		else if (_isLift)
+		{
+
+			switch (_inventory->getCraft())
+			{
+			case CRAFTBOX:
+				_inventory->eraseSelectQuickNum();
+				_homeMap->PlaceObject(OBJ_BOX, _tileIndex);
+				break;
+			case CRAFTFURNANCE:
+				_inventory->eraseSelectQuickNum();
+				_homeMap->PlaceObject(OBJ_FURNACE, _tileIndex);
+
+				break;
+			case CRAFTCROW1:
+				_inventory->eraseSelectQuickNum();
+				_homeMap->PlaceObject(OBJ_SCARECROW1, _tileIndex);
+				break;
+			case CRAFTCROW2:
+				_inventory->eraseSelectQuickNum();
+				_homeMap->PlaceObject(OBJ_SCARECROW2, _tileIndex);
+
+				break;
+			}
+		}
+
 	}
+
+	liftItem();
 
 }
 
 void player::render()
 {
-	_img->frameRender(getMemDC(), _rendX ,  _rendY ,_frameX,_frameY);
+	_img->frameRender(getMemDC(), _rendX - 48,  _rendY  - 84 , _frameX, _frameY);
 	_inventory->drawOnThePlayer();
 
 	if (KEYMANAGER->isToggleKey(VK_TAB))
@@ -131,13 +164,13 @@ void player::render()
 	}
 
 	char str[25];
-	sprintf_s(str, "%d", _inventory->getPlayerTool());
+	sprintf_s(str, "idx : % d", _idX);
 	TextOut(getMemDC(), 300, 300, str, strlen(str));
 
-	sprintf_s(str, "gold : %d", _gold);
+	sprintf_s(str, "idy : %d", _idY);
 	TextOut(getMemDC(), 300, 320, str, strlen(str));
 
-	sprintf_s(str, "%d", _frameX);
+	sprintf_s(str, "tileIdx : %d", _tileIndex);
 	TextOut(getMemDC(), 300, 340, str, strlen(str));
 }
 
@@ -156,41 +189,34 @@ void player::move()
 	switch (_direction)
 	{
 	case PLAYERDIRECTION_LEFT:
-		_frameY = 1;
 		_x -= moveSpeed;
 		_dir = 1;
 		rcCollision = RectMakeCenter(_x, _y, TILESIZE, TILESIZE);
-
 		break;
 
 	case PLAYERDIRECTION_DOWN:
-		_frameY = 3;
 		_y += moveSpeed;
 		_dir = 3;
 		rcCollision = RectMakeCenter(_x, _y, TILESIZE, TILESIZE);
 		break;
 
 	case PLAYERDIRECTION_RIGHT:
-		_frameY = 0;
 		_dir = 0;
 		_x += moveSpeed;
 		rcCollision = RectMakeCenter(_x, _y, TILESIZE, TILESIZE);
 		break;
 
 	case PLAYERDIRECTION_UP:
-		_img->setFrameX(0);
-		_frameY = 2;
 		_dir = 2;
 		_y -= moveSpeed;
-
 		rcCollision = RectMakeCenter(_x, _y, TILESIZE, TILESIZE);
 		break;
 	}
 
-	rcCollision.left += 2;
-	rcCollision.top += 2;
-	rcCollision.right -= 2;
-	rcCollision.bottom -= 2;
+	rcCollision.left += 5;
+	rcCollision.top += 5;
+	rcCollision.right -= 5;
+	rcCollision.bottom -= 5;
 
 	tileX = rcCollision.left / TILEWIDTH;
 	tileY = rcCollision.top / TILEHEIGHT;
@@ -198,33 +224,45 @@ void player::move()
 	_idX = tileX;
 	_idY = tileY;
 
+
 	switch (_direction)
 	{
 	case PLAYERDIRECTION_LEFT:
 		tileIndex[0] = tileX + (tileY * TILEX);
 		tileIndex[1] = tileX + (tileY + 1) * TILEX;
-		_interectiveRc = RectMakeCenter(_x     + 48 - 32, _y     + 84, TILEWIDTH, TILEWIDTH);
-		_intRenderRc   = RectMakeCenter(_rendX + 48 - 32, _rendY + 84, TILEWIDTH, TILEWIDTH);
+
+		_tileIndex = tileIndex[0];
+		_interectiveRc = _homeMap->getTile()[tileIndex[0]].rc;
+		_intRenderRc   = RectMake(_interectiveRc.left - _cameraManager->getCamX(), _interectiveRc.top - _cameraManager->getCamY(), TILEWIDTH, TILEWIDTH);
+
 		break;
+
 	case PLAYERDIRECTION_UP:
 		tileIndex[0] = tileX + (tileY * TILEX);
 		tileIndex[1] = (tileX + 1) + tileY * TILEX;
-		_interectiveRc = RectMakeCenter(_x     + 48, _y     + 84 - 32, TILEWIDTH, TILEWIDTH);
-		_intRenderRc   = RectMakeCenter(_rendX + 48, _rendY + 84 - 32, TILEWIDTH, TILEWIDTH);
+
+		_tileIndex = tileIndex[0];
+		_interectiveRc = _homeMap->getTile()[tileIndex[0]].rc;
+		_intRenderRc = RectMake(_interectiveRc.left - _cameraManager->getCamX(), _interectiveRc.top - _cameraManager->getCamY(), TILEWIDTH, TILEWIDTH);
 
 		break;
+
 	case PLAYERDIRECTION_RIGHT:
 		tileIndex[0] = (tileX + tileY * TILEX) + 1;
 		tileIndex[1] = (tileX + (tileY + 1) * TILEX) + 1;
-		_interectiveRc = RectMakeCenter(_x     + 48 + 32, _y     + 84, TILEWIDTH, TILEWIDTH);
-		_intRenderRc   = RectMakeCenter(_rendX + 48 + 32, _rendY + 84, TILEWIDTH, TILEWIDTH);
+		_tileIndex = tileIndex[0];
+
+		_interectiveRc = _homeMap->getTile()[tileIndex[0]].rc;
+		_intRenderRc = RectMake(_interectiveRc.left - _cameraManager->getCamX(), _interectiveRc.top - _cameraManager->getCamY(), TILEWIDTH, TILEWIDTH);
 
 		break;
 	case PLAYERDIRECTION_DOWN:
 		tileIndex[0] = (tileX + tileY * TILEX) + TILEX;
 		tileIndex[1] = (tileX + 1 + tileY * TILEX) + TILEX;
-		_interectiveRc = RectMakeCenter(_x     + 48, _y     + 84 + 32, TILEWIDTH, TILEWIDTH);
-		_intRenderRc   = RectMakeCenter(_rendX + 48, _rendY + 84 + 32, TILEWIDTH, TILEWIDTH);
+		_tileIndex = tileIndex[0];
+
+		_interectiveRc = _homeMap->getTile()[tileIndex[0]].rc;
+	    _intRenderRc = RectMake(_interectiveRc.left - _cameraManager->getCamX(), _interectiveRc.top - _cameraManager->getCamY(), TILEWIDTH, TILEWIDTH);
 
 		break;
 	}
@@ -240,29 +278,29 @@ void player::move()
 			{
 			case PLAYERDIRECTION_LEFT:
 				_rc.left = _homeMap->getTile()[tileIndex[i]].rc.right;
-				_rc.right = _rc.left + 30;
+				_rc.right = _rc.left;
 
-				_x = (_rc.left + _rc.right) / 2;
+				_x = (_rc.left + _rc.right) / 2 + 10;
 				break;
-			case PLAYERDIRECTION_UP:
-				_rc.top = _homeMap->getTile()[tileIndex[i]].rc.bottom -10;
-				_rc.bottom = _rc.top + 32;
 
-				_y = (_rc.top + _rc.bottom) / 2;
+			case PLAYERDIRECTION_UP:
+				_rc.top = _homeMap->getTile()[tileIndex[i]].rc.bottom ;
+				_rc.bottom = _rc.top;
+				_y = (_rc.top + _rc.bottom) / 2 + 10;
 
 				break;
 
 			case PLAYERDIRECTION_RIGHT:
 				_rc.right = _homeMap->getTile()[tileIndex[i]].rc.left;
-				_rc.left = _rc.right - 30;
+				_rc.left = _rc.right;
 
-				_x = (_rc.left + _rc.right) / 2;
+				_x = (_rc.left + _rc.right) / 2 - 3;
 				break;
+
 			case PLAYERDIRECTION_DOWN:
 				_rc.bottom = _homeMap->getTile()[tileIndex[i]].rc.top;
-				_rc.top = _rc.bottom - 32;
-
-				_y = (_rc.top + _rc.bottom) / 2;
+				_rc.top = _rc.bottom;
+				_y = (_rc.top + _rc.bottom) / 2 -3;
 				break;
 			}
 
@@ -356,7 +394,7 @@ void player::liftItem()
 {
 	if (_inventory->getPlayerTool() == PLAYERTOOL_ITEMS)
 	{
-		_direction = PLAYERDIRECTION_LIFT;
+		_isLift = true;
 
 		switch (_dir)  // 0 오 1 왼 2 위 3아래
 		{
@@ -379,27 +417,6 @@ void player::liftItem()
 			break;
 		}
 
-		if (KEYMANAGER->isStayKeyDown('W'))
-		{
-			_dir = 2;
-			_y -= 5;
-		}
-		if (KEYMANAGER->isStayKeyDown('S'))
-		{
-			_dir = 3;
-			_y += 5;
-		}
-		if (KEYMANAGER->isStayKeyDown('A'))
-		{
-			_dir = 1;
-			_x -= 5;
-		}
-		if (KEYMANAGER->isStayKeyDown('D'))
-		{
-			_dir = 0;
-			_x += 5;
-		}
-
 
 		if (KEYMANAGER->isStayKeyDown('W') || KEYMANAGER->isStayKeyDown('S') || KEYMANAGER->isStayKeyDown('A') || KEYMANAGER->isStayKeyDown('D')) _count++;
 
@@ -413,14 +430,13 @@ void player::liftItem()
 			_frameX = 0;
 		}
 
-		if (KEYMANAGER->isOnceKeyDown(VK_LBUTTON))
-		{
-			_inventory->eraseSelectQuickNum();
-		}
+	
+			
+	
 	}
 
 	else if(_direction != PLAYERDIRECTION_ACTIVATE)
 	{
-		_direction = PLAYERDIRECTION_IDLE;
+		_isLift = false;
 	}
 }

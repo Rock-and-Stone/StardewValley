@@ -94,6 +94,14 @@ void entity::SetPlayerObjectManagerMemoryLink(objectManager* om)
 {
 }
 
+void entity::SetHomeMapMemoryLink(homeMap* hm)
+{
+}
+
+void entity::setCameraMemoryLink(CameraManager* cm)
+{
+}
+
 entity::entity()
 {
 }

@@ -53,12 +53,13 @@ class player;
 class CameraManager;
 class objectManager;
 
-enum CraftItem 
+enum CRAFTITEM 
 {
-	craftBox,
-	craftFurnance,
-	craftCrow1,
-	craftCrow2,
+	CRAFTBOX,
+	CRAFTFURNANCE,
+	CRAFTCROW1,
+	CRAFTCROW2,
+	CRAFTNULL
 };
 
 
@@ -155,6 +156,7 @@ private:
 
 	itemNull*			_null;
 #pragma endregion
+	
 	CRAFTITEMS _craft;
 	MenuPage _menuPage;
 
@@ -226,7 +228,7 @@ private:
 	BOOL	_canCrow1;
 	BOOL	_canCrow2;
 	
-
+	CRAFTITEM _CRAFT;
 	PLAYERTOOL _playerTool;
 	player* _player;
 	CameraManager* _cm;
@@ -235,6 +237,7 @@ private:
 	tagFrame	 _frame;
 	tagSelectV	 _select[2];
 	RECT		 _volumeRC[20];
+
 	float _currentTotalVolume, _currentSFXVolume;
 	bool _isClickUp, _isClickDown;
 
@@ -300,6 +303,7 @@ public:
 	void SetQuickItemType(int now) { _nowQuickItem = now; }
 	
 	PLAYERTOOL getPlayerTool() { return _playerTool; }
+	CRAFTITEM getCraft() { return _CRAFT; }
 
 
 	//======================= ============== ======================= //

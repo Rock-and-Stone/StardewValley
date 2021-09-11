@@ -35,8 +35,7 @@ void leftWalk::release()
 
 void leftWalk::update()
 {
-	_player->setPlayerDirection(PLAYERDIRECTION_LEFT);
-
+	_player->setFrameY(1);
 	_count++;
 
 	if (_count % 5 == 0)
@@ -83,8 +82,7 @@ void rightWalk::release()
 void rightWalk::update()
 {
 
-	_player->setPlayerDirection(PLAYERDIRECTION_RIGHT);
-
+	_player->setFrameY(0);
 	_count++;
 
 	if (_count % 5 == 0)
@@ -123,8 +121,7 @@ void upWalk::release()
 
 void upWalk::update()
 {
-	_player->setPlayerDirection(PLAYERDIRECTION_UP);
-
+	_player->setFrameY(2);
 
 	_count++;
 
@@ -163,8 +160,7 @@ void downWalk::release()
 
 void downWalk::update()
 {
-	_player->setPlayerDirection(PLAYERDIRECTION_DOWN);
-
+	_player->setFrameY(3);
 
 	_count++;
 

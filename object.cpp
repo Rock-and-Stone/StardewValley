@@ -10,7 +10,7 @@ object::~object()
 {
 }
 
-HRESULT object::init(ALLOBJECTS obj, const char* imageName, int framex, int framey, POINT pos)
+HRESULT object::init(ALLOBJECTS obj, const char* imageName, int framex, int framey, POINT pos, int objNum)
 {
     _obj = obj;
     _objectImg = IMAGEMANAGER->findImage(imageName);
@@ -18,7 +18,7 @@ HRESULT object::init(ALLOBJECTS obj, const char* imageName, int framex, int fram
     _posY = pos.y;
     _frameX = framex;
     _frameY = framey;
-    
+    _objectNum = objNum;
     _speed = RND->getFromFloatTo(-10, 10);
 
     return S_OK;

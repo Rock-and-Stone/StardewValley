@@ -13,7 +13,7 @@ HRESULT gameScene::init()
 	_objectManager = new objectManager;
 
 	_homeMap->init();
-	_player->init(10, 15);
+	_player->init(30, 30);
 	_npcManager->init();
 	_objectManager->init();
 	_cameraManager->init(TILESIZEX, TILESIZEY);
@@ -27,6 +27,8 @@ HRESULT gameScene::init()
 
 	_player->SetPlayerObjectManagerMemoryLink(_objectManager);
 	_player->SetInventoryCameraMemoryLink(_cameraManager);
+	_player->SetHomeMapMemoryLink(_homeMap);
+	_player->setCameraMemoryLink(_cameraManager);
 
 	_uiManager->SetMemoryAddressLink(_player);
 
@@ -35,6 +37,7 @@ HRESULT gameScene::init()
 	_npcManager->setWizardCameraLink(_cameraManager);
 	_npcManager->setPlayerMemAddressLink(_player);
 
+	_homeMap->setCameraLink(_cameraManager);
 	
 	
 	RENDERMANAGER->addRender(_player);
@@ -45,29 +48,15 @@ HRESULT gameScene::init()
 
 void gameScene::update()
 {
-
-
-	_cameraManager->update(_player->getX(), _player->getY());
-	_player->update();
-	_homeMap->Movement(_cameraManager->getCamX(), _cameraManager->getCamY());
-	_npcManager->update();
-	_objectManager->update();
-
-	if (KEYMANAGER->isOnceKeyDown(VK_F9)) _objectManager->SetWood(500, 500, 10);
-
-	RENDERMANAGER->update();
-	
-
 	if (!GAMEDATA->getIsPause())
 	{
 		_cameraManager->update(_player->getX(), _player->getY());
 		_player->update();
-		_homeMap->Movement(_cameraManager->getCamX(), _cameraManager->getCamY());
 		_objectManager->update();
+		//_homeMap->Movement(_cameraManager->getCamX(), _cameraManager->getCamY());
 		if (KEYMANAGER->isOnceKeyDown(VK_F9)) _objectManager->SetWood(100, 100, 10);
 		RENDERMANAGER->update();
 	}
-
 	_npcManager->update();
 }
 
@@ -77,8 +66,9 @@ void gameScene::release()
 
 void gameScene::render()
 {
+	_homeMap->DrawTile(_cameraManager->getCamX(), _cameraManager->getCamY());
 	//_npcManager->render();
-	_homeMap->render();
+	_homeMap->DrawObject(_cameraManager->getCamX(), _cameraManager->getCamY());
 	_objectManager->render();
 	_player->setRenderX(_cameraManager->getRenderPosX());
 	_player->setRenderY(_cameraManager->getRenderPosY());
@@ -88,9 +78,4 @@ void gameScene::render()
 	_player->InventoryDraw();
 	_uiManager->render();
 	_npcManager->render();
-
-	char str[25];
-	sprintf_s(str, "%d", GAMEDATA->getIsPause());
-	TextOut(getMemDC(), 0, 100, str, strlen(str));
-
 }
