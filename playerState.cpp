@@ -297,7 +297,7 @@ void playerAxe::release()
 
 void playerAxe::update()
 {
-	SOUNDMANAGER->play("hitTree", 1.0f);
+	
 	switch (_player->getDir())
 	{
 	case 0:

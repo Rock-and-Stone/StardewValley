@@ -29,7 +29,7 @@ HRESULT gameScene::init()
 	_player->SetInventoryCameraMemoryLink(_cameraManager);
 	_player->SetHomeMapMemoryLink(_homeMap);
 	_player->setCameraMemoryLink(_cameraManager);
-
+	_player->setObjectMemoryLink(_objectManager);
 	_uiManager->SetMemoryAddressLink(_player);
 
 	_npcManager->setCameraAddressLink(_cameraManager);

@@ -43,7 +43,6 @@ void playGround::release()
 void playGround::update()
 {
 	gameNode::update();
-
 	ChangeWindowSize();
 	SCENEMANAGER->update();
 }

@@ -60,12 +60,12 @@ void homeMap::load()
 	{
 		_tiles[i].rc = RectMake(_tiles[i].posX, _tiles[i].posY, 32, 32);
 
-		if (_tiles[i].terrain == TR_WATER) _attribute[i] |= ATTR_UNMOVE;
-		if (_tiles[i].obj == OBJ_WALL) _attribute[i] |= ATTR_UNMOVE;
-		if (_tiles[i].obj == OBJ_GRASS) _attribute[i] |= ATTR_UNMOVE;
-		if (_tiles[i].obj == OBJ_BUILD) _attribute[i] |= ATTR_UNMOVE;
-		if (_tiles[i].obj == OBJ_TREE) _attribute[i] |= ATTR_UNMOVE;
-		if (_tiles[i].obj == OBJ_ROCK) _attribute[i] |= ATTR_UNMOVE;
+		//if (_tiles[i].terrain == TR_WATER) _attribute[i] |= ATTR_UNMOVE;
+		//if (_tiles[i].obj == OBJ_WALL) _attribute[i] |= ATTR_UNMOVE;
+		//if (_tiles[i].obj == OBJ_GRASS) _attribute[i] |= ATTR_UNMOVE;
+		//if (_tiles[i].obj == OBJ_BUILD) _attribute[i] |= ATTR_UNMOVE;
+		//if (_tiles[i].obj == OBJ_TREE) _attribute[i] |= ATTR_UNMOVE;
+		//if (_tiles[i].obj == OBJ_ROCK) _attribute[i] |= ATTR_UNMOVE;
 	}
 
 	CloseHandle(file);

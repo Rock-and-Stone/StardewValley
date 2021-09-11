@@ -5,6 +5,7 @@
 
 class homeMap;
 class CameraManager;
+class objectManager;
 
 enum PLAYERDIRECTION
 {
@@ -53,6 +54,7 @@ private:
 	homeMap* _homeMap;
 	inventory* _inventory;
 	CameraManager* _cameraManager;
+	objectManager* _objectManager;
 public:
 	player();
 	~player();
@@ -107,5 +109,6 @@ public:
 	void SetPlayerObjectManagerMemoryLink(objectManager* om) { _inventory->SetObjectManagerMemoryLink(om); }
 	void SetHomeMapMemoryLink(homeMap* hm) { _homeMap = hm; }
 	void setCameraMemoryLink(CameraManager* cm) { _cameraManager = cm; }
+	void setObjectMemoryLink(objectManager* om) { _objectManager = om; }
 };
 
