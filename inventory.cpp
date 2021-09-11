@@ -158,7 +158,7 @@ HRESULT inventory::init()
     AddItem(_slingShot);
     AddItem(_sword);
 
-    for(int i = 0 ; i < 3 ; i++) AddItem(_box);
+    for(int i = 0 ; i < 3 ; i++) AddItem(_wood);
 
  
 
@@ -689,64 +689,64 @@ void inventory::MenuInvetoryOpen()
                     case 0:                    //고유 넘버 값
                         break;
                     case 1:
-                        //_vInven[i] = _stone;  //돌
+                        _om->SetStone(_player->getX()+150+ RND->getFromIntTo(-50, +50), _player->getY() + 150 + RND->getFromIntTo(-50, +50), _inven[_downPtItem].amount);
                         break;
                     case 2:
-                        _om->SetWood(0, 0, _inven[_downPtItem].amount);
+                        _om->SetWood(_player->getX() + 150 +RND->getFromIntTo(-50,+50), _player->getY() + 150 + RND->getFromIntTo(-50, +50), _inven[_downPtItem].amount);
                         break;
                      case 3:
-                         _om->SetBox(0, 0, _inven[_downPtItem].amount);
+                         _om->SetBox(_player->getX() + 150 + RND->getFromIntTo(-50, +50), _player->getY() + 150 + RND->getFromIntTo(-50, +50), _inven[_downPtItem].amount);
                          break;
                      case 4:
-                        _om->SetFurnance(0, 0, _inven[_downPtItem].amount);
+                        _om->SetFurnance(_player->getX() + 150 + RND->getFromIntTo(-50, +50), _player->getY() + 150 + RND->getFromIntTo(-50, +50), _inven[_downPtItem].amount);
                          break;
                      case 5:
-                         _om->SetScarecrow1(0, 0, _inven[_downPtItem].amount);
+                         _om->SetScarecrow1(_player->getX() + 150 + RND->getFromIntTo(-50, +50), _player->getY() + 150 + RND->getFromIntTo(-50, +50), _inven[_downPtItem].amount);
                          break;
                      case 6:
-                         _om->SetScarecrow2(0, 0, _inven[_downPtItem].amount);
+                         _om->SetScarecrow2(_player->getX() + 150 + RND->getFromIntTo(-50, +50), _player->getY() + 150 + RND->getFromIntTo(-50, +50), _inven[_downPtItem].amount);
                          break;
                      case 7:
-                         _om->SetCauliFlower(0, 0, _inven[_downPtItem].amount);
+                         _om->SetCauliFlower(_player->getX() + 150 + RND->getFromIntTo(-50, +50), _player->getY() + 150 + RND->getFromIntTo(-50, +50), _inven[_downPtItem].amount);
                          break;
                      case 8:
-                         _om->SetKale(0, 0, _inven[_downPtItem].amount);
+                         _om->SetKale(_player->getX() + 150 + RND->getFromIntTo(-50, +50), _player->getY() + 150 + RND->getFromIntTo(-50, +50), _inven[_downPtItem].amount);
                          break;
                      case 9:
-                         _om->SetParsnip(0, 0, _inven[_downPtItem].amount);
+                         _om->SetParsnip(_player->getX() + 150 + RND->getFromIntTo(-50, +50), _player->getY() + 150 + RND->getFromIntTo(-50, +50), _inven[_downPtItem].amount);
                          break;
                      case 10:
-                         _om->SetPotato(0, 0, _inven[_downPtItem].amount);                         
+                         _om->SetPotato(_player->getX() + 150 + RND->getFromIntTo(-50, +50), _player->getY() + 150 + RND->getFromIntTo(-50, +50), _inven[_downPtItem].amount);
                          break;
                      case 11:                 
-                         _om->SetHaliBut(0, 0, _inven[_downPtItem].amount);
+                         _om->SetHaliBut(_player->getX() + 150 + RND->getFromIntTo(-50, +50), _player->getY() + 150 + RND->getFromIntTo(-50, +50), _inven[_downPtItem].amount);
                          break;
                      case 12:
-                         _om->SetPufferFish(0, 0, _inven[_downPtItem].amount);
+                         _om->SetPufferFish(_player->getX() + 150 + RND->getFromIntTo(-50, +50), _player->getY() + 150 + RND->getFromIntTo(-50, +50), _inven[_downPtItem].amount);
                          break;
                      case 13:
-                         _om->SetTuna(0, 0, _inven[_downPtItem].amount);
+                         _om->SetTuna(_player->getX() + 150 + RND->getFromIntTo(-50, +50), _player->getY() + 150 + RND->getFromIntTo(-50, +50), _inven[_downPtItem].amount);
                          break;
                      case 14:
-                         _om->SetCopper(0, 0, _inven[_downPtItem].amount);
+                         _om->SetCopper(_player->getX() + 150 + RND->getFromIntTo(-50, +50), _player->getY() + 150 + RND->getFromIntTo(-50, +50), _inven[_downPtItem].amount);
                          break;
                      case 15:
-                         _om->SetGold(0, 0, _inven[_downPtItem].amount);
+                         _om->SetGold(_player->getX() + 150 + RND->getFromIntTo(-50, +50), _player->getY() + 150 + RND->getFromIntTo(-50, +50), _inven[_downPtItem].amount);
                          break;
                      case 16:
-                         _om->SetIron(0, 0, _inven[_downPtItem].amount);
+                         _om->SetIron(_player->getX() + 150 + RND->getFromIntTo(-50, +50), _player->getY() + 150 + RND->getFromIntTo(-50, +50), _inven[_downPtItem].amount);
                          break;
                      case 17:
-                         _om->SetCauliFlowerSeed(0, 0, _inven[_downPtItem].amount);
+                         _om->SetCauliFlowerSeed(_player->getX() + 150 + RND->getFromIntTo(-50, +50), _player->getY() + 150 + RND->getFromIntTo(-50, +50), _inven[_downPtItem].amount);
                          break;
                      case 18:
-                         _om->SetKaleSeed(0, 0, _inven[_downPtItem].amount);
+                         _om->SetKaleSeed(_player->getX() + 150 + RND->getFromIntTo(-50, +50), _player->getY() + 150 + RND->getFromIntTo(-50, +50), _inven[_downPtItem].amount);
                          break;
                      case 19:
-                         _om->SetParsnipSeed(0, 0, _inven[_downPtItem].amount);
+                         _om->SetParsnipSeed(_player->getX() + 150 + RND->getFromIntTo(-50, +50), _player->getY() + 150 + RND->getFromIntTo(-50, +50), _inven[_downPtItem].amount);
                          break;
                      case 20:
-                         _om->SetPotatoSeed(0, 0, _inven[_downPtItem].amount);
+                         _om->SetPotatoSeed(_player->getX() + 150 + RND->getFromIntTo(-50, +50), _player->getY() + 150 + RND->getFromIntTo(-50, +50), _inven[_downPtItem].amount);
                          break;
    
                      default:

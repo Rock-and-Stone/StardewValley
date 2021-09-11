@@ -325,7 +325,7 @@ void objectManager::ObjectCollsion()
             _vObject[i]->GetObjectPosX(), _vObject[i]->GetObjectPosY());
 
         //거리구하기
-        if (playerToObjectDis < 200)
+        if (playerToObjectDis < 100)
         {
             float mS = -5.0f;
             float ox = _vObject[i]->GetObjectPosX();
