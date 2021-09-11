@@ -168,6 +168,7 @@
     <ClInclude Include="enemyTestScene.h" />
     <ClInclude Include="entity.h" />
     <ClInclude Include="Fishing.h" />
+    <ClInclude Include="furnance.h" />
     <ClInclude Include="gameData.h" />
     <ClInclude Include="gameNode.h" />
     <ClInclude Include="gameScene.h" />
@@ -242,6 +243,8 @@
     <ClInclude Include="Resource.h" />
     <ClInclude Include="RockStone.h" />
     <ClInclude Include="rod.h" />
+    <ClInclude Include="scarecrow1.h" />
+    <ClInclude Include="scarecrow2.h" />
     <ClInclude Include="sceneManager.h" />
     <ClInclude Include="sickle.h" />
     <ClInclude Include="singletonBase.h" />
@@ -281,6 +284,7 @@
     <ClCompile Include="enemyTestScene.cpp" />
     <ClCompile Include="entity.cpp" />
     <ClCompile Include="Fishing.cpp" />
+    <ClCompile Include="furnance.cpp" />
     <ClCompile Include="gameData.cpp" />
     <ClCompile Include="gameNode.cpp" />
     <ClCompile Include="gameScene.cpp" />
@@ -358,6 +362,8 @@
     <ClCompile Include="RenderManager.cpp" />
     <ClCompile Include="RockStone.cpp" />
     <ClCompile Include="rod.cpp" />
+    <ClCompile Include="scarecrow1.cpp" />
+    <ClCompile Include="scarecrow2.cpp" />
     <ClCompile Include="sceneManager.cpp" />
     <ClCompile Include="sickle.cpp" />
     <ClCompile Include="slingShot.cpp" />

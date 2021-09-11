@@ -493,6 +493,15 @@
     <ClInclude Include="gameScene.h">
       <Filter>playGround\Scene</Filter>
     </ClInclude>
+    <ClInclude Include="furnance.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="scarecrow1.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="scarecrow2.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WindowsAPI.cpp">
@@ -818,6 +827,15 @@
     </ClCompile>
     <ClCompile Include="gameScene.cpp">
       <Filter>playGround\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="furnance.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="scarecrow1.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="scarecrow2.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

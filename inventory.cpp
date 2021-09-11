@@ -695,16 +695,16 @@ void inventory::MenuInvetoryOpen()
                         _om->SetWood(0, 0, _inven[_downPtItem].amount);
                         break;
                      case 3:
-                         //_om->SetBox(0, 0, _inven[_downPtItem].amount);
+                         _om->SetBox(0, 0, _inven[_downPtItem].amount);
                          break;
                      case 4:
-                        //_om->SetFurnance(0, 0, _inven[_downPtItem].amount);
+                        _om->SetFurnance(0, 0, _inven[_downPtItem].amount);
                          break;
                      case 5:
-                         //_om->SetScareCrow1(0, 0, _inven[_downPtItem].amount);
+                         _om->SetScareCrow1(0, 0, _inven[_downPtItem].amount);
                          break;
                      case 6:
-                         //_om->SetScareCrow2(0, 0, _inven[_downPtItem].amount);
+                         _om->SetScareCrow2(0, 0, _inven[_downPtItem].amount);
                          break;
                      case 7:
                          _om->SetCauliFlower(0, 0, _inven[_downPtItem].amount);

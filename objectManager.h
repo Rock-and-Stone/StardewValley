@@ -33,6 +33,11 @@
 
 #include "wood.h"
 #include "stone.h"
+#include "Box.h"
+#include "furnance.h"
+#include "scarecrow1.h"
+#include "scarecrow2.h"
+
 #pragma endregion
 
 #pragma region item
@@ -127,6 +132,12 @@ private:
 
 	wood*				_wood;
 	stone*				_stone;
+	
+	Box* _box;
+	furnance* _furnance;
+	scarecrow1* _crow1;
+	scarecrow2* _crow2;
+
 
 	//æ∆¿Ã≈€
 	itemStone*				_itemstone;
@@ -195,6 +206,15 @@ public:
 	void SetCopper(float x, float y, int amount);
 	void SetIron(float x, float y, int amount);
 	void SetGold(float x, float y, int amount);
+
+
+	void SetBox(float x, float y, int amount);
+	void SetFurnance(float x, float y, int amount);
+	void SetScarecrow1(float x, float y, int amount);
+	void SetScarecrow2(float x, float y, int amount);
+
+
+
 
 	void ObjectCollsion();
 

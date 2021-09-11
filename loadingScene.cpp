@@ -104,7 +104,7 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
 		
 
 		//모든 오브젝트
-		IMAGEMANAGER->addFrameImage("springObjectsItem", "source/Images/springobjects3.bmp", 768,1088, 24, 34, true, MAGENTA);
+		IMAGEMANAGER->addFrameImage("springObjectsItem", "source/Images/springobjects2.bmp", 720,1020, 24, 34, true, MAGENTA);
 		IMAGEMANAGER->addFrameImage("springObjects", "source/Images/springobjects2.bmp", 960, 1360, 24, 34, true, MAGENTA);
 		////도구 인벤토리
 		IMAGEMANAGER->addFrameImage("playerTool",	"source/Images/playerInventory/playerTool.bmp", 280, 40, 7, 1, true, MAGENTA); // 플레이어 도구
