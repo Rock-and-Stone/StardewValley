@@ -3,6 +3,7 @@
 #include "playerState.h"
 #include "homeMap.h"
 #include "CameraManager.h"
+#include "objectManager.h"
 
 player::player()
 {
@@ -14,7 +15,6 @@ player::~player()
 
 HRESULT player::init(int indX, int indY)
 {
-	
 	_x = indX * TILEWIDTH + (TILEWIDTH / 2),
 	_y = indY * TILEHEIGHT + (TILEHEIGHT / 2);
 
@@ -57,6 +57,8 @@ HRESULT player::init(int indX, int indY)
 
 	_rc = RectMakeCenter(_x,_y,TILEWIDTH,TILEHEIGHT);
 	_isLift = false;
+
+
 
 	return S_OK;
 }
@@ -141,7 +143,6 @@ void player::update()
 			case CRAFTCROW2:
 				_inventory->eraseSelectQuickNum();
 				_homeMap->PlaceObject(OBJ_SCARECROW2, _tileIndex);
-
 				break;
 			}
 		}
@@ -162,6 +163,8 @@ void player::render()
 		Rectangle(getMemDC(), _renderRC);
 		Rectangle(getMemDC(), _intRenderRc);
 	}
+
+	IMAGEMANAGER->addImage("BOX2", "source/Images/inventory/box2.bmp", 32, 32, true, MAGENTA)->render(getMemDC(), _intRenderRc.left, _intRenderRc.top);
 
 	char str[25];
 	sprintf_s(str, "idx : % d", _idX);
@@ -213,10 +216,10 @@ void player::move()
 		break;
 	}
 
-	rcCollision.left += 5;
-	rcCollision.top += 5;
-	rcCollision.right -= 5;
-	rcCollision.bottom -= 5;
+	//rcCollision.left += 5;
+	//rcCollision.top += 5;
+	//rcCollision.right -= 5;
+	//rcCollision.bottom -= 5;
 
 	tileX = rcCollision.left / TILEWIDTH;
 	tileY = rcCollision.top / TILEHEIGHT;
@@ -274,19 +277,20 @@ void player::move()
 		if ((((_homeMap->getAttribute()[tileIndex[i]]) & ATTR_UNMOVE) == ATTR_UNMOVE) &&
 			IntersectRect(&rc, &_homeMap->getTile()[tileIndex[i]].rc, &rcCollision))
 		{
+			int enuri = 20;
+
 			switch (_direction)
 			{
 			case PLAYERDIRECTION_LEFT:
 				_rc.left = _homeMap->getTile()[tileIndex[i]].rc.right;
 				_rc.right = _rc.left;
-
-				_x = (_rc.left + _rc.right) / 2 + 10;
+				_x = (_rc.left + _rc.right) / 2 + enuri;
 				break;
 
 			case PLAYERDIRECTION_UP:
 				_rc.top = _homeMap->getTile()[tileIndex[i]].rc.bottom ;
 				_rc.bottom = _rc.top;
-				_y = (_rc.top + _rc.bottom) / 2 + 10;
+				_y = (_rc.top + _rc.bottom) / 2 + enuri;
 
 				break;
 
@@ -294,13 +298,13 @@ void player::move()
 				_rc.right = _homeMap->getTile()[tileIndex[i]].rc.left;
 				_rc.left = _rc.right;
 
-				_x = (_rc.left + _rc.right) / 2 - 3;
+				_x = (_rc.left + _rc.right) / 2 -enuri;
 				break;
 
 			case PLAYERDIRECTION_DOWN:
 				_rc.bottom = _homeMap->getTile()[tileIndex[i]].rc.top;
 				_rc.top = _rc.bottom;
-				_y = (_rc.top + _rc.bottom) / 2 -3;
+				_y = (_rc.top + _rc.bottom) / 2 -enuri;
 				break;
 			}
 
@@ -319,12 +323,22 @@ void player::changePlayerTool()
 	switch (_inventory->getPlayerTool())
 	{
 	case PLAYERTOOL_AXE:
+
 		_playerAxe->update();
+
+		if(_homeMap->getTile()[_tileIndex].obj == OBJ_TREE)
+		{
+			SOUNDMANAGER->play("hitTree", 1.0f);
+			_homeMap->RemoveObject(_tileIndex);
+			_objectManager->SetWood(_homeMap->getTile()[_tileIndex].posX, _homeMap->getTile()[_tileIndex].posY , 1);
+		}
+
 		break;
 
 	case PLAYERTOOL_CAN:
 		_playerCan->update();
 		break;
+
 	case PLAYERTOOL_HOE:
 		_playerHoe->update();
 		break;

@@ -72,7 +72,7 @@ void objectManager::update()
     {
         (*_viObject)->update();
     }
-    ObjectCollsion();
+     ObjectCollsion();
 }
 
 void objectManager::render()
@@ -97,14 +97,10 @@ void objectManager::SetWood(float x, float y, int amount)
          Wood = new wood;
          if (amount < 10)
          {
-
              Wood->init(OBJ_WOOD, "springObjectsItem", 6, 12, PointMake(x + (5 * i), y + (5 * i)),2);
          }
-         else
-             Wood->init(OBJ_WOOD, "springObjectsItem", 6, 12, PointMake(x, y),2);
+         else Wood->init(OBJ_WOOD, "springObjectsItem", 6, 12, PointMake(x, y),2);
 
-
-         
          _vObject.push_back(Wood);
     }
 }

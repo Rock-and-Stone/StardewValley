@@ -102,6 +102,10 @@ void entity::setCameraMemoryLink(CameraManager* cm)
 {
 }
 
+void entity::setObjectMemoryLink(objectManager* om)
+{
+}
+
 entity::entity()
 {
 }

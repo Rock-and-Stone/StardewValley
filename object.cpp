@@ -60,8 +60,6 @@ void object::itemSetup()
 void object::Draw(int camX, int camY)
 {
     RECT temp = RectMakeCenter(_posX - camX, _posY - camY, _objectImg->getFrameWidth(), _objectImg->getFrameHeight());
-
-
     Rectangle(getMemDC(), temp);
     _objectImg->frameRender(getMemDC(),  _posX - camX, _posY - camY, _frameX, _frameY);
 }

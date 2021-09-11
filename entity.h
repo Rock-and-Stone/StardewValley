@@ -42,4 +42,5 @@ public:
 	virtual void SetPlayerObjectManagerMemoryLink(objectManager* om);
 	virtual void SetHomeMapMemoryLink(homeMap* hm);
 	virtual void setCameraMemoryLink(CameraManager* cm);
+	virtual void setObjectMemoryLink(objectManager* om);
 };
