@@ -1,6 +1,9 @@
 #pragma once
 #include "gameNode.h"
 
+
+class CameraManager;
+
 enum ALLOBJECTS
 {
 	//기본자원
@@ -56,7 +59,7 @@ protected:
 	
 	bool		_isdelete;
 
-
+	CameraManager* _cm;
 
 
 public:
@@ -71,11 +74,13 @@ public:
 
 	void itemSetup();
 
-	void Draw();
+	void Draw(int camX,int camY);
 
 
 
 	//======================= 접근자 & 설정자 ======================= //
+	ALLOBJECTS GetObjectType() { return _obj; }
+
 	RECT GetObjectRect() { return _objectRc; }
 	void SetObjectRect(RECT rc) { _objectRc = rc; }
 
@@ -93,7 +98,8 @@ public:
 	//======================= ============== ======================= //
 	
 	//=======================   메모리 링크   ======================= //
-	// 
+	void SetCameraManagerMemoryLink(CameraManager* cm) { _cm = cm; }
+
 	//======================= ============== ======================= //
 };
 

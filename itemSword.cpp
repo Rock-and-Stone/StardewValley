@@ -8,7 +8,7 @@ HRESULT itemSword::init()
 	_item.frameX = 13;
 	_item.frameY = 4;
 	_item.itemName = "검";
-	_item.itemInfo = "몬스터를 해치울 수 있다!";
+	_item.itemInfo = "몬스터를 해치울수 있다!";
 	_item.buyPrice = 1080;
 	_item.sellPrice = 540;
 	_item.damage = 20;
