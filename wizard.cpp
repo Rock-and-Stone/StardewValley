@@ -18,7 +18,7 @@ HRESULT wizard::init(int indX, int indY)
 	_rc = RectMakeCenter(_x + 16, _y + 32, TILEWIDTH, TILEHEIGHT);
 
 	_img = IMAGEMANAGER->findImage("wizard");
-
+	_dialogueNum = 3;
 	return S_OK;
 }
 
@@ -45,13 +45,26 @@ void wizard::render()
 
 void wizard::dialogue()
 {
+
 	IMAGEMANAGER->findImage("dialogueBox")->render(getMemDC(), WINSIZEX / 2 - 300, WINSIZEY - 250);
 
-	INIDATA->addData("dialogue 1", "test", "100");
-	INIDATA->iniSave("test");
-
 	char str[256];
-	sprintf_s(str,"%d",INIDATA->loadDataInterger("dialogue", "dialogue 1", "test"));
-	TextOut(getMemDC(), WINSIZEX / 2 - 300, WINSIZEY - 250, str, strlen(str));
+
+	switch (_dialogueNum)
+	{
+	case 3:
+		sprintf_s(str, "%s", INIDATA->loadDataString("dialogue", "dialogue1", "wizard"));
+		break;
+	case 2:
+		sprintf_s(str, "%s", INIDATA->loadDataString("dialogue", "dialogue2", "wizard"));
+		break;
+	case 1:
+		sprintf_s(str, "%s", INIDATA->loadDataString("dialogue", "dialogue3", "marnie"));
+		break;
+	}
+
+	if (KEYMANAGER->isOnceKeyDown(VK_LBUTTON)) _dialogueNum--;
+
+	TextOut(getMemDC(), WINSIZEX / 2 - 300, WINSIZEY - 200, str, strlen(str));
 }
 
