@@ -81,9 +81,16 @@ void player::update()
 		_direction = PLAYERDIRECTION_UP;
 		move();
 		/// 움직일때 추가해볼려했지만스...
-		if (_homeMap->getAttribute()[_tileIndex] == TR_GRASS)
+		if (_homeMap->getTile()[_tileIndex].terrain == TR_GRASS)
 		{
-			
+			if (!SOUNDMANAGER->isPlaySound("moveGrass"))
+			{
+				SOUNDMANAGER->play("moveGrass", 1.0f);
+			}
+		}
+		else
+		{
+			SOUNDMANAGER->stop("moveGrass");
 		}
 	}
 

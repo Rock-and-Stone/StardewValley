@@ -70,9 +70,6 @@
     <Filter Include="playGround\GameData">
       <UniqueIdentifier>{14b7bbf3-d3a2-4154-b1e3-9839a550ee82}</UniqueIdentifier>
     </Filter>
-    <Filter Include="playGround\Maptool">
-      <UniqueIdentifier>{3ab748b0-26ea-4328-b181-67ca00ca3f62}</UniqueIdentifier>
-    </Filter>
     <Filter Include="playGround\Npc">
       <UniqueIdentifier>{26d8f4e3-610f-47e5-8c78-4cc10f22c857}</UniqueIdentifier>
     </Filter>
@@ -160,6 +157,9 @@
     </Filter>
     <Filter Include="playGround\Fishing">
       <UniqueIdentifier>{8ce012db-9d04-41d8-ac8e-f4eb85487a35}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGround\Maptool">
+      <UniqueIdentifier>{3ab748b0-26ea-4328-b181-67ca00ca3f62}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
