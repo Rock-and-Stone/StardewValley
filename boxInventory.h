@@ -31,12 +31,11 @@ private:
 	int _upItem;
 	int _downItem;
 
-	
+	RECT _rc; //플레이어와 충돌 체크용
 
 	BOOL _drag;
 	BOOL _boxOpen;
 	
-
 
 public:
 	virtual HRESULT init();
@@ -45,10 +44,16 @@ public:
 	virtual void render();
 
 	BOOL GetBoxOpen() { return _boxOpen; }
+	void setBoxOpen(BOOL open) { _boxOpen = open; }
+
+
+	RECT getRC() { return _rc; }
+	void setRC(RECT rc) { _rc = rc; }
 
 	//=======================   메모리 링크   ======================= //
 
 	void Setinventory(inventory* iv) { _inven = iv; }
+
 	//======================= ============== ======================= //
 };
 

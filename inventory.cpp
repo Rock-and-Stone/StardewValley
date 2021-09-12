@@ -149,6 +149,7 @@ HRESULT inventory::init()
     {
         _vInven.push_back(_null);
     }
+
     //기본도구들
     AddItem(_axe);
     AddItem(_pickAxe);
@@ -159,7 +160,7 @@ HRESULT inventory::init()
     AddItem(_slingShot);
     AddItem(_sword);
 
-    for(int i = 0 ; i < 60 ; i++) AddItem(_wood);
+    for(int i = 0 ; i < 160 ; i++) AddItem(_wood);
 
  
 
@@ -197,8 +198,7 @@ void inventory::update()
     //메뉴창이 켜졌을때
     if (_isMenuOpen)
     {
-        //창고르는 버튼용
-
+        //창고르는 버튼
         SelectMenu();
 
         //메뉴창에서 실행될 함수
@@ -484,15 +484,19 @@ void inventory::render()
 void inventory::MenuOpen()
 {
     //메뉴 키고 끄는 버튼
-    if (KEYMANAGER->isOnceKeyDown('E')) 
+    if (KEYMANAGER->isOnceKeyDown('E') && !GAMEDATA->getIsPause()) 
     { 
         _isMenuOpen = !_isMenuOpen; 
      
      
         if (!_isMenuOpen)
+        {
             SOUNDMANAGER->play("menuClose", 0.5f);
+        }
         else
+        {
             SOUNDMANAGER->play("menuOpen", 0.5f);
+        }
     }
 }
 //퀵슬롯 칸생성(완)

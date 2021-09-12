@@ -10,7 +10,6 @@
 #include "boxInventory.h"
 
 
-
 class gameScene : public gameNode
 {
 private:
@@ -22,6 +21,8 @@ private:
 	objectManager* _objectManager; //오브젝트 매니져
 	UserInterface* _uiManager;
 	boxInventory* _boxIv;
+
+
 
 public:
 	virtual HRESULT init();

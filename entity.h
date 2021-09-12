@@ -48,4 +48,6 @@ public:
 	virtual void setObjectMemoryLink(objectManager* om);
 	virtual int getDialogueNum();
 	virtual void setDialogueNum(int num);
+	virtual void drawBoxIven();
+	virtual void openBox();
 };

@@ -11,7 +11,6 @@ HRESULT gameScene::init()
 	_enemyManager = new EnemyManager;
 	_uiManager = new UserInterface;
 	_objectManager = new objectManager;
-	_boxIv = new boxInventory;
 
 	_homeMap->init();
 	_player->init(30, 30);
@@ -31,8 +30,6 @@ HRESULT gameScene::init()
 	_player->SetHomeMapMemoryLink(_homeMap);
 	_player->setCameraMemoryLink(_cameraManager);
 	_player->setObjectMemoryLink(_objectManager);
-	_player->SetBoxInvenPlayer(_boxIv);
-	_player->SetBoxInventory(_boxIv);
 
 	_uiManager->SetMemoryAddressLink(_player);
 
@@ -42,19 +39,11 @@ HRESULT gameScene::init()
 	_npcManager->setPlayerMemAddressLink(_player);
 
 	_homeMap->setCameraLink(_cameraManager);
-	
-	_boxIv->Setinventory(_player->GetInventory());
-
-	for (int i = 0; i < TILEX * TILEY; i++)
-	{
-		//RENDERMANAGER->addRender()
-	}
 
 	SOUNDMANAGER->play("springBGM", 0.1f);
 
 	RENDERMANAGER->addRender(_player);
 
-	_boxIv->init();
     return S_OK;
 }
 
@@ -63,16 +52,13 @@ void gameScene::update()
 	if (!GAMEDATA->getIsPause())
 	{
 		_cameraManager->update(_player->getX(), _player->getY());
-		
 		_player->update();
 		_objectManager->update();
-		//_homeMap->Movement(_cameraManager->getCamX(), _cameraManager->getCamY());
-		_boxIv->update();
-		if (KEYMANAGER->isOnceKeyDown(VK_F9)) _objectManager->SetWood(100, 100, 10);
 		RENDERMANAGER->update();
-
 	}
+	_player->GetInventory()->update();
 	_npcManager->update();
+	_player->openBox();
 }
 
 void gameScene::release()
@@ -87,10 +73,11 @@ void gameScene::render()
 	_objectManager->render();
 	_player->setRenderX(_cameraManager->getRenderPosX());
 	_player->setRenderY(_cameraManager->getRenderPosY());
-	_boxIv->render();
 	RENDERMANAGER->render(getMemDC());
 
-	_player->InventoryDraw();
-	_uiManager->render();
 	_npcManager->render();
+
+	_player->InventoryDraw();
+	_player->drawBoxIven();
+	_uiManager->render();
 }

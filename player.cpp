@@ -69,98 +69,52 @@ void player::release()
 
 void player::update()
 {
-	_inventory->update();
 
-	if (!_inventory->GetIsMenuOpen() && !_boxInventory->GetBoxOpen() )
-	{
+		activate();
 
-	
-	activate();
-
-
-	//이동 상태 패턴
-	if (KEYMANAGER->isStayKeyDown('W') && _direction != PLAYERDIRECTION_ACTIVATE)
-	{
-		if (!_isLift) { _upWalk->update(); }
-		_direction = PLAYERDIRECTION_UP;
-		move();
-	}
-
-	if (KEYMANAGER->isStayKeyDown('S') && _direction != PLAYERDIRECTION_ACTIVATE)
-	{
-		if (!_isLift) { _downWalk->update(); }
-		_direction = PLAYERDIRECTION_DOWN;
-		move();
-	}
-
-	if (KEYMANAGER->isStayKeyDown('A') && _direction != PLAYERDIRECTION_ACTIVATE)
-	{
-		if (!_isLift) { _leftWalk->update(); }
-		_direction = PLAYERDIRECTION_LEFT;
-
-		move();
-	}
-
-	if (KEYMANAGER->isStayKeyDown('D') && _direction != PLAYERDIRECTION_ACTIVATE )
-	{
-		if (!_isLift) { _rightWalk->update(); }
-		_direction = PLAYERDIRECTION_RIGHT;
-		move();
-	}
-
-	//움직임이 멈추면 가만히 있는 상태로
-	if (KEYMANAGER->isOnceKeyUp('W') && _direction != PLAYERDIRECTION_ACTIVATE) _frameX = 0;
-	if (KEYMANAGER->isOnceKeyUp('A') && _direction != PLAYERDIRECTION_ACTIVATE) _frameX = 0;
-	if (KEYMANAGER->isOnceKeyUp('S') && _direction != PLAYERDIRECTION_ACTIVATE) _frameX = 0;
-	if (KEYMANAGER->isOnceKeyUp('D') && _direction != PLAYERDIRECTION_ACTIVATE) _frameX = 0;
-
-	_rc = RectMakeCenter(_x, _y ,TILEWIDTH, TILEHEIGHT);
-	_renderRC = RectMakeCenter(_rendX, _rendY, TILEWIDTH, TILEWIDTH);
-
-	if (KEYMANAGER->isOnceKeyDown(VK_LBUTTON) && !_inventory->GetIsMenuOpen() && _direction != PLAYERDIRECTION_ACTIVATE  && _inventory->getPlayerTool() != PLAYERTOOL_NULL)
-	{
-		if (!_isLift)
+		//이동 상태 패턴
+		if (KEYMANAGER->isStayKeyDown('W') && _direction != PLAYERDIRECTION_ACTIVATE)
 		{
-			_frameX = 0;
-			changePlayerTool();
-			_direction = PLAYERDIRECTION_ACTIVATE;
+			if (!_isLift) { _upWalk->update(); }
+			_direction = PLAYERDIRECTION_UP;
+			move();
 		}
 
-		else if (_isLift && _homeMap->getAttribute()[_tileIndex] != ATTR_UNMOVE)
+		if (KEYMANAGER->isStayKeyDown('S') && _direction != PLAYERDIRECTION_ACTIVATE)
 		{
-
-			switch (_inventory->getCraft())
-			{
-			case CRAFTBOX: 
-				_inventory->eraseSelectQuickNum();
-				_homeMap->PlaceObject(OBJ_BOX, _tileIndex);
-				break;
-			case CRAFTFURNANCE:
-				_inventory->eraseSelectQuickNum();
-				_homeMap->PlaceObject(OBJ_FURNACE, _tileIndex);
-
-				break;
-			case CRAFTCROW1:
-				_inventory->eraseSelectQuickNum();
-				_homeMap->PlaceObject(OBJ_SCARECROW1, _tileIndex);
-				break; 
-			case CRAFTCROW2:
-				_inventory->eraseSelectQuickNum();
-				_homeMap->PlaceObject(OBJ_SCARECROW2, _tileIndex);
-				break;
-			}
+			if (!_isLift) { _downWalk->update(); }
+			_direction = PLAYERDIRECTION_DOWN;
+			move();
 		}
 
-	}
+		if (KEYMANAGER->isStayKeyDown('A') && _direction != PLAYERDIRECTION_ACTIVATE)
+		{
+			if (!_isLift) { _leftWalk->update(); }
+			_direction = PLAYERDIRECTION_LEFT;
 
-	liftItem();
-	walkSound();
+			move();
+		}
 
-	}
+		if (KEYMANAGER->isStayKeyDown('D') && _direction != PLAYERDIRECTION_ACTIVATE)
+		{
+			if (!_isLift) { _rightWalk->update(); }
+			_direction = PLAYERDIRECTION_RIGHT;
+			move();
+		}
 
-	makeInterectiveRc();
+		//움직임이 멈추면 가만히 있는 상태로
+		if (KEYMANAGER->isOnceKeyUp('W') && _direction != PLAYERDIRECTION_ACTIVATE) _frameX = 0;
+		if (KEYMANAGER->isOnceKeyUp('A') && _direction != PLAYERDIRECTION_ACTIVATE) _frameX = 0;
+		if (KEYMANAGER->isOnceKeyUp('S') && _direction != PLAYERDIRECTION_ACTIVATE) _frameX = 0;
+		if (KEYMANAGER->isOnceKeyUp('D') && _direction != PLAYERDIRECTION_ACTIVATE) _frameX = 0;
+
+		_rc = RectMakeCenter(_x, _y, TILEWIDTH, TILEHEIGHT);
+		_renderRC = RectMakeCenter(_rendX, _rendY, TILEWIDTH, TILEWIDTH);
+
+		liftItem();
+		walkSound();
+		makeInterectiveRc();
 	
-
 }
 
 void player::render()
@@ -180,11 +134,17 @@ void player::render()
 	sprintf_s(str, "intRenderRc : % d", _intRenderRc.left);
 	TextOut(getMemDC(), 300, 300, str, strlen(str));
 
-	sprintf_s(str, "attribute : %d", _homeMap->getAttribute()[_interectiveIndex]);
+	sprintf_s(str, "obj : %d", _homeMap->getTile()[_interectiveIndex].obj);
 	TextOut(getMemDC(), 300, 320, str, strlen(str));
 
-	sprintf_s(str, "_isWalk : %d", _isWalk);
+	sprintf_s(str, "ispause : %d", GAMEDATA->getIsPause());
 	TextOut(getMemDC(), 300, 340, str, strlen(str));
+	
+	for (int i = 0; i < _vBoxIv.size(); i++)
+	{
+		sprintf_s(str, "_vBoxIv[i] : %d", _vBoxIv[i]->GetBoxOpen());
+		TextOut(getMemDC(), 300, 360 + 10 * i, str, strlen(str));
+	}
 }
 
 void player::move()
@@ -230,10 +190,10 @@ void player::move()
 		break;
 	}
 
-	//rcCollision.left += 5;
-	//rcCollision.top += 5;
-	//rcCollision.right -= 5;
-	//rcCollision.bottom -= 5;
+	rcCollision.left += 3;
+	rcCollision.top += 3;
+	rcCollision.right -= 3;
+	rcCollision.bottom -= 3;
 
 	tileX = rcCollision.left / TILEWIDTH;
 	tileY = rcCollision.top / TILEHEIGHT;
@@ -285,7 +245,7 @@ void player::move()
 		if ((((_homeMap->getAttribute()[tileIndex[i]]) & ATTR_UNMOVE) == ATTR_UNMOVE) &&
 			IntersectRect(&rc, &_homeMap->getTile()[tileIndex[i]].rc, &rcCollision))
 		{
-			int enuri = 20;
+			int enuri = 15;
 
 			switch (_direction)
 			{
@@ -467,9 +427,6 @@ void player::liftItem()
 			_frameX = 0;
 		}
 
-	
-			
-	
 	}
 
 	else if(_direction != PLAYERDIRECTION_ACTIVATE)
@@ -517,34 +474,37 @@ void player::makeInterectiveRc()
 {
 	/////////////////////// 위쪽
 
-
+	//오른쪽 위
 	if (_renderRC.left >= _ptMouse.x && _renderRC.top >= _ptMouse.y)
 	{
 		_interectiveIndex = _tileIndex - 1 - TILEX;
-		_dir = 1;// 0 오 1 왼 2 위 3아래
+		_dir = 1;
 	}
 
+	//가운데 위
 	else if (_renderRC.left <= _ptMouse.x && _ptMouse.x <= _renderRC.right && _ptMouse.y <= _renderRC.top)
 	{
 		_interectiveIndex = _tileIndex - TILEX;
-		_dir = 2;// 0 오 1 왼 2 위 3아래
+		_dir = 2;
 	}
-
+	//왼쪽 위
 	else if (_renderRC.right <= _ptMouse.x && _ptMouse.y <= _renderRC.top)
 	{
 		_interectiveIndex = _tileIndex -TILEX + 1;
-		_dir = 0;// 0 오 1 왼 2 위 3아래
+		_dir = 0;
 	}
 
 
 	//////////////// 가운데
+
+	//가운데 왼쪽
 	else if (_renderRC.left >= _ptMouse.x && _renderRC.top <= _ptMouse.y && _renderRC.bottom >= _ptMouse.y)
 	{
 		_interectiveIndex = _tileIndex - 1;
 		_dir = 1;// 0 오 1 왼 2 위 3아래
 	}
 
-
+	//가운데 오른쪽
 	else if (_renderRC.right <= _ptMouse.x && _renderRC.top <= _ptMouse.y && _renderRC.bottom >= _ptMouse.y)
 	{
 		_interectiveIndex = _tileIndex + 1;
@@ -554,16 +514,16 @@ void player::makeInterectiveRc()
 
 
 	///////////////아래쪽
-
+	//아래쪽 왼
 	else if (_renderRC.left >= _ptMouse.x && _renderRC.bottom <= _ptMouse.y)
 	{
-		_interectiveIndex = _tileIndex - 1 + TILEX;
+		_interectiveIndex = _tileIndex  + TILEX - 1;
 		_dir = 1;// 0 오 1 왼 2 위 3아래
 	}
-
-	else if (_renderRC.left <= _ptMouse.x && _renderRC.bottom <= _ptMouse.y)
+	//아래쪽 가운데
+	else if (_renderRC.left <= _ptMouse.x && _ptMouse.x <= _renderRC.right && _renderRC.bottom <= _ptMouse.y)
 	{
-		_interectiveIndex = _tileIndex + TILEX;
+		_interectiveIndex = _tileIndex + TILEX ;
 		_dir = 3;// 0 오 1 왼 2 위 3아래
 	}
 
@@ -573,7 +533,8 @@ void player::makeInterectiveRc()
 		_dir = 0;// 0 오 1 왼 2 위 3아래
 	}
 
-	///////////////////////가운데 기본
+
+	///////////////////////정가운데
 	else
 	{
 		_interectiveIndex = _tileIndex;
@@ -582,4 +543,103 @@ void player::makeInterectiveRc()
 
 	_interectiveRc = _homeMap->getTile()[_interectiveIndex].rc;
 	_intRenderRc = RectMake(_interectiveRc.left - _cameraManager->getCamX(), _interectiveRc.top - _cameraManager->getCamY(), TILEWIDTH, TILEWIDTH);
+}
+
+void player::openBox()
+{
+	for (int i = 0; i < _vBoxIv.size(); ++i)
+	{
+		_vBoxIv[i]->update();
+		if (_vBoxIv[i]->GetBoxOpen()) GAMEDATA->setIsPause(true);
+		else GAMEDATA->setIsPause(false);
+	}
+
+	if (KEYMANAGER->isOnceKeyDown(VK_RBUTTON))
+	{
+		LbuttonAcvite();
+
+		for (int i = 0; i < _vBoxIv.size(); ++i)
+		{
+			RECT temp, rc1, rc2;
+			rc1 = _interectiveRc;
+			rc2 = _vBoxIv[i]->getRC();
+
+			if (!_vBoxIv[i]->GetBoxOpen() && IntersectRect(&temp, &rc1, &rc2) && !GAMEDATA->getIsPause())
+			{
+				_vBoxIv[i]->setBoxOpen(true);
+			}
+
+			else
+			{
+				_vBoxIv[i]->setBoxOpen(false);
+
+			}
+
+		}
+	}
+}
+
+void player::drawBoxIven()
+{
+	for (int i = 0; i < _vBoxIv.size(); ++i)
+	{
+			_vBoxIv[i]->render();
+			RECT rc = _vBoxIv[i]->getRC();
+			Rectangle(getMemDC(),rc);
+	}
+}
+
+void player::LbuttonAcvite()
+{
+	if (!_inventory->GetIsMenuOpen() && _direction != PLAYERDIRECTION_ACTIVATE && _inventory->getPlayerTool() != PLAYERTOOL_NULL)
+	{
+		if (!_isLift && !_isWalk)
+		{
+			_frameX = 0;
+			changePlayerTool();
+			_direction = PLAYERDIRECTION_ACTIVATE;
+	
+		}
+
+		else if (_isLift && _homeMap->getAttribute()[_interectiveIndex] != ATTR_UNMOVE)
+		{
+
+			switch (_inventory->getCraft())
+			{
+			case CRAFTBOX:
+
+				boxInventory* boxinven;
+				boxinven = new boxInventory;
+				boxinven->Setinventory(_inventory);
+				boxinven->init();
+				RECT rc;
+
+				rc = _homeMap->getTile()[_interectiveIndex].rc;
+				boxinven->setRC(rc);
+
+				_inventory->SetBoxInventory(boxinven);
+				_vBoxIv.push_back(boxinven);
+				_inventory->eraseSelectQuickNum();
+
+				_homeMap->PlaceObject(OBJ_BOX, _interectiveIndex);
+
+				break;
+
+			case CRAFTFURNANCE:
+				_inventory->eraseSelectQuickNum();
+				_homeMap->PlaceObject(OBJ_FURNACE, _interectiveIndex);
+
+				break;
+			case CRAFTCROW1:
+				_inventory->eraseSelectQuickNum();
+				_homeMap->PlaceObject(OBJ_SCARECROW1, _interectiveIndex);
+				break;
+			case CRAFTCROW2:
+				_inventory->eraseSelectQuickNum();
+				_homeMap->PlaceObject(OBJ_SCARECROW2, _interectiveIndex);
+				break;
+			}
+		}
+
+	}
 }

@@ -7,7 +7,6 @@ HRESULT boxInventory::init()
     _boxUi = IMAGEMANAGER->findImage("Storage");
     _boxUiRc = RectMakeCenter(WINSIZEX / 2, WINSIZEY / 2, _boxUi->getWidth(), _boxUi->getHeight());
 
-
     //박스에는 다널값으로 넣어준다
     for (int i = 0; i < INVENTORYSIZE; i++)
     {
@@ -70,6 +69,7 @@ void boxInventory::update()
         {
             _drag = true;
         }
+
         for (int i = 0; i < INVENTORYSIZE; i++)
         {
             if (KEYMANAGER->isOnceKeyUp(VK_LBUTTON))
@@ -89,6 +89,7 @@ void boxInventory::update()
                
 
                     }
+
                     if (PtInRect(&_invens[i].rc, _ptMouse))
                     {
                         for (int i = 0; i < _boxInven[_downItem].amount; i++)
@@ -135,9 +136,8 @@ void boxInventory::render()
         PROOF_QUALITY, DEFAULT_PITCH | FF_SWISS, TEXT("sandoll 미생"));
     HFONT oldFont2 = (HFONT)SelectObject(getMemDC(), font2);
 
-    if (_boxOpen&&!_inven->GetIsMenuOpen())
+    if (_boxOpen)
     {
-       
         _boxUi->render(getMemDC(), _boxUiRc.left, _boxUiRc.top);
 
         for (int i = 0; i < INVENTORYSIZE; i++)
@@ -146,19 +146,16 @@ void boxInventory::render()
             _vBox[i]->render(_boxInven[i].rc.left, _boxInven[i].rc.top);
             _inven->GetvInven()[i]->render(_invens[i].rc.left, _invens[i].rc.top);
             
-            
             sprintf_s(str, "%d", _boxInven[i].amount);
             TextOut(getMemDC(), _boxInven[i].rc.right - 20, _boxInven[i].rc.bottom - 20, str, strlen(str));
             sprintf_s(str, "%d", _inven->GetInven()[i].amount);
             TextOut(getMemDC(), _invens[i].rc.right - 20, _invens[i].rc.bottom - 20, str, strlen(str));
-
 
             sprintf_s(str, "%d", _upItem);
             TextOut(getMemDC(), _ptMouse.x + 30, _ptMouse.y + 50, str, strlen(str));
             sprintf_s(str, "%d", _downItem);
             TextOut(getMemDC(), _ptMouse.x + 30, _ptMouse.y + 70, str, strlen(str));
 
-   
         }
     }
     

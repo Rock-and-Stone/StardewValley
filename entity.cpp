@@ -124,6 +124,14 @@ void entity::setDialogueNum(int num)
 {
 }
 
+void entity::drawBoxIven()
+{
+}
+
+void entity::openBox()
+{
+}
+
 entity::entity()
 {
 }

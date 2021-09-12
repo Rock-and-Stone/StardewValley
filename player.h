@@ -3,6 +3,7 @@
 #include "playerState.h"
 #include "inventory.h"
 #include "boxInventory.h"
+#include <vector>
 
 class homeMap;
 class CameraManager;
@@ -57,6 +58,10 @@ private:
 	CameraManager* _cameraManager;
 	objectManager* _objectManager;
 	boxInventory* _boxInventory;
+
+	vector<boxInventory*>			  _vBoxIv;
+	vector<boxInventory*>::iterator  _viBoxIv;
+
 public:
 	player();
 	~player();
@@ -76,6 +81,12 @@ public:
 	void walkSound();
 
 	void makeInterectiveRc();
+
+	void openBox();
+
+	void drawBoxIven();
+
+	void LbuttonAcvite();
 
 	void setPlayerDirection(PLAYERDIRECTION direction) { _direction = direction; }
 	void setFrameX(int x) { _frameX = x; }
