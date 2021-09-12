@@ -107,6 +107,8 @@ public:
 
 	void SetInventoryCameraMemoryLink(CameraManager* cm) { _inventory->SetCameraMemoryLink(cm); }
 	void SetPlayerObjectManagerMemoryLink(objectManager* om) { _inventory->SetObjectManagerMemoryLink(om); }
+
+	void SetBoxInventory(boxInventory* bm) { _inventory->SetBoxInventory(bm); }
 	void SetHomeMapMemoryLink(homeMap* hm) { _homeMap = hm; }
 	void setCameraMemoryLink(CameraManager* cm) { _cameraManager = cm; }
 	void setObjectMemoryLink(objectManager* om) { _objectManager = om; }

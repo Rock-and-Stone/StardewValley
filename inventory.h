@@ -52,6 +52,7 @@ class button;
 class player;
 class CameraManager;
 class objectManager;
+class boxInventory;
 
 enum CRAFTITEM 
 {
@@ -233,6 +234,7 @@ private:
 	player* _player;
 	CameraManager* _cm;
 	objectManager* _om;
+	boxInventory* _boxInventory;
 
 	tagFrame	 _frame;
 	tagSelectV	 _select[2];
@@ -292,9 +294,8 @@ public:
 	MenuPage GetMenuPage() { return _menuPage; }
 	void SetMenuPage(MenuPage page) { _menuPage = page; }
 
-	tagInventory GetInven() { return _inven[INVENTORYSIZE]; }
-	//아몰랑 만들어둘래...
-	void SetInven(tagInventory inv[INVENTORYSIZE]) { _inven[INVENTORYSIZE] = inv[INVENTORYSIZE]; }
+
+	tagInventory* GetInven() { return _inven; } 
 
 	BOOL GetIsMenuOpen() { return _isMenuOpen; }
 	void SetIsMenuOpen(BOOL open) { _isMenuOpen = open; }
@@ -332,6 +333,7 @@ public:
 	itemKaleSeed* GetKaleSeed() { return _kaleSeed; }
 	itemParsnipSeed* GetParsnipSeed() { return _parsnipSeed; }
 	itemPotatoSeed* GetPotatoSeed() { return _potatoSeed; }
+	itemNull* GetNull() { return _null; }
 
 	//=======================   메모리 링크   ======================= //
 	void SetPlayerMemoryLink(player* pl) { _player = pl; }
@@ -339,6 +341,8 @@ public:
 	void SetCameraMemoryLink(CameraManager* cm) { _cm = cm; }
 
 	void SetObjectManagerMemoryLink(objectManager* om) { _om = om; }
+
+	void SetBoxInventory(boxInventory* bi) { _boxInventory = bi; }
 	//======================= ============== ======================= //
 };
 

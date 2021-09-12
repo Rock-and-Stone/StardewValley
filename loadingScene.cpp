@@ -102,6 +102,7 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
 		//닫기 아이콘
 		IMAGEMANAGER->addImage("closeButton",		"source/Images/inventory/닫기버튼.bmp", 44, 44, true, MAGENTA);
 		
+		IMAGEMANAGER->addImage("Storage", "source/Images/inventory/playerStorage.bmp", 653, 430, true, MAGENTA);
 
 		//모든 오브젝트
 		IMAGEMANAGER->addFrameImage("springObjectsItem", "source/Images/springobjects4.bmp", 768,1088, 24, 34, true, MAGENTA);

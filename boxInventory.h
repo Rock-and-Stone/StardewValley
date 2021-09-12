@@ -1,51 +1,43 @@
 #pragma once
 #include "gameNode.h"
 #include <vector>
+#include "item.h"
 
-#pragma region items
+class inventory;
 
-#include "itemStone.h"
-#include "itemWood.h"
-#include "itemBox.h"
-#include "itemFurNance.h"
-#include "itemScareCrow1.h"
-#include "itemScareCrow2.h"
+struct tagBoxInven
+{
+	int amount;
+	bool itemExist;
+	RECT rc;
+};
+struct tagInven
+{
+	int amount;
+	bool itemExist;
+	RECT rc;
+};
 
-#include "itemCauliFlower.h"
-#include "itemKale.h"
-#include "itemParsnip.h"
-#include "itemPotato.h"
-
-#include "itemHaliBut.h"
-#include "itemPufferFish.h"
-#include "itemTuna.h"
-
-#include "itemCopper.h"
-#include "itemGold.h"
-#include "itemIron.h"
-
-#include "itemCauliSeed.h"
-#include "itemKaleSeed.h"
-#include "itemPotatoSeed.h"
-#include "itemParsnipSeed.h"
-
-#include "itemSlingShot.h"
-#include "itemSword.h"
-
-#include "itemAxe.h"
-#include "itemPickAxe.h"
-#include "itemCan.h"
-#include "itemRod.h"
-#include "itemHoe.h"
-#include "itemSickle.h"
-
-#pragma endregion
-#include "itemNull.h"
 
 class boxInventory : public gameNode
 {
 private:
-	vector<item*> _vBox;
+	vector<item*>			_vBox;
+	vector<item*>::iterator _viBox;
+
+	inventory* _inven;
+
+	tagBoxInven _boxInven[36];
+	tagInven	_invens[36];
+	image* _boxUi;
+	RECT   _boxUiRc;
+
+
+	
+
+
+	BOOL _boxOpen;
+	
 
 
 public:
@@ -53,5 +45,9 @@ public:
 	virtual void update();
 	virtual void release();
 	virtual void render();
+	//=======================   메모리 링크   ======================= //
+
+	void Setinventory(inventory* iv) { _inven = iv; }
+	//======================= ============== ======================= //
 };
 

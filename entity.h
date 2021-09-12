@@ -4,6 +4,7 @@
 #include "CameraManager.h"
 #include "inventory.h"
 #include "objectManager.h"
+#include "boxInventory.h"
 
 class entity : public gameNode
 {
@@ -40,6 +41,7 @@ public:
 	void GoldGet(int gold);
 	virtual inventory* GetInventory();
 	virtual void SetPlayerObjectManagerMemoryLink(objectManager* om);
+	virtual void SetBoxInventory(boxInventory* bm);
 	virtual void SetHomeMapMemoryLink(homeMap* hm);
 	virtual void setCameraMemoryLink(CameraManager* cm);
 	virtual void setObjectMemoryLink(objectManager* om);

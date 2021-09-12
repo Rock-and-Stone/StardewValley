@@ -94,6 +94,11 @@ void entity::SetPlayerObjectManagerMemoryLink(objectManager* om)
 {
 }
 
+void entity::SetBoxInventory(boxInventory* bm)
+{
+}
+
+
 void entity::SetHomeMapMemoryLink(homeMap* hm)
 {
 }
