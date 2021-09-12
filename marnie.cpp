@@ -46,5 +46,15 @@ void marnie::render()
 
 void marnie::dialogue()
 {
+
+	
 	IMAGEMANAGER->findImage("dialogueBox")->render(getMemDC(), WINSIZEX / 2 - 300, WINSIZEY - 250);
+
+	char str[256];
+	sprintf_s(str, "%s", INIDATA->loadDataString("dialogue", "dialogue1", "marnie"));
+
+	if (KEYMANAGER->isOnceKeyDown(VK_LBUTTON)) sprintf_s(str, "%s", INIDATA->loadDataString("dialogue", "dialogue2","marnie"));
+
+	TextOut(getMemDC(), WINSIZEX / 2 - 300, WINSIZEY - 200 , str, strlen(str));
+
 }
