@@ -158,7 +158,7 @@ HRESULT inventory::init()
     AddItem(_slingShot);
     AddItem(_sword);
 
-    for(int i = 0 ; i < 3 ; i++) AddItem(_box);
+    for(int i = 0 ; i < 60 ; i++) AddItem(_wood);
 
  
 
@@ -514,72 +514,84 @@ void inventory::QuickSlot()
             {
                 _BOXRc = RectMake(_quick[0].rc.left, _quick[0].rc.top, _BOXImg->getWidth(), _BOXImg->getHeight());
                 _nowQuickItem = _quickSlotMin;
+                SOUNDMANAGER->play("pickUpItem", 1.0f);
                 Temp = 0;
             }
             if (KEYMANAGER->isOnceKeyDown('2'))
             {
                 _BOXRc = RectMake(_quick[1].rc.left, _quick[1].rc.top, _BOXImg->getWidth(), _BOXImg->getHeight());
                 _nowQuickItem = _quickSlotMin + 1;
+                SOUNDMANAGER->play("pickUpItem", 1.0f);
                 Temp = 1;
             }
             if (KEYMANAGER->isOnceKeyDown('3'))
             {
                 _BOXRc = RectMake(_quick[2].rc.left, _quick[2].rc.top, _BOXImg->getWidth(), _BOXImg->getHeight());
                 _nowQuickItem = _quickSlotMin + 2;
+                SOUNDMANAGER->play("pickUpItem", 1.0f);
                 Temp = 2;
             }
             if (KEYMANAGER->isOnceKeyDown('4'))
             {
                 _BOXRc = RectMake(_quick[3].rc.left, _quick[3].rc.top, _BOXImg->getWidth(), _BOXImg->getHeight());
                 _nowQuickItem = _quickSlotMin + 3;
+                SOUNDMANAGER->play("pickUpItem", 1.0f);
                 Temp = 3;
             }
             if (KEYMANAGER->isOnceKeyDown('5'))
             {
                 _BOXRc = RectMake(_quick[4].rc.left, _quick[4].rc.top, _BOXImg->getWidth(), _BOXImg->getHeight());
                 _nowQuickItem = _quickSlotMin + 4;
+                SOUNDMANAGER->play("pickUpItem", 1.0f);
                 Temp = 4;
             }
             if (KEYMANAGER->isOnceKeyDown('6'))
             {
                 _BOXRc = RectMake(_quick[5].rc.left, _quick[5].rc.top, _BOXImg->getWidth(), _BOXImg->getHeight());
                 _nowQuickItem = _quickSlotMin + 5;
+                SOUNDMANAGER->play("pickUpItem", 1.0f);
                 Temp = 5;
             }
             if (KEYMANAGER->isOnceKeyDown('7'))
             {
                 _BOXRc = RectMake(_quick[6].rc.left, _quick[6].rc.top, _BOXImg->getWidth(), _BOXImg->getHeight());
                 _nowQuickItem = _quickSlotMin + 6;
+                SOUNDMANAGER->play("pickUpItem", 1.0f);
                 Temp = 6;
             }
             if (KEYMANAGER->isOnceKeyDown('8'))
             {
                 _BOXRc = RectMake(_quick[7].rc.left, _quick[7].rc.top, _BOXImg->getWidth(), _BOXImg->getHeight());
                 _nowQuickItem = _quickSlotMin + 7;
+                SOUNDMANAGER->play("pickUpItem", 1.0f);
                 Temp = 7;
             }
             if (KEYMANAGER->isOnceKeyDown('9'))
             {
                 _BOXRc = RectMake(_quick[8].rc.left, _quick[8].rc.top, _BOXImg->getWidth(), _BOXImg->getHeight());
                 _nowQuickItem = _quickSlotMin + 8;
+                SOUNDMANAGER->play("pickUpItem", 1.0f);
                 Temp = 8;
             }
             if (KEYMANAGER->isOnceKeyDown('0'))
             {
                 _BOXRc = RectMake(_quick[9].rc.left, _quick[9].rc.top, _BOXImg->getWidth(), _BOXImg->getHeight());
                 _nowQuickItem = _quickSlotMin + 9;
+                SOUNDMANAGER->play("pickUpItem", 1.0f);
                 Temp = 9;
             }
             if (KEYMANAGER->isOnceKeyDown(VK_OEM_MINUS))
             {
                 _BOXRc = RectMake(_quick[10].rc.left, _quick[10].rc.top, _BOXImg->getWidth(), _BOXImg->getHeight());
                 _nowQuickItem = _quickSlotMin + 10;
+                SOUNDMANAGER->play("pickUpItem", 1.0f);
                 Temp = 10;
             }
             if (KEYMANAGER->isOnceKeyDown(VK_OEM_PLUS))
             {
                 _BOXRc = RectMake(_quick[11].rc.left, _quick[11].rc.top, _BOXImg->getWidth(), _BOXImg->getHeight());
                 _nowQuickItem = _quickSlotMin + 11;
+                SOUNDMANAGER->play("pickUpItem", 1.0f);
                 Temp = 11;
             }
           
@@ -896,6 +908,10 @@ void inventory::MenuCraftOpen()
             {
                 _canBox = true;
             }
+            else
+            {
+                _canBox = false;
+            }
             if ((PtInRect(&_craftObjRc[0], _ptMouse) && KEYMANAGER->isOnceKeyDown(VK_LBUTTON)) && _canBox)
             {
 
@@ -911,6 +927,10 @@ void inventory::MenuCraftOpen()
             if (_inven[i].amount > _furnance->GetItemInfo().needAmountToCraft)
             {
                 _canFur = true;
+            }
+            else
+            {
+                _canFur = false;
             }
             if ((PtInRect(&_craftObjRc[1], _ptMouse) && KEYMANAGER->isOnceKeyDown(VK_LBUTTON)) && _canFur)
             {

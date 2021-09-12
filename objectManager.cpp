@@ -335,6 +335,7 @@ void objectManager::ObjectCollsion()
           
             if (playerToObjectDis < 10)
             {
+
                 switch (_vObject[i]->GetObjectType())
                 {
                 case OBJ_WOOD:
@@ -401,6 +402,7 @@ void objectManager::ObjectCollsion()
                     break;
                 }
                 _vObject.erase(_vObject.begin() + i);
+                SOUNDMANAGER->play("getItem", 1.0f);
             }
             
         }

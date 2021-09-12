@@ -43,6 +43,8 @@ HRESULT gameScene::init()
 		//RENDERMANAGER->addRender()
 	}
 
+	SOUNDMANAGER->play("springBGM", 0.1f);
+
 	RENDERMANAGER->addRender(_player);
 
 
