@@ -33,6 +33,7 @@ public:
 	void DrawTile(float posX, float posY);
 	void DrawObject(float posX, float posY);
 
+	void CultivateTile(int num);
 	void PlaceObject(ALLOBJECTS object, int num);
 	void RemoveObject(int num);
 

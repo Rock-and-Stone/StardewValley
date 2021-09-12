@@ -82,7 +82,7 @@ void homeMap::DrawTile(float posX , float posY)
 
 		char tileStr[128];
 
-		if (rendRect.left > WINSIZEX || rendRect.top > WINSIZEY) continue;
+ 		if (rendRect.left > WINSIZEX || rendRect.top > WINSIZEY) continue;
 		if (rendRect.left + 32 < 0 || rendRect.top + 32 < 0) continue;
 
 		switch (_tiles[i].tilePage)
@@ -152,6 +152,16 @@ void homeMap::DrawObject(float posX, float posY)
 
 		IMAGEMANAGER->frameRender(tileStr, getMemDC(), rendRect.left - tileReposX, rendRect.top - tileReposY, _tiles[i].objFrameX, _tiles[i].objFrameY);
 	}
+}
+
+void homeMap::CultivateTile(int num)
+{
+	if (_tiles[num].terrain != TR_DIRT || _tiles[num].terrain == TR_HOE || _tiles[num].obj != OBJ_NONE) return;
+	
+	_tiles[num].terrain = TR_HOE;
+	_tiles[num].tilePage = 0;
+	_tiles[num].terrainFrameX = 5;
+	_tiles[num].terrainFrameY = 2;
 }
 
 void homeMap::PlaceObject(ALLOBJECTS object, int num) //오브젝트 설치 (설치한 오브젝트 enum, 설치한 타일 번호)
