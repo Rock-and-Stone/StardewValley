@@ -206,7 +206,10 @@ void homeMap::RemoveObject(int num)
 	_tiles[num].objFrameY = 0;
 	_tiles[num].obj = OBJ_NONE;
 	_tiles[num].objPage = 0;
+	_attribute[num] = ATTR_MOVE;
 }
+
+
 
 OBJECT homeMap::objSelect(int frameX, int frameY)
 {

@@ -29,7 +29,7 @@
 #define ATTR_ROAD		0x00000004	//도로지대
 #define ATTR_ENTRANCE	0x00000008	//입출구
 #define ATTR_CORNER		0x00000016  //테두리 타일
-
+#define ATTR_MOVE		0x00000000  //갈수 있는 타일
 
 //지형
 enum TERRAIN

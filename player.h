@@ -34,7 +34,7 @@ private:
 	int _idX, _idY;
 	int _dir; // 0 ¿À 1 ¿Þ 2 À§ 3¾Æ·¡
 	int _count;
-	int _tileIndex;
+	int _tileIndex,_interectiveIndex;
 	int _HP, _gold, _stamina;
 	bool _isLift,_isWalk;
 
@@ -74,6 +74,8 @@ public:
 	void liftItem();
 
 	void walkSound();
+
+	void makeInterectiveRc();
 
 	void setPlayerDirection(PLAYERDIRECTION direction) { _direction = direction; }
 	void setFrameX(int x) { _frameX = x; }

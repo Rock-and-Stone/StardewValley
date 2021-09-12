@@ -58,7 +58,7 @@ HRESULT player::init(int indX, int indY)
 	_rc = RectMakeCenter(_x,_y,TILEWIDTH,TILEHEIGHT);
 	_isLift = false;
 
-
+	_interectiveIndex = _tileIndex = indX + (TILEX * indY);
 
 	return S_OK;
 }
@@ -155,7 +155,12 @@ void player::update()
 
 	liftItem();
 	walkSound();
+
 	}
+
+	makeInterectiveRc();
+	
+
 }
 
 void player::render()
@@ -172,10 +177,10 @@ void player::render()
 	IMAGEMANAGER->addImage("BOX2", "source/Images/inventory/box2.bmp", 32, 32, true, MAGENTA)->render(getMemDC(), _intRenderRc.left, _intRenderRc.top);
 
 	char str[25];
-	sprintf_s(str, "idx : % d", _idX);
+	sprintf_s(str, "intRenderRc : % d", _intRenderRc.left);
 	TextOut(getMemDC(), 300, 300, str, strlen(str));
 
-	sprintf_s(str, "idy : %d", _idY);
+	sprintf_s(str, "attribute : %d", _homeMap->getAttribute()[_interectiveIndex]);
 	TextOut(getMemDC(), 300, 320, str, strlen(str));
 
 	sprintf_s(str, "_isWalk : %d", _isWalk);
@@ -244,9 +249,6 @@ void player::move()
 		tileIndex[1] = tileX + (tileY + 1) * TILEX;
 
 		_tileIndex = tileIndex[0];
-		_interectiveRc = _homeMap->getTile()[tileIndex[0] - 1].rc;
-		_intRenderRc   = RectMake(_interectiveRc.left - _cameraManager->getCamX(), _interectiveRc.top - _cameraManager->getCamY(), TILEWIDTH, TILEWIDTH);
-
 		break;
 
 	case PLAYERDIRECTION_UP:
@@ -254,9 +256,6 @@ void player::move()
 		tileIndex[1] = (tileX + 1) + tileY * TILEX;
 
 		_tileIndex = tileIndex[0];
-		_interectiveRc = _homeMap->getTile()[tileIndex[0]].rc;
-		_intRenderRc = RectMake(_interectiveRc.left - _cameraManager->getCamX(), _interectiveRc.top - _cameraManager->getCamY(), TILEWIDTH, TILEWIDTH);
-
 		break;
 
 	case PLAYERDIRECTION_RIGHT:
@@ -264,20 +263,20 @@ void player::move()
 		tileIndex[1] = (tileX + (tileY + 1) * TILEX) + 1;
 		_tileIndex = tileIndex[0];
 
-		_interectiveRc = _homeMap->getTile()[tileIndex[0] + 1].rc;
-		_intRenderRc = RectMake(_interectiveRc.left - _cameraManager->getCamX(), _interectiveRc.top - _cameraManager->getCamY(), TILEWIDTH, TILEWIDTH);
-
+	
 		break;
 	case PLAYERDIRECTION_DOWN:
 		tileIndex[0] = (tileX + tileY * TILEX) + TILEX;
 		tileIndex[1] = (tileX + 1 + tileY * TILEX) + TILEX;
 		_tileIndex = tileIndex[0];
 
-		_interectiveRc = _homeMap->getTile()[tileIndex[0]].rc;
-	    _intRenderRc = RectMake(_interectiveRc.left - _cameraManager->getCamX(), _interectiveRc.top - _cameraManager->getCamY(), TILEWIDTH, TILEWIDTH);
 
 		break;
 	}
+	
+
+
+	if (_ptMouse.x > _intRenderRc.left) tileIndex - 1;
 
 	for (int i = 0; i < 2; ++i)
 	{
@@ -335,12 +334,12 @@ void player::changePlayerTool()
 
 		_playerAxe->update();
 
-		if(_homeMap->getTile()[_tileIndex].obj == OBJ_TREE)
+		if(_homeMap->getTile()[_interectiveIndex].obj == OBJ_TREE)
 		{
 			SOUNDMANAGER->play("hitTree", 1.0f);
-			_homeMap->RemoveObject(_tileIndex);
+			_homeMap->RemoveObject(_interectiveIndex);
 			SOUNDMANAGER->play("removeTree", 1.0f);
-			_objectManager->SetWood(_homeMap->getTile()[_tileIndex].posX, _homeMap->getTile()[_tileIndex].posY , RND->getFromIntTo(1,10));
+			_objectManager->SetWood(_homeMap->getTile()[_interectiveIndex].posX, _homeMap->getTile()[_interectiveIndex].posY , RND->getFromIntTo(1,10));
 		}
 
 		break;
@@ -352,12 +351,18 @@ void player::changePlayerTool()
 
 	case PLAYERTOOL_HOE:
 		_playerHoe->update();
+		_homeMap->CultivateTile(_interectiveIndex);
 		SOUNDMANAGER->play("hoe", 1.0f);
 		break;
 
 	case PLAYERTOOL_PICKAXE:
+		if (_homeMap->getTile()[_interectiveIndex].obj == OBJ_ROCK)
+		{
+			SOUNDMANAGER->play("hitRock", 1.0f);
+			_homeMap->RemoveObject(_interectiveIndex);
+			_objectManager->SetStone(_homeMap->getTile()[_interectiveIndex].posX, _homeMap->getTile()[_interectiveIndex].posY, RND->getFromIntTo(1, 10));
+		}
 		_playerPickAxe->update();
-		SOUNDMANAGER->play("hitRock", 1.0f);
 		break;
 
 	case PLAYERTOOL_ROD:
@@ -365,8 +370,12 @@ void player::changePlayerTool()
 		break;
 
 	case PLAYERTOOL_SICKLE:
+		if (_homeMap->getTile()[_interectiveIndex].obj == OBJ_GRASS)
+		{
+			SOUNDMANAGER->play("hitGrass", 1.0f);
+			_homeMap->RemoveObject(_interectiveIndex);
+		}
 		_playerSickle->update();
-		SOUNDMANAGER->play("hitGrass", 1.0f);
 		break;
 
 	case PLAYERTOOL_SWORD:
@@ -477,7 +486,7 @@ void player::walkSound()
 	else if (KEYMANAGER->isStayKeyDown('D')) _isWalk = true;
 	else _isWalk = false;
 
-	if (_isWalk)
+	if (_isWalk && _direction != PLAYERDIRECTION_ACTIVATE)
 	{
 		_count++;
 		if (_count % 7 == 5) _frameX++;
@@ -502,4 +511,75 @@ void player::walkSound()
 	{
 		SOUNDMANAGER->stop("moveRock");
 	}
+}
+
+void player::makeInterectiveRc()
+{
+	/////////////////////// 위쪽
+
+
+	if (_renderRC.left >= _ptMouse.x && _renderRC.top >= _ptMouse.y)
+	{
+		_interectiveIndex = _tileIndex - 1 - TILEX;
+		_dir = 1;// 0 오 1 왼 2 위 3아래
+	}
+
+	else if (_renderRC.left <= _ptMouse.x && _ptMouse.x <= _renderRC.right && _ptMouse.y <= _renderRC.top)
+	{
+		_interectiveIndex = _tileIndex - TILEX;
+		_dir = 2;// 0 오 1 왼 2 위 3아래
+	}
+
+	else if (_renderRC.right <= _ptMouse.x && _ptMouse.y <= _renderRC.top)
+	{
+		_interectiveIndex = _tileIndex -TILEX + 1;
+		_dir = 0;// 0 오 1 왼 2 위 3아래
+	}
+
+
+	//////////////// 가운데
+	else if (_renderRC.left >= _ptMouse.x && _renderRC.top <= _ptMouse.y && _renderRC.bottom >= _ptMouse.y)
+	{
+		_interectiveIndex = _tileIndex - 1;
+		_dir = 1;// 0 오 1 왼 2 위 3아래
+	}
+
+
+	else if (_renderRC.right <= _ptMouse.x && _renderRC.top <= _ptMouse.y && _renderRC.bottom >= _ptMouse.y)
+	{
+		_interectiveIndex = _tileIndex + 1;
+		_dir = 0;// 0 오 1 왼 2 위 3아래
+	}
+
+
+
+	///////////////아래쪽
+
+	else if (_renderRC.left >= _ptMouse.x && _renderRC.bottom <= _ptMouse.y)
+	{
+		_interectiveIndex = _tileIndex - 1 + TILEX;
+		_dir = 1;// 0 오 1 왼 2 위 3아래
+	}
+
+	else if (_renderRC.left <= _ptMouse.x && _renderRC.bottom <= _ptMouse.y)
+	{
+		_interectiveIndex = _tileIndex + TILEX;
+		_dir = 3;// 0 오 1 왼 2 위 3아래
+	}
+
+	else if (_renderRC.right <= _ptMouse.x && _renderRC.bottom <= _ptMouse.y)
+	{
+		_interectiveIndex = _tileIndex + TILEX + 1;
+		_dir = 0;// 0 오 1 왼 2 위 3아래
+	}
+
+	///////////////////////가운데 기본
+	else
+	{
+		_interectiveIndex = _tileIndex;
+	}
+
+
+	_interectiveRc = _homeMap->getTile()[_interectiveIndex].rc;
+	_intRenderRc = RectMake(_interectiveRc.left - _cameraManager->getCamX(), _interectiveRc.top - _cameraManager->getCamY(), TILEWIDTH, TILEWIDTH);
 }
