@@ -36,17 +36,6 @@ void leftWalk::release()
 void leftWalk::update()
 {
 	_player->setFrameY(1);
-	_count++;
-
-	if (_count % 5 == 0)
-	{
-		_frameX++;
-		_player->setFrameX(_frameX);
-	}
-
-	if (_frameX >= 5) _frameX = 0;
-
-
 }
 void leftWalk::render(HDC hdc)
 {
@@ -83,15 +72,6 @@ void rightWalk::update()
 {
 
 	_player->setFrameY(0);
-	_count++;
-
-	if (_count % 5 == 0)
-	{
-		_frameX++;
-		_player->setFrameX(_frameX);
-	}
-
-	if (_frameX >= 5) _frameX = 0;
 }
 
 void rightWalk::render(HDC hdc)
@@ -122,16 +102,6 @@ void upWalk::release()
 void upWalk::update()
 {
 	_player->setFrameY(2);
-
-	_count++;
-
-	if (_count % 5 == 0)
-	{
-		_frameX++;
-		_player->setFrameX(_frameX);
-	}
-
-	if (_frameX >= 5) _frameX = 0;
 }
 
 void upWalk::render(HDC hdc)
@@ -161,16 +131,6 @@ void downWalk::release()
 void downWalk::update()
 {
 	_player->setFrameY(3);
-
-	_count++;
-
-	if (_count % 5 == 0)
-	{
-		_frameX++;
-		_player->setFrameX(_frameX);
-	}
-
-	if (_frameX >= 5) _frameX = 0;
 }
 
 void downWalk::render(HDC hdc)

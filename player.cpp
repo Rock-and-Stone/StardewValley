@@ -80,18 +80,6 @@ void player::update()
 		if (!_isLift) { _upWalk->update(); }
 		_direction = PLAYERDIRECTION_UP;
 		move();
-		/// 움직일때 추가해볼려했지만스...
-		if (_homeMap->getTile()[_tileIndex].terrain == TR_GRASS)
-		{
-			if (!SOUNDMANAGER->isPlaySound("moveGrass"))
-			{
-				SOUNDMANAGER->play("moveGrass", 1.0f);
-			}
-		}
-		else
-		{
-			SOUNDMANAGER->stop("moveGrass");
-		}
 	}
 
 	if (KEYMANAGER->isStayKeyDown('S') && _direction != PLAYERDIRECTION_ACTIVATE)
@@ -162,7 +150,7 @@ void player::update()
 	}
 
 	liftItem();
-
+	walkSound();
 }
 
 void player::render()
@@ -185,7 +173,7 @@ void player::render()
 	sprintf_s(str, "idy : %d", _idY);
 	TextOut(getMemDC(), 300, 320, str, strlen(str));
 
-	sprintf_s(str, "tileIdx : %d", _tileIndex);
+	sprintf_s(str, "_isWalk : %d", _isWalk);
 	TextOut(getMemDC(), 300, 340, str, strlen(str));
 }
 
@@ -207,18 +195,22 @@ void player::move()
 		_x -= moveSpeed;
 		_dir = 1;
 		rcCollision = RectMakeCenter(_x, _y, TILESIZE, TILESIZE);
+
+
 		break;
 
 	case PLAYERDIRECTION_DOWN:
 		_y += moveSpeed;
 		_dir = 3;
 		rcCollision = RectMakeCenter(_x, _y, TILESIZE, TILESIZE);
+
 		break;
 
 	case PLAYERDIRECTION_RIGHT:
 		_dir = 0;
 		_x += moveSpeed;
 		rcCollision = RectMakeCenter(_x, _y, TILESIZE, TILESIZE);
+
 		break;
 
 	case PLAYERDIRECTION_UP:
@@ -247,7 +239,7 @@ void player::move()
 		tileIndex[1] = tileX + (tileY + 1) * TILEX;
 
 		_tileIndex = tileIndex[0];
-		_interectiveRc = _homeMap->getTile()[tileIndex[0]].rc;
+		_interectiveRc = _homeMap->getTile()[tileIndex[0] - 1].rc;
 		_intRenderRc   = RectMake(_interectiveRc.left - _cameraManager->getCamX(), _interectiveRc.top - _cameraManager->getCamY(), TILEWIDTH, TILEWIDTH);
 
 		break;
@@ -267,7 +259,7 @@ void player::move()
 		tileIndex[1] = (tileX + (tileY + 1) * TILEX) + 1;
 		_tileIndex = tileIndex[0];
 
-		_interectiveRc = _homeMap->getTile()[tileIndex[0]].rc;
+		_interectiveRc = _homeMap->getTile()[tileIndex[0] + 1].rc;
 		_intRenderRc = RectMake(_interectiveRc.left - _cameraManager->getCamX(), _interectiveRc.top - _cameraManager->getCamY(), TILEWIDTH, TILEWIDTH);
 
 		break;
@@ -469,5 +461,40 @@ void player::liftItem()
 	else if(_direction != PLAYERDIRECTION_ACTIVATE)
 	{
 		_isLift = false;
+	}
+}
+
+void player::walkSound()
+{
+	if (KEYMANAGER->isStayKeyDown('W')) _isWalk = true;
+	else if (KEYMANAGER->isStayKeyDown('A')) _isWalk = true;
+	else if (KEYMANAGER->isStayKeyDown('S')) _isWalk = true;
+	else if (KEYMANAGER->isStayKeyDown('D')) _isWalk = true;
+	else _isWalk = false;
+
+	if (_isWalk)
+	{
+		_count++;
+		if (_count % 7 == 5) _frameX++;
+		if (_frameX >= 5) _frameX = 0;
+
+		if(_homeMap->getTile()[_tileIndex].terrain == TR_GRASS && !SOUNDMANAGER->isPlaySound("moveGrass"))
+			SOUNDMANAGER->play("moveGrass", GAMEDATA->getSFXVolume() / 10);
+		else if (_homeMap->getTile()[_tileIndex].terrain == TR_DIRT && !SOUNDMANAGER->isPlaySound("moveSoil"))
+			SOUNDMANAGER->play("moveSoil", GAMEDATA->getSFXVolume() / 10);
+		else if(_homeMap->getTile()[_tileIndex].terrain == TR_NULL && !SOUNDMANAGER->isPlaySound("moveSoil"))
+			SOUNDMANAGER->play("moveRock", GAMEDATA->getSFXVolume() / 10);
+	}
+	if(!_isWalk || _homeMap->getTile()[_tileIndex].terrain != TR_GRASS)
+	{
+		SOUNDMANAGER->stop("moveGrass");
+	}
+	if (!_isWalk || _homeMap->getTile()[_tileIndex].terrain != TR_DIRT)
+	{
+		SOUNDMANAGER->stop("moveSoil");
+	}
+	if (!_isWalk || _homeMap->getTile()[_tileIndex].terrain != TR_NULL)
+	{
+		SOUNDMANAGER->stop("moveRock");
 	}
 }

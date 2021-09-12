@@ -43,4 +43,6 @@ public:
 	virtual void SetHomeMapMemoryLink(homeMap* hm);
 	virtual void setCameraMemoryLink(CameraManager* cm);
 	virtual void setObjectMemoryLink(objectManager* om);
+	virtual int getDialogueNum();
+	virtual void setDialogueNum(int num);
 };

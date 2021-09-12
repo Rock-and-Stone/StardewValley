@@ -48,8 +48,17 @@ void npcManager::render()
 
 	if (_isDialogue)
 	{
+		GAMEDATA->setIsPause(true);
+
 		if(_dialogue == MARNIE) _marnie->dialogue();
 		else if(_dialogue == WIZARD) _wizard->dialogue();
+
+		if (_marnie->getDialogueNum() <= 0)
+		{
+			_isDialogue = false;
+			GAMEDATA->setIsPause(false);
+			_marnie->setDialogueNum(3);
+		}
 	}
 
 }
@@ -65,7 +74,7 @@ void npcManager::interact()
 	{
 		if (IntersectRect(&temp, &rc, &rc2))
 		{
-			GAMEDATA->setIsPause(true);
+			_dialogue == WIZARD;
 			_isDialogue = true;
 		}
 	}
@@ -76,7 +85,7 @@ void npcManager::interact()
 	{
 		if (IntersectRect(&temp, &rc3, &rc2))
 		{
-			GAMEDATA->setIsPause(true);
+			_dialogue == MARNIE;
 			_isDialogue = true;
 		}
 	}

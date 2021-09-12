@@ -106,6 +106,15 @@ void entity::setObjectMemoryLink(objectManager* om)
 {
 }
 
+int entity::getDialogueNum()
+{
+	return 0;
+}
+
+void entity::setDialogueNum(int num)
+{
+}
+
 entity::entity()
 {
 }

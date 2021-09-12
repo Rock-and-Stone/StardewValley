@@ -11,6 +11,7 @@ private:
 	image* _img;
 	int _x, _y;   //ÁßÁ¡
 	int _idX, _idY;
+	int _dialogueNum;
 
 	CameraManager* _cameraManager;
 
@@ -29,5 +30,7 @@ public:
 	RECT getRect() { return _rc; }
 	RECT getRenderRc() { return _renderRc; }
 	void dialogue();
+	int getDialogueNum() { return _dialogueNum; }
+	void setDialogueNum(int num) { _dialogueNum = num; }
 };
 

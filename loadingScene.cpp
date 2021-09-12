@@ -169,7 +169,7 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
 		SOUNDMANAGER->addSound("moveGrass", "source/Sounds/moveGrass.mp3", true, false);		//풀밭을 걸을 때
 		SOUNDMANAGER->addSound("moveRock", "source/Sounds/moveRock.mp3", true, false);			//돌길을 걸을 때
 		SOUNDMANAGER->addSound("moveSoil", "source/Sounds/moveSoil.mp3", true, false);			//땅을 걸을 때
-		//SOUNDMANAGER->addSound("day", "source/Sounds/day.mp3", true, true);						//아침이 될 때 나는 소리
+		//SOUNDMAMNAGER->addSound("day", "source/Sounds/day.mp3", true, true);						//아침이 될 때 나는 소리
 		//SOUNDMANAGER->addSound("night", "source/Sounds/night.mp3", true, true);					//밤이 될 때 나는 소리
 		SOUNDMANAGER->addSound("opening", "source/Sounds/opening.mp3", true, true);				//오프닝 소리
 		SOUNDMANAGER->addSound("pickUpItem", "source/Sounds/pickUpItem.mp3", true, false);		//픽업 아이템(?)

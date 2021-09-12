@@ -10,7 +10,7 @@ private:
 	image* _img;
 	int _x, _y;   //ÁßÁ¡
 	int _idX, _idY;
-
+	int _dialogueNum;
 	CameraManager* _cameraManager;
 public:
 	wizard();

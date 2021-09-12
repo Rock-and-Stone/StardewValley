@@ -20,6 +20,8 @@ HRESULT marnie::init(int indX, int indY)
 
 	_img = IMAGEMANAGER->findImage("marnie");
 
+	_dialogueNum = 3;
+
 	return S_OK;
 }
 
@@ -51,9 +53,21 @@ void marnie::dialogue()
 	IMAGEMANAGER->findImage("dialogueBox")->render(getMemDC(), WINSIZEX / 2 - 300, WINSIZEY - 250);
 
 	char str[256];
-	sprintf_s(str, "%s", INIDATA->loadDataString("dialogue", "dialogue1", "marnie"));
 
-	if (KEYMANAGER->isOnceKeyDown(VK_LBUTTON)) sprintf_s(str, "%s", INIDATA->loadDataString("dialogue", "dialogue2","marnie"));
+	switch (_dialogueNum)
+	{
+	case 3:
+		sprintf_s(str, "%s", INIDATA->loadDataString("dialogue", "dialogue1", "marnie"));
+		break;
+	case 2:
+		sprintf_s(str, "%s", INIDATA->loadDataString("dialogue", "dialogue2", "marnie"));
+		break;
+	case 1:
+		sprintf_s(str, "%s", INIDATA->loadDataString("dialogue", "dialogue3", "marnie"));
+		break;
+	}
+
+	if (KEYMANAGER->isOnceKeyDown(VK_LBUTTON)) _dialogueNum--;
 
 	TextOut(getMemDC(), WINSIZEX / 2 - 300, WINSIZEY - 200 , str, strlen(str));
 

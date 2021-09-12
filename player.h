@@ -35,7 +35,7 @@ private:
 	int _count;
 	int _tileIndex;
 	int _HP, _gold, _stamina;
-	bool _isLift;
+	bool _isLift,_isWalk;
 
 	playerState* _playerState;
 	leftWalk* _leftWalk;
@@ -70,6 +70,8 @@ public:
 	void InventoryDraw();
 
 	void liftItem();
+
+	void walkSound();
 
 	void setPlayerDirection(PLAYERDIRECTION direction) { _direction = direction; }
 	void setFrameX(int x) { _frameX = x; }
