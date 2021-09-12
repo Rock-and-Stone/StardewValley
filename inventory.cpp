@@ -4,6 +4,7 @@
 #include "player.h"
 #include "CameraManager.h"
 #include "objectManager.h"
+#include "boxInventory.h"
 
 HRESULT inventory::init()
 {
@@ -469,8 +470,7 @@ void inventory::render()
 
     }
    
-    SelectObject(getMemDC(), oldFont2);
-    DeleteObject(font2);
+ 
 
 }
 //메뉴창 열어주고 끄는것(완)

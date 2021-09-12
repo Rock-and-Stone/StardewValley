@@ -7,6 +7,7 @@
 #include "objectManager.h"
 #include "entity.h"
 #include "UserInterface.h"
+#include "boxInventory.h"
 
 
 
@@ -20,7 +21,7 @@ private:
 	CameraManager* _cameraManager; //카메라매니져
 	objectManager* _objectManager; //오브젝트 매니져
 	UserInterface* _uiManager;
-
+	boxInventory* _boxIv;
 
 public:
 	virtual HRESULT init();

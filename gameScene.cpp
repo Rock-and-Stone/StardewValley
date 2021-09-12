@@ -11,6 +11,7 @@ HRESULT gameScene::init()
 	_enemyManager = new EnemyManager;
 	_uiManager = new UserInterface;
 	_objectManager = new objectManager;
+	_boxIv = new boxInventory;
 
 	_homeMap->init();
 	_player->init(30, 30);
@@ -30,6 +31,9 @@ HRESULT gameScene::init()
 	_player->SetHomeMapMemoryLink(_homeMap);
 	_player->setCameraMemoryLink(_cameraManager);
 	_player->setObjectMemoryLink(_objectManager);
+
+	_player->SetBoxInventory(_boxIv);
+
 	_uiManager->SetMemoryAddressLink(_player);
 
 	_npcManager->setCameraAddressLink(_cameraManager);
@@ -38,6 +42,9 @@ HRESULT gameScene::init()
 	_npcManager->setPlayerMemAddressLink(_player);
 
 	_homeMap->setCameraLink(_cameraManager);
+	
+	_boxIv->Setinventory(_player->GetInventory());
+
 	for (int i = 0; i < TILEX * TILEY; i++)
 	{
 		//RENDERMANAGER->addRender()
@@ -47,7 +54,7 @@ HRESULT gameScene::init()
 
 	RENDERMANAGER->addRender(_player);
 
-
+	_boxIv->init();
     return S_OK;
 }
 
@@ -59,8 +66,10 @@ void gameScene::update()
 		_player->update();
 		_objectManager->update();
 		//_homeMap->Movement(_cameraManager->getCamX(), _cameraManager->getCamY());
+		_boxIv->update();
 		if (KEYMANAGER->isOnceKeyDown(VK_F9)) _objectManager->SetWood(100, 100, 10);
 		RENDERMANAGER->update();
+
 	}
 	_npcManager->update();
 }
@@ -77,7 +86,7 @@ void gameScene::render()
 	_objectManager->render();
 	_player->setRenderX(_cameraManager->getRenderPosX());
 	_player->setRenderY(_cameraManager->getRenderPosY());
-
+	_boxIv->render();
 	RENDERMANAGER->render(getMemDC());
 
 	_player->InventoryDraw();
