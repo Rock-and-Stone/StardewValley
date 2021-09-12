@@ -71,6 +71,10 @@ void player::update()
 {
 	_inventory->update();
 
+	if (!_inventory->GetIsMenuOpen() && !_boxInventory->GetBoxOpen() )
+	{
+
+	
 	activate();
 
 
@@ -151,6 +155,7 @@ void player::update()
 
 	liftItem();
 	walkSound();
+	}
 }
 
 void player::render()

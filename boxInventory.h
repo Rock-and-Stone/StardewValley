@@ -5,12 +5,7 @@
 
 class inventory;
 
-struct tagBoxInven
-{
-	int amount;
-	bool itemExist;
-	RECT rc;
-};
+
 struct tagInven
 {
 	int amount;
@@ -27,15 +22,18 @@ private:
 
 	inventory* _inven;
 
-	tagBoxInven _boxInven[36];
+	tagInven	_boxInven[36];
 	tagInven	_invens[36];
 	image* _boxUi;
 	RECT   _boxUiRc;
 
 
+	int _upItem;
+	int _downItem;
+
 	
 
-
+	BOOL _drag;
 	BOOL _boxOpen;
 	
 
@@ -45,6 +43,9 @@ public:
 	virtual void update();
 	virtual void release();
 	virtual void render();
+
+	BOOL GetBoxOpen() { return _boxOpen; }
+
 	//=======================   메모리 링크   ======================= //
 
 	void Setinventory(inventory* iv) { _inven = iv; }

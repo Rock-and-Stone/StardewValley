@@ -94,6 +94,10 @@ void entity::SetPlayerObjectManagerMemoryLink(objectManager* om)
 {
 }
 
+void entity::SetBoxInvenPlayer(boxInventory* bm)
+{
+}
+
 void entity::SetBoxInventory(boxInventory* bm)
 {
 }

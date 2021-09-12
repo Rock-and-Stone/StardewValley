@@ -285,17 +285,21 @@ public:
 
 	void eraseSelectQuickNum();
 
+	void SetInventory(item* item, int num);
 
 
 	//======================= 접근자 & 설정자 ======================= //
 	vector<item*> GetvInven() { return _vInven; }
 	vector<item*>::iterator GetviInven() { return _viInven; }
 
+	void SetvInven(vector<item*> vi) { _vInven = vi; }
+
 	MenuPage GetMenuPage() { return _menuPage; }
 	void SetMenuPage(MenuPage page) { _menuPage = page; }
 
 
 	tagInventory* GetInven() { return _inven; } 
+
 
 	BOOL GetIsMenuOpen() { return _isMenuOpen; }
 	void SetIsMenuOpen(BOOL open) { _isMenuOpen = open; }

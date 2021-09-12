@@ -186,7 +186,14 @@ void inventory::update()
 {
     //메뉴를 키기 위한 함수
     MenuOpen();
-
+    for (int i = 0; i < INVENTORYSIZE; i++)
+    {
+        if (_vInven[i] == _null)
+        {
+            _inven[i].amount = 0;
+            _inven[i].itemExist = false;
+        }
+    }
     //메뉴창이 켜졌을때
     if (_isMenuOpen)
     {
@@ -1534,4 +1541,9 @@ void inventory::eraseSelectQuickNum()
     {
         _vInven[_nowQuickItem] = _null;
     }
+}
+
+void inventory::SetInventory(item* item, int num)
+{
+    _vInven[num] = item;
 }

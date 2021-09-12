@@ -2,6 +2,7 @@
 #include "entity.h"
 #include "playerState.h"
 #include "inventory.h"
+#include "boxInventory.h"
 
 class homeMap;
 class CameraManager;
@@ -55,6 +56,7 @@ private:
 	inventory* _inventory;
 	CameraManager* _cameraManager;
 	objectManager* _objectManager;
+	boxInventory* _boxInventory;
 public:
 	player();
 	~player();
@@ -110,6 +112,7 @@ public:
 	void SetInventoryCameraMemoryLink(CameraManager* cm) { _inventory->SetCameraMemoryLink(cm); }
 	void SetPlayerObjectManagerMemoryLink(objectManager* om) { _inventory->SetObjectManagerMemoryLink(om); }
 
+	void SetBoxInvenPlayer(boxInventory* bm) { _boxInventory = bm; }
 	void SetBoxInventory(boxInventory* bm) { _inventory->SetBoxInventory(bm); }
 	void SetHomeMapMemoryLink(homeMap* hm) { _homeMap = hm; }
 	void setCameraMemoryLink(CameraManager* cm) { _cameraManager = cm; }

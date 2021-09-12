@@ -31,7 +31,7 @@ HRESULT gameScene::init()
 	_player->SetHomeMapMemoryLink(_homeMap);
 	_player->setCameraMemoryLink(_cameraManager);
 	_player->setObjectMemoryLink(_objectManager);
-
+	_player->SetBoxInvenPlayer(_boxIv);
 	_player->SetBoxInventory(_boxIv);
 
 	_uiManager->SetMemoryAddressLink(_player);
@@ -63,6 +63,7 @@ void gameScene::update()
 	if (!GAMEDATA->getIsPause())
 	{
 		_cameraManager->update(_player->getX(), _player->getY());
+		
 		_player->update();
 		_objectManager->update();
 		//_homeMap->Movement(_cameraManager->getCamX(), _cameraManager->getCamY());

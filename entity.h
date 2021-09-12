@@ -41,6 +41,7 @@ public:
 	void GoldGet(int gold);
 	virtual inventory* GetInventory();
 	virtual void SetPlayerObjectManagerMemoryLink(objectManager* om);
+	virtual void SetBoxInvenPlayer(boxInventory* bm);
 	virtual void SetBoxInventory(boxInventory* bm);
 	virtual void SetHomeMapMemoryLink(homeMap* hm);
 	virtual void setCameraMemoryLink(CameraManager* cm);
