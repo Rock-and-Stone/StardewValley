@@ -152,6 +152,7 @@
     <ClInclude Include="aStarTest.h" />
     <ClInclude Include="axe.h" />
     <ClInclude Include="Box.h" />
+    <ClInclude Include="boxInventory.h" />
     <ClInclude Include="button.h" />
     <ClInclude Include="CameraManager.h" />
     <ClInclude Include="can.h" />
@@ -269,6 +270,7 @@
     <ClCompile Include="aStarTest.cpp" />
     <ClCompile Include="axe.cpp" />
     <ClCompile Include="Box.cpp" />
+    <ClCompile Include="boxInventory.cpp" />
     <ClCompile Include="button.cpp" />
     <ClCompile Include="CameraManager.cpp" />
     <ClCompile Include="can.cpp" />

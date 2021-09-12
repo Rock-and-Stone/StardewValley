@@ -80,6 +80,18 @@ void player::update()
 		if (!_isLift) { _upWalk->update(); }
 		_direction = PLAYERDIRECTION_UP;
 		move();
+		/// 움직일때 추가해볼려했지만스...
+		if (_homeMap->getTile()[_tileIndex].terrain == TR_GRASS)
+		{
+			if (!SOUNDMANAGER->isPlaySound("moveGrass"))
+			{
+				SOUNDMANAGER->play("moveGrass", 1.0f);
+			}
+		}
+		else
+		{
+			SOUNDMANAGER->stop("moveGrass");
+		}
 	}
 
 	if (KEYMANAGER->isStayKeyDown('S') && _direction != PLAYERDIRECTION_ACTIVATE)
@@ -330,21 +342,25 @@ void player::changePlayerTool()
 		{
 			SOUNDMANAGER->play("hitTree", 1.0f);
 			_homeMap->RemoveObject(_tileIndex);
-			_objectManager->SetWood(_homeMap->getTile()[_tileIndex].posX, _homeMap->getTile()[_tileIndex].posY , 1);
+			SOUNDMANAGER->play("removeTree", 1.0f);
+			_objectManager->SetWood(_homeMap->getTile()[_tileIndex].posX, _homeMap->getTile()[_tileIndex].posY , RND->getFromIntTo(1,10));
 		}
 
 		break;
 
 	case PLAYERTOOL_CAN:
 		_playerCan->update();
+		SOUNDMANAGER->play("watering", 1.0f);
 		break;
 
 	case PLAYERTOOL_HOE:
 		_playerHoe->update();
+		SOUNDMANAGER->play("hoe", 1.0f);
 		break;
 
 	case PLAYERTOOL_PICKAXE:
 		_playerPickAxe->update();
+		SOUNDMANAGER->play("hitRock", 1.0f);
 		break;
 
 	case PLAYERTOOL_ROD:
@@ -353,6 +369,7 @@ void player::changePlayerTool()
 
 	case PLAYERTOOL_SICKLE:
 		_playerSickle->update();
+		SOUNDMANAGER->play("hitGrass", 1.0f);
 		break;
 
 	case PLAYERTOOL_SWORD:

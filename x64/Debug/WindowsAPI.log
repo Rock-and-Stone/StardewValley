@@ -1,3 +1,16 @@
+
 ﻿  marnie.cpp
 C:\Users\user\Desktop\teamPOW\Battlefield4\marnie.cpp(58,75): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   WindowsAPI.vcxproj -> C:\Users\user\Desktop\teamPOW\Battlefield4\x64\Debug\WindowsAPI.exe
+
+﻿  player.cpp
+S:\TeamPotopolio\Battlefield4\player.cpp(179,48): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+S:\TeamPotopolio\Battlefield4\player.cpp(182,48): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+S:\TeamPotopolio\Battlefield4\player.cpp(185,48): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+S:\TeamPotopolio\Battlefield4\player.cpp(203,18): warning C4244: '-=': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+S:\TeamPotopolio\Battlefield4\player.cpp(209,18): warning C4244: '+=': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+S:\TeamPotopolio\Battlefield4\player.cpp(216,18): warning C4244: '+=': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+S:\TeamPotopolio\Battlefield4\player.cpp(222,18): warning C4244: '-=': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+S:\TeamPotopolio\Battlefield4\player.cpp(342,97): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+S:\TeamPotopolio\Battlefield4\player.cpp(342,59): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  WindowsAPI.vcxproj -> S:\TeamPotopolio\Battlefield4\x64\Debug\WindowsAPI.exe

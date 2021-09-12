@@ -104,7 +104,7 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
 		
 
 		//모든 오브젝트
-		IMAGEMANAGER->addFrameImage("springObjectsItem", "source/Images/springobjects2.bmp", 720,1020, 24, 34, true, MAGENTA);
+		IMAGEMANAGER->addFrameImage("springObjectsItem", "source/Images/springobjects4.bmp", 768,1088, 24, 34, true, MAGENTA);
 		IMAGEMANAGER->addFrameImage("springObjects", "source/Images/springobjects2.bmp", 960, 1360, 24, 34, true, MAGENTA);
 		////도구 인벤토리
 		IMAGEMANAGER->addFrameImage("playerTool",	"source/Images/playerInventory/playerTool.bmp", 280, 40, 7, 1, true, MAGENTA); // 플레이어 도구
@@ -176,11 +176,11 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
 		//SOUNDMANAGER->addSound("purchase", "source/Sounds/purchase.mp3", true, false);			//상점 구매 소리
 		//SOUNDMANAGER->addSound("removeGrass", "source/Sounds/removeGrass.mp3", true, false);	//풀 베는 소리
 		//SOUNDMANAGER->addSound("removeRock", "source/Sounds/removeRock.mp3", true, false);		//돌 깨는 소리
-		//SOUNDMANAGER->addSound("removeTree", "source/Sounds/removeTree.mp3", true, false);		//나무 베는 소리
+		SOUNDMANAGER->addSound("removeTree", "source/Sounds/removeTree.mp3", true, false);		//나무 베는 소리
 		//SOUNDMANAGER->addSound("seeds", "source/Sounds/seeds.mp3", true, false);				//씨앗 심는 소리
 		//SOUNDMANAGER->addSound("slime", "source/Sounds/slime.mp3", true, false);				//슬라임이 공격할 때 나는 소리
 		SOUNDMANAGER->addSound("toolSwap", "source/Sounds/toolSwap.mp3", true, false);			//탭누르면 나는 소리
-		//SOUNDMANAGER->addSound("watering", "source/Sounds/watering.mp3", true, false);			//물을 담거나 물을 줄 때 나는 소리
+		SOUNDMANAGER->addSound("watering", "source/Sounds/watering.mp3", true, false);			//물을 담거나 물을 줄 때 나는 소리
 
 		loadingHelper->_currentCount++;
 	}

@@ -38,8 +38,13 @@ HRESULT gameScene::init()
 	_npcManager->setPlayerMemAddressLink(_player);
 
 	_homeMap->setCameraLink(_cameraManager);
-	
-	
+	for (int i = 0; i < TILEX * TILEY; i++)
+	{
+		//RENDERMANAGER->addRender()
+	}
+
+	SOUNDMANAGER->play("springBGM", 0.1f);
+
 	RENDERMANAGER->addRender(_player);
 
 

@@ -307,6 +307,31 @@ public:
 
 
 	//======================= ============== ======================= //
+	itemStone* GetStone() { return _stone; }
+	itemWood* GetWood() { return _wood; }
+
+	itemBox* GetBox() { return _box; }
+	itemFurNance* GetFurNance() { return _furnance; }
+	itemScareCrow1* GetCrow1() { return _scareCrow1; }
+	itemScareCrow2* GetCrow2() { return _scareCrow2; }
+
+	itemCauliFlower* GetCauliFlower() { return _cauliFlower; }
+	itemKale* GetKale() { return _kale; }
+	itemParsnip* GetParsnip() { return _parsnip; }
+	itemPotato* GetPotato() { return _potato; }
+
+	itemHaliBut* GetHaliBut() { return _halibut; }
+	itemPufferFish* GetPufferFish() { return _pufferFish; }
+	itemTuna* GetTuna() { return _tuna; }
+
+	itemCopper* GetCopper() { return _copper; }
+	itemGold* GetGold() { return _gold; }
+	itemIron* GetIron() { return _iron; }
+
+	itemCauliSeed* GetCauliSeed() { return _cauliSeed; }
+	itemKaleSeed* GetKaleSeed() { return _kaleSeed; }
+	itemParsnipSeed* GetParsnipSeed() { return _parsnipSeed; }
+	itemPotatoSeed* GetPotatoSeed() { return _potatoSeed; }
 
 	//=======================   메모리 링크   ======================= //
 	void SetPlayerMemoryLink(player* pl) { _player = pl; }

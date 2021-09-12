@@ -394,7 +394,7 @@ void playerPickAxe::release()
 
 void playerPickAxe::update()
 {
-	SOUNDMANAGER->play("hitRock", 1.0f);
+	
 	switch (_player->getDir())
 	{
 	case 0:

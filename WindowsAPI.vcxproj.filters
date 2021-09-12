@@ -70,9 +70,6 @@
     <Filter Include="playGround\GameData">
       <UniqueIdentifier>{14b7bbf3-d3a2-4154-b1e3-9839a550ee82}</UniqueIdentifier>
     </Filter>
-    <Filter Include="playGround\Maptool">
-      <UniqueIdentifier>{3ab748b0-26ea-4328-b181-67ca00ca3f62}</UniqueIdentifier>
-    </Filter>
     <Filter Include="playGround\Npc">
       <UniqueIdentifier>{26d8f4e3-610f-47e5-8c78-4cc10f22c857}</UniqueIdentifier>
     </Filter>
@@ -154,6 +151,15 @@
     </Filter>
     <Filter Include="playGround\Inventory\Item\itemClass\CROP">
       <UniqueIdentifier>{f249bf8b-bae6-482c-b6f6-e7ff191d9b6d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGround\Object\objectClass\Craf">
+      <UniqueIdentifier>{cea17dfa-d740-4f4b-b7e6-c465a56e17c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGround\Fishing">
+      <UniqueIdentifier>{8ce012db-9d04-41d8-ac8e-f4eb85487a35}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGround\Maptool">
+      <UniqueIdentifier>{3ab748b0-26ea-4328-b181-67ca00ca3f62}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -475,32 +481,35 @@
     <ClInclude Include="itemRod.h">
       <Filter>playGround\Inventory\Item\itemClass\TOOL</Filter>
     </ClInclude>
-    <ClInclude Include="homeMap.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Box.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="wood.h">
       <Filter>playGround\Object\objectClass\BASIC_RESOURCE</Filter>
     </ClInclude>
     <ClInclude Include="stone.h">
       <Filter>playGround\Object\objectClass\BASIC_RESOURCE</Filter>
     </ClInclude>
-    <ClInclude Include="Fishing.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="gameScene.h">
       <Filter>playGround\Scene</Filter>
     </ClInclude>
+    <ClInclude Include="boxInventory.h">
+      <Filter>playGround\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Box.h">
+      <Filter>playGround\Object\objectClass\Craf</Filter>
+    </ClInclude>
     <ClInclude Include="furnance.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>playGround\Object\objectClass\Craf</Filter>
     </ClInclude>
     <ClInclude Include="scarecrow1.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>playGround\Object\objectClass\Craf</Filter>
     </ClInclude>
     <ClInclude Include="scarecrow2.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>playGround\Object\objectClass\Craf</Filter>
+    </ClInclude>
+    <ClInclude Include="Fishing.h">
+      <Filter>playGround\Fishing</Filter>
+    </ClInclude>
+    <ClInclude Include="homeMap.h">
+      <Filter>playGround</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -810,32 +819,35 @@
     <ClCompile Include="itemRod.cpp">
       <Filter>playGround\Inventory\Item\itemClass\TOOL</Filter>
     </ClCompile>
-    <ClCompile Include="homeMap.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Box.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="stone.cpp">
       <Filter>playGround\Object\objectClass\BASIC_RESOURCE</Filter>
     </ClCompile>
     <ClCompile Include="wood.cpp">
       <Filter>playGround\Object\objectClass\BASIC_RESOURCE</Filter>
     </ClCompile>
-    <ClCompile Include="Fishing.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="gameScene.cpp">
       <Filter>playGround\Scene</Filter>
     </ClCompile>
+    <ClCompile Include="boxInventory.cpp">
+      <Filter>playGround\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Box.cpp">
+      <Filter>playGround\Object\objectClass\Craf</Filter>
+    </ClCompile>
     <ClCompile Include="furnance.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>playGround\Object\objectClass\Craf</Filter>
     </ClCompile>
     <ClCompile Include="scarecrow1.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>playGround\Object\objectClass\Craf</Filter>
     </ClCompile>
     <ClCompile Include="scarecrow2.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>playGround\Object\objectClass\Craf</Filter>
+    </ClCompile>
+    <ClCompile Include="Fishing.cpp">
+      <Filter>playGround\Fishing</Filter>
+    </ClCompile>
+    <ClCompile Include="homeMap.cpp">
+      <Filter>playGround</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
