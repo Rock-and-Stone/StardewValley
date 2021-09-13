@@ -41,6 +41,7 @@ void mainMenuScene::update()
 				switch (i)
 				{
 				case 0:
+					SOUNDMANAGER->stop("opening");
 					SCENEMANAGER->changeScene("gameScene");
 					break;
 					//1버튼을 누르면 인게임 화면으로 간다

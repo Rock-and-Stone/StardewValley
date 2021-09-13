@@ -255,6 +255,7 @@
     <ClInclude Include="sword.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="tile.h" />
+    <ClInclude Include="tileNode.h" />
     <ClInclude Include="timeManager.h" />
     <ClInclude Include="timer.h" />
     <ClInclude Include="tuna.h" />

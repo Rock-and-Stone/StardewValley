@@ -160,10 +160,6 @@ HRESULT inventory::init()
     AddItem(_slingShot);
     AddItem(_sword);
 
-    for(int i = 0 ; i < 30000 ; i++) AddItem(_wood);
-
- 
-
     //테스트 아이템 집어넣기
     _canBox = false;
     _canFur = false;

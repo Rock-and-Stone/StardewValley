@@ -46,6 +46,7 @@ private:
 	button* _buttonDraw;
 	button* _buttonObject;
 	button* _buttonErase;
+	button* _buttonExit;
 	button* _buttonLeft;
 	button* _buttonRight;
 	button* _buttonDragMode;

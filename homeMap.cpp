@@ -61,11 +61,8 @@ void homeMap::load()
 		_tiles[i].rc = RectMake(_tiles[i].posX, _tiles[i].posY, 32, 32);
 
 		if (_tiles[i].terrain == TR_WATER) _attribute[i] |= ATTR_UNMOVE;
-		if (_tiles[i].obj == OBJ_WALL) _attribute[i] |= ATTR_UNMOVE;
-		if (_tiles[i].obj == OBJ_GRASS) _attribute[i] |= ATTR_UNMOVE;
-		if (_tiles[i].obj == OBJ_BUILD) _attribute[i] |= ATTR_UNMOVE;
-		if (_tiles[i].obj == OBJ_TREE) _attribute[i] |= ATTR_UNMOVE;
-		if (_tiles[i].obj == OBJ_ROCK) _attribute[i] |= ATTR_UNMOVE;
+		if (_tiles[i].obj != OBJ_NONE && _tiles[i].obj != OBJ_PROP) _attribute[i] |= ATTR_UNMOVE;
+
 	}
 
 
@@ -203,7 +200,7 @@ void homeMap::PlaceObject(ALLOBJECTS object, int num) //오브젝트 설치 (설치한 오
 
 	_tiles[num].objFrameX = frameX;
 	_tiles[num].objFrameY = frameY;
-	_tiles[num].obj = objSelect(frameX, frameY);
+	_tiles[num].obj = objSelect(frameX, frameY, 5);
 	_tiles[num].objPage = 5;
 	_attribute[num] |= ATTR_UNMOVE;
 }
@@ -221,14 +218,14 @@ void homeMap::RemoveObject(int num)
 
 
 
-OBJECT homeMap::objSelect(int frameX, int frameY)
+OBJECT homeMap::objSelect(int frameX, int frameY, int page)
 {
 	char strX[128];
 	char strY[128];
 	char name[128];
 	sprintf_s(strX, "%d", frameX);
 	sprintf_s(strY, "%d", frameY);
-	sprintf_s(name, "OBJECT_5");
+	sprintf_s(name, "OBJECT_%d", page);
 
 	return (OBJECT)INIDATA->loadDataInterger(name, strY, strX);
 }

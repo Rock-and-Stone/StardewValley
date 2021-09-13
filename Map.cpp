@@ -34,6 +34,7 @@ HRESULT Map::init()
 	IMAGEMANAGER->addFrameImage("LeftButton", "source/Sprite/LeftArrow_Button.bmp", 44, 20, 2, 1, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("RightButton", "source/Sprite/RightArrow_Button.bmp", 44, 20, 2, 1, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("DragButton", "source/Sprite/DragMode_Button.bmp", 48, 48, 2, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("ExitButton", "source/Sprite/Exit_Button.bmp", 74, 116, 1, 2, true, RGB(255, 0, 255));
 
 #pragma endregion
 
@@ -45,6 +46,7 @@ HRESULT Map::init()
 	_buttonLeft		= new button;
 	_buttonRight	= new button;
 	_buttonDragMode	= new button;
+	_buttonExit		= new button;
 
 	_posX = 0;
 	_posY = 0;
@@ -59,9 +61,11 @@ HRESULT Map::init()
 	_buttonDraw->init("DrawButton", WINSIZEX - 400, WINSIZEY - 90, PointMake(0, 1), PointMake(0, 0), Button, this);
 	_buttonObject->init("ObjectButton", WINSIZEX - 320, WINSIZEY - 90, PointMake(0, 1), PointMake(0, 0), Button, this);
 	_buttonErase->init("EraseButton", WINSIZEX - 240, WINSIZEY - 90, PointMake(0, 1), PointMake(0, 0), Button, this);
+	_buttonExit->init("ExitButton", 80, WINSIZEY - 80, PointMake(0, 1), PointMake(0, 0), Button, this);
 	_buttonLeft->init("LeftButton", WINSIZEX - 80, 10, PointMake(1, 0), PointMake(0, 0), Button, this);
 	_buttonRight->init("RightButton", WINSIZEX - 40, 10, PointMake(1, 0), PointMake(0, 0), Button, this);
 	_buttonDragMode->init("DragButton", WINSIZEX/2 + 160, 20, PointMake(1, 0), PointMake(0, 0), Button, this);
+
 
 	_background = IMAGEMANAGER->findImage("background");
 	_currentSample = IMAGEMANAGER->findImage("Home_TileSheet");
@@ -78,7 +82,7 @@ HRESULT Map::init()
 				i * TILESIZE,
 				j * TILESIZE + TILESIZE,
 				i * TILESIZE + TILESIZE);
-		}
+		} 
 	}
 
 	for (int i = 0; i < TILEX * TILEY; ++i)
@@ -97,7 +101,7 @@ HRESULT Map::init()
 
 	SetSample();
 	ChangeSample();
-	//load();
+	load();
 
 	return S_OK;
 }
@@ -118,7 +122,7 @@ void Map::update()
 	_buttonLeft->update();
 	_buttonRight->update();
 	_buttonDragMode->update();
-
+	_buttonExit->update();
 
 	RectSensor();
 
@@ -187,7 +191,7 @@ void Map::render()
 
 	sprintf_s(str, "Cursor Tile NUM : NONE");
 
-	_background->alphaRender(getMemDC(), -_posX,- _posY, 150);
+	//_background->alphaRender(getMemDC(), -_posX,- _posY, 150);
 
 	for (int i = 0; i < TILEX * TILEY; ++i)
 	{
@@ -217,6 +221,8 @@ void Map::render()
 			sprintf_s(str, "Cursor Tile NUM : %d", i);
 			type = _tiles[i].terrain;
 		}
+
+		LineRectangle(getMemDC(), _tiles[i].rc);
 	}
 
 	TextOut(getMemDC(), 20, 20, str, strlen(str));
@@ -256,8 +262,7 @@ void Map::render()
 		char tileStr[128];
 		int  tileReposX = 0;
 		int  tileReposY = 0;
-		if (_tiles[i].rc.left > WINSIZEX || _tiles[i].rc.top > WINSIZEY) continue;
-		if (_tiles[i].rc.left + 32 < 0 || _tiles[i].rc.top + 32 < 0) continue;
+
 		//오브젝트 속성이 아니면 그리지마라 (지우개로 지울때 쓰려고)
 		if (_tiles[i].obj == OBJ_NONE) continue;
 
@@ -283,6 +288,9 @@ void Map::render()
 				 break;
 		}
 
+		if (_tiles[i].rc.left - tileReposX > WINSIZEX || _tiles[i].rc.top - tileReposY > WINSIZEY) continue;
+		if (_tiles[i].rc.left + 32 + tileReposX < 0 || _tiles[i].rc.top + 32 < 0) continue;
+
 		IMAGEMANAGER->frameRender(tileStr, getMemDC(), _tiles[i].rc.left - tileReposX, _tiles[i].rc.top - tileReposY, _tiles[i].objFrameX, _tiles[i].objFrameY);
 
 	}
@@ -299,6 +307,7 @@ void Map::render()
 	_buttonErase->render();
 	_buttonLeft->render();
 	_buttonRight->render();
+	_buttonExit->render();
 
 	sprintf_s(str, "Cursor OBJECT TYPE : NONE");
 
@@ -310,11 +319,11 @@ void Map::render()
 	case OBJ_TREE:
 		sprintf_s(str, "Cursor OBJECT TYPE : TREE");
 		break;
-	case OBJ_BUILD:
-		sprintf_s(str, "Cursor OBJECT TYPE : BUILD");
+	case OBJ_IRONN:
+		sprintf_s(str, "Cursor OBJECT TYPE : IRON");
 		break;
-	case OBJ_PROP:
-		sprintf_s(str, "Cursor OBJECT TYPE : PROP");
+	case OBJ_COPPERR:
+		sprintf_s(str, "Cursor OBJECT TYPE : COPPER");
 		break;
 	case OBJ_GRASS:
 		sprintf_s(str, "Cursor OBJECT TYPE : GRASS");
@@ -344,6 +353,7 @@ void Map::render()
 	{
 		LineRectangle(getMemDC(), _sampleTile[i].rcTile);
 	}
+
 }
 
 void Map::save()
@@ -611,6 +621,8 @@ void Map::Button(void* obj)
 	if (map->_buttonDragMode->getBtnDir() == BUTTONDIRECTION_UP) map->_isDragMode = !map->getDragMode();
 	if (map->_buttonRight->getBtnDir() == BUTTONDIRECTION_UP) if (map->_ctrPage < 4) map->_ctrPage++;
 	if (map->_buttonLeft->getBtnDir() == BUTTONDIRECTION_UP) if (map->_ctrPage > 0) map->_ctrPage--;
+
+	if (map->_buttonExit->getBtnDir() == BUTTONDIRECTION_UP) SCENEMANAGER->changeScene("mainMenuScene");
 
 	map->ChangeSample();
 }
