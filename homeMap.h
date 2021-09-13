@@ -27,7 +27,6 @@ public:
 	void update();
 	void render();
 	
-	
 	void load();
 
 	void DrawTile(float posX, float posY);

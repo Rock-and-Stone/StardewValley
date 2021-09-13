@@ -645,12 +645,13 @@ void player::LbuttonAcvite()
 			case CRAFTFURNANCE:
 				_inventory->eraseSelectQuickNum();
 				_homeMap->PlaceObject(OBJ_FURNACE, _interectiveIndex);
-
 				break;
+
 			case CRAFTCROW1:
 				_inventory->eraseSelectQuickNum();
 				_homeMap->PlaceObject(OBJ_SCARECROW1, _interectiveIndex);
 				break;
+
 			case CRAFTCROW2:
 				_inventory->eraseSelectQuickNum();
 				_homeMap->PlaceObject(OBJ_SCARECROW2, _interectiveIndex);

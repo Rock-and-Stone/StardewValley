@@ -137,6 +137,38 @@ void entity::openBox()
 {
 }
 
+void entity::setPlayerAddressLink(entity* pl)
+{
+}
+
+void entity::setGold(int gold)
+{
+}
+
+void entity::setMarniePosition(tagTile* tile)
+{
+}
+
+bool entity::getIsArrive()
+{
+	return false;
+}
+
+void entity::setIsArrive(bool isArrive)
+{
+}
+
+int entity::getMarnieIndX()
+{
+	return 0;
+}
+
+int entity::getMarnieIndY()
+{
+	return 0;
+}
+
+
 entity::entity()
 {
 }

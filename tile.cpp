@@ -24,10 +24,7 @@ HRESULT tile::init(int idX, int idY)
 
 	_idX = idX;
 	_idY = idY;
-
 	_rc = RectMakeCenter(_center.x, _center.y, TILEWIDTH, TILEHEIGHT); //렉트 초기화
-
-
 	return S_OK;
 }
 

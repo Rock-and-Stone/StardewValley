@@ -37,14 +37,14 @@ HRESULT gameScene::init()
 	_npcManager->setMarnieCameraLink(_cameraManager);
 	_npcManager->setWizardCameraLink(_cameraManager);
 	_npcManager->setPlayerMemAddressLink(_player);
+	_npcManager->setNPCPlayerLink(_player);
 
 	_homeMap->setCameraLink(_cameraManager);
 
 	SOUNDMANAGER->play("springBGM", 0.1f);
 
 	RENDERMANAGER->addRender(_player);
-	//RENDERMANAGER->addRender(_homeMap);
-
+	
     return S_OK;
 }
 
@@ -78,13 +78,11 @@ void gameScene::render()
 	_homeMap->DrawObject(_cameraManager->getCamX(), _cameraManager->getCamY(), _player->getPlayerTile());
 	//RENDERMANAGER->render(getMemDC());
 
-	
-
-	
+	_player->InventoryDraw();
+	_player->drawBoxIven();
 
 	_npcManager->render();
 
-	_player->InventoryDraw();
-	_player->drawBoxIven();
 	_uiManager->render();
+
 }

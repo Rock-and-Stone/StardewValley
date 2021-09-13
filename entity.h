@@ -5,6 +5,7 @@
 #include "inventory.h"
 #include "objectManager.h"
 #include "boxInventory.h"
+#include "tile.h"
 
 class entity : public gameNode
 {
@@ -51,4 +52,11 @@ public:
 	virtual void setDialogueNum(int num);
 	virtual void drawBoxIven();
 	virtual void openBox();
+	virtual void setPlayerAddressLink(entity* pl);
+	virtual void setGold(int gold);
+	virtual void setMarniePosition(tagTile* tile);
+	virtual bool getIsArrive();
+	virtual void setIsArrive(bool isArrive);
+	virtual int getMarnieIndX();
+	virtual int getMarnieIndY();
 };
