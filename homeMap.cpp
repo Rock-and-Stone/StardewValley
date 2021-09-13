@@ -68,6 +68,7 @@ void homeMap::load()
 		if (_tiles[i].obj == OBJ_ROCK) _attribute[i] |= ATTR_UNMOVE;
 	}
 
+
 	CloseHandle(file);
 }
 

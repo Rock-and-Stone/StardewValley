@@ -2,6 +2,7 @@
 #include "entity.h"
 
 class CameraManager;
+class entity;
 
 class wizard : public entity
 {
@@ -12,6 +13,8 @@ private:
 	int _idX, _idY;
 	int _dialogueNum;
 	CameraManager* _cameraManager;
+	entity* _player;
+
 public:
 	wizard();
 	~wizard();
@@ -21,10 +24,14 @@ public:
 	void render();
 
 	void setCameraAddressLink(CameraManager* cm) { _cameraManager = cm; }
+	void setPlayerAddressLink(entity* pl) { _player = pl; }
 	virtual int getRenderPosY() { return _y; }
 	RECT getRect() { return _rc; }
 	RECT getRenderRc() { return _renderRc; }
 	void setX(int x) { _x = x; }
 	void dialogue();
+	void shop();
+	int getDialogueNum() { return _dialogueNum; }
+	void setDialogueNum(int num) { _dialogueNum = num; }
 };
 

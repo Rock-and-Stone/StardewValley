@@ -18,7 +18,7 @@ HRESULT wizard::init(int indX, int indY)
 	_rc = RectMakeCenter(_x + 16, _y + 32, TILEWIDTH, TILEHEIGHT);
 
 	_img = IMAGEMANAGER->findImage("wizard");
-	_dialogueNum = 3;
+	_dialogueNum = 4;
 	return S_OK;
 }
 
@@ -52,19 +52,27 @@ void wizard::dialogue()
 
 	switch (_dialogueNum)
 	{
-	case 3:
+	case 4:
 		sprintf_s(str, "%s", INIDATA->loadDataString("dialogue", "dialogue1", "wizard"));
+		if (KEYMANAGER->isOnceKeyDown(VK_LBUTTON)) _dialogueNum--;
+
+		break;
+	case 3:
+		sprintf_s(str, "%s", INIDATA->loadDataString("dialogue", "dialogue2", "wizard"));
+		if (KEYMANAGER->isOnceKeyDown(VK_LBUTTON)) _dialogueNum--;
+
 		break;
 	case 2:
-		sprintf_s(str, "%s", INIDATA->loadDataString("dialogue", "dialogue2", "wizard"));
+		sprintf_s(str, "%s", INIDATA->loadDataString("dialogue", "dialogue3", "wizard"));
+		if (KEYMANAGER->isOnceKeyDown(VK_LBUTTON)) _dialogueNum--;
+
 		break;
 	case 1:
-		sprintf_s(str, "%s", INIDATA->loadDataString("dialogue", "dialogue3", "marnie"));
+		sprintf_s(str, "%s", INIDATA->loadDataString("dialogue", "dialogue4", "wizard"));
+		if (KEYMANAGER->isOnceKeyDown(VK_LBUTTON)) _dialogueNum--;
 		break;
 	}
 
-	if (KEYMANAGER->isOnceKeyDown(VK_LBUTTON)) _dialogueNum--;
 
-	TextOut(getMemDC(), WINSIZEX / 2 - 300, WINSIZEY - 200, str, strlen(str));
+	TextOut(getMemDC(), WINSIZEX / 2 - 200, WINSIZEY - 200, str, strlen(str));
 }
-
