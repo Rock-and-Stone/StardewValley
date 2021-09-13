@@ -160,7 +160,7 @@ HRESULT inventory::init()
     AddItem(_slingShot);
     AddItem(_sword);
 
-    for(int i = 0 ; i < 160 ; i++) AddItem(_wood);
+    for(int i = 0 ; i < 30000 ; i++) AddItem(_wood);
 
  
 
@@ -187,6 +187,9 @@ void inventory::update()
 {
     //메뉴를 키기 위한 함수
     MenuOpen();
+   temp = 0;
+ 
+
     for (int i = 0; i < INVENTORYSIZE; i++)
     {
         if (_vInven[i] == _null)
@@ -194,6 +197,40 @@ void inventory::update()
             _inven[i].amount = 0;
             _inven[i].itemExist = false;
         }
+
+        if (_inven[i].itemExist && _inven[i].amount < 999)
+        {
+            if (_vInven[i] == _axe ||
+                _vInven[i] == _pickAxe||
+                _vInven[i] == _can ||
+                _vInven[i] == _hoe ||
+                _vInven[i] == _rod||
+                _vInven[i] == _sickle||
+                _vInven[i] == _sword||
+                _vInven[i] == _slingShot)
+            {
+              
+            }
+            else
+            {
+                temp += 1;
+            }
+         
+
+        }
+        if (!_inven[i].itemExist)
+        {
+            temp += 1;
+        }
+        if (temp == 0)
+        {
+            _invenIsFull = true;
+        }
+        if (temp > 0)
+        {
+            _invenIsFull = false;
+        }
+
     }
     //메뉴창이 켜졌을때
     if (_isMenuOpen)
@@ -255,10 +292,13 @@ void inventory::render()
     TextOut(getMemDC(), 100, 460, str, strlen(str));
    
     
-     
+    sprintf_s(str, "%d", temp);
+    TextOut(getMemDC(), _ptMouse.x - 20, _ptMouse.y - 20, str, strlen(str));
 
     for (int i = 0; i < INVENTORYSIZE; i++)
     {
+        sprintf_s(str, "%d", _vInven.size());
+        TextOut(getMemDC(), 200, 180, str, strlen(str));
         if (PtInRect(&_inven[i].rc, _ptMouse))
         {
             sprintf_s(str, "%d", _inven[i].itemExist);
@@ -449,7 +489,7 @@ void inventory::render()
             if (_inven[i].amount != 1 && _inven[i].amount != 0)
             {
                 sprintf_s(str, "%d", _inven[i].amount);
-                TextOut(getMemDC(), _quick[i].rc.right - 25, _quick[i].rc.bottom - 12, str, strlen(str));
+                TextOut(getMemDC(), _quick[i%12].rc.right - 25, _quick[i%12].rc.bottom - 12, str, strlen(str));
             }
 
          

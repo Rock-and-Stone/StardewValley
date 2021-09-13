@@ -25,10 +25,7 @@ HRESULT boxInventory::init()
 void boxInventory::update()
 {
 
-    if (KEYMANAGER->isOnceKeyDown(VK_F7))
-    {
-        _boxOpen = !_boxOpen;
-    }
+
 
     if (_boxOpen)
     {
