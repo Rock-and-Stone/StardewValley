@@ -14,8 +14,7 @@ HRESULT mainMenuScene::init()
 		_select.x[i] = _select.rc[i].left;
 		_select.y[i] = _select.rc[i].top;
 	}
-	_ui = new UserInterface;
-	_ui->init();
+
 	return S_OK;
 }
 
@@ -41,12 +40,18 @@ void mainMenuScene::update()
 				SOUNDMANAGER->play("menuSelect", 0.5f);
 				switch (i)
 				{
+				case 0:
+					SCENEMANAGER->changeScene("gameScene");
+					break;
 					//1버튼을 누르면 인게임 화면으로 간다
 				//case 0:
 					//2버튼을 누르면 로드 화면으로 간다
 				//case 1:
 					//3버튼을 누르면 맵툴 씬으로 변경
 				//case 2:
+				case 2 :
+					SCENEMANAGER->changeScene("map");
+					break;
 					//4버튼을 누르면 윈도우가 종료됨
 				case 3:
 					PostQuitMessage(0);
@@ -63,7 +68,7 @@ void mainMenuScene::update()
 
 		
 	}
-	_ui->update();
+
 }
 
 void mainMenuScene::render()
@@ -88,5 +93,5 @@ void mainMenuScene::render()
 		}
 		
 	}
-	_ui->render();
+
 }
