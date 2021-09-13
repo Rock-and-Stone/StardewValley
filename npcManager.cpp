@@ -35,10 +35,10 @@ void npcManager::update()
 }
 void npcManager::render()
 {
-	char str[25];
-	sprintf_s(str, "%d , %d , %d", _dialogue,_marnie->getDialogueNum(), _wizard->getDialogueNum());
+	//char str[25];
+	//sprintf_s(str, "%d , %d , %d", _dialogue,_marnie->getDialogueNum(), _wizard->getDialogueNum());
 
-	TextOut(getMemDC(), WINSIZEX /2 , WINSIZEY /2 , str, strlen(str));
+	//TextOut(getMemDC(), WINSIZEX /2 , WINSIZEY /2 , str, strlen(str));
 
 	if (_isDialogue)
 	{

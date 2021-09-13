@@ -42,7 +42,7 @@ void mainMenuScene::update()
 				{
 				case 0:
 					SOUNDMANAGER->stop("opening");
-					SCENEMANAGER->changeScene("gameScene");
+					SCENEMANAGER->changeScene("openingScene");
 					break;
 					//1버튼을 누르면 인게임 화면으로 간다
 				//case 0:
@@ -80,11 +80,11 @@ void mainMenuScene::render()
 		_select.img[i]->frameRender(getMemDC(), _select.x[i], _select.y[i], 0, _select.img[i]->getFrameY());
 	}
 
-	char str[128];
-	sprintf_s(str, "X : %d", _ptMouse.x);
-	TextOut(getMemDC(), 10, 20, str, strlen(str));
-	sprintf_s(str, "Y : %d", _ptMouse.y);
-	TextOut(getMemDC(), 10, 40, str, strlen(str));
+	//char str[128];
+	//sprintf_s(str, "X : %d", _ptMouse.x);
+	//TextOut(getMemDC(), 10, 20, str, strlen(str));
+	//sprintf_s(str, "Y : %d", _ptMouse.y);
+	//TextOut(getMemDC(), 10, 40, str, strlen(str));
 
 	if (KEYMANAGER->isToggleKey(VK_TAB))
 	{

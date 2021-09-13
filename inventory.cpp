@@ -277,35 +277,12 @@ void inventory::render()
         PROOF_QUALITY, DEFAULT_PITCH | FF_SWISS, TEXT("sandoll 미생"));
     HFONT oldFont2 = (HFONT)SelectObject(getMemDC(), font2);
 
-    sprintf_s(str, "%f", _cm->getRenderPosY());
-    TextOut(getMemDC(), 300, 400, str, strlen(str));
 
-    sprintf_s(str, "%d", INIDATA->loadDataInterger("inventory", "14", "아이템번호"));
-    TextOut(getMemDC(), 100, 420, str, strlen(str));
-    sprintf_s(str, "%d", INIDATA->loadDataInterger("inventory", "14", "어마운트"));
-    TextOut(getMemDC(), 100, 440, str, strlen(str));
-    sprintf_s(str, "%d", ironTemp);
-    TextOut(getMemDC(), 100, 460, str, strlen(str));
-   
-    
-    sprintf_s(str, "%d", temp);
-    TextOut(getMemDC(), _ptMouse.x - 20, _ptMouse.y - 20, str, strlen(str));
+    //sprintf_s(str, "%d", INIDATA->loadDataInterger("inventory", "14", "아이템번호"));
+    //TextOut(getMemDC(), 100, 420, str, strlen(str));
+    //sprintf_s(str, "%d", INIDATA->loadDataInterger("inventory", "14", "어마운트"));
+    //TextOut(getMemDC(), 100, 440, str, strlen(str));
 
-    for (int i = 0; i < INVENTORYSIZE; i++)
-    {
-        sprintf_s(str, "%d", _vInven.size());
-        TextOut(getMemDC(), 200, 180, str, strlen(str));
-        if (PtInRect(&_inven[i].rc, _ptMouse))
-        {
-            sprintf_s(str, "%d", _inven[i].itemExist);
-            TextOut(getMemDC(), 10, 180, str, strlen(str));
-
-    
-            sprintf_s(str, "%s", _vInven[i]->GetItemInfo().itemName.c_str());
-            TextOut(getMemDC(), 10, 200, str, strlen(str));
-        }
-    
-    }
 
     //메뉴창이 열렸으면 메뉴창 아니면 퀵슬롯용
     if (_isMenuOpen)
@@ -490,9 +467,7 @@ void inventory::render()
 
          
         }
-        sprintf_s(str, "%s", _vInven[_nowQuickItem]->GetItemInfo().itemName.c_str());
-        TextOut(getMemDC(), 200, 200, str, strlen(str));
-        
+                
     }
     //퀵슬롯 벡터 넘겨주는 용도
     if (KEYMANAGER->isOnceKeyDown(VK_TAB))
@@ -1245,12 +1220,7 @@ void inventory::SettingRender()
         }
     }
 
-    char str[256];
-    sprintf_s(str, "%d %d", _ptMouse.x, _ptMouse.y);
-    TextOut(getMemDC(), _ptMouse.x, _ptMouse.y, str, strlen(str));
 
-    sprintf_s(str, "%f %f", _select[0].cx, _select[1].cx);
-    TextOut(getMemDC(), 50, 100, str, strlen(str));
 }
 //세팅 볼륨조절
 void inventory::SettingVolumeFrame()

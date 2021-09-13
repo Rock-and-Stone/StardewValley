@@ -52,6 +52,7 @@ void gameScene::update()
 {
 	if (!GAMEDATA->getIsPause())
 	{
+		_uiManager->update();
 		_cameraManager->update(_player->getX(), _player->getY());
 		_player->update();
 		_objectManager->update();

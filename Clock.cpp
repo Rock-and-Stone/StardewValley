@@ -56,20 +56,7 @@ void Clock::render()
 	ClockRender();
 	
 	Font();
-	char str[128];
-	sprintf_s(str, "X : %d", _ptMouse.x);
-	TextOut(getMemDC(), 10, 10, str, strlen(str));
-	sprintf_s(str, "Y : %d", _ptMouse.y);
-	TextOut(getMemDC(), 10, 30, str, strlen(str));
-	sprintf_s(str, "elapsedTime : %f", TIMEMANAGER->getWorldTime());
-	TextOut(getMemDC(), 10, 50, str, strlen(str));
-	sprintf_s(str, "angle : %f", _angle);
-	TextOut(getMemDC(), 10, 70, str, strlen(str));
-	sprintf_s(str, "minute : %d", _minute);
-	TextOut(getMemDC(), 10, 90, str, strlen(str));
-	sprintf_s(str, "hour : %d", _hour);
-	TextOut(getMemDC(), 10, 110, str, strlen(str));
-	
+
 }
 
 void Clock::ClockRender()

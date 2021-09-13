@@ -53,8 +53,5 @@ void UserInterface::render()
 	_gold100->frameRender(getMemDC(), 1165, 212, _player->getGold() % 1000 / 100, 0);
 	_gold10->frameRender(getMemDC(), 1189, 212, _player->getGold() % 100 / 10, 0);
 	_gold1->frameRender(getMemDC(), 1213, 212, _player->getGold() % 10, 0);
-
-	char str[256];
-	sprintf_s(str, "%d %d", _ptMouse.x, _ptMouse.y);
-	TextOut(getMemDC(), _ptMouse.x, _ptMouse.y, str, strlen(str));
+		
 }

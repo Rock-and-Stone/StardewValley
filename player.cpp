@@ -130,21 +130,6 @@ void player::render()
 
 	IMAGEMANAGER->addImage("BOX2", "source/Images/inventory/box2.bmp", 32, 32, true, MAGENTA)->render(getMemDC(), _intRenderRc.left, _intRenderRc.top);
 
-	char str[25];
-	sprintf_s(str, "intRenderRc : % d", _intRenderRc.left);
-	TextOut(getMemDC(), 300, 300, str, strlen(str));
-
-	sprintf_s(str, "obj : %d", _homeMap->getTile()[_interectiveIndex].obj);
-	TextOut(getMemDC(), 300, 320, str, strlen(str));
-
-	sprintf_s(str, "ispause : %d", GAMEDATA->getIsPause());
-	TextOut(getMemDC(), 300, 340, str, strlen(str));
-	
-	for (int i = 0; i < _vBoxIv.size(); i++)
-	{
-		sprintf_s(str, "_vBoxIv[i] : %d", _vBoxIv[i]->GetBoxOpen());
-		TextOut(getMemDC(), 300, 360 + 10 * i, str, strlen(str));
-	}
 }
 
 void player::move()

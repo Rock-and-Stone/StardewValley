@@ -23,6 +23,7 @@ void openingScene::update()
 	{
 		MCIWndDestroy(_opening);
 		SCENEMANAGER->SetVideoPlay(false);
+		SCENEMANAGER->changeScene("gameScene");
 	}
 
 	if (KEYMANAGER->isOnceKeyDown(VK_RETURN))
@@ -32,7 +33,7 @@ void openingScene::update()
 		{
 			MCIWndDestroy(_opening);
 			SCENEMANAGER->SetVideoPlay(false);
-			SCENEMANAGER->changeScene("loadingScene");
+			SCENEMANAGER->changeScene("gameScene");
 
 		}
 	}

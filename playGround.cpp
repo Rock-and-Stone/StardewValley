@@ -26,7 +26,7 @@ HRESULT playGround::init()
 	SCENEMANAGER->addScene("inventory", new inventory);
 	SCENEMANAGER->addScene("gameScene", new gameScene);
 	SCENEMANAGER->addScene("map", new Map);
-	SCENEMANAGER->changeScene("openingScene");
+	SCENEMANAGER->changeScene("loadingScene");
 
 
 
@@ -57,9 +57,9 @@ void playGround::render()
 
 		SCENEMANAGER->render();
 
-		char str[25];
-		sprintf_s(str, "worldTime : %f", TIMEMANAGER->getWorldTime());
-		TextOut(getMemDC(), 0, 0, str, strlen(str));
+		//char str[25];
+		//sprintf_s(str, "worldTime : %f", TIMEMANAGER->getWorldTime());
+		//TextOut(getMemDC(), 0, 0, str, strlen(str));
 
 		//=============== 밑에도 건들지마라 ================
 		_backBuffer->render(getHDC(), 0, 0);
