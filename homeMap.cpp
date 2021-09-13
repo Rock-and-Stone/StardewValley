@@ -111,11 +111,13 @@ void homeMap::DrawObject(float posX, float posY, int pT)
 	for (int i = 0; i < TILEX * TILEY; ++i)
 	{
 		rendRect = RectMake(_tiles[i].posX - posX, _tiles[i].posY - posY, TILESIZE, TILESIZE);
-		tempRect = RectMake(_tiles[pT].posX - posX, _tiles[pT].posY - posY, TILESIZE, TILESIZE);
+
 
 		char tileStr[128];
 		int  tileReposX = 0;
 		int  tileReposY = 0;
+
+		if (i == pT) RENDERMANAGER->render(getMemDC());
 
 		//오브젝트 속성이 아니면 그리지마라 (지우개로 지울때 쓰려고)
 		if (_tiles[i].obj == OBJ_NONE) continue;
@@ -124,7 +126,7 @@ void homeMap::DrawObject(float posX, float posY, int pT)
 		{
 		case 0:
 			sprintf_s(tileStr, "Home_ObjectSheet");
-			break; 
+			break;
 		case 1:
 			sprintf_s(tileStr, "Mine_ObjectSheet");
 			break;
@@ -149,32 +151,15 @@ void homeMap::DrawObject(float posX, float posY, int pT)
 			break;
 		}
 
+
+
 		//화면을 넘어갈경우 렌더를 생략함으로써 프레임드랍을 방지합니다.
 		if (rendRect.left - tileReposX > WINSIZEX || rendRect.top - tileReposY > WINSIZEY) continue;
 		if (rendRect.left + 32 + tileReposX < 0 || rendRect.top + 32 < 0) continue;
 
 
-		
-		if (rendRect.top > tempRect.top)
-		{
-			if (!isin)
-			{
-				RENDERMANAGER->render(getMemDC());
-				isin = true;
-			}
-	
-			IMAGEMANAGER->frameRender(tileStr, getMemDC(), rendRect.left - tileReposX, rendRect.top - tileReposY, _tiles[i].objFrameX, _tiles[i].objFrameY);
-		}
-		else
-		{		
-			IMAGEMANAGER->frameRender(tileStr, getMemDC(), rendRect.left - tileReposX, rendRect.top - tileReposY, _tiles[i].objFrameX, _tiles[i].objFrameY);
-			if (!isin)
-			{
-				RENDERMANAGER->render(getMemDC());
-				isin = true;
-			}
-		}
-		
+		IMAGEMANAGER->frameRender(tileStr, getMemDC(), rendRect.left - tileReposX, rendRect.top - tileReposY, _tiles[i].objFrameX, _tiles[i].objFrameY);
+
 	}
 }
 
