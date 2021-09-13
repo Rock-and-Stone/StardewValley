@@ -61,12 +61,6 @@
     <Filter Include="playGround\Scene">
       <UniqueIdentifier>{753cad3b-4998-481a-9411-4a1cd0fe1b91}</UniqueIdentifier>
     </Filter>
-    <Filter Include="playGround\Player">
-      <UniqueIdentifier>{bb673785-bd21-48d0-a20b-55747b92b4ad}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="playGround\Player\playerState">
-      <UniqueIdentifier>{86accd69-7c0c-40a8-bf4b-87283cdbd30f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="playGround\GameData">
       <UniqueIdentifier>{14b7bbf3-d3a2-4154-b1e3-9839a550ee82}</UniqueIdentifier>
     </Filter>
@@ -116,42 +110,6 @@
     <Filter Include="playGround\Object\objectClass\Ore\Seed">
       <UniqueIdentifier>{d897d97f-9e90-4e9c-af9e-151c7161cf5e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="playGround\Inventory\Item">
-      <UniqueIdentifier>{947e6709-ecd6-43ac-8508-cb125a78d8a4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="playGround\Inventory\Item\item">
-      <UniqueIdentifier>{05d740ba-107b-4721-a315-7af36ad188de}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="playGround\Inventory\Item\itemManager">
-      <UniqueIdentifier>{919f3687-b8c8-427c-915e-b03c4a09e37a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="playGround\Inventory\Item\itemClass">
-      <UniqueIdentifier>{88492d57-1a12-4dfd-8969-43ebf572615b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="playGround\Inventory\Item\itemClass\TOOL">
-      <UniqueIdentifier>{9c7a76c3-f430-47ff-b0b6-005a42e56c61}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="playGround\Inventory\Item\itemClass\ORE">
-      <UniqueIdentifier>{9b655078-3550-46f4-a04b-077e61da5be7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="playGround\Inventory\Item\itemClass\SEED">
-      <UniqueIdentifier>{0a4e591b-6f64-4206-9f7a-43ddbb216097}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="playGround\Inventory\Item\itemClass\FISH">
-      <UniqueIdentifier>{9fe57a41-21e6-403a-a178-ef8fdfbd3ceb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="playGround\Inventory\Item\itemClass\CRAFT_ITEM">
-      <UniqueIdentifier>{fa7d4bcc-bf95-4ec2-b27b-9e51f0edf2cd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="playGround\Inventory\Item\itemClass\BASIC_RESOURCE">
-      <UniqueIdentifier>{03c88335-f50a-4829-ab07-bcb4aa3564b3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="playGround\Inventory\Item\itemClass\WEAPON">
-      <UniqueIdentifier>{5168e6d2-7d19-48bd-ac41-7b7a4da7b947}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="playGround\Inventory\Item\itemClass\CROP">
-      <UniqueIdentifier>{f249bf8b-bae6-482c-b6f6-e7ff191d9b6d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="playGround\Object\objectClass\Craf">
       <UniqueIdentifier>{cea17dfa-d740-4f4b-b7e6-c465a56e17c9}</UniqueIdentifier>
     </Filter>
@@ -160,6 +118,48 @@
     </Filter>
     <Filter Include="playGround\Maptool">
       <UniqueIdentifier>{3ab748b0-26ea-4328-b181-67ca00ca3f62}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGround\Player">
+      <UniqueIdentifier>{bb673785-bd21-48d0-a20b-55747b92b4ad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGround\Player\playerState">
+      <UniqueIdentifier>{86accd69-7c0c-40a8-bf4b-87283cdbd30f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGround\Item">
+      <UniqueIdentifier>{947e6709-ecd6-43ac-8508-cb125a78d8a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGround\Item\item">
+      <UniqueIdentifier>{05d740ba-107b-4721-a315-7af36ad188de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGround\Item\itemManager">
+      <UniqueIdentifier>{919f3687-b8c8-427c-915e-b03c4a09e37a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGround\Item\itemClass">
+      <UniqueIdentifier>{88492d57-1a12-4dfd-8969-43ebf572615b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGround\Item\itemClass\TOOL">
+      <UniqueIdentifier>{9c7a76c3-f430-47ff-b0b6-005a42e56c61}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGround\Item\itemClass\ORE">
+      <UniqueIdentifier>{9b655078-3550-46f4-a04b-077e61da5be7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGround\Item\itemClass\SEED">
+      <UniqueIdentifier>{0a4e591b-6f64-4206-9f7a-43ddbb216097}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGround\Item\itemClass\FISH">
+      <UniqueIdentifier>{9fe57a41-21e6-403a-a178-ef8fdfbd3ceb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGround\Item\itemClass\CRAFT_ITEM">
+      <UniqueIdentifier>{fa7d4bcc-bf95-4ec2-b27b-9e51f0edf2cd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGround\Item\itemClass\BASIC_RESOURCE">
+      <UniqueIdentifier>{03c88335-f50a-4829-ab07-bcb4aa3564b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGround\Item\itemClass\WEAPON">
+      <UniqueIdentifier>{5168e6d2-7d19-48bd-ac41-7b7a4da7b947}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGround\Item\itemClass\CROP">
+      <UniqueIdentifier>{f249bf8b-bae6-482c-b6f6-e7ff191d9b6d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -368,13 +368,13 @@
       <Filter>playGround\Object\objectClass\ToolNoUse</Filter>
     </ClInclude>
     <ClInclude Include="item.h">
-      <Filter>playGround\Inventory\Item\item</Filter>
+      <Filter>playGround\Item\item</Filter>
     </ClInclude>
     <ClInclude Include="itemManager.h">
-      <Filter>playGround\Inventory\Item\itemManager</Filter>
+      <Filter>playGround\Item\itemManager</Filter>
     </ClInclude>
     <ClInclude Include="itemNull.h">
-      <Filter>playGround\Inventory\Item\itemClass</Filter>
+      <Filter>playGround\Item\itemClass</Filter>
     </ClInclude>
     <ClInclude Include="player.h">
       <Filter>playGround\Player</Filter>
@@ -398,88 +398,88 @@
       <Filter>playGround\Npc\NpcManager</Filter>
     </ClInclude>
     <ClInclude Include="itemAxe.h">
-      <Filter>playGround\Inventory\Item\itemClass\TOOL</Filter>
+      <Filter>playGround\Item\itemClass\TOOL</Filter>
     </ClInclude>
     <ClInclude Include="itemCan.h">
-      <Filter>playGround\Inventory\Item\itemClass\TOOL</Filter>
+      <Filter>playGround\Item\itemClass\TOOL</Filter>
     </ClInclude>
     <ClInclude Include="itemHoe.h">
-      <Filter>playGround\Inventory\Item\itemClass\TOOL</Filter>
+      <Filter>playGround\Item\itemClass\TOOL</Filter>
     </ClInclude>
     <ClInclude Include="itemPickAxe.h">
-      <Filter>playGround\Inventory\Item\itemClass\TOOL</Filter>
+      <Filter>playGround\Item\itemClass\TOOL</Filter>
     </ClInclude>
     <ClInclude Include="itemSickle.h">
-      <Filter>playGround\Inventory\Item\itemClass\TOOL</Filter>
+      <Filter>playGround\Item\itemClass\TOOL</Filter>
     </ClInclude>
     <ClInclude Include="itemCauliSeed.h">
-      <Filter>playGround\Inventory\Item\itemClass\SEED</Filter>
+      <Filter>playGround\Item\itemClass\SEED</Filter>
     </ClInclude>
     <ClInclude Include="itemKaleSeed.h">
-      <Filter>playGround\Inventory\Item\itemClass\SEED</Filter>
+      <Filter>playGround\Item\itemClass\SEED</Filter>
     </ClInclude>
     <ClInclude Include="itemParsnipSeed.h">
-      <Filter>playGround\Inventory\Item\itemClass\SEED</Filter>
+      <Filter>playGround\Item\itemClass\SEED</Filter>
     </ClInclude>
     <ClInclude Include="itemPotatoSeed.h">
-      <Filter>playGround\Inventory\Item\itemClass\SEED</Filter>
+      <Filter>playGround\Item\itemClass\SEED</Filter>
     </ClInclude>
     <ClInclude Include="itemBox.h">
-      <Filter>playGround\Inventory\Item\itemClass\CRAFT_ITEM</Filter>
+      <Filter>playGround\Item\itemClass\CRAFT_ITEM</Filter>
     </ClInclude>
     <ClInclude Include="itemCauliFlower.h">
-      <Filter>playGround\Inventory\Item\itemClass\CROP</Filter>
+      <Filter>playGround\Item\itemClass\CROP</Filter>
     </ClInclude>
     <ClInclude Include="itemGold.h">
-      <Filter>playGround\Inventory\Item\itemClass\ORE</Filter>
+      <Filter>playGround\Item\itemClass\ORE</Filter>
     </ClInclude>
     <ClInclude Include="itemCopper.h">
-      <Filter>playGround\Inventory\Item\itemClass\ORE</Filter>
+      <Filter>playGround\Item\itemClass\ORE</Filter>
     </ClInclude>
     <ClInclude Include="itemIron.h">
-      <Filter>playGround\Inventory\Item\itemClass\ORE</Filter>
+      <Filter>playGround\Item\itemClass\ORE</Filter>
     </ClInclude>
     <ClInclude Include="itemFurNance.h">
-      <Filter>playGround\Inventory\Item\itemClass\CRAFT_ITEM</Filter>
+      <Filter>playGround\Item\itemClass\CRAFT_ITEM</Filter>
     </ClInclude>
     <ClInclude Include="itemScareCrow1.h">
-      <Filter>playGround\Inventory\Item\itemClass\CRAFT_ITEM</Filter>
+      <Filter>playGround\Item\itemClass\CRAFT_ITEM</Filter>
     </ClInclude>
     <ClInclude Include="itemScareCrow2.h">
-      <Filter>playGround\Inventory\Item\itemClass\CRAFT_ITEM</Filter>
+      <Filter>playGround\Item\itemClass\CRAFT_ITEM</Filter>
     </ClInclude>
     <ClInclude Include="itemTuna.h">
-      <Filter>playGround\Inventory\Item\itemClass\FISH</Filter>
+      <Filter>playGround\Item\itemClass\FISH</Filter>
     </ClInclude>
     <ClInclude Include="itemPufferFish.h">
-      <Filter>playGround\Inventory\Item\itemClass\FISH</Filter>
+      <Filter>playGround\Item\itemClass\FISH</Filter>
     </ClInclude>
     <ClInclude Include="itemHaliBut.h">
-      <Filter>playGround\Inventory\Item\itemClass\FISH</Filter>
+      <Filter>playGround\Item\itemClass\FISH</Filter>
     </ClInclude>
     <ClInclude Include="itemKale.h">
-      <Filter>playGround\Inventory\Item\itemClass\CROP</Filter>
+      <Filter>playGround\Item\itemClass\CROP</Filter>
     </ClInclude>
     <ClInclude Include="itemParsnip.h">
-      <Filter>playGround\Inventory\Item\itemClass\CROP</Filter>
+      <Filter>playGround\Item\itemClass\CROP</Filter>
     </ClInclude>
     <ClInclude Include="itemPotato.h">
-      <Filter>playGround\Inventory\Item\itemClass\CROP</Filter>
+      <Filter>playGround\Item\itemClass\CROP</Filter>
     </ClInclude>
     <ClInclude Include="itemSlingShot.h">
-      <Filter>playGround\Inventory\Item\itemClass\WEAPON</Filter>
+      <Filter>playGround\Item\itemClass\WEAPON</Filter>
     </ClInclude>
     <ClInclude Include="itemSword.h">
-      <Filter>playGround\Inventory\Item\itemClass\WEAPON</Filter>
+      <Filter>playGround\Item\itemClass\WEAPON</Filter>
     </ClInclude>
     <ClInclude Include="itemStone.h">
-      <Filter>playGround\Inventory\Item\itemClass\BASIC_RESOURCE</Filter>
+      <Filter>playGround\Item\itemClass\BASIC_RESOURCE</Filter>
     </ClInclude>
     <ClInclude Include="itemWood.h">
-      <Filter>playGround\Inventory\Item\itemClass\BASIC_RESOURCE</Filter>
+      <Filter>playGround\Item\itemClass\BASIC_RESOURCE</Filter>
     </ClInclude>
     <ClInclude Include="itemRod.h">
-      <Filter>playGround\Inventory\Item\itemClass\TOOL</Filter>
+      <Filter>playGround\Item\itemClass\TOOL</Filter>
     </ClInclude>
     <ClInclude Include="wood.h">
       <Filter>playGround\Object\objectClass\BASIC_RESOURCE</Filter>
@@ -489,9 +489,6 @@
     </ClInclude>
     <ClInclude Include="gameScene.h">
       <Filter>playGround\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="boxInventory.h">
-      <Filter>playGround\Object</Filter>
     </ClInclude>
     <ClInclude Include="Box.h">
       <Filter>playGround\Object\objectClass\Craf</Filter>
@@ -510,6 +507,9 @@
     </ClInclude>
     <ClInclude Include="homeMap.h">
       <Filter>playGround</Filter>
+    </ClInclude>
+    <ClInclude Include="boxInventory.h">
+      <Filter>playGround\Object</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -706,13 +706,13 @@
       <Filter>playGround\Object\objectClass\ToolNoUse</Filter>
     </ClCompile>
     <ClCompile Include="item.cpp">
-      <Filter>playGround\Inventory\Item\item</Filter>
+      <Filter>playGround\Item\item</Filter>
     </ClCompile>
     <ClCompile Include="itemManager.cpp">
-      <Filter>playGround\Inventory\Item\itemManager</Filter>
+      <Filter>playGround\Item\itemManager</Filter>
     </ClCompile>
     <ClCompile Include="itemNull.cpp">
-      <Filter>playGround\Inventory\Item\itemClass</Filter>
+      <Filter>playGround\Item\itemClass</Filter>
     </ClCompile>
     <ClCompile Include="player.cpp">
       <Filter>playGround\Player</Filter>
@@ -736,88 +736,88 @@
       <Filter>playGround\Npc\NpcManager</Filter>
     </ClCompile>
     <ClCompile Include="itemAxe.cpp">
-      <Filter>playGround\Inventory\Item\itemClass\TOOL</Filter>
+      <Filter>playGround\Item\itemClass\TOOL</Filter>
     </ClCompile>
     <ClCompile Include="itemCan.cpp">
-      <Filter>playGround\Inventory\Item\itemClass\TOOL</Filter>
+      <Filter>playGround\Item\itemClass\TOOL</Filter>
     </ClCompile>
     <ClCompile Include="itemHoe.cpp">
-      <Filter>playGround\Inventory\Item\itemClass\TOOL</Filter>
+      <Filter>playGround\Item\itemClass\TOOL</Filter>
     </ClCompile>
     <ClCompile Include="itemPickAxe.cpp">
-      <Filter>playGround\Inventory\Item\itemClass\TOOL</Filter>
+      <Filter>playGround\Item\itemClass\TOOL</Filter>
     </ClCompile>
     <ClCompile Include="itemSickle.cpp">
-      <Filter>playGround\Inventory\Item\itemClass\TOOL</Filter>
+      <Filter>playGround\Item\itemClass\TOOL</Filter>
     </ClCompile>
     <ClCompile Include="itemCauliSeed.cpp">
-      <Filter>playGround\Inventory\Item\itemClass\SEED</Filter>
+      <Filter>playGround\Item\itemClass\SEED</Filter>
     </ClCompile>
     <ClCompile Include="itemKaleSeed.cpp">
-      <Filter>playGround\Inventory\Item\itemClass\SEED</Filter>
+      <Filter>playGround\Item\itemClass\SEED</Filter>
     </ClCompile>
     <ClCompile Include="itemParsnipSeed.cpp">
-      <Filter>playGround\Inventory\Item\itemClass\SEED</Filter>
+      <Filter>playGround\Item\itemClass\SEED</Filter>
     </ClCompile>
     <ClCompile Include="itemPotatoSeed.cpp">
-      <Filter>playGround\Inventory\Item\itemClass\SEED</Filter>
+      <Filter>playGround\Item\itemClass\SEED</Filter>
     </ClCompile>
     <ClCompile Include="itemBox.cpp">
-      <Filter>playGround\Inventory\Item\itemClass\CRAFT_ITEM</Filter>
+      <Filter>playGround\Item\itemClass\CRAFT_ITEM</Filter>
     </ClCompile>
     <ClCompile Include="itemCauliFlower.cpp">
-      <Filter>playGround\Inventory\Item\itemClass\CROP</Filter>
+      <Filter>playGround\Item\itemClass\CROP</Filter>
     </ClCompile>
     <ClCompile Include="itemGold.cpp">
-      <Filter>playGround\Inventory\Item\itemClass\ORE</Filter>
+      <Filter>playGround\Item\itemClass\ORE</Filter>
     </ClCompile>
     <ClCompile Include="itemCopper.cpp">
-      <Filter>playGround\Inventory\Item\itemClass\ORE</Filter>
+      <Filter>playGround\Item\itemClass\ORE</Filter>
     </ClCompile>
     <ClCompile Include="itemIron.cpp">
-      <Filter>playGround\Inventory\Item\itemClass\ORE</Filter>
+      <Filter>playGround\Item\itemClass\ORE</Filter>
     </ClCompile>
     <ClCompile Include="itemFurNance.cpp">
-      <Filter>playGround\Inventory\Item\itemClass\CRAFT_ITEM</Filter>
+      <Filter>playGround\Item\itemClass\CRAFT_ITEM</Filter>
     </ClCompile>
     <ClCompile Include="itemScareCrow1.cpp">
-      <Filter>playGround\Inventory\Item\itemClass\CRAFT_ITEM</Filter>
+      <Filter>playGround\Item\itemClass\CRAFT_ITEM</Filter>
     </ClCompile>
     <ClCompile Include="itemScareCrow2.cpp">
-      <Filter>playGround\Inventory\Item\itemClass\CRAFT_ITEM</Filter>
+      <Filter>playGround\Item\itemClass\CRAFT_ITEM</Filter>
     </ClCompile>
     <ClCompile Include="itemTuna.cpp">
-      <Filter>playGround\Inventory\Item\itemClass\FISH</Filter>
+      <Filter>playGround\Item\itemClass\FISH</Filter>
     </ClCompile>
     <ClCompile Include="itemPufferFish.cpp">
-      <Filter>playGround\Inventory\Item\itemClass\FISH</Filter>
+      <Filter>playGround\Item\itemClass\FISH</Filter>
     </ClCompile>
     <ClCompile Include="itemHaliBut.cpp">
-      <Filter>playGround\Inventory\Item\itemClass\FISH</Filter>
+      <Filter>playGround\Item\itemClass\FISH</Filter>
     </ClCompile>
     <ClCompile Include="itemKale.cpp">
-      <Filter>playGround\Inventory\Item\itemClass\CROP</Filter>
+      <Filter>playGround\Item\itemClass\CROP</Filter>
     </ClCompile>
     <ClCompile Include="itemParsnip.cpp">
-      <Filter>playGround\Inventory\Item\itemClass\CROP</Filter>
+      <Filter>playGround\Item\itemClass\CROP</Filter>
     </ClCompile>
     <ClCompile Include="itemPotato.cpp">
-      <Filter>playGround\Inventory\Item\itemClass\CROP</Filter>
+      <Filter>playGround\Item\itemClass\CROP</Filter>
     </ClCompile>
     <ClCompile Include="itemSlingShot.cpp">
-      <Filter>playGround\Inventory\Item\itemClass\WEAPON</Filter>
+      <Filter>playGround\Item\itemClass\WEAPON</Filter>
     </ClCompile>
     <ClCompile Include="itemSword.cpp">
-      <Filter>playGround\Inventory\Item\itemClass\WEAPON</Filter>
+      <Filter>playGround\Item\itemClass\WEAPON</Filter>
     </ClCompile>
     <ClCompile Include="itemStone.cpp">
-      <Filter>playGround\Inventory\Item\itemClass\BASIC_RESOURCE</Filter>
+      <Filter>playGround\Item\itemClass\BASIC_RESOURCE</Filter>
     </ClCompile>
     <ClCompile Include="itemWood.cpp">
-      <Filter>playGround\Inventory\Item\itemClass\BASIC_RESOURCE</Filter>
+      <Filter>playGround\Item\itemClass\BASIC_RESOURCE</Filter>
     </ClCompile>
     <ClCompile Include="itemRod.cpp">
-      <Filter>playGround\Inventory\Item\itemClass\TOOL</Filter>
+      <Filter>playGround\Item\itemClass\TOOL</Filter>
     </ClCompile>
     <ClCompile Include="stone.cpp">
       <Filter>playGround\Object\objectClass\BASIC_RESOURCE</Filter>
@@ -827,9 +827,6 @@
     </ClCompile>
     <ClCompile Include="gameScene.cpp">
       <Filter>playGround\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="boxInventory.cpp">
-      <Filter>playGround\Object</Filter>
     </ClCompile>
     <ClCompile Include="Box.cpp">
       <Filter>playGround\Object\objectClass\Craf</Filter>
@@ -848,6 +845,9 @@
     </ClCompile>
     <ClCompile Include="homeMap.cpp">
       <Filter>playGround</Filter>
+    </ClCompile>
+    <ClCompile Include="boxInventory.cpp">
+      <Filter>playGround\Object</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

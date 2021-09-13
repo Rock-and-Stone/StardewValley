@@ -85,6 +85,11 @@ void entity::GoldGet(int gold)
 {
 }
 
+int entity::getPlayerTile()
+{
+	return 0;
+}
+
 inventory* entity::GetInventory()
 {
 	return nullptr;

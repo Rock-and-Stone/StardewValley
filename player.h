@@ -100,6 +100,7 @@ public:
 	int getX() { return _x; }
 	int getY() { return _y; }
 	int getDir() { return _dir; }
+	int getPlayerTile() { return _tileIndex; }
 	void setRenderX(int rendX) { _rendX = rendX; }
 	void setRenderY(int rendY) { _rendY = rendY; }
 	int getRenderX() { return _rendX; }

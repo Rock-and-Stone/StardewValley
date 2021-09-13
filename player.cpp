@@ -320,8 +320,24 @@ void player::changePlayerTool()
 		{
 			SOUNDMANAGER->play("hitRock", 1.0f);
 			_homeMap->RemoveObject(_interectiveIndex);
+			SOUNDMANAGER->play("removeRock", 1.0f);
 			_objectManager->SetStone(_homeMap->getTile()[_interectiveIndex].posX, _homeMap->getTile()[_interectiveIndex].posY, RND->getFromIntTo(1, 10));
 		}
+		if (_homeMap->getTile()[_interectiveIndex].obj == OBJ_COPPERR)
+		{
+			SOUNDMANAGER->play("hitRock", 1.0f);
+			_homeMap->RemoveObject(_interectiveIndex);
+			SOUNDMANAGER->play("removeRock", 1.0f);
+			_objectManager->SetCopper(_homeMap->getTile()[_interectiveIndex].posX, _homeMap->getTile()[_interectiveIndex].posY, RND->getFromIntTo(1, 7));
+		}
+		if (_homeMap->getTile()[_interectiveIndex].obj == OBJ_IRONN)
+		{
+			SOUNDMANAGER->play("hitRock", 1.0f);
+			_homeMap->RemoveObject(_interectiveIndex);
+			SOUNDMANAGER->play("removeRock", 1.0f);
+			_objectManager->SetIron(_homeMap->getTile()[_interectiveIndex].posX, _homeMap->getTile()[_interectiveIndex].posY, RND->getFromIntTo(1, 5));
+		}
+
 		_playerPickAxe->update();
 		break;
 
@@ -334,6 +350,7 @@ void player::changePlayerTool()
 		{
 			SOUNDMANAGER->play("hitGrass", 1.0f);
 			_homeMap->RemoveObject(_interectiveIndex);
+			SOUNDMANAGER->play("removeGrass", 1.0f);
 		}
 		_playerSickle->update();
 		break;

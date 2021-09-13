@@ -43,6 +43,7 @@ HRESULT gameScene::init()
 	SOUNDMANAGER->play("springBGM", 0.1f);
 
 	RENDERMANAGER->addRender(_player);
+	//RENDERMANAGER->addRender(_homeMap);
 
     return S_OK;
 }
@@ -69,11 +70,17 @@ void gameScene::render()
 {
 	_homeMap->DrawTile(_cameraManager->getCamX(), _cameraManager->getCamY());
 	//_npcManager->render();
-	_homeMap->DrawObject(_cameraManager->getCamX(), _cameraManager->getCamY());
+
 	_objectManager->render();
+	
 	_player->setRenderX(_cameraManager->getRenderPosX());
 	_player->setRenderY(_cameraManager->getRenderPosY());
-	RENDERMANAGER->render(getMemDC());
+	_homeMap->DrawObject(_cameraManager->getCamX(), _cameraManager->getCamY(), _player->getPlayerTile());
+	//RENDERMANAGER->render(getMemDC());
+
+	
+
+	
 
 	_npcManager->render();
 

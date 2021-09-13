@@ -119,6 +119,22 @@ LRESULT gameNode::MainProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lPara
 		}
 		break;
 
+		case WM_MOUSEWHEEL:
+		{
+			int zdelta = GET_WHEEL_DELTA_WPARAM(wParam);
+			switch (zdelta)
+			{
+			case 120:
+				break;
+			case -120:
+				break;
+
+			default:
+				break;
+			}
+		}
+			break;
+
 		case WM_DESTROY:
 			PostQuitMessage(0);
 		return 0;

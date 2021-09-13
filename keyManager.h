@@ -31,6 +31,8 @@ public:
 	//키를 토글하면
 	bool isToggleKey(int key);
 
+
+
 	bitset<KEYMAX> getKeyUp() { return _keyUp; }
 	bitset<KEYMAX> getKeyDown() { return _keyDown; }
 

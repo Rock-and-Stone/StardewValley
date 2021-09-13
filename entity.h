@@ -39,6 +39,7 @@ public:
 	virtual int getGold();
 	virtual void setX(int x), setY(int y);
 	void GoldGet(int gold);
+	virtual int getPlayerTile();
 	virtual inventory* GetInventory();
 	virtual void SetPlayerObjectManagerMemoryLink(objectManager* om);
 	virtual void SetBoxInvenPlayer(boxInventory* bm);

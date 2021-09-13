@@ -143,19 +143,27 @@ void boxInventory::render()
         for (int i = 0; i < INVENTORYSIZE; i++)
         {
             //±×¸²ÀÎ¼â
-            _vBox[i]->render(_boxInven[i].rc.left, _boxInven[i].rc.top);
-            _inven->GetvInven()[i]->render(_invens[i].rc.left, _invens[i].rc.top);
+
+            if (_drag)
+            {
+                _vBox[_downItem]->render(_ptMouse.x-10, _ptMouse.y-10);
+                _inven->GetvInven()[_downItem]->render(_ptMouse.x - 10, _ptMouse.y - 10);
+            }
+       
+                _vBox[i]->render(_boxInven[i].rc.left, _boxInven[i].rc.top);
+                _inven->GetvInven()[i]->render(_invens[i].rc.left, _invens[i].rc.top);
             
-            sprintf_s(str, "%d", _boxInven[i].amount);
-            TextOut(getMemDC(), _boxInven[i].rc.right - 20, _boxInven[i].rc.bottom - 20, str, strlen(str));
-            sprintf_s(str, "%d", _inven->GetInven()[i].amount);
-            TextOut(getMemDC(), _invens[i].rc.right - 20, _invens[i].rc.bottom - 20, str, strlen(str));
 
-            sprintf_s(str, "%d", _upItem);
-            TextOut(getMemDC(), _ptMouse.x + 30, _ptMouse.y + 50, str, strlen(str));
-            sprintf_s(str, "%d", _downItem);
-            TextOut(getMemDC(), _ptMouse.x + 30, _ptMouse.y + 70, str, strlen(str));
 
+
+            if (_boxInven[i].amount != 0 && _boxInven[i].amount > 1 
+                && _inven->GetInven()[i].amount != 0 && _inven->GetInven()[i].amount > 1);
+            {
+                sprintf_s(str, "%d", _boxInven[i].amount);
+                TextOut(getMemDC(), _boxInven[i].rc.right - 20, _boxInven[i].rc.bottom - 20, str, strlen(str));
+                sprintf_s(str, "%d", _inven->GetInven()[i].amount);
+                TextOut(getMemDC(), _invens[i].rc.right - 20, _invens[i].rc.bottom - 20, str, strlen(str));
+            }
         }
     }
     

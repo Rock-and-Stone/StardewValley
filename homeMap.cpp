@@ -102,13 +102,16 @@ void homeMap::DrawTile(float posX , float posY)
 	}
 }
 
-void homeMap::DrawObject(float posX, float posY)
+void homeMap::DrawObject(float posX, float posY, int pT)
 {
-	RECT rendRect;
+	RECT rendRect; 
+	RECT tempRect;
+	bool isin = false;
 
 	for (int i = 0; i < TILEX * TILEY; ++i)
 	{
 		rendRect = RectMake(_tiles[i].posX - posX, _tiles[i].posY - posY, TILESIZE, TILESIZE);
+		tempRect = RectMake(_tiles[pT].posX - posX, _tiles[pT].posY - posY, TILESIZE, TILESIZE);
 
 		char tileStr[128];
 		int  tileReposX = 0;
@@ -150,7 +153,28 @@ void homeMap::DrawObject(float posX, float posY)
 		if (rendRect.left - tileReposX > WINSIZEX || rendRect.top - tileReposY > WINSIZEY) continue;
 		if (rendRect.left + 32 + tileReposX < 0 || rendRect.top + 32 < 0) continue;
 
-		IMAGEMANAGER->frameRender(tileStr, getMemDC(), rendRect.left - tileReposX, rendRect.top - tileReposY, _tiles[i].objFrameX, _tiles[i].objFrameY);
+
+		
+		if (rendRect.top > tempRect.top)
+		{
+			if (!isin)
+			{
+				RENDERMANAGER->render(getMemDC());
+				isin = true;
+			}
+	
+			IMAGEMANAGER->frameRender(tileStr, getMemDC(), rendRect.left - tileReposX, rendRect.top - tileReposY, _tiles[i].objFrameX, _tiles[i].objFrameY);
+		}
+		else
+		{		
+			IMAGEMANAGER->frameRender(tileStr, getMemDC(), rendRect.left - tileReposX, rendRect.top - tileReposY, _tiles[i].objFrameX, _tiles[i].objFrameY);
+			if (!isin)
+			{
+				RENDERMANAGER->render(getMemDC());
+				isin = true;
+			}
+		}
+		
 	}
 }
 

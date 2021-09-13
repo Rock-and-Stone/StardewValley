@@ -31,7 +31,7 @@ public:
 	void load();
 
 	void DrawTile(float posX, float posY);
-	void DrawObject(float posX, float posY);
+	void DrawObject(float posX, float posY, int pT);
 
 	void CultivateTile(int num);
 	void PlaceObject(ALLOBJECTS object, int num);
