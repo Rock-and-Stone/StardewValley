@@ -211,7 +211,7 @@ private:
 	int _quickSlotMax;
 
 	int _nowQuickItem;
-
+	int temp;
 	int woodTemp;
 	int stoneTemp;
 	int ironTemp;
@@ -303,6 +303,8 @@ public:
 
 	BOOL GetIsMenuOpen() { return _isMenuOpen; }
 	void SetIsMenuOpen(BOOL open) { _isMenuOpen = open; }
+
+	BOOL GetIsInvenFull() { return _invenIsFull; }
 
 	int GetQuickItemType() { return _nowQuickItem; }
 	void SetQuickItemType(int now) { _nowQuickItem = now; }

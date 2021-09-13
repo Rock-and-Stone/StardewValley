@@ -276,19 +276,24 @@ void objectManager::ObjectCollsion()
             _vObject[i]->GetObjectPosX(), _vObject[i]->GetObjectPosY());
 
         //거리구하기
-        if (playerToObjectDis < 100)
+        if (playerToObjectDis < 100 )
         {
             float mS = -5.0f;
             float ox = _vObject[i]->GetObjectPosX();
             float oy = _vObject[i]->GetObjectPosY();
-            ox += mS * cosf(playerToObjectAng);
-            oy += mS * -sinf(playerToObjectAng);
+                
+            if (!_inven->GetIsInvenFull())
+            {
+                ox += mS * cosf(playerToObjectAng);
+                oy += mS * -sinf(playerToObjectAng);
 
-            _vObject[i]->SetObjectPosX(ox);
-            _vObject[i]->SetObjectPosY(oy);
-
+                _vObject[i]->SetObjectPosX(ox);
+                _vObject[i]->SetObjectPosY(oy);
+            }
+ 
+              
           
-            if (playerToObjectDis < 10)
+            if (playerToObjectDis < 10 && !_inven->GetIsInvenFull())
             {
 
                 switch (_vObject[i]->GetObjectType())
