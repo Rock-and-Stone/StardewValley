@@ -51,7 +51,7 @@ void loadingScene::update()
 	if (_currentCount == LOADINGMAX)
 	{
 		//이동할 씬 으로 변경
-		SCENEMANAGER->changeScene("gameScene");
+		SCENEMANAGER->changeScene("mainMenuScene");
 	}
 
 	_count++;
